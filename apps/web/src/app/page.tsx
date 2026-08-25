@@ -197,7 +197,31 @@ export default function App() {
     localStorage.setItem('arms_theme', nextTheme);
   };
 
-  // Check login on mount
+  // Valid tab types list
+  const validTabs: TabType[] = [
+    'overview',
+    'accounts',
+    'import',
+    'lookup',
+    'exports',
+    'backups',
+    'apikeys',
+    'teams',
+    'systemlogs',
+    'farm',
+    'crm',
+  ];
+
+  // Helper to switch tab and sync URL hash + localStorage
+  const handleTabChange = (newTab: TabType) => {
+    setActiveTab(newTab);
+    try {
+      localStorage.setItem('arms_active_tab', newTab);
+      window.history.replaceState(null, '', '#' + newTab);
+    } catch {}
+  };
+
+  // Check login & tab on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem('arms_theme') as 'dark' | 'light';
     if (savedTheme) {
@@ -211,7 +235,30 @@ export default function App() {
       setUserRole(getRole() || 'MEMBER');
       setUserTeam(getTeam() || 'ALL');
       setUserDisplayName(getDisplayName() || 'Thành Viên');
+
+      // Restore active tab from URL hash or localStorage
+      const hashTab = window.location.hash.replace('#', '') as TabType;
+      const savedTab = (localStorage.getItem('arms_active_tab') || 'overview') as TabType;
+      const targetTab = validTabs.includes(hashTab)
+        ? hashTab
+        : validTabs.includes(savedTab)
+        ? savedTab
+        : 'overview';
+      setActiveTab(targetTab);
     }
+
+    // Sync tab when user uses Browser Back/Forward buttons
+    const onHashChange = () => {
+      const hashTab = window.location.hash.replace('#', '') as TabType;
+      if (validTabs.includes(hashTab)) {
+        setActiveTab(hashTab);
+        try {
+          localStorage.setItem('arms_active_tab', hashTab);
+        } catch {}
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   // Fetch data when tab changes or user logs in
@@ -887,7 +934,7 @@ export default function App() {
       {/* Collapsible Sidebar */}
       <Sidebar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabChange}
         userRole={userRole}
         userTeam={userTeam}
         userDisplayName={userDisplayName}
@@ -924,7 +971,7 @@ export default function App() {
             <DashboardOverview
               stats={stats}
               analytics={analytics}
-              onNavigateTab={(t) => setActiveTab(t)}
+              onNavigateTab={(t) => handleTabChange(t)}
             />
           )}
 
