@@ -166,13 +166,13 @@ export const FarmMatrixView: React.FC<FarmMatrixViewProps> = ({ onPushToBrowser 
               <button
                 key={p}
                 onClick={() => setPlatformFilter(p)}
-                className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   platformFilter === p
                     ? 'bg-amber-500 text-slate-950 shadow-md'
                     : 'bg-white/5 text-desc hover:text-title border border-[var(--border-subtle)]'
                 }`}
               >
-                {p === 'ALL' ? 'Tất cả' : p === 'SHOPEE' ? '🛒 Shopee' : '🎵 TikTok'}
+                {p === 'ALL' ? 'Tất Cả Dàn' : p === 'SHOPEE' ? 'Shopee' : 'TikTok'}
               </button>
             ))}
           </div>

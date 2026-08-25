@@ -72,11 +72,11 @@ export const AccountFilters: React.FC<AccountFiltersProps> = ({
           <select
             value={filters.platform}
             onChange={(e) => handleChange('platform', e.target.value)}
-            className="w-full bg-[var(--bg-input)] text-title text-xs rounded-xl px-3 py-2.5 border border-[var(--border-subtle)] focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full bg-[var(--bg-input)] text-title text-xs rounded-xl px-3 py-2.5 border border-[var(--border-subtle)] focus:outline-none focus:border-purple-500 transition-all font-medium"
           >
-            <option value="ALL">🌐 Tất Cả Nền Tảng</option>
-            <option value="SHOPEE">🛒 Shopee</option>
-            <option value="TIKTOK">🎵 TikTok</option>
+            <option value="ALL">Tất Cả Nền Tảng</option>
+            <option value="SHOPEE">Shopee</option>
+            <option value="TIKTOK">TikTok</option>
           </select>
         </div>
 
@@ -85,13 +85,13 @@ export const AccountFilters: React.FC<AccountFiltersProps> = ({
           <select
             value={filters.status}
             onChange={(e) => handleChange('status', e.target.value)}
-            className="w-full bg-[var(--bg-input)] text-title text-xs rounded-xl px-3 py-2.5 border border-[var(--border-subtle)] focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full bg-[var(--bg-input)] text-title text-xs rounded-xl px-3 py-2.5 border border-[var(--border-subtle)] focus:outline-none focus:border-purple-500 transition-all font-medium"
           >
-            <option value="ALL">📋 Tất Cả Trạng Thái</option>
-            <option value="AVAILABLE">🟢 AVAILABLE (Sẵn sàng)</option>
-            <option value="SOLD">🔵 SOLD (Đã bán)</option>
-            <option value="USED">🟣 USED (Đã dùng)</option>
-            <option value="BLACKLIST">🔴 BLACKLIST (Hỏng/Khóa)</option>
+            <option value="ALL">Tất Cả Trạng Thái</option>
+            <option value="AVAILABLE">AVAILABLE (Sẵn sàng)</option>
+            <option value="SOLD">SOLD (Đã bán)</option>
+            <option value="USED">USED (Đã dùng)</option>
+            <option value="BLACKLIST">BLACKLIST (Hỏng/Khóa)</option>
           </select>
         </div>
 
@@ -99,7 +99,7 @@ export const AccountFilters: React.FC<AccountFiltersProps> = ({
         <div>
           <input
             type="text"
-            placeholder="📱 Mã máy (VD: p2k1, MÁY 1...)"
+            placeholder="Mã máy (VD: p2k1, MÁY 1...)"
             value={filters.machine_id}
             onChange={(e) => handleChange('machine_id', e.target.value)}
             onKeyDown={handleKeyDown}

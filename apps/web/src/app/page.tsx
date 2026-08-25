@@ -350,7 +350,7 @@ export default function App() {
 
     setInputDialog({
       isOpen: true,
-      title: `⚡ Bán Nhanh & Sao Chép (${selectedUsernames.length} tài khoản)`,
+      title: `Bán Nhanh & Sao Chép (${selectedUsernames.length} tài khoản)`,
       label: 'Tên Khách Hàng Mua / Kênh Thu Mua',
       placeholder: 'VD: Anh Tuấn, Shop ABC, Zalo @mmo...',
       required: true,
@@ -822,7 +822,7 @@ export default function App() {
   // RENDER: AUTHENTICATED DASHBOARD
   // ----------------------------------------------------
   return (
-    <div className="min-h-screen flex bg-[var(--bg-main)] text-title">
+    <div className="h-screen flex overflow-hidden bg-[var(--bg-main)] text-title">
       {/* Toast Notification */}
       {toastMessage && (
         <div
@@ -902,7 +902,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
+      <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
         {/* TopBar Header */}
         <TopBar
           activeTab={activeTab}
@@ -917,8 +917,8 @@ export default function App() {
           totalAccounts={stats?.total}
         />
 
-        {/* Content Container */}
-        <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+        {/* Content Container (Independent Smooth Scroll) */}
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <DashboardOverview
@@ -1369,7 +1369,7 @@ export default function App() {
                     <div>
                       <h3 className="font-bold text-title text-base">Khóa API Mới Đã Tạo Thành Công!</h3>
                       <p className="text-xs text-amber-300 mt-0.5">
-                        ⚠️ Sao chép và lưu trữ khóa ngay bây giờ. Khóa sẽ không bao giờ hiển thị lại.
+                        Hãy sao chép và lưu trữ khóa ngay bây giờ. Khóa sẽ không bao giờ hiển thị lại.
                       </p>
                     </div>
                   </div>

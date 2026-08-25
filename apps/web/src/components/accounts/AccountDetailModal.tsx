@@ -16,6 +16,9 @@ import {
   Lock,
   Eye,
   EyeOff,
+  ShoppingBag,
+  Music2,
+  KeyRound,
 } from 'lucide-react';
 
 interface AccountDetailModalProps {
@@ -78,13 +81,23 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
             <div className="flex flex-wrap items-center gap-2 mt-1">
               {/* Platform badge */}
               <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
                   account.platform === 'TIKTOK'
                     ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30'
                     : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                 }`}
               >
-                {account.platform === 'TIKTOK' ? '🎵 TIKTOK' : '🛒 SHOPEE'}
+                {account.platform === 'TIKTOK' ? (
+                  <>
+                    <Music2 className="w-3 h-3" />
+                    <span>TIKTOK</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="w-3 h-3" />
+                    <span>SHOPEE</span>
+                  </>
+                )}
               </span>
 
               {/* Status badge */}
@@ -218,10 +231,13 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
           {(account.session_token || account.token || account.cookie) && (
             <div className="bg-[var(--bg-card)] p-3 rounded-xl border border-[var(--border-subtle)]">
               <div className="flex justify-between items-center">
-                <span className="text-[10px] text-desc uppercase font-sans">
-                  {account.platform === 'TIKTOK'
-                    ? '⚡ Token Phiên TikTok (Đăng nhập không cần OTP)'
-                    : '🍪 Cookie Shopee (SPC_F / Session)'}
+                <span className="text-[10px] text-desc uppercase font-sans font-bold flex items-center gap-1.5">
+                  <KeyRound className="w-3 h-3 text-cyan-400" />
+                  <span>
+                    {account.platform === 'TIKTOK'
+                      ? 'Token Phiên TikTok (Đăng nhập No-OTP)'
+                      : 'Cookie Shopee (SPC_F / Session)'}
+                  </span>
                 </span>
                 <button
                   onClick={() =>

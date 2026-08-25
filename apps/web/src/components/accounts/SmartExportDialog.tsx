@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Modal } from '../ui/Modal';
-import { Zap, Download, RefreshCw, ShoppingCart, ShieldCheck } from 'lucide-react';
+import { Zap, Download, RefreshCw, ShoppingCart, ShieldCheck, ShoppingBag, Music2 } from 'lucide-react';
 
 interface SmartExportDialogProps {
   isOpen: boolean;
@@ -81,7 +81,8 @@ export const SmartExportDialog: React.FC<SmartExportDialogProps> = ({
                   : 'border-[var(--border-subtle)] text-desc hover:text-title bg-white/[0.02]'
               }`}
             >
-              <span>🎵 TikTok</span>
+              <Music2 className="w-4 h-4 text-cyan-400" />
+              <span>TikTok</span>
             </button>
 
             <button
@@ -93,7 +94,8 @@ export const SmartExportDialog: React.FC<SmartExportDialogProps> = ({
                   : 'border-[var(--border-subtle)] text-desc hover:text-title bg-white/[0.02]'
               }`}
             >
-              <span>🛒 Shopee</span>
+              <ShoppingBag className="w-4 h-4 text-orange-400" />
+              <span>Shopee</span>
             </button>
           </div>
 

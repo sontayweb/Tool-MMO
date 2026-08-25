@@ -74,32 +74,32 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'overview' as TabType,
       label: 'Tổng Quan Kho',
       icon: Layers,
-      color: 'text-purple-400',
+      iconColor: 'text-purple-500 dark:text-purple-400',
     },
     {
       id: 'accounts' as TabType,
       label: 'Kho Tài Khoản',
       icon: Database,
       badge: stats?.available ? `${(stats.available / 1000).toFixed(1)}k` : undefined,
-      color: 'text-cyan-400',
+      iconColor: 'text-cyan-500 dark:text-cyan-400',
     },
     {
       id: 'import' as TabType,
       label: 'Nhập Kho Offline',
       icon: Upload,
-      color: 'text-indigo-400',
+      iconColor: 'text-indigo-500 dark:text-indigo-400',
     },
     {
       id: 'lookup' as TabType,
       label: 'Tra Cứu Nhanh',
       icon: Search,
-      color: 'text-emerald-400',
+      iconColor: 'text-emerald-500 dark:text-emerald-400',
     },
     {
       id: 'exports' as TabType,
       label: 'Trung Tâm Xuất File',
       icon: Download,
-      color: 'text-blue-400',
+      iconColor: 'text-blue-500 dark:text-blue-400',
     },
   ];
 
@@ -108,47 +108,46 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'farm' as TabType,
       label: 'Dàn Máy Boxphone',
       icon: Server,
-      color: 'text-amber-400',
-      tag: 'NEW',
+      iconColor: 'text-amber-500 dark:text-amber-400',
+      tag: 'HOT',
     },
     {
       id: 'crm' as TabType,
-      label: 'Kế Toán & CRM',
+      label: 'Doanh Thu & Khách Hàng',
       icon: TrendingUp,
-      color: 'text-emerald-400',
-      tag: 'NEW',
+      iconColor: 'text-emerald-500 dark:text-emerald-400',
     },
   ];
 
   const infraNavItems = [
     {
       id: 'backups' as TabType,
-      label: 'Sao Lưu & Khôi Phục',
+      label: 'Sao Lưu Snapshot',
       icon: Archive,
-      color: 'text-teal-400',
+      iconColor: 'text-teal-500 dark:text-teal-400',
       roles: ['OWNER', 'MANAGER'],
     },
     {
       id: 'apikeys' as TabType,
-      label: 'Cổng API Tool',
+      label: 'Cổng Kết Nối Tool API',
       icon: Key,
-      color: 'text-amber-400',
+      iconColor: 'text-amber-500 dark:text-amber-400',
       roles: ['OWNER', 'MANAGER'],
     },
     {
       id: 'teams' as TabType,
-      label: 'Đội Nhóm & RBAC',
+      label: 'Đội Nhóm & Quyền',
       icon: Users,
-      color: 'text-purple-400',
+      iconColor: 'text-purple-500 dark:text-purple-400',
       roles: ['OWNER', 'MANAGER'],
     },
     {
       id: 'systemlogs' as TabType,
       label: 'Nhật Ký Tập Trung',
       icon: Terminal,
-      color: 'text-rose-400',
+      iconColor: 'text-rose-500 dark:text-rose-400',
       badge: 'LIVE',
-      badgeColor: 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
+      badgeColor: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30',
     },
   ];
 
@@ -161,7 +160,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     id: TabType;
     label: string;
     icon: any;
-    color?: string;
+    iconColor?: string;
     badge?: string;
     badgeColor?: string;
     tag?: string;
@@ -172,44 +171,54 @@ export const Sidebar: React.FC<SidebarProps> = ({
     const Icon = item.icon;
     const isActive = activeTab === item.id;
 
+    if (isCollapsed) {
+      return (
+        <button
+          key={item.id}
+          onClick={() => handleTabClick(item.id)}
+          title={item.label}
+          className={`w-11 h-11 mx-auto flex items-center justify-center rounded-xl transition-all relative group ${
+            isActive
+              ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-950/30 font-bold'
+              : 'text-[var(--sidebar-text-desc)] hover:text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover)]'
+          }`}
+        >
+          <Icon className={`w-4 h-4 ${isActive ? 'text-white' : item.iconColor || 'text-[var(--sidebar-text-desc)]'}`} />
+          {item.tag && (
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-400 ring-2 ring-[var(--sidebar-bg)]" />
+          )}
+        </button>
+      );
+    }
+
     return (
       <button
         key={item.id}
         onClick={() => handleTabClick(item.id)}
-        title={isCollapsed ? item.label : undefined}
-        className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all relative group ${
+        className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all relative group ${
           isActive
-            ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-950/40 font-bold'
-            : 'text-desc hover:text-title hover:bg-white/5'
+            ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-950/30 font-bold'
+            : 'text-[var(--sidebar-text-desc)] hover:text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover)]'
         }`}
       >
-        {/* Active indicator bar */}
-        {isActive && (
-          <div className="absolute left-0 top-2 bottom-2 w-1 bg-white rounded-r-full" />
+        <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : item.iconColor || 'text-[var(--sidebar-text-desc)]'}`} />
+
+        <span className="flex-1 text-left truncate">{item.label}</span>
+
+        {item.tag && (
+          <span className="text-[9px] px-1.5 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-600 dark:text-amber-300 border border-amber-500/30 shrink-0">
+            {item.tag}
+          </span>
         )}
 
-        <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : item.color || 'text-desc'}`} />
-
-        {!isCollapsed && (
-          <>
-            <span className="flex-1 text-left truncate">{item.label}</span>
-
-            {item.tag && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0">
-                {item.tag}
-              </span>
-            )}
-
-            {item.badge && (
-              <span
-                className={`text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0 ${
-                  item.badgeColor || 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                }`}
-              >
-                {item.badge}
-              </span>
-            )}
-          </>
+        {item.badge && (
+          <span
+            className={`text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0 ${
+              item.badgeColor || 'bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/30'
+            }`}
+          >
+            {item.badge}
+          </span>
         )}
       </button>
     );
@@ -227,29 +236,44 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed md:static inset-y-0 left-0 z-40 flex flex-col bg-[var(--bg-sidebar)] border-r border-[var(--border-subtle)] transition-all duration-300 ${
-          isCollapsed ? 'w-20' : 'w-64'
+        style={{
+          backgroundColor: 'var(--sidebar-bg)',
+          borderColor: 'var(--sidebar-border)',
+          color: 'var(--sidebar-text)',
+        }}
+        className={`fixed md:static inset-y-0 left-0 z-40 flex flex-col h-screen shrink-0 overflow-hidden border-r transition-all duration-300 ${
+          isCollapsed ? 'w-16' : 'w-64'
         } ${
           isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        } shadow-2xl md:shadow-none`}
+        } shadow-xl md:shadow-none select-none`}
       >
         {/* Brand Header */}
-        <div className="p-4 border-b border-[var(--border-subtle)] flex items-center justify-between">
+        <div
+          style={{ borderColor: 'var(--sidebar-border)' }}
+          className={`border-b flex items-center ${
+            isCollapsed ? 'p-2 flex-col justify-center gap-2' : 'p-4 justify-between'
+          }`}
+        >
           <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-lg shadow-purple-950/40 shrink-0">
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              title={isCollapsed ? 'Mở rộng menu' : undefined}
+              className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-md shadow-purple-950/20 shrink-0 hover:scale-105 transition-transform"
+            >
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-purple-400" />
               </div>
-            </div>
+            </button>
+
             {!isCollapsed && (
               <div className="min-w-0">
-                <div className="font-extrabold text-sm tracking-tight text-title flex items-center gap-1.5 truncate">
+                <div className="font-extrabold text-sm tracking-tight text-[var(--sidebar-text)] flex items-center gap-1.5 truncate">
                   <span>ARMS DWH</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30 font-mono">
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 font-mono font-bold">
                     v4.0
                   </span>
                 </div>
-                <div className="text-[11px] text-desc truncate">MMO Data Warehouse</div>
+                <div className="text-[11px] text-[var(--sidebar-text-desc)] truncate">MMO Data Warehouse</div>
               </div>
             )}
           </div>
@@ -257,39 +281,47 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Desktop Collapse Toggle */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden md:flex p-1.5 rounded-xl hover:bg-white/5 text-desc hover:text-title transition-all"
-            title={isCollapsed ? 'Mở rộng menu' : 'Thu gọn menu'}
+            className="hidden md:flex p-1.5 rounded-xl hover:bg-[var(--sidebar-hover)] text-[var(--sidebar-text-desc)] hover:text-[var(--sidebar-text)] transition-all"
+            title={isCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
           >
-            {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            {isCollapsed ? (
+              <ChevronRight className="w-4 h-4" />
+            ) : (
+              <ChevronLeft className="w-4 h-4" />
+            )}
           </button>
         </div>
 
-        {/* User Mini Profile Card */}
+        {/* User Mini Profile (Only when Expanded) */}
         {!isCollapsed && (
-          <div className="mx-3 my-3 p-3 rounded-2xl bg-white/[0.03] border border-[var(--border-subtle)] flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
-              <Shield className="w-4 h-4" />
+          <div
+            style={{
+              backgroundColor: 'var(--bg-input)',
+              borderColor: 'var(--sidebar-border)',
+            }}
+            className="p-3 mx-3 my-2 rounded-2xl border flex items-center gap-3 shadow-sm"
+          >
+            <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center font-bold text-purple-600 dark:text-purple-300 text-xs shrink-0">
+              {userDisplayName.charAt(0).toUpperCase()}
             </div>
-            <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-title truncate">{userDisplayName}</div>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-bold bg-purple-500/20 text-purple-300">
-                  {userRole}
-                </span>
-                <span className="text-[10px] text-desc truncate font-mono">
-                  {userTeam}
-                </span>
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-bold text-[var(--sidebar-text)] truncate">{userDisplayName}</div>
+              <div className="flex items-center gap-1.5 text-[10px] text-[var(--sidebar-text-desc)] mt-0.5">
+                <Shield className="w-3 h-3 text-purple-500" />
+                <span className="font-semibold text-purple-600 dark:text-purple-400">{userRole}</span>
+                <span>·</span>
+                <span className="truncate">{userTeam}</span>
               </div>
             </div>
           </div>
         )}
 
         {/* Navigation Sections */}
-        <div className="flex-1 overflow-y-auto px-3 py-2 space-y-4">
+        <div className={`flex-1 overflow-y-auto ${isCollapsed ? 'px-1 py-3 space-y-3' : 'px-3 py-2 space-y-4'}`}>
           {/* Main Section */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-muted uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
                 Quản Lý Kho
               </div>
             )}
@@ -299,7 +331,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* MMO Special Section */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-muted uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
                 MMO Chuyên Nghiệp
               </div>
             )}
@@ -309,7 +341,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Infra & Security Section */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-muted uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
                 Hạ Tầng & Bảo Mật
               </div>
             )}
@@ -318,30 +350,55 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Bottom Actions */}
-        <div className="p-3 border-t border-[var(--border-subtle)] space-y-1">
+        <div
+          style={{ borderColor: 'var(--sidebar-border)' }}
+          className={`border-t ${isCollapsed ? 'p-1.5 space-y-2' : 'p-3 space-y-1'}`}
+        >
           {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            title={theme === 'dark' ? 'Chuyển sang Chế độ sáng' : 'Chuyển sang Chế độ tối'}
-            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-desc hover:text-title hover:bg-white/5 transition-all"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400 shrink-0" />
-            ) : (
-              <Moon className="w-4 h-4 text-purple-400 shrink-0" />
-            )}
-            {!isCollapsed && <span>{theme === 'dark' ? 'Giao Diện Sáng' : 'Giao Diện Tối'}</span>}
-          </button>
+          {isCollapsed ? (
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Chuyển sang Chế độ sáng' : 'Chuyển sang Chế độ tối'}
+              className="w-11 h-11 mx-auto flex items-center justify-center rounded-xl text-[var(--sidebar-text-desc)] hover:text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover)] transition-all"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-500 shrink-0" />
+              ) : (
+                <Moon className="w-4 h-4 text-purple-500 shrink-0" />
+              )}
+            </button>
+          ) : (
+            <button
+              onClick={toggleTheme}
+              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[var(--sidebar-text-desc)] hover:text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover)] transition-all"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-500 shrink-0" />
+              ) : (
+                <Moon className="w-4 h-4 text-purple-500 shrink-0" />
+              )}
+              <span>{theme === 'dark' ? 'Chế Độ Sáng' : 'Chế Độ Tối'}</span>
+            </button>
+          )}
 
           {/* Logout Button */}
-          <button
-            onClick={onLogout}
-            title="Đăng xuất khỏi hệ thống"
-            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-desc hover:text-rose-400 hover:bg-rose-500/10 transition-all"
-          >
-            <LogOut className="w-4 h-4 shrink-0" />
-            {!isCollapsed && <span>Đăng Xuất</span>}
-          </button>
+          {isCollapsed ? (
+            <button
+              onClick={onLogout}
+              title="Đăng xuất khỏi hệ thống"
+              className="w-11 h-11 mx-auto flex items-center justify-center rounded-xl text-[var(--sidebar-text-desc)] hover:text-rose-500 hover:bg-rose-500/10 transition-all"
+            >
+              <LogOut className="w-4 h-4 shrink-0" />
+            </button>
+          ) : (
+            <button
+              onClick={onLogout}
+              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[var(--sidebar-text-desc)] hover:text-rose-500 hover:bg-rose-500/10 transition-all"
+            >
+              <LogOut className="w-4 h-4 shrink-0 text-rose-500" />
+              <span className="text-rose-500 font-semibold">Đăng Xuất</span>
+            </button>
+          )}
         </div>
       </aside>
     </>

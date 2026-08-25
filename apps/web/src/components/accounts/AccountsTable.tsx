@@ -12,6 +12,8 @@ import {
   Key,
   Mail,
   FileSpreadsheet,
+  ShoppingBag,
+  Music2,
 } from 'lucide-react';
 import { TableSkeleton } from '../ui/Skeleton';
 
@@ -166,13 +168,23 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     {/* Platform */}
                     <td className="py-3 px-3">
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
                           acc.platform === 'TIKTOK'
                             ? 'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30'
                             : 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/30'
                         }`}
                       >
-                        {acc.platform === 'TIKTOK' ? '🎵 TIKTOK' : '🛒 SHOPEE'}
+                        {acc.platform === 'TIKTOK' ? (
+                          <>
+                            <Music2 className="w-3 h-3" />
+                            <span>TIKTOK</span>
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingBag className="w-3 h-3" />
+                            <span>SHOPEE</span>
+                          </>
+                        )}
                       </span>
                     </td>
 

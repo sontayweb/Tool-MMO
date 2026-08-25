@@ -17,6 +17,8 @@ import {
   TrendingUp,
   ShieldCheck,
   Zap,
+  ShoppingBag,
+  Music2,
 } from 'lucide-react';
 import { TabType } from '../layout/Sidebar';
 import { SalesChart } from './SalesChart';
@@ -189,8 +191,9 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             {/* Shopee */}
             <div className="app-card-inner p-4 rounded-xl space-y-2 border border-[var(--border-subtle)]">
               <div className="flex justify-between items-center text-xs">
-                <div className="flex items-center gap-2 font-bold text-orange-400">
-                  <span>🛒 SHOPEE</span>
+                <div className="flex items-center gap-1.5 font-bold text-orange-500 dark:text-orange-400">
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>SHOPEE</span>
                 </div>
                 <span className="font-mono font-bold text-title">{shopeeCount.toLocaleString('vi-VN')} TK ({shopeeRate}%)</span>
               </div>
@@ -205,8 +208,9 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             {/* TikTok */}
             <div className="app-card-inner p-4 rounded-xl space-y-2 border border-[var(--border-subtle)]">
               <div className="flex justify-between items-center text-xs">
-                <div className="flex items-center gap-2 font-bold text-cyan-400">
-                  <span>🎵 TIKTOK</span>
+                <div className="flex items-center gap-1.5 font-bold text-cyan-500 dark:text-cyan-400">
+                  <Music2 className="w-3.5 h-3.5" />
+                  <span>TIKTOK</span>
                 </div>
                 <span className="font-mono font-bold text-title">{tiktokCount.toLocaleString('vi-VN')} TK ({tiktokRate}%)</span>
               </div>
