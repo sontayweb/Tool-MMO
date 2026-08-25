@@ -802,15 +802,15 @@ export default function App() {
   // ----------------------------------------------------
   if (authChecking) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-[var(--bg-main)]">
+      <div className="h-screen w-screen flex items-center justify-center bg-[var(--bg-main)] text-[var(--text-primary)]">
         <div className="flex flex-col items-center gap-3 animate-pulse">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-xl shadow-purple-950/30">
-            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-purple-400 animate-spin" style={{ animationDuration: '3s' }} />
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-xl shadow-purple-950/20">
+            <div className="w-full h-full bg-[var(--bg-surface)] rounded-[14px] flex items-center justify-center border border-[var(--border-subtle)]">
+              <Sparkles className="w-6 h-6 text-purple-500 dark:text-purple-400 animate-spin" style={{ animationDuration: '3s' }} />
             </div>
           </div>
-          <div className="font-mono text-xs text-desc font-bold tracking-wider">
-            Đang tải dữ liệu...
+          <div className="text-xs text-[var(--text-secondary)] font-semibold tracking-wide">
+            Đang đồng bộ phiên làm việc...
           </div>
         </div>
       </div>

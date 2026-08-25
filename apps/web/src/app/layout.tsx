@@ -19,7 +19,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-grid-pattern theme-transition">{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('arms_theme') || 'dark';
+                  document.documentElement.setAttribute('data-theme', saved);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col theme-transition">{children}</body>
     </html>
   );
 }
