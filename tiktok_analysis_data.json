@@ -1,0 +1,3112 @@
+{
+  "fileName": "700 Acc tiktok 4.2026.xlsx",
+  "totalTabs": 80,
+  "totalRowsEstimated": 57842,
+  "patternsSummary": {
+    "standard_4col": 21,
+    "standard_with_meta": 1,
+    "pipe_delimited": 30,
+    "custom_layout": 27
+  },
+  "tabs": [
+    {
+      "tabIndex": 1,
+      "tabName": "Lọc 307",
+      "rowCount": 324,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "nược rử bát",
+          "Bpw51Y@87g",
+          "omarisenroth@hotmail.com",
+          "GVTd4u00",
+          "xxxx",
+          "\"2026-01-08T00:00:00.000Z\""
+        ],
+        [
+          "snhng_701223",
+          "d8L2Nq8#S18",
+          "jinlinkilolo@hotmail.com",
+          "zXdyH567",
+          "xx"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 2,
+      "tabName": "Sheet139",
+      "rowCount": 150,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "nhphcdng.6431",
+          "s01z@14m",
+          "sashabojoga@hotmail.com",
+          "coj12cmGY7pW704($",
+          "M.C560_SN1.0.U.-CgG1sKtJIjcdp3wwzD2INPQt0VcIq5C05!DZf5D660w2tKYFkyL38ltblnLGZCj!TujKLKMumAhjkUb*VoQoVkiui9yNM5!Kw*ZfAY3AYReGq3IwSGQcjmZEObfF*GJ8TUwI0I*L3HMhCd0WwKzwssp1aVG0rlSU11JaoB8yUMfpxhiOkPjB5XfqfgWNFTYBAdhU*fwneQNRcWmOLHwGd58DBooUD8YtCKhAihiGTmqZLpGC88MlhRKGUtyU6DHZHjW8NMq3gZ2hX2nFVjVKdlfQR5Ix7J1QyK29KF5DNM31FmrtsUQgDYt67MHyMiXFjb*cEcHP2sVUbYj9cyslvteGCitC3dU2RecUGD3uJt!O",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "sashabojogap83o7qv@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "nhphcdng.6431|s01z@14m|sashabojoga@hotmail.com|coj12cmGY7pW704($|M.C560_SN1.0.U.-CgG1sKtJIjcdp3wwzD2INPQt0VcIq5C05!DZf5D660w2tKYFkyL38ltblnLGZCj!TujKLKMumAhjkUb*VoQoVkiui9yNM5!Kw*ZfAY3AYReGq3IwSGQcjmZEObfF*GJ8TUwI0I*L3HMhCd0WwKzwssp1aVG0rlSU11JaoB8yUMfpxhiOkPjB5XfqfgWNFTYBAdhU*fwneQNRcWmOLHwGd58DBooUD8YtCKhAihiGTmqZLpGC88MlhRKGUtyU6DHZHjW8NMq3gZ2hX2nFVjVKdlfQR5Ix7J1QyK29KF5DNM31FmrtsUQgDYt67MHyMiXFjb*cEcHP2sVUbYj9cyslvteGCitC3dU2RecUGD3uJt!O|9e5f94bc-e8a4-4e73-b8be-63364c29d753|sashabojogap83o7qv@fviainboxes.com"
+        ],
+        [
+          "lvitvnnhi_5131",
+          "B1J59g@gpFe6Z",
+          "etemovjoas@hotmail.com",
+          "wL385SYB58c(",
+          "M.C531_BAY.0.U.-CgYFoTtSoLgNQqwzL17G6f!syfRyIgqSGOXv2sxJ9n*uL*z!MNfD8oCVu3dBr4B2E2ZvKNf7ycL0ZLmCLBDES2ua2NxBYAOloCwZK79CniO8tbllQyCzbZtQ2CJbXSEi1zBLlo!pLryNRVHnVYXTJPlH5frhYOYlbkpyX4xGVMLRzOLjWWXQMRq26k2!zyBEJiVV0aB4tjr1siRIOStWFMlT2iAvgjfZvJwqsANIp!2ZJP2uvxmwACtJ8cN90*w7jJrqFAy0CGBsX9vI88sRowzWCASNH2nO6B0gpw2WmrQ9maBtuoLGOZ3OvAS3dWCLfaf19eSfuuEM3!4PL5hdjCVTjbwvjTYOQRdsTGM1s2rZ",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "etemovjoask9cw106@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "lvitvnnhi_5131|B1J59g@gpFe6Z|etemovjoas@hotmail.com|wL385SYB58c(|M.C531_BAY.0.U.-CgYFoTtSoLgNQqwzL17G6f!syfRyIgqSGOXv2sxJ9n*uL*z!MNfD8oCVu3dBr4B2E2ZvKNf7ycL0ZLmCLBDES2ua2NxBYAOloCwZK79CniO8tbllQyCzbZtQ2CJbXSEi1zBLlo!pLryNRVHnVYXTJPlH5frhYOYlbkpyX4xGVMLRzOLjWWXQMRq26k2!zyBEJiVV0aB4tjr1siRIOStWFMlT2iAvgjfZvJwqsANIp!2ZJP2uvxmwACtJ8cN90*w7jJrqFAy0CGBsX9vI88sRowzWCASNH2nO6B0gpw2WmrQ9maBtuoLGOZ3OvAS3dWCLfaf19eSfuuEM3!4PL5hdjCVTjbwvjTYOQRdsTGM1s2rZ|9e5f94bc-e8a4-4e73-b8be-63364c29d753|etemovjoask9cw106@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 3,
+      "tabName": "Sheet146",
+      "rowCount": 1001,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Tài khoản"
+        ],
+        [
+          "mchuy_896907",
+          "VietNam123@",
+          "paulaknishae@hotmail.com",
+          "3hx4698jsmOp9h()",
+          "M.C526_BAY.0.U.-CvRSiB0aPFShVCdSzOinXSIXMK38NOeV*AUYOkbbCYAPtLuKBTx7PHbyVl0!ZKLzohQtpChI4PtxSCBhrCDsyZ9LFq!v9bEHlr!ZsL1OBf5ZkruXQg*tfJhb76FuLAQdV!z5ALg1Rx!GsIj!s5FJ18gw!foGK2MwckncJra4xcGvhAs2wVa1TflrfdvXoGa1tNQFyixB1cXYgYuzyxxJLEU0gM4mMfHtYYr4jcOrpTFe3yeIbzjtuMSS7C7EhkXl*ON2PVlCf9*FD40TCyAGY1Uqj6Jggs9qPN7PGND1lHQ445qL!*8G6usDzp2MP3FU!BsQgo2tq2oGqbXNtFfRJRFcH7GxxueQsrInCpfO9uIC",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "paulaknishaew8dn8k3@fviainboxes.com",
+          "",
+          "",
+          "",
+          "mchuy_896907|VietNam123@|paulaknishae@hotmail.com|3hx4698jsmOp9h()|M.C526_BAY.0.U.-CvRSiB0aPFShVCdSzOinXSIXMK38NOeV*AUYOkbbCYAPtLuKBTx7PHbyVl0!ZKLzohQtpChI4PtxSCBhrCDsyZ9LFq!v9bEHlr!ZsL1OBf5ZkruXQg*tfJhb76FuLAQdV!z5ALg1Rx!GsIj!s5FJ18gw!foGK2MwckncJra4xcGvhAs2wVa1TflrfdvXoGa1tNQFyixB1cXYgYuzyxxJLEU0gM4mMfHtYYr4jcOrpTFe3yeIbzjtuMSS7C7EhkXl*ON2PVlCf9*FD40TCyAGY1Uqj6Jggs9qPN7PGND1lHQ445qL!*8G6usDzp2MP3FU!BsQgo2tq2oGqbXNtFfRJRFcH7GxxueQsrInCpfO9uIC|9e5f94bc-e8a4-4e73-b8be-63364c29d753|paulaknishaew8dn8k3@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 4,
+      "tabName": "Sheet145",
+      "rowCount": 1501,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "inhlcnh_7464|pkS4@o3IZyiOJ@|vn|rhennaseved@hotmail.com|fGl54R8ELrRw23^|M.C520_BAY.0.U.-Cs3CrcheovXQYxZ4c7tdIXQI1K0iZsy0OOzHumoB0Y4b4lcZE4VXDgw0l!ntL*6w8v5xkQIRzGDvT!G05E0*EXmjWCHzL1QLxXnpzF7uJsH2Zu0JKl*3uYqK7UAPLRYMLSjoFClku*93CEm0LvswvtDvjrup6y!MJoDQWW4jz99NGzF*oiKrM02SWifqY4PeNFExwktZns9WRyiI5oqAt0i52WXFGFIxL1GDQ6iDjqGEiCdadA3S65C1nLv3DCajUpOPLFq6wfNwMVEzsZsQeRlxswBFdO!PwUlSWiLb6RlYBZvdWyc5SYTvK5LMn*qNkzrUlnkj49Efm2kvj5B1Rw8X2fti4JrpRJ3X*gG8mNBt|9e5f94bc-e8a4-4e73-b8be-63364c29d753|rhennasevedvbuqm6i@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "tnphng.788085|2dcKfE!bsPziCT|vn|luperpeebo@hotmail.com|bk4SZjH3sBna(|M.C502_BAY.0.U.MsaArtifacts.-CurgSK!JE6Y!TfVn4FjPybaksi!gdyZVc3vE9AzI3yUzbFnLSgpUHNKtaBXYsyEWsJQnDoE8HI24URxXWwE6iskng4*wtQqD6LPyFcTvIQqynIb053RfpUo4Td48KFz4s08PHztc5VGbSOWbHg95hSsWBtBO7FneElj4b23GSguC8ufjefzeBaMzSpUJJN3I!dAk*J6gbzaICQ8Hujgr1ZrGwicoArF5w0GEShpDyK9a90WiR*eVtJfcScPwgMOASwJSZZWIu1IJxZcpznGivlSOeXx85jfvyvpnfWp73tNGW9vrmVL5gmer9U7Xk0LFc29UvgcUQxpm15e1ekBZoDU$|9e5f94bc-e8a4-4e73-b8be-63364c29d753|luperpeebofvfyfa2@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 5,
+      "tabName": "nick chua dung",
+      "rowCount": 807,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "Tài khoản"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "hngtuyn_221855|t!G4R23wVmBOz7|vn|qinyuhrynes@hotmail.com|rjh09O4P0045U2h*(|M.C539_BAY.0.U.-Cp6wkJG0uCsT8X8AvbmfgQ1uC6VraYEBE7axKaAOrFnuzgVZEbw!FKTUlezJ9P6nEN9vH2BgvDSszhdr1Hl!sBfTdx6DWA4kts*8CjK4WiZtPCNq!Hfyk0ogi*qKRKdWm*jHIqmLxOAps6A4kK1nsvnFNXBRHneriIGz0cy4FXTGIRcb!TfVzKkCb8sLF0v06EVxFzfLWtz0du8Pt92UlJ0XC61VrCUsk*5ilDsgFHJKBjudYUEQYotboUHkjMLrraTVwvWYTWgnfJyKqm926iqrjlyU5zGzfUe98yappAVwm*PC*4TFoL*b*OBlQnZURJZ0RJtXUbJxGl4edd4P45QkSPYz83ysauFY1qVt!rIu|9e5f94bc-e8a4-4e73-b8be-63364c29d753|qinyuhryneshp5d22h@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 6,
+      "tabName": "đơn bị nhảy",
+      "rowCount": 13,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "ngngdiu.307277",
+          "uidBh45@9",
+          "tabekhhituwa@hotmail.com",
+          "XXymL678",
+          "M.C504_BAY.0.U.-Ch!joTiatG4VZ0ftqmIVV*rdjCsKBiQ6G772cPC1WaDFRYx7UYX*2pQnat9AkWxfu9p!*sTTAkCqG2!RvFbZxBwmIoO0yVf6H1FwtchkzJo3UEZO84JOJ1yppLe1L0u!TGAHVoq!b2JsCw7TEryK!6h80!3fqg7UaV6Zk8jnOg4bMLpruYHFXpzUwYFibkB*2W1utFKpgZtaTL2fNdUYFMzbKnhcrsuTwW751iI9weT81BKMMZmcY4o53NT0VHZjIEkkIORXT81Ad9aQR*gbiQJs*4RzRpK87S!8MAf8ZcoYw7094XcjIyu!5evrKAFuvH5UrIja7ACPCq*9H*ooaekPDRVHtWuGZmVSYyZA2kfeoou5bXyxF1pJsabSRnkyqbRLhOIl2y03c5EJto7dDTYa6s!GXq80dPvyEgGn1jZW",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "1 ỚT 1",
+          "BN",
+          "25/5 TRAG",
+          "nguyễn thị thanh thu",
+          "389508142"
+        ],
+        [
+          "vitkhc.589731",
+          "oNI6AuU7O28045ub7#wP",
+          "najiewarkad@hotmail.com",
+          "kTYHAF39",
+          "M.C516_BAY.0.U.-CuVM9Z8x8me2ro3CdxJ4LekJfEd3a2vgJxtdWZu0wxeKIIAVl7RPRMK!b!0hvrAevek5WiRKpZqL8F3FpUNES8tcLjrnCacoIw0PNdszGAPcD0l*Pt1BfH8GMlBor4Z2P9tEO9lLkndPKVMjIGlYpZDvQ8Kcc6gn7F5M1K3CU8ty7uJb2VwyJSvamwjVUbMOpioFWQkDtuu7A11gpmDaS98upVL7CzY*40pUAeKfxfWUT!7vxc1brzsrnKFpNiMZOF*ZoaxL4yb!jSQJ0nMSBefkY2i2oHHXFVdCaM0tAYiR!Nb1ocwDJ!wsdmWs!GosAvEql3fvKovSOh8f9M1SY1Nn4scvhVS8mkvhp9ewXYwMIa5sOjGIEhsNfg9o7PnLi9ZaKDz46PSq01LtGBdtO2iMsEi2H1P9toyUHExXeUyE",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "1 ỚT 1",
+          "BN TR16",
+          "25/5 TRAG",
+          "nguyễn thị thanh thu",
+          "389508142",
+          "TTVN1089955311"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 7,
+      "tabName": "mail dùng lại",
+      "rowCount": 1,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "JaruisPolynice91@outlook.com|NxOAkSFL6|M.C521_BL2.0.U.-CgvC19UHhCYJiWAoV*yf5xxhgFmTLZNlghdeQPySBvFnMAKcXj6sJ7Ck7HY2cc5Wznh6CKZfJOv3BAws1W4o3PotQjktrUtsaxuHUklsIe38IXb0C1TfXk9WQKrft6ATrnivOmM406zeSX5LUf5ETi0xOkFQhf*eGTr2PKCpWVkLzX!aC379W7yfdqNd5QaOpI*EI*1yI3kSLjAFo5jJ8U411kv5CP7xCzBVVHoDkbmSRyIpHAbHEBrHWlhwSpwBkkU8lGcJbCiGhzBIhR8*Jgv!rTL8DNKoLUu3Je2oSGXUDM9O0BrgUEDRSy1VYXFkO57y7N!vrCJWgCg4AznEYPNwDOF3IT3PmcW24yPRrCbYbIj4rIjviPYAsPluVrbCb9kM0nxWazP5bUAHGuZpSOxaYSoAPMBSyyD04poM1p*TpyzKFb3*AmGYLDVeI3SzfHFkdtaovy0F9K0PZ7vIhGg$|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 8,
+      "tabName": "nick tu ref",
+      "rowCount": 523,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "toan@123",
+          "loise-giramar@hotmail.com",
+          "",
+          "file 35",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "toan@123",
+          "loise-giramar@hotmail.com|acapp6etla1|M.C502_SN1.0.U.MsaArtifacts.-Cgw1o*zEMDet*SQiEMSKHs8LG*ggZeJJqr8EIVLTwr12bpwnIjh2MLEKluySjnNw2KzaRFWUVeDkVtCL!EqlE1zwXcDprYuNrHzP9RchPXk1NXZVWAuM1vYzlwnbWulx4Kh1kilwMUaa!1y4PP6bTW8b4XKiPleju3GxM9NVPDXapkVFWRBGNozke6yP!6dRy!wD6q9W1DoR2D9uhc8MCGahdB3D4yD2ahNa86Jdlwb0vbC9yxcgSd3UDjc!cskRgrEG5wCPifG8yLKDoPB8C6evygYNpRTFTskEbrv6GE0SJRLVJofgGQQldn29cAOsAQkp10lq6fTehkWUTHR1Yxfj7rwHwtCP0Vek2BCt!ahHp4NF5i!5djJnhn4cPzjpD5*iJvF6sIo5B4vcD4MQULe*7PlkDQpo0Drm23qAG75ArdpXj2y4mzvKa!R47hiCKmkngXcDlSMw!Aee4Zi0HyI$|9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "user7204327756510|toan@123|loise-giramar@hotmail.com|acapp6etla1|M.C502_SN1.0.U.MsaArtifacts.-Cgw1o*zEMDet*SQiEMSKHs8LG*ggZeJJqr8EIVLTwr12bpwnIjh2MLEKluySjnNw2KzaRFWUVeDkVtCL!EqlE1zwXcDprYuNrHzP9RchPXk1NXZVWAuM1vYzlwnbWulx4Kh1kilwMUaa!1y4PP6bTW8b4XKiPleju3GxM9NVPDXapkVFWRBGNozke6yP!6dRy!wD6q9W1DoR2D9uhc8MCGahdB3D4yD2ahNa86Jdlwb0vbC9yxcgSd3UDjc!cskRgrEG5wCPifG8yLKDoPB8C6evygYNpRTFTskEbrv6GE0SJRLVJofgGQQldn29cAOsAQkp10lq6fTehkWUTHR1Yxfj7rwHwtCP0Vek2BCt!ahHp4NF5i!5djJnhn4cPzjpD5*iJvF6sIo5B4vcD4MQULe*7PlkDQpo0Drm23qAG75ArdpXj2y4mzvKa!R47hiCKmkngXcDlSMw!Aee4Zi0HyI$|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ],
+        [
+          "toan@123",
+          "caninbardi87@hotmail.com",
+          "",
+          "file35",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "toan@123",
+          "caninbardi87@hotmail.com|crisBtyan11.|M.C506_BL2.0.U.MsaArtifacts.-Cs6PteG4iKfvrTOYUm7bKzNsrBzpXATmNNP63fkppmkXNZTAy2EbG2RvHEL0bHetEWhXuRUqk60qPr7rwODdODt1o67jkp3pdGpEvQ9L7L4uNp5Hp*XIEi!x1XuwA9U5jOkWzrGHfqx!Rhybj67LxkrSyECYRFHchLbxnxVkzmCTp!6knT3KYJMCXHaWNfBdl!Dgd7asMU6sd7UTBAASv0qUZJn!FWTSmSHo!3o5E2s3AHQXlDufh3s!Kawrkk5pahnyZ6RvqnMAXWopL0YyunvILzIYz!8OyYa5MaxtEP3xDLqvgqa9rEwyogyhZRzVGymmEUSdHTArVKrevW8PCXo8U0Uu71WNRRy4yEjg5S4rfk0bL6XCYE!TZEovQK!dEwfSusVfk8MsxZdDmEweHIc1gcb6aNWp3a4cAZOQdOUI|2429d14c-f4c7-495c-8894-956e92597c34",
+          "user3954713238080|toan@123|caninbardi87@hotmail.com|crisBtyan11.|M.C506_BL2.0.U.MsaArtifacts.-Cs6PteG4iKfvrTOYUm7bKzNsrBzpXATmNNP63fkppmkXNZTAy2EbG2RvHEL0bHetEWhXuRUqk60qPr7rwODdODt1o67jkp3pdGpEvQ9L7L4uNp5Hp*XIEi!x1XuwA9U5jOkWzrGHfqx!Rhybj67LxkrSyECYRFHchLbxnxVkzmCTp!6knT3KYJMCXHaWNfBdl!Dgd7asMU6sd7UTBAASv0qUZJn!FWTSmSHo!3o5E2s3AHQXlDufh3s!Kawrkk5pahnyZ6RvqnMAXWopL0YyunvILzIYz!8OyYa5MaxtEP3xDLqvgqa9rEwyogyhZRzVGymmEUSdHTArVKrevW8PCXo8U0Uu71WNRRy4yEjg5S4rfk0bL6XCYE!TZEovQK!dEwfSusVfk8MsxZdDmEweHIc1gcb6aNWp3a4cAZOQdOUI|2429d14c-f4c7-495c-8894-956e92597c34"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 9,
+      "tabName": "Sheet155",
+      "rowCount": 31,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user2616981223659",
+          "@xIiN8lQaU",
+          "MarelihgMoscardelli@hotmail.com",
+          "Fclnk7431",
+          "M.C553_BL2.0.U.MsaArtifacts.-CktkM67zxqyVTAyIe5I8u3Sfkfqw0iG5c*i9ZtfN!olLJgbyzoUbVS9B1HD0bG2pWFOw9eV4sGdz8N*!F6DH00OskJ9!ilbw5L7s81W6rRQkmr6gobZ8PGOE6dt3QNphDDNg!ilgUwgn8LJz3k5*Q2N7sqpj3GOwGw8b3gpcoJ*EnmPmipsL8Nc6BHE6j4O6j5AK0DjnZDIntxC024MIKIlOJg1NxlSynN7RTGcgyG8HfnsLWDUD6BbJT5Na4uywqcSmkQmCMVXbLwmrO6N7ha6aaJvOm8rAFz6FSHCOnm2orP5grU7SIn31nQr70bfqguKLsUaAYmJTj3LghJGQusZKbJNxGi4V9aExKbAodr21*FbbuDYd!deZuP64eiMmdfSIY7aEBtAXSJOhZcrCsbZO6GyNTF!Up5!700SDlr8w",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ssid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;ttwid=1%7CIfsGSeCuQyP98iL30PI53eEqrMCqOdj2NyG2I6w3giY%7C1784974300%7C3f29efe8d7b0ed0b3da281258a4b0fdcec406a7140190b0b39f1567e9cbf9f63;multi_sids=7666405933770540040%3A46743aa5eddd149a9aa8cdc7a7470e86;store-idc=alisg;uid_tt=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;msToken=8Tmva4ma94BFjKu3hNulg_3PkT-DQHE4tSoGKXR0bcmLQz6X5RXeItRO8Fx3ty305AvnCGEQ7XEqDrgpKPYrthoeZqGBHpr2s_P-Yk2ovo9EXVWc_igb65aSkvguOMv_YFd55dlAAvAlx95kAyR6_CpzAA0B2Uo8VIpye_Q0;store-country-code-src=uid;tiktok_webapp_theme_source=auto;delay_guest_mode_vid=5;store-country-sign=MEIEDNENWYuSGyRNQI9OvQQgmCi_5dZY3k6wowDLoegiibRF-clg9MEWcQCAS1MpAC4EEIp3-tPIqzaUT0KcANZCkBM;cmpl_token=AgQYAPOF_hfkTtK6WmUzmmXdMfAFEkL2lr-XDmCmabY;tt_chain_token=vlQESgfRUO+Z0PaFc027/A==;sid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;last_login_method=email;tt_csrf_token=BjqWxo5E-v9owgDdhn0n2Is88yceVgenAWy0;tiktok_webapp_theme=dark;sid_guard=46743aa5eddd149a9aa8cdc7a7470e86%7C1784974256%7C15552000%7CThu%2C+21-Jan-2027+10%3A10%3A56+GMT;sid_tt=46743aa5eddd149a9aa8cdc7a7470e86;tt-target-idc-sign=FSq9wCk2vidBP104XQ31ICSOis_cdV7UOv8Zak7cthkKbIfhw2jxstq7CjVdfym3j2fQij_Cva8Dmlq_o0LrPPG4u1w-eUWshzc6He8yirkfjOfnZx4KQpvsVUNytebB8n-e4plazGWcP1Zj3z1TQKcQcd27xJNjEW5_iCIQOVudbW_uKnSFptUX4nbikzX6H92CPwmLSn96Zs3RWqbujOAxQGmjVkn1fh0CmYIlVl_Fc35W2TGjkUa00JqWLWT860Ja_KkeW1ZoH7nvylfoxusYXZOWE_BwChMcRodUe-v9Dl-Qp7FJ7HY-W1FvwKdjjMqL-glWt-wKndFa2N0LdFfwILcRo6jx3DvCXRrC9CiF2ebdt-8h9kcfVnU-rEMt0pdMcfwMU5pk7Jkvrx5bvHnZITKzul0_CLP1rl15NGLX7IwZo7ZgvS---OuaNYSH0nmFXK8EiNuq4rkBy9G3kOkGCerLEbzLhW6XJoccIjyOL7Wb493IxEugvDQwlYfG;msToken=wv4XZa9AthbC_iLK1KW_gAXYJMupJaTs22TlehMT5BzSXLCB_gL1Uv427DtQH135vUdrxtiqzZLXNKfcLzQT4719psbO4fA44U38JXkrrrvi8cKUT1kolUGzv_pYQz0W2Agq40M6YkOGT1mp1JNAKwYVf5RKDlqP_VuYPd9g;store-country-code=vn;tt-target-idc=alisg;s_v_web_id=verify_ms07jlts_OeS9JXbf_zXCF_4cOA_8TIC_s5IZ27uH4ibz;tt_ticket_guard_has_set_public_key=1;passport_fe_beating_status=true;sessionid=46743aa5eddd149a9aa8cdc7a7470e86;sessionid_ss=46743aa5eddd149a9aa8cdc7a7470e86;tt_session_tlb_tag=sttt%7C4%7CRnQ6pe3dFJqaqM3Hp0cOhv_________6pU1TelCzrbGWH2CfMGMLeyI1aG4Cpq0GOnZQeaq3LS4%3D;uid_tt_ss=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;odin_tt=5b6edf5a9995a02e88cece40cec16961fb06f5bcffb56d7dcc541ebf24896d118f31dfd27f24cc03ccc2ec372d1006189401e86aef621973bd31f605fda8b8c5;",
+          "",
+          "",
+          "",
+          "",
+          "user2616981223659|@xIiN8lQaU|MarelihgMoscardelli@hotmail.com|Fclnk7431|M.C553_BL2.0.U.MsaArtifacts.-CktkM67zxqyVTAyIe5I8u3Sfkfqw0iG5c*i9ZtfN!olLJgbyzoUbVS9B1HD0bG2pWFOw9eV4sGdz8N*!F6DH00OskJ9!ilbw5L7s81W6rRQkmr6gobZ8PGOE6dt3QNphDDNg!ilgUwgn8LJz3k5*Q2N7sqpj3GOwGw8b3gpcoJ*EnmPmipsL8Nc6BHE6j4O6j5AK0DjnZDIntxC024MIKIlOJg1NxlSynN7RTGcgyG8HfnsLWDUD6BbJT5Na4uywqcSmkQmCMVXbLwmrO6N7ha6aaJvOm8rAFz6FSHCOnm2orP5grU7SIn31nQr70bfqguKLsUaAYmJTj3LghJGQusZKbJNxGi4V9aExKbAodr21*FbbuDYd!deZuP64eiMmdfSIY7aEBtAXSJOhZcrCsbZO6GyNTF!Up5!700SDlr8w|9e5f94bc-e8a4-4e73-b8be-63364c29d753|ssid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;ttwid=1%7CIfsGSeCuQyP98iL30PI53eEqrMCqOdj2NyG2I6w3giY%7C1784974300%7C3f29efe8d7b0ed0b3da281258a4b0fdcec406a7140190b0b39f1567e9cbf9f63;multi_sids=7666405933770540040%3A46743aa5eddd149a9aa8cdc7a7470e86;store-idc=alisg;uid_tt=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;msToken=8Tmva4ma94BFjKu3hNulg_3PkT-DQHE4tSoGKXR0bcmLQz6X5RXeItRO8Fx3ty305AvnCGEQ7XEqDrgpKPYrthoeZqGBHpr2s_P-Yk2ovo9EXVWc_igb65aSkvguOMv_YFd55dlAAvAlx95kAyR6_CpzAA0B2Uo8VIpye_Q0;store-country-code-src=uid;tiktok_webapp_theme_source=auto;delay_guest_mode_vid=5;store-country-sign=MEIEDNENWYuSGyRNQI9OvQQgmCi_5dZY3k6wowDLoegiibRF-clg9MEWcQCAS1MpAC4EEIp3-tPIqzaUT0KcANZCkBM;cmpl_token=AgQYAPOF_hfkTtK6WmUzmmXdMfAFEkL2lr-XDmCmabY;tt_chain_token=vlQESgfRUO+Z0PaFc027/A==;sid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;last_login_method=email;tt_csrf_token=BjqWxo5E-v9owgDdhn0n2Is88yceVgenAWy0;tiktok_webapp_theme=dark;sid_guard=46743aa5eddd149a9aa8cdc7a7470e86%7C1784974256%7C15552000%7CThu%2C+21-Jan-2027+10%3A10%3A56+GMT;sid_tt=46743aa5eddd149a9aa8cdc7a7470e86;tt-target-idc-sign=FSq9wCk2vidBP104XQ31ICSOis_cdV7UOv8Zak7cthkKbIfhw2jxstq7CjVdfym3j2fQij_Cva8Dmlq_o0LrPPG4u1w-eUWshzc6He8yirkfjOfnZx4KQpvsVUNytebB8n-e4plazGWcP1Zj3z1TQKcQcd27xJNjEW5_iCIQOVudbW_uKnSFptUX4nbikzX6H92CPwmLSn96Zs3RWqbujOAxQGmjVkn1fh0CmYIlVl_Fc35W2TGjkUa00JqWLWT860Ja_KkeW1ZoH7nvylfoxusYXZOWE_BwChMcRodUe-v9Dl-Qp7FJ7HY-W1FvwKdjjMqL-glWt-wKndFa2N0LdFfwILcRo6jx3DvCXRrC9CiF2ebdt-8h9kcfVnU-rEMt0pdMcfwMU5pk7Jkvrx5bvHnZITKzul0_CLP1rl15NGLX7IwZo7ZgvS---OuaNYSH0nmFXK8EiNuq4rkBy9G3kOkGCerLEbzLhW6XJoccIjyOL7Wb493IxEugvDQwlYfG;msToken=wv4XZa9AthbC_iLK1KW_gAXYJMupJaTs22TlehMT5BzSXLCB_gL1Uv427DtQH135vUdrxtiqzZLXNKfcLzQT4719psbO4fA44U38JXkrrrvi8cKUT1kolUGzv_pYQz0W2Agq40M6YkOGT1mp1JNAKwYVf5RKDlqP_VuYPd9g;store-country-code=vn;tt-target-idc=alisg;s_v_web_id=verify_ms07jlts_OeS9JXbf_zXCF_4cOA_8TIC_s5IZ27uH4ibz;tt_ticket_guard_has_set_public_key=1;passport_fe_beating_status=true;sessionid=46743aa5eddd149a9aa8cdc7a7470e86;sessionid_ss=46743aa5eddd149a9aa8cdc7a7470e86;tt_session_tlb_tag=sttt%7C4%7CRnQ6pe3dFJqaqM3Hp0cOhv_________6pU1TelCzrbGWH2CfMGMLeyI1aG4Cpq0GOnZQeaq3LS4%3D;uid_tt_ss=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;odin_tt=5b6edf5a9995a02e88cece40cec16961fb06f5bcffb56d7dcc541ebf24896d118f31dfd27f24cc03ccc2ec372d1006189401e86aef621973bd31f605fda8b8c5;"
+        ],
+        [
+          "user2309728536108",
+          "fkU#jPt2kj",
+          "brah.guayaga@hotmail.com",
+          "hnjac141951",
+          "M.C543_SN1.0.U.MsaArtifacts.-CscodJc4T0rLk**7GoqPv5y*q14NXstRnN87BewA9RW9ZvMIMNxHYFPZZ0I8tFhfO30n1nDuMmg90I1TgrVNFdWDBvx0OkOwiHpkdzqg03fsVGCjnpUsS0PYW6qK7uU2WDQYnxRTa5Ay54gkbY7l!UpeOljbbjKUOxz107IVvafMcL9JFdaKsCU7zJ3jtz0AKXMKJ2vzoFXPy8db4!oXn8D2hCo34kekzvXavas7gOPqrQyOqz7nIv9hTIDvuZZQt78eJnxQLtvUALLHnAEso8yIeDqqvhV3MHp8gjJG4bfGzPJNftpjzXi*DaH3!0o2o!iFJbzF1khqgUPPU6yC1ADRLPgNckfSHCZtJDERy1uiskREnXZ61UHkPz*pQQLybY2dS4fiiiflCJAf9T924uSCKGOtCytM7tIFfrC4F342",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ttwid=1%7ChoOERBzwPzViIAJB-Ti3xADuHOdLvLvFHrfjcx9y0xY%7C1784971203%7C8e37b17b0bb02863092135e2a63d04358b562bfbb0bf3338cb2e6e717c40289c;delay_guest_mode_vid=5;uid_tt_ss=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;s_v_web_id=verify_ms05pl3b_CoGfcW2h_RtuI_49c1_8ieP_d3fkyEc9h6MU;odin_tt=d841f3debc4706f7b788b80dc5f2a7d5ffe897b6b21e2421f6423b76246ba6a0993cb9cc09e60aa702fc7c1e8db7f86dce374a77e7cf929896c00fce4974b3b5;tt_csrf_token=53SAkygZ-lblcI7zCtYGUATFOoUO7YEPDjQ8;last_login_method=email;tt_chain_token=TM10TSC63OW/ChxSEd4M0Q==;sid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;store-country-sign=MEIEDGSrvtTHM4hj2L7XbQQgfC0xufyqTnxvdWs_ea9-96-pf5uAtKtoT8h0KkNlQaYEEIHUd-v2W3o71IGwyd_lAKc;x-web-secsdk-uid=08cd5694-af60-4847-959a-e517849f1f0e;tiktok_webapp_theme=dark;msToken=jK8-JfkMzEiROQXLl3VeyKHAb6AGNGUbIKsLeVY2dlLcOUS8USmKj2HjopPw-xVhRGDaEqsFE5P7-aJApsMOy5hNwuUBKj1ERc8VwVXsQKORWMjWvUYcAWGyCgH-NhTp9r89-eF7Gsm-TOkDsPj9znB3X9IGodJJIQk_sl6h;tiktok_webapp_theme_source=auto;multi_sids=7666392725490779156%3Acb0364607b123169f2d967dfac08d20c;cmpl_token=AgQYAPOF_hfkTtK6WpE3T7adLfAF5l-Gn7-KDmCmafs;tt_ticket_guard_has_set_public_key=1;tt-target-idc-sign=ophXz5ASqdo6LgCfJ6aohhkzNk70BB65_YLGpPSaVN5k-nMDzhle_3JeyKms2OH6aJ2SSzHinqp_kCzO2Ry6Q2wkD6YTK00V44Wtm4po7LEk9AW2lkaBCn_vjrXUjoI-PTgkIjKWo9PMD8-PbCH_ZIJE4C69cxjlXqykcpuvEw7HwNTrHtkMEXPAgPB_KPsoiU8o_rF0lIzooq3lqzA8irVu43fXHQnlrKxlXDcs8A6lyVHm32Ew-BBZDuvqwImGyktzp97lcY3zLIG0lSQI08Xn7Dnu4lMfxgzDzxFx9hFRkD9RQfbB15JaIiEOjykT-ACgxRrGPhgLVmPf6ly-sbU7HnnYVtEh94fn83Nx4glgkPsQCTaQCHaKQ7UI6TlwX2neBZfKgCPfI0u1gbbA8cHFtiJ7F5PwwAaXt3X6p0fc3M6rw5S_6qAGv-bf7uuEeFkbHT6sISQU9nVEzJHtcoCaqixBVYPoN_NR7J2k6N5qWSKuq03p_0EhXDl1cUMk;sessionid_ss=cb0364607b123169f2d967dfac08d20c;tt_session_tlb_tag=sttt%7C1%7CywNkYHsSMWny2WffrAjSDP_________Oms5KPLV2pdgi_TGSMhh39InTlvzWueOtUIoJxRRBGkU%3D;store-country-code=vn;uid_tt=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;ssid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;tt-target-idc=alisg;perf_feed_cache={%22expireTimestamp%22:1785574800000%2C%22itemIds%22:[%227638429187644067080%22%2C%227656064000542690568%22%2C%227661273233202744594%22]};sid_guard=cb0364607b123169f2d967dfac08d20c%7C1784971182%7C15552000%7CThu%2C+21-Jan-2027+09%3A19%3A42+GMT;passport_fe_beating_status=true;sid_tt=cb0364607b123169f2d967dfac08d20c;sessionid=cb0364607b123169f2d967dfac08d20c;msToken=FDn4jKMojRhboxyWQ-ot3TAh4eY9Zgd-qG_2FJMEHIZuHm96pzr143M2C-yYDF6Aer2Rfvk5vY6rRjkaWYvoKlltI9LvF4D49LueMokzWpMWQz3h6iW-66GHESpPsGvnrGdQiH0-YWuZntCQInTJe2VQk6UnG2bkTGKaO3a-;store-idc=alisg;store-country-code-src=uid;",
+          "",
+          "",
+          "",
+          "",
+          "user2309728536108|fkU#jPt2kj|brah.guayaga@hotmail.com|hnjac141951|M.C543_SN1.0.U.MsaArtifacts.-CscodJc4T0rLk**7GoqPv5y*q14NXstRnN87BewA9RW9ZvMIMNxHYFPZZ0I8tFhfO30n1nDuMmg90I1TgrVNFdWDBvx0OkOwiHpkdzqg03fsVGCjnpUsS0PYW6qK7uU2WDQYnxRTa5Ay54gkbY7l!UpeOljbbjKUOxz107IVvafMcL9JFdaKsCU7zJ3jtz0AKXMKJ2vzoFXPy8db4!oXn8D2hCo34kekzvXavas7gOPqrQyOqz7nIv9hTIDvuZZQt78eJnxQLtvUALLHnAEso8yIeDqqvhV3MHp8gjJG4bfGzPJNftpjzXi*DaH3!0o2o!iFJbzF1khqgUPPU6yC1ADRLPgNckfSHCZtJDERy1uiskREnXZ61UHkPz*pQQLybY2dS4fiiiflCJAf9T924uSCKGOtCytM7tIFfrC4F342|9e5f94bc-e8a4-4e73-b8be-63364c29d753|ttwid=1%7ChoOERBzwPzViIAJB-Ti3xADuHOdLvLvFHrfjcx9y0xY%7C1784971203%7C8e37b17b0bb02863092135e2a63d04358b562bfbb0bf3338cb2e6e717c40289c;delay_guest_mode_vid=5;uid_tt_ss=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;s_v_web_id=verify_ms05pl3b_CoGfcW2h_RtuI_49c1_8ieP_d3fkyEc9h6MU;odin_tt=d841f3debc4706f7b788b80dc5f2a7d5ffe897b6b21e2421f6423b76246ba6a0993cb9cc09e60aa702fc7c1e8db7f86dce374a77e7cf929896c00fce4974b3b5;tt_csrf_token=53SAkygZ-lblcI7zCtYGUATFOoUO7YEPDjQ8;last_login_method=email;tt_chain_token=TM10TSC63OW/ChxSEd4M0Q==;sid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;store-country-sign=MEIEDGSrvtTHM4hj2L7XbQQgfC0xufyqTnxvdWs_ea9-96-pf5uAtKtoT8h0KkNlQaYEEIHUd-v2W3o71IGwyd_lAKc;x-web-secsdk-uid=08cd5694-af60-4847-959a-e517849f1f0e;tiktok_webapp_theme=dark;msToken=jK8-JfkMzEiROQXLl3VeyKHAb6AGNGUbIKsLeVY2dlLcOUS8USmKj2HjopPw-xVhRGDaEqsFE5P7-aJApsMOy5hNwuUBKj1ERc8VwVXsQKORWMjWvUYcAWGyCgH-NhTp9r89-eF7Gsm-TOkDsPj9znB3X9IGodJJIQk_sl6h;tiktok_webapp_theme_source=auto;multi_sids=7666392725490779156%3Acb0364607b123169f2d967dfac08d20c;cmpl_token=AgQYAPOF_hfkTtK6WpE3T7adLfAF5l-Gn7-KDmCmafs;tt_ticket_guard_has_set_public_key=1;tt-target-idc-sign=ophXz5ASqdo6LgCfJ6aohhkzNk70BB65_YLGpPSaVN5k-nMDzhle_3JeyKms2OH6aJ2SSzHinqp_kCzO2Ry6Q2wkD6YTK00V44Wtm4po7LEk9AW2lkaBCn_vjrXUjoI-PTgkIjKWo9PMD8-PbCH_ZIJE4C69cxjlXqykcpuvEw7HwNTrHtkMEXPAgPB_KPsoiU8o_rF0lIzooq3lqzA8irVu43fXHQnlrKxlXDcs8A6lyVHm32Ew-BBZDuvqwImGyktzp97lcY3zLIG0lSQI08Xn7Dnu4lMfxgzDzxFx9hFRkD9RQfbB15JaIiEOjykT-ACgxRrGPhgLVmPf6ly-sbU7HnnYVtEh94fn83Nx4glgkPsQCTaQCHaKQ7UI6TlwX2neBZfKgCPfI0u1gbbA8cHFtiJ7F5PwwAaXt3X6p0fc3M6rw5S_6qAGv-bf7uuEeFkbHT6sISQU9nVEzJHtcoCaqixBVYPoN_NR7J2k6N5qWSKuq03p_0EhXDl1cUMk;sessionid_ss=cb0364607b123169f2d967dfac08d20c;tt_session_tlb_tag=sttt%7C1%7CywNkYHsSMWny2WffrAjSDP_________Oms5KPLV2pdgi_TGSMhh39InTlvzWueOtUIoJxRRBGkU%3D;store-country-code=vn;uid_tt=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;ssid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;tt-target-idc=alisg;perf_feed_cache={%22expireTimestamp%22:1785574800000%2C%22itemIds%22:[%227638429187644067080%22%2C%227656064000542690568%22%2C%227661273233202744594%22]};sid_guard=cb0364607b123169f2d967dfac08d20c%7C1784971182%7C15552000%7CThu%2C+21-Jan-2027+09%3A19%3A42+GMT;passport_fe_beating_status=true;sid_tt=cb0364607b123169f2d967dfac08d20c;sessionid=cb0364607b123169f2d967dfac08d20c;msToken=FDn4jKMojRhboxyWQ-ot3TAh4eY9Zgd-qG_2FJMEHIZuHm96pzr143M2C-yYDF6Aer2Rfvk5vY6rRjkaWYvoKlltI9LvF4D49LueMokzWpMWQz3h6iW-66GHESpPsGvnrGdQiH0-YWuZntCQInTJe2VQk6UnG2bkTGKaO3a-;store-idc=alisg;store-country-code-src=uid;"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 10,
+      "tabName": "TOÀN",
+      "rowCount": 889,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "TÊN ĐẶT ĐƠN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "giahngo_483598",
+          "JG@5dJp044m3e",
+          "earleubisiobl@hotmail.com",
+          "Z6EhAHnI7uy@",
+          "tuong ot",
+          "27/5",
+          "dong nguyen",
+          "toan.",
+          "Đang Giao",
+          "",
+          "t4",
+          "giahngo_483598|JG@5dJp044m3e|earleubisiobl@hotmail.com|Z6EhAHnI7uy@|M.C546_SN1.0.U.-CvcP9**!COaFDPMcqrBUgyriiHgpSWLPjS5lafHdVdEmv1anCZ!3RO4telbjLfLkltz5TrgGagYm6*lPjY7p5v1tF8Epfr!U8sj6hQ9la03kpMBC9tBmUkN7ofBkWR16kdqBPSPta66J3PJBgHbebx3*DC3GJTu5tQhRhtVe3nCC7QQHBN8xny8aWVP7wg04U*b2CBewJ*rP8EicTxeRAxPMBGAYH7sfWCTHsXiCIReUqCa*dCXaQ46tdsyYXBbBnSoirr4uw6TudBXBhhWsy7LSQi97D4f0g74AKuN0a41Z*6a3uZVB195iM1o*wxK3Grh8hGBUKoCSM9pmO*Qxv!liz!yKrMXa88EXvm8D1doh|9e5f94bc-e8a4-4e73-b8be-63364c29d753|earleubisioblmoq1b26@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 11,
+      "tabName": "PHI",
+      "rowCount": 1871,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "102",
+          "phctrng_259099",
+          "VietNam123@",
+          "bagumsuessrm@hotmail.com",
+          "s3p2ytZIdih1$",
+          "x",
+          "",
+          "",
+          "",
+          "bagumsuessrm@hotmail.com|s3p2ytZIdih1$|M.C559_BAY.0.U.-CqbSR6cge3ljUbh2kTMl8dCrWNBxJcyasep*7wCxTA*SmnMZKFPzouXTrcVvSk5Y8Cw2aemcLWsp2nR6ENdPyl7u2H8zhDRiWYbfOjny6CORo0H7bgcmNbk2v2sYFagP9uXD11lGEDJ7Lvn0hIskTZVBOeG3ziikaG50Kd0mlNwjdGub6xNjURhZ0L!xSoIoJsSXBUhI*8yhqt3Ff0umglJ6FBjxQpIa!hb1dVbtg*pMQymFtIiOmUzAUKRqrnKbxni0Bc0VTd7VOYyS9F6ECSVc308XrOWtPufRRiXOn4sqPq3btKX4!a6Yc0ndj3s3uHkfM0PD*DkYez1qEI3MZx2yTDxEWj7!diRDxXaU8Q6g|9e5f94bc-e8a4-4e73-b8be-63364c29d753|bagumsuessrmbb6r6y8@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 12,
+      "tabName": "HÁT",
+      "rowCount": 1115,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "ngcchuoanh.608103",
+          "U8N#ru4hj9FF98",
+          "grabopproftff@hotmail.com",
+          "4r2knHFOCVSN378$*",
+          "sua ong tho",
+          "27/5",
+          "dong nguyen",
+          "toan",
+          "Đang Giao",
+          "mommo",
+          "",
+          "",
+          "ngcchuoanh.608103|U8N#ru4hj9FF98|grabopproftff@hotmail.com|4r2knHFOCVSN378$*|M.C506_BAY.0.U.MsaArtifacts.-Cte*Ev0r6hACNwPypTTdQn70b0mP1xeDdXe!WASqGZ7*6yap5hlJN0FvKw0jHEndvDeTgsUmSE5J3sB2p1gNHrUv9eIvU*xRujK!hIirRDB2ArbK*YXGaXZ3uw6fEWRm0ztSaC7I4qaFUJQ*G3XyoCH0ASBZAu4WqnP85*UWDsxyfIQ*OmHbZ3xob1l16LrdLMuLjqDHY!nhHyeAr!2zSOG9fV4iKBLnoaCHJJQZjdgRdl7NaZbrIuDlT05GTIqw29ynYzAVC2jaz8ICBOWyPg!t1jFZf2Y1RJfq6qUT!jJWumb!LuuG2JPm1W5ZpcEBGMNiPAv4uBzXnhMiH6w9liPXbE!msAsK5jebAHtt28G2|9e5f94bc-e8a4-4e73-b8be-63364c29d753|grabopproftffluui540@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 13,
+      "tabName": "Sheet151",
+      "rowCount": 62,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "nph_1523",
+          "FHib#@v7akO640",
+          "thuliemekik76@hotmail.com",
+          "8vK6d78z1J$(",
+          "",
+          "",
+          "",
+          "nph_1523|FHib#@v7akO640|vn|thuliemekik76@hotmail.com|8vK6d78z1J$(|M.C560_BAY.0.U.-CpXyHs5AYPBc9CsdN4vw2cTaJnUMOjHtcD!zeCQjEEzipzXPiKUZuWZxDTYcqH84jU6SkM3gy6MstQI8t0*qgYc2jRnYw*P*VB8iuJmFwe73HtdEwfq5N6HCMft*V9zCCaBAmOrrionYxctYrO33cYgelzCA8Pkgak7IImiQsAlQ3gD*pIrKoX2chQxAG7rI4lHh1TYabc50t07I7eAqe8ti4dhv7dpwpxVH*xBeqEyn!HOuvuh23K2zhiBymugXEwDMM4vX0yaABPyXVFk5oKdpmWpyBhkLQEfNmfdu2RTPzJrUtlvRmjfmKWALuE6eDaJpepYQNom81GXvLpp2cTcSdjtvUrx!HrhXAuQ2h8eW|9e5f94bc-e8a4-4e73-b8be-63364c29d753|thuliemekik76k6jzoh5@fviainboxes.com"
+        ],
+        [
+          "nhvnlinphm.924883",
+          "P9@2Kpik6on3i0",
+          "toldisshanur18@hotmail.com",
+          "7mJc863Cew5AP6e)",
+          "",
+          "",
+          "",
+          "nhvnlinphm.924883|P9@2Kpik6on3i0|vn|toldisshanur18@hotmail.com|7mJc863Cew5AP6e)|M.C516_BAY.0.U.-Ctg5ARNGYon25!yNXgZHGYX*xsT8FPpf0UllbqApqyvqjvyYIwq4*v52CiS5xIYXxugybyeVgSdGaIDxvRV3uIxLIBzX2ELh5RfyKbocVFvGOsuTY!RyhUqrX7dtstAsiY6mGgTE2P1WsFoW1uhi7cqQkqW4C3WLGR4nDNz*QCccl!UfWgNmaZnwBKv5pSh8W8cQsN8p!pgjaESnYLueU!KYBa1S8rJqceCDoNPb6GOw2RKFgVjUDBF42mOr0FeZKq7C1IKgPE5Mg9WM87zN25c8fEQahQ5Pp5zNliaiPIrjDqfuS5Ntt1ueS8kNO2saSscmoVnGSb7JxydcHQlgSMTjJ6KkV6lnXWUhxqWw5pZS|9e5f94bc-e8a4-4e73-b8be-63364c29d753|toldisshanur185tzr0rx@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 14,
+      "tabName": "LONG",
+      "rowCount": 2235,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "maitngchi.223441",
+          "K#ODnxsf6Ce8U2t9QIS1",
+          "abronsbredlzx@outlook.com",
+          "C0VXb3oM99zl#)",
+          "sting mmo",
+          "28/5",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "maitngchi.223441|K#ODnxsf6Ce8U2t9QIS1|abronsbredlzx@outlook.com|C0VXb3oM99zl#)|M.C505_BL2.0.U.MsaArtifacts.-CtU88PEX2eY3wo7nq5Ecx*2uJL4EkdP3Um43HGvXA*ampCpG9iwemSBOnGMWb3ibrIPtpWf2ZzDIZWlZB7JGCjZtje1zXJmI64dLkDht8c!ogJ34wdMCVjFgVazLUxeJ*8Kz5bLNjijAWm9QgUjCz5SYSUXZD1I8T7*gMJBrxmIKbIbOMftGrUYh10WrIJDVczcD3lYUrcSgVoIfFBSIgTqJq2OBm*THRXR7YFMmwunw9FI3z9oiRngMUOU0Rx15!HlkA2XAnxkr9ktQyOcc2Qm287qxojp2iiBWCoKG4U5ymuGqhz5bVYHwlLfCNmVTbBpSI2JKjyQOPVM!6w7roUPxHPyKtVyXu*Ac5sBd*yNT|9e5f94bc-e8a4-4e73-b8be-63364c29d753|abronsbredlzxfu8v9qg@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 15,
+      "tabName": "VI",
+      "rowCount": 1662,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "TÊN ĐẶT ĐƠN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "gianhi.4644",
+          "TX@UnO5ysE890I",
+          "bordtuunko9r@hotmail.com",
+          "zcN68Lt1yGv59^",
+          "",
+          "lốc vnm 180ml",
+          "31/5 bn",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "gianhi.4644|TX@UnO5ysE890I|bordtuunko9r@hotmail.com|zcN68Lt1yGv59^|M.C514_BAY.0.U.-Cjs2hWB5OY9YwkAPC8Plh0Qh9KNPg2MHFu97C5rmY7JPBMV5!jBXbwpxChq0XMWDsNAODSkcQznucrkrBWv9Vo*K8KgE7Q8hEAXo77tFZ9irRK6VgHaS!6WYTl10jIHQqIQlVhAvPnIp!NbYFxCF*nA9aGNszj!1eQRh4N7hrEgDoxcfG90LwhbVP!UJ3KzzHHCP1Q6jIiBALkJmATFl*B!3req4DqnyoJz0f69Fusy*3X7pZy4flrPxrG6oPEcAD2PKIrQ8wzczVi4*WXEWC43ZBUHubVeoSxysbRUzW!Vzj25sRcwTK745UOwgmN2C4mFNVBNQxYC7FR7SgkSccZOyMKW3s3hT49YGoGyjqQ9v|9e5f94bc-e8a4-4e73-b8be-63364c29d753|bordtuunko9rn13okcr@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 16,
+      "tabName": "LAN PHUONG",
+      "rowCount": 1934,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "thittin_102280",
+          "VietNam123@",
+          "kasletezelmh@hotmail.com",
+          "U7709M1NNv1k$",
+          "d dat",
+          "28/5",
+          "",
+          "P2K0",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "thittin_102280|VietNam123@|kasletezelmh@hotmail.com|U7709M1NNev1k$|M.C542_BAY.0.U.-CkHQvhlcvC!15Yc9wYf8OdwptS0o4VjqyOKDmOVkEqYJh3Mmod2e!Y*2lbDXaw8V782XvsBzqOTin5Z0fa2IjLKjH4lBWh!3ANvtlIOvYnkMH1wssvPLVEXcckONxRJqxFt*LAAvTu1iECZqsliiE93PiJpaB!oeOQVJT86662Nu4f2qtxQmQ5hHJNnmSvYwipLLToP25fScaVqWehy5cNe0BfoOghJytIO5mmBW*LLeHLq6YAvDEZOl7tjsJEFjwuNRoHzfpXxkpMufxNpMyjCd7*AyQ1SFOnuDmYIqxRHXjHcbJ8R40XG168SuVJqBfsoffUKD8IGbPhh*6DhB6KiAkMW*OPKWZSmIRvJmsIBS|9e5f94bc-e8a4-4e73-b8be-63364c29d753|kasletezelmhc24dj7j@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 17,
+      "tabName": "PHUONG 94",
+      "rowCount": 1923,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "phngthy_545369",
+          "U3@FH793z",
+          "zenonztiffi68@outlook.com",
+          "mYEHsO3I9k8al$*",
+          "da dat ngay 12/7",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "phngthy_545369|U3@FH793z|zenonztiffi68@outlook.com|mYEHsO3I9k8al$*|M.C559_SN1.0.U.-CmBb6OSDrZUicQ6q!qthpNA*yihH0hSGi5m!H9dhWKTU27N7bC8JgLJ9S!6y!HNrEjDM9hYoHMB1AuNeRdNGd*cRDAOaNIxhqJxapwYO4v8NwYkrEWWSEC4Wm5M1pK*j8iw3OjmVqGPfy3VscQJszRznLZUu0oD2oFVDhi*PasIAnhm2eW1zJ8Vy5U6TApMmucg9J6k!bZ9*7P1PsoIuk5iCJ0QLivOJKdzQkoUI*nEc5W381B994siCPcnjU7kSIdpoTsJhGmzr8Mw6DY8G8xZQvfFsn38JUz3ykZkQFcDTpG0q0dmESzMMs6!jLJrNHdONS9LlTgZAGJMAArj*8s8Jh6d01KF5iH2YyLiO*fSs|9e5f94bc-e8a4-4e73-b8be-63364c29d753|zenonztiffi68uf70w70@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 18,
+      "tabName": "T TRANG ",
+      "rowCount": 1336,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+          "hukhnh.736616",
+          "9LaOT6WaN#rKo54",
+          "psyslzxel9690@hotmail.com",
+          "ul14XiDmS27F#$",
+          "x",
+          "XXXX2",
+          "",
+          "",
+          "",
+          "",
+          "hukhnh.736616|9LaOT6WaN#rKo54|psyslzxel9690@hotmail.com|ul14XiDmS27F#$|M.C549_BAY.0.U.-CnovN!ajVbc4z0PG8va8DgD3BpD0Yikp5vRz6E47Sg2LlfH4LXT4w2PIK2RB4rvm4jWhh8z*HghVRo9UIuT0LAewK7Ti!Mf!!jhFSo5mhJncrCyGLh2rL9FPbeUqBi8UtLK4E4N7sTk3akxc329l4W28hrGkByqKWU93VYES1DwaOivmO0ZfqgL!Ir5tSEbLtekI5U3x9gyLvBO2QrhG*NZwrRAu7EeO02H5CL!!zj8uLzmwNQycKN89QvsYiHvjW0Kd2ED*ukuRjQXCZNIUYX4XWUNp8WqAew97yjTz**0s7u1anTc8PN8tHDPF48JiXtL9qV2AmOoic00KGMnd7Jhu1!Bzjle1gcNcGyokM1ni|9e5f94bc-e8a4-4e73-b8be-63364c29d753|psyslzxel969034xiql4@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "ngcv.677250",
+          "rwK5OPXB3ed7hst40#",
+          "rnngwse202@hotmail.com",
+          "KqyKOqloyKcU)",
+          "LỐC YOUMOST",
+          "tr154",
+          "SUỐI HAI",
+          "",
+          "",
+          "",
+          "ngcv.677250|rwK5OPXB3ed7hst40#|rnngwse202@hotmail.com|KqyKOqloyKcU)|M.C534_BAY.0.U.-CtRDztOooBUxjOLiNYcesUXRhg7DanZpsRNsNZq!ObLdVz2L7mI4l2X5KTvR5t27500hJDCkXCPtxL7KLkh5kPfWpQ5Y9y6r19upcPQtDJsloWLcm1urbikGW5bCSRskNG45T1MGufanlf*w2wc!WTWLc3eX463kX!EyYUy!iCSveB1cEfgEIyWQp06HmKz47FEMzQ7lInCA*EeLztjm2kcrObCm685VIiDNyj2x*O!vDEGi5e!gWcr5k7qsiOcTj8h5I6stxbCmLtjR*fsEcJiluLdSiQgNPHFhnZUnwPnCUp1WsK6j!rCNelgQX0SFJla0Y4tpNWsPao4ZrqbFSvGd4xvgeL4VdPHDyPxQg1hU|9e5f94bc-e8a4-4e73-b8be-63364c29d753|rnngwse202b1cv656@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 19,
+      "tabName": "THAO",
+      "rowCount": 1802,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          ".",
+          "chsng_806267",
+          "B8ve03ruYC8j073I36@",
+          "ciarykneibka@hotmail.com",
+          "R7674487upUT(^",
+          "omo 770g",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "chsng_806267|B8ve03ruYC8j073I36@|ciarykneibka@hotmail.com|R7674487upUT(^|M.C556_BAY.0.U.-CvX7sHbDXeryE1CxJhUSXq1SgFv2z8MBLMD9BehSTPCqFIrl5Ql*RFxLwOQmkcOXSsq3fKrRfYVYqBNO5HXKn75!C4bLunmIVzlW5PYIgKIZ8YRfPGGJPZwfm7HkNu6IAtAjo1vuduzAxbKGffnmZV1nbEAHf1gg*CnzyPx6BKQCecTQHJ4VZQSERqGsqsgf78B0siJ8Dt9bqkfmj0Pe0YrYOJv*EdSMk!cFKxrYgVEFeeVa2J08R0OKNJWDRaqoYEHAaMLsiuuSGL4h2mN5Iwg*Ke6fXMV1IzSkyi3l!y9J7P4PKV8EqNlxGzMqxTE7AFutskVtk8p3T3jXy8Va2qXbRMJuWLTrZjyGMWdQ2Yb4|9e5f94bc-e8a4-4e73-b8be-63364c29d753|ciarykneibka629sn4b@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "BB",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 20,
+      "tabName": "ÁNH",
+      "rowCount": 1706,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "duykhihong_733459",
+          "3#bCU47ZO3S",
+          "baltamentor4@hotmail.com",
+          "zsy5nM82N23))",
+          "lỗi",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "duykhihong_733459|3#bCU47ZO3S|baltamentor4@hotmail.com|zsy5nM82N23))|M.C560_BAY.0.U.-CuT34RnIVlnktO5zRKfVXqMalKz8Yft2qvYdv6DU9DMZbbg53!cASe7BZmN4nhmi8xuTOp0xOgzPwko31RX17Phf8CmmNJLCuQICAQ95NE9Ylw2MIQF1JWpNvcSMQK!67ausZ!jZQdJfEVKeyr4Nav10ngotdNEAiMI8C0R1uTmOZVMqFkzaGSByPEfXah0uOYBAjImSrHIho0lhJH7PEW1sTyeG1Ieb2F!Z5UmMjKSeTa*Nb8axbj925Odz6DaPUeFDHFrXSnnqb5htJZ1BOTUbP9TmA3GTFsUHg!vr9AzDiZ59JG*1XwaqD1XhjQVFR5Vf6pMVXMbiV6LoN9EEHz6yxlRqxtaXuBXt1bOejLIF|9e5f94bc-e8a4-4e73-b8be-63364c29d753|baltamentor4cdl44ih@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 21,
+      "tabName": "2552026",
+      "rowCount": 625,
+      "detectedType": "standard_with_meta",
+      "sample": [
+        [
+          "trngminh.715249",
+          "@K4aT9Icwjb@",
+          "daedksdiir@hotmail.com",
+          "haAvAW08",
+          "10 gói milo",
+          "bn",
+          "p2k1",
+          "25/5"
+        ],
+        [
+          "hiphngtrm.851680",
+          "@K4aAEqf!NQ5",
+          "sariopachaui@hotmail.com",
+          "SICSBpNl",
+          "côtd ua 400ml",
+          "bn",
+          "p2k2"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 22,
+      "tabName": "215",
+      "rowCount": 482,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "nguynthythanh_230346",
+          "@K5#Yp@hAWhMnE46H",
+          "kolijagabon32@hotmail.com",
+          "TbNCC736",
+          "",
+          "",
+          "",
+          "x",
+          "",
+          "",
+          "",
+          "kolijagabon32@hotmail.com|TbNCC736|M.C556_SN1.0.U.-CrbJ0HB1NVoJlTdgW!JhPgHsyI3c6HukwTPLSzf9NdrB2xI1dnCFPHbPwZ2uMf3E7lROmZGH0!lYmHkk8ghdWjqTEFWaI1!Kgw2oJjPTqrPT0RCttGNY7ZOHRo66XlBLV9c4249Di1c6Fc7UyUcpPduE4aQWhBNPgMoY5VN6cRLvRdmYs!mzZotvhBODn!iWjOIPJl18bGlL7LWda5gO89iRo5fuqqsEr5V793g2Zsa8BW3o0nIO6PXhCeZchOFBje1v1v7ylWOw8USv1IPYk3UdHFFOsHiNqnkp3im*XkC6oO9NYWTCkEKJpI3mcEUakWTkfV6HeLUP4BvRIbCcfyFo4OJTTpINgz1hZuaB5HL14EvxeulxBdoJSROO!r8!aNwSQDxiHDEdusbYMu88q7fg5uJIc4Y5nWvUjWokUbtk"
+        ],
+        [
+          "thybnh.260381",
+          "@K5UEtd1#BorGye#4",
+          "rzoukaeesmaa@hotmail.com",
+          "iV5Qd650",
+          "",
+          "",
+          "",
+          "bánh trứng",
+          "bn",
+          "PHI",
+          "",
+          "rzoukaeesmaa@hotmail.com|iV5Qd650|M.C547_BL2.0.U.-CtwkVFF1Qb!8AYhnU!9091sxKzwJ8FNEV655nP7MDxm2XPUK!icOUyfTd3srTveoDEvOqREs9FFPmaut4fFd8N9AJZqBVa8R7zg9DvJ3uBhmYq3NNaA4UadkpEfoPFKPz*91msqw6GQc6B6fMHC1Gh7zCb7tj853DiBBchkGTJa337gYquvVRZYL74QEaxMcOGHz!DHJackJSyhGrcAkq7SRJM2qG9hTjRxdNVHEr2MLHwur2cHdXNTptipEY2EfiblnPBb5nfKUuOF6t0GjXrm4a5x6zk*mlOqVOig5J2Raw8XxZDLR9ywqJgvTFYWH2U!aKrL0rjNs!s4qY*KIizQbJe8YugbB610OSpPOiR7NCEPIORYL8bHmgB01spQv*fnDjfox3gF*1GR485H2p9tOKNzSM*q5!Zemd3auo2E0"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 23,
+      "tabName": "1952026",
+      "rowCount": 500,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "qunanh_120374",
+          "2s6Xpq8u#3Z",
+          "eycansyuz@hotmail.com",
+          "Vqm2Br06",
+          "M.C560_BAY.0.U.-Ctpn9kxZncEi!MuUaQesCanoekcbxN0u9kJh38874JBntd2gFHuXCEdSzY63JPhO*7YtBjCRNhSqCdxbHQ6HMBvVjvqmEqn5OPS0gluQKMbYxyZUf1YRUnNi8!*dxhf*dGLhfVZvUYUl!iPVTG*WIr8ysRIcvroPNpND*tzKauGTfJegZAkXJkE4F8mUXBLx1399hGcSEPP!I7jx*4t2zKycEd*oVwyU!VaD3vAn!JNcnoUm7*VPzi07exh5o6Rh8UWfsBENPjkKWIOu4GgjoTEec9NDj4KgkMtLHI3NhMc51msFxvOrXDVO1u36*6wF8KMgfP4RHpY3oMr0s5O*4bqRLPTknuITtBlGJRxuVnQuVj*ddmJuA0laFiuWCgXLuQIWMhVPllXEibbN4Zkw9EL!ajRhNy!USJyMARrJ3FLd",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "ca fffe phố",
+          "tan lĩnh",
+          "phương 2k 19/5"
+        ],
+        [
+          "thngbnghuy_137005",
+          "2e1X82ulG#",
+          "fabiensabie@hotmail.com",
+          "8LZ2rY97",
+          "M.C534_BAY.0.U.-Ckrpuq3*w*AwyUUDMgpVmYZzvLsOIivn4*mYkpoS4BpXG2Ch*h9KK9*nHqFEY*i5ZuL39KQ94gymZwyDNW5tFawBEhzOne5J9zwLdyf2YRBzPTpBr8PswlNgSgT8ZRbW5YCZ1XM5M2rHnQpKMc7X8DmNWWUQMxmvheWMm8Qeh89pE8lnKlDUCf69jvTHrftnMpdJJASn5ZhibGx3v0SZJcyOARz*qEe55IUfZ8Zmp1dxYmV8lfEC8w0SMQ2DW83*a1IsRsnNcG6ze4bclcVRoAUIYSx9OBykD!biZAa1nSN783T*y9AZtz4jv8xai9AS2g04yhyWlZFadnEhSx1hUjNSKCzocx8gctLqPG6y4l7XkX7UgRcOL5EWxsa2VdhCu99RFsIOVWteKNApJeBo2lnfbN6MThH6l1tBgGBSwmS4",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "vim 880 ml",
+          "",
+          "phương 2k 21/5"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 24,
+      "tabName": "Sheet126",
+      "rowCount": 428,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "anhong_8328",
+          "7iG#63ourf",
+          "fukuiaders49@hotmail.com",
+          "3tZRtr9kK1((",
+          "x",
+          "",
+          "",
+          "",
+          "",
+          "anhong_8328|7iG#63ourf|fukuiaders49@hotmail.com|3tZRtr9kK1((|M.C551_BAY.0.U.-Cl36zZxX0f9m7EHVDHV!65sPYrp8p5*7iEQJ4wvPPqQ5fDSdo0ZiAKbwo*w5dUj35uJ3q5t*jrpk8glC6BYgmLcBXf5eEmobKXU*R1za*LcJK*c7KV2P8HDrclKQTKlFMWS*pJ!lU2FVUsK!5YBqP*zBYWPyyfhiAUY3gnikH1J*0wKmpzK!b!Eu9TGsXAefJenQ7Jes0ex!J9MTUGS5hXCuyCpoWeDA1at9n1ubhoMrpRymxL0vD*8CcnADz67XLUTqvAziqkOht!2o4N3x9y8RGjQ0lAWWwZKsGd6rJ3I4AzqnSDldLkrIfyQ52xDmukSo!Z9Pg1Bo6J6AmMftN4dvOSUEW46jA6ezO!owcBVg|9e5f94bc-e8a4-4e73-b8be-63364c29d753|fukuiaders494q019k9@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1992_khuyen_t",
+          "Ooo85@iA6u",
+          "saciatutas1c@hotmail.com",
+          "5qV66H99KX(",
+          "Nước mắm nhãn vàng",
+          "BN",
+          "Phi",
+          "P1",
+          "",
+          "1992_khuyen_t|Ooo85@iA6u|saciatutas1c@hotmail.com|5qV66H99KX(|M.C561_BAY.0.U.-ClJCaayGR7xsL8VHeQRPC2Y7IVsmoaS912rnHlj1QF7jnaFDqiBEbmYLCVGdXTwGx4O6!ne5DgckeSwhmmDgiKtrVlyMaY0FJuBQb865vbS4OXxFXdXL2TV3KQAiiS1aO83DVexzodfnmUzLypn*Ts6NTk**AbD8lDhw78FgJfcJKAcy!bMOOlS*jX9a8BL5IpCsB2HQEJuA6QNQV1cY5CQx9FRkxX*Ll2qx1n!uPWNNWQpN7ltSBKZto8N1!OIOC2om7N7jGKKdD!tFeWKaGtF7poz2jN2ghygB!nKL*72lLx1jOANdTYyxGQnkonFaVT9JUOXNgBhpPEOJumHagkTcuBrxtZMVjjalvEjZNwdJ|9e5f94bc-e8a4-4e73-b8be-63364c29d753|saciatutas1cc6blqcw@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 25,
+      "tabName": "Sheet120",
+      "rowCount": 500,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "ruiyiuraki@hotmail.com",
+          "RWOkYF12",
+          "M.C502_BL2.0.U.-CrhV9l0HzpFQMMv*YLkXc5Bn!24vyhKjWuQMjo*kP!t5ofbRvRhQyDZC5k!7nNJGCTMe*riF*mBXx1N1t8jfb1hztWq*otFQGgbsTv8sk3yeD7cFWBMix79W5yQri17vxqXOsaRTgerav4f8DlFzmRmNOJUwVK7G2ZLzuKC*mPQyX2lGE9A3RHvqZzjDpiOvBqmwORD5KUnn2HLVfDWrLo!OCvNRK0frtORXyTkf*k5O!TH!3AlBep4Ofo*lR4C8chSpmXdbXq05bRw1k4wv!4IDzoP6EcLNVxg*WHDXjF*OMmLaxr8p9xxtKUMy4D52G8P1Z5tv!itNYh22R*kRrR8ACYsX5Vsjktq1VebqnfGnd2slXGDtBxGJUtiwDVn2TCRqgaiI0ah9qHYsJzN*BpwzUdRahOGgSNcr0qGOQceU",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "ruiyiuraki@hotmail.com|RWOkYF12|M.C502_BL2.0.U.-CrhV9l0HzpFQMMv*YLkXc5Bn!24vyhKjWuQMjo*kP!t5ofbRvRhQyDZC5k!7nNJGCTMe*riF*mBXx1N1t8jfb1hztWq*otFQGgbsTv8sk3yeD7cFWBMix79W5yQri17vxqXOsaRTgerav4f8DlFzmRmNOJUwVK7G2ZLzuKC*mPQyX2lGE9A3RHvqZzjDpiOvBqmwORD5KUnn2HLVfDWrLo!OCvNRK0frtORXyTkf*k5O!TH!3AlBep4Ofo*lR4C8chSpmXdbXq05bRw1k4wv!4IDzoP6EcLNVxg*WHDXjF*OMmLaxr8p9xxtKUMy4D52G8P1Z5tv!itNYh22R*kRrR8ACYsX5Vsjktq1VebqnfGnd2slXGDtBxGJUtiwDVn2TCRqgaiI0ah9qHYsJzN*BpwzUdRahOGgSNcr0qGOQceU|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ],
+        [
+          "geelyackam@hotmail.com",
+          "uEVR4t02",
+          "M.C530_BL2.0.U.-CjqILwvzvUbnMjs01zO8Wl2qacQJtCCJ0V*hmF6xomjcVug5W7*9u4P*iUYpLNqG14barm3*cTYoH83nrnqQuWNnU4nGnOmnEMO5t5lIDeU1f*FwAAZTcLVOQ4CSMJDBQD*EhnFcypPb4SmSGO1CLefdP*mi85aLvBalRGT1GTW30hffXAwJj8MB!4*Iwi3klgcaErkleCjE8VFACpPes8mEyu1OZw5Kqexeh4BcKn0oiQ*1yq!SlrTTsw1KSDkUbtEQNTxpBgte5MCCPH1yn64qT1OL9NvFfRtTf4gEh2omq92P3OKigSWZ4PuMBdeiacLZuTOM3dlWMl5WL9AN52TMfZ0n5zTRz3Cbm*knCQJztQ60bn9YbGUtwc1yRwyAC9!ZC1FNqC0md*dgHMAOjBimYYdCuTTdr6HYRENoq6ga",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "geelyackam@hotmail.com|uEVR4t02|M.C530_BL2.0.U.-CjqILwvzvUbnMjs01zO8Wl2qacQJtCCJ0V*hmF6xomjcVug5W7*9u4P*iUYpLNqG14barm3*cTYoH83nrnqQuWNnU4nGnOmnEMO5t5lIDeU1f*FwAAZTcLVOQ4CSMJDBQD*EhnFcypPb4SmSGO1CLefdP*mi85aLvBalRGT1GTW30hffXAwJj8MB!4*Iwi3klgcaErkleCjE8VFACpPes8mEyu1OZw5Kqexeh4BcKn0oiQ*1yq!SlrTTsw1KSDkUbtEQNTxpBgte5MCCPH1yn64qT1OL9NvFfRtTf4gEh2omq92P3OKigSWZ4PuMBdeiacLZuTOM3dlWMl5WL9AN52TMfZ0n5zTRz3Cbm*knCQJztQ60bn9YbGUtwc1yRwyAC9!ZC1FNqC0md*dgHMAOjBimYYdCuTTdr6HYRENoq6ga|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 26,
+      "tabName": "200acc 55",
+      "rowCount": 224,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "ngh.8707",
+          "43WH1c14#VgHz",
+          "umqeafbn845@hotmail.com",
+          "hm6EEFDd3oZ0hT8^*",
+          "M.C508_BL2.0.U.-CnEEL8RfUadWW*RIykMoyxdlkDhTSpGnUEJS0*qsGgGPAT25jOv2uYPAYEVQbMisk2islKb0SCPfKaVKk5vREVMKf6qdwJkm6H3xrL3Jd4JjlT3td!fTiGuPR*ZmoEqC1WpyB1ZshXGCEzwZSqbpcyQC8ThXNEAouN*BwL0K!zK1nY1sUOgeCj3zEoaXrZAbG2LTtQnUYqKWzSO2fCOKCiG8ZDsMbzGZxqSCq1E9HFxEmZ5BdL35PkxqfnbvjSV18qRu0BDNG0rP!J205lvG6pt1uYVFqm3auAlf5Uwm6O46xCD3IWyN0D6pcdipA!prjX*OnhpQm3Xx!zHvZJSEEH2Ko*ITze7SQNR9QjpcduSz",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "umqeafbn845w8m4yii@smvmail.com",
+          "",
+          "ddvs dạ hương",
+          "sơn đông",
+          "thảo 6/5"
+        ],
+        [
+          "tcng_7080",
+          "22NDf4azGIeu2#ZH",
+          "flrfbasfqn164@hotmail.com",
+          "JsSL94J61X6*",
+          "M.C542_BAY.0.U.-CkJioJ5WccUfsPuaRzhQ!D06N0L5JLb9530zXLO4n5S0YaoFIUovIetR!F41eGBvn90cG4XTQpiv4G9afRlgLboYqmZVNcQ3WAW68maZYNk7SPQhoXNOXFqN7fTz0eFUhvfmkkBLNFjlslnWV!MRfMatONFC5SlWhmY51!1C4IgPbhFQMfigAwytuKwewO1Xr7rOFsVav8!N*Va3fScf6PQPlC3W1FnR*qlx9zKihsNmjEOiJdhimqei5rzKu3!RKwHxwkty0TosyshRRZ7npH4jKBYw8s2tgFfnsQ5B1Ymg9n1Czo*suSbrmoJ72NAIOAVN5qIF3!1Eo!1WykCR05Ny5ZrvoHBP9xjYSrsurU1g",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "flrfbasfqn1645sl5z8h@smvmail.com",
+          "",
+          "kem đặc 545g",
+          "sơn đông",
+          "thảo 6/5"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 27,
+      "tabName": "1kacc 135",
+      "rowCount": 908,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "minhthinht_7635",
+          "7Oz@cB830BmA",
+          "qatuepdgpt9926@hotmail.com",
+          "A4554M9xxznwAn#",
+          "M.C531_BAY.0.U.-CuQXn*XdRI7mE2sNtYeDhJWPaFfW3ZF!9e4kDkwpvHBYqj5Zo!QFkTrEky9Pjz!DdvAUdI8WGQwKV5nThmTUxDHeVhfb2Za176YEiRQcKOzwM7NPqeoCUIyzPdGUvSspY2Xk3z*Jf*raKjie5Vv0jPsyvuUy5Rew62eH17mB0Pa71Mcp6V5wQ0UXZN7C4R05b32!O875y46w1cyWhU6ACncKAvZFSdCKKkMI3yJP0PS*SeK3RvpMwqYyAazAKRvTgS!x6rmQleKxiEGN2lebIgKCuXyYWcUjEF1PpJPqZyiqC9x1Y2L9uK6xn2UgpXKjTJ1HD6j6jvGg8wOVfuvm*qNb1*bydMRYyNsuahpd3VFeBd83ntRkXmGIfpj*6O!CW3vF1SNOVoezvI31Oa!T7cCpHb6uU5rRpkiWVvgWfyS!",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "qatuepdgpt99269meyzcj@smvmail.com",
+          "",
+          "",
+          "2 sunlight",
+          "bn",
+          "",
+          "phương 2k"
+        ],
+        [
+          "ngcn_7844",
+          "dkySK601@Y72",
+          "ffjwqxi681@hotmail.com",
+          "T75ma2GFqx25#",
+          "M.C518_BL2.0.U.-ChqJcAHgdSv!44DhOLOXLQdFCZWdXvkXEAthENI3vU8NQhmlCAe6sjxEbGoTRScg9IcAZtAeliI4OecrQcZGh2Yq5GKyQwjXmWl49FJCVZd17dQvb7ZNn4cax6wt2PsRaAkokaw40FYgQOt2qri!7ejoRto0LgQbYNhU5YgQ3sMlDXjEs832FA6tx7rKWHnLceG1j1pN6*6qoWZHsFJkBSeIvJ89tQrEs!sGBXfvFGSaR5pzb6NtGVu0q2lYQ4wfhmgezzR357lyL*HAm7bMIEr6Yhh*qQYKb*nz!*Y5N*dYMX*iqb!bv4hC1ytZuifTyyyokqtSeT4FJK!A5Q9kDmH*6UuU!Eh*THCXxXHAWPzp",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ffjwqxi68100nqr33@smvmail.com",
+          "",
+          "",
+          "loi",
+          "",
+          "14/5",
+          "phương 2k"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 28,
+      "tabName": "85",
+      "rowCount": 950,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "hnhvit_2470",
+          "gL28k2D2fNV0@Sr88xTP",
+          "battamonksts@hotmail.com",
+          "Yz8W15E1195^#",
+          "M.C530_SN1.0.U.-CjXa0Ie2aI54Pvb*9y3MNqyWq97F*Y5YGM4R8U5sc40IFuurRdWG3H5sgPa5NbjwEZm7cgvRMzqAsdR9npWT4xuQCcqIHFQE1Hu1cQlYXiMS525OpzfR8i8O!9tCXwTOo7tu45DlItSiBP1u5dYePHRW*je9n7Gf4r085AwCSfrd2QdlvtZ3Rok5hnFUVGYdJiJgN9pA8ZE7AVnOmK74gLJ8F1rqfA*8nBIf2DsRZUzGsbzbMLvFd!ssq758qL7LJDQZIDlcZpPHdDCRUbUQaNL7AUf5nhjRRKBPxomLWVMnLtaRAIvOWj2bTQuo64A44So0NHRXVerHOjiZMDpmJ0R5y2YES8y1ouo2a*ari87g",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "yxlgqlwae9289vs2ox53@smvmail.com",
+          "",
+          "",
+          "côt dua 400ml",
+          "bac ninh",
+          "phương 2k 8/5"
+        ],
+        [
+          "quangm_2490",
+          "OF@vB8w88ptA78",
+          "qscwhsmcmy783@hotmail.com",
+          "3sL9RSn5468lV$$",
+          "M.C539_SN1.0.U.-CqXeF7lPyPboMh97esOCGDARi0jDecdJikf01BwfYzAVM1*rV9g4fBaVDPfkC5W66LDqDCwOefFehp9X7Lm3LZohj5SJ7k8LgfIYnYJkVEvJA4ovlDiId!r3jkfr8zY2DKBhiD3*WGqQwiGpkK!J8xB3SddWDJDSJOhffR*5CaUo54*oIutuSVXWs2M*oJaIUC3XrUp9aRL1MakSy0Kttd5iwTpELVSMdeFi0Cgavgv1Df4Yif4eNQMOEaawbheiGfz4VOAwA*ZsVf96gBVqQe!zyxEWXSwJDlaNSW0YnFGzNheqjsscaj3uo0BzWk52c8pPz8PDdr!YmvqCVShb0WZIGY1jE7*eRb!ACnrm8lg7",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "qscwhsmcmy78385475x6@smvmail.com",
+          "",
+          "",
+          "2 xp life boy",
+          "bac ninh",
+          "phương 2k 8/5"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 29,
+      "tabName": "700 nic 236",
+      "rowCount": 876,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "x",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN"
+        ],
+        [
+          "15",
+          "triuminh.756644",
+          "@K4akQ1k!Ap7",
+          "grownlacie2l@hotmail.com",
+          "XidbHCgj",
+          "khong co ma",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 30,
+      "tabName": "223",
+      "rowCount": 200,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user4194373667900",
+          "VDaVn9@47uot2",
+          "vlzinee679@hotmail.com",
+          "NAgygnd3I",
+          "M.C501_BAY.0.U.-CvY!qtfJKS2mXca!xEmNL7LSaKLdBiInFcgGo197xm741jle6wyEmgpkQBEdJhja7VjvjgmOPwcUQoz0sdRtiVaDorUjO65131NRjNNrk6TdkCqTutOIpRwbH06rcc!W2ThoAwHFGyrZY0n54ED1ZzFAUFnthiNfgeecV9lXIGAMlKxC8S4t1utGle3dJA5USIQZDCz1jboLn20O3umWUc4I*T3FmEGJ5csigxeF*fi2lwChynaDGKhPBDrmRkcLUAkofOkugbQ1pZANGIa2opM2qO7b5y5KLH5eqHC71GZr3GqK3e09!5XBdWZWCzpfYQHyo5Xz8QP0Lc173ye9Ytj8t1w2CQ4y0cmKFB23Vpy6RGE2rxJVqppwgBONv7KCFej!opCfFWQmLyZzAmYFzIX!o4lt9ICfUfKpahjWoDhh",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "vlzinee679@smvmail.com",
+          "",
+          "copy cho khách",
+          "",
+          "",
+          "user4194373667900|VDaVn9@47uot2|vlzinee679@hotmail.com|NAgygnd3I|M.C501_BAY.0.U.-CvY!qtfJKS2mXca!xEmNL7LSaKLdBiInFcgGo197xm741jle6wyEmgpkQBEdJhja7VjvjgmOPwcUQoz0sdRtiVaDorUjO65131NRjNNrk6TdkCqTutOIpRwbH06rcc!W2ThoAwHFGyrZY0n54ED1ZzFAUFnthiNfgeecV9lXIGAMlKxC8S4t1utGle3dJA5USIQZDCz1jboLn20O3umWUc4I*T3FmEGJ5csigxeF*fi2lwChynaDGKhPBDrmRkcLUAkofOkugbQ1pZANGIa2opM2qO7b5y5KLH5eqHC71GZr3GqK3e09!5XBdWZWCzpfYQHyo5Xz8QP0Lc173ye9Ytj8t1w2CQ4y0cmKFB23Vpy6RGE2rxJVqppwgBONv7KCFej!opCfFWQmLyZzAmYFzIX!o4lt9ICfUfKpahjWoDhh|9e5f94bc-e8a4-4e73-b8be-63364c29d753|vlzinee679@smvmail.com"
+        ],
+        [
+          "user6793094743680",
+          "6552Sx0#cG",
+          "magdarabakps@hotmail.com",
+          "kfj1gz2c",
+          "M.C522_BAY.0.U.-CrXeHKI2kdM8*rCVYS91HVz6MwkVO0J8KfCWqUZFPZt4gkmFSfu18xeO3xDalrOOM2rlmA9R3cn6VuHl4my8v0ueMXL3qQIPNuRPLDGzRBfc9mQDEugxCf0Ts*9MflNzhRfKHvl5gc3fRxTgsFSZItICVGFbCWqQol4uDgEUROaExIDjednazHoSua56feS39onLJY4iNS7JwojKQjywDnYlh7uWWYS9f8k7nlBYsjH4VyjyLfROb1oF4gKtGTwITlHPcJ!0AvyCyveyXa1laysl6DuEYQzUcyaLmRIS6FK8dV*rVpQHkqF3zE!G2xvQ5sNS9VEXGznwYjqI1lg*yNBHOeNixLNgOSEjN*dB*PmHY!yxL9lUavspgPP1FdQQrBcgOg91WwNzJZOKiKH2TbdgD2sf59Zcqq2ZsNsbVgjs",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "magdarabakps@smvmail.com",
+          "",
+          "copy cho khách",
+          "",
+          "",
+          "user6793094743680|6552Sx0#cG|magdarabakps@hotmail.com|kfj1gz2c|M.C522_BAY.0.U.-CrXeHKI2kdM8*rCVYS91HVz6MwkVO0J8KfCWqUZFPZt4gkmFSfu18xeO3xDalrOOM2rlmA9R3cn6VuHl4my8v0ueMXL3qQIPNuRPLDGzRBfc9mQDEugxCf0Ts*9MflNzhRfKHvl5gc3fRxTgsFSZItICVGFbCWqQol4uDgEUROaExIDjednazHoSua56feS39onLJY4iNS7JwojKQjywDnYlh7uWWYS9f8k7nlBYsjH4VyjyLfROb1oF4gKtGTwITlHPcJ!0AvyCyveyXa1laysl6DuEYQzUcyaLmRIS6FK8dV*rVpQHkqF3zE!G2xvQ5sNS9VEXGznwYjqI1lg*yNBHOeNixLNgOSEjN*dB*PmHY!yxL9lUavspgPP1FdQQrBcgOg91WwNzJZOKiKH2TbdgD2sf59Zcqq2ZsNsbVgjs|9e5f94bc-e8a4-4e73-b8be-63364c29d753|magdarabakps@smvmail.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 31,
+      "tabName": "25 - 1",
+      "rowCount": 290,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "Tài khoản",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Tài khoản"
+        ],
+        [
+          "tngliu_2775",
+          "Aow085G9P2#kE0qOrDsj",
+          "ewzaumw890@hotmail.com",
+          "JB4CNKz5K7F1##",
+          "M.C521_SN1.0.U.-ClTXH9ik1mZIa23X7s4vDNEFNufxQdvH3*4DJLAxRZMdCQAzgjS9ucHznYM3S0ZXglisCDlGy91vil3svtPL!*hsVAYlLXMTax5qmjGoDdYNSfYJ3cBoD4u5xEdXV*ofFjjy1*7DzarV3HvdpIoFggrbagufLo5ZWJMp0dNcWG5DlVybrR5NnBC5yScr7b3AAJ7!JgjaKuAkQitcHutZt6W4w5xbgO833RnCzmrN8Kc9m3RaUfvkmkAYv18gYoptakcx3VcImD6vS*ETydpT1TlNtvQc2YWt6E6b8*26yA*HvFUlT0uqNnqCvNrtziKvZj3E6cGKf20pfZ5NTdMYIQwzkiB71iO1KdSd*zfqqcja",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ewzaumw8901mi4eku@smvmail.com",
+          "vim 880",
+          "sơn đông",
+          "4/5 trag",
+          "tngliu_2775|Aow085G9P2#kE0qOrDsj|ewzaumw890@hotmail.com|JB4CNKz5K7F1##|M.C521_SN1.0.U.-ClTXH9ik1mZIa23X7s4vDNEFNufxQdvH3*4DJLAxRZMdCQAzgjS9ucHznYM3S0ZXglisCDlGy91vil3svtPL!*hsVAYlLXMTax5qmjGoDdYNSfYJ3cBoD4u5xEdXV*ofFjjy1*7DzarV3HvdpIoFggrbagufLo5ZWJMp0dNcWG5DlVybrR5NnBC5yScr7b3AAJ7!JgjaKuAkQitcHutZt6W4w5xbgO833RnCzmrN8Kc9m3RaUfvkmkAYv18gYoptakcx3VcImD6vS*ETydpT1TlNtvQc2YWt6E6b8*26yA*HvFUlT0uqNnqCvNrtziKvZj3E6cGKf20pfZ5NTdMYIQwzkiB71iO1KdSd*zfqqcja|9e5f94bc-e8a4-4e73-b8be-63364c29d753|ewzaumw8901mi4eku@smvmail.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 32,
+      "tabName": "25",
+      "rowCount": 100,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "kduy.7668",
+          "q#6F7ZjFaHwEpT5",
+          "kalrjltlh530@hotmail.com",
+          "GJG7rh2Ui1^$",
+          "M.C513_BL2.0.U.-Cqzg5r7PXbIkfHAUUMLlGE*Ke1gscwPqzo3TnmX20E89MfYR*NCehfzWt7ER7l3fS27Rtf7sappQA!xvcCV0O9UCO9bRbop!eBhLMNNFNSgUxcB46SI8*aio4tar4h0OkvOqNusrsW*g06YHuTwXfd9Yy7amwDUW5WD6Iz*fJJ814yGgt5jgbj4Vb43ugsMbRBTypfCAO56*Iu4n!gSllf!U7fkcMskMvcHnyUJDhL28boT3!*CYK5hmCH0taH6TgA3!P5NS6INoAVXVTPBvGdY6hF66YKXKpJ!1PbBeSA3Hdemfp4EE*deml!eG7TsXRL*vS1HtOrgZTfA4VTiIniUMnLq2jjufvXhFfLq0VHR8",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "kalrjltlh53088b1cpv@smvmail.com",
+          "",
+          "",
+          "DA DAT 2/5",
+          "",
+          "",
+          "kduy.7668|q#6F7ZjFaHwEpT5|kalrjltlh530@hotmail.com|GJG7rh2Ui1^$|M.C513_BL2.0.U.-Cqzg5r7PXbIkfHAUUMLlGE*Ke1gscwPqzo3TnmX20E89MfYR*NCehfzWt7ER7l3fS27Rtf7sappQA!xvcCV0O9UCO9bRbop!eBhLMNNFNSgUxcB46SI8*aio4tar4h0OkvOqNusrsW*g06YHuTwXfd9Yy7amwDUW5WD6Iz*fJJ814yGgt5jgbj4Vb43ugsMbRBTypfCAO56*Iu4n!gSllf!U7fkcMskMvcHnyUJDhL28boT3!*CYK5hmCH0taH6TgA3!P5NS6INoAVXVTPBvGdY6hF66YKXKpJ!1PbBeSA3Hdemfp4EE*deml!eG7TsXRL*vS1HtOrgZTfA4VTiIniUMnLq2jjufvXhFfLq0VHR8|9e5f94bc-e8a4-4e73-b8be-63364c29d753|kalrjltlh53088b1cpv@smvmail.com"
+        ],
+        [
+          "tranghuthu.7198",
+          "#5rnH56c5FgYnOE3",
+          "efctkxrq016@hotmail.com",
+          "r1y92yTRHKw(#",
+          "M.C537_BAY.0.U.-CrrZfiIiRglIJsdBsfNKUFC9nz!uZWuu9IVxlVI2xOiA6flGKIqpnoYOaGZGPLNdLR9*Ce9sFWbuLTZufQDHwKSYcIe19tXcEL2dhkGGGAG85yS*vVv3YyYY7ER5PY1rsQ1lc3W!eB5fhFxEEUXzOK0yN7cVEnirPK0c9!1gPv1C4N6JZ*BvCKHGBO5H0EiyCGiDPsJauyjKj08b0yfLBdJ8KWfmUM*LXeDS0FMEFaykFtqwfp11EcryR4wSQH0eHuw5zcUiZb9iMtegpk3bQ4Z!M3jIFJyN6Q1yz904bgQZFA0tt8RpAFaBslOoUXsb3Lyfg4AnaAO1vvpSn!gPIi7Hg6WcIxcecEhjTfZT29o*",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "efctkxrq016jn2as6f@smvmail.com",
+          "",
+          "",
+          "ko mã",
+          "",
+          "",
+          "tranghuthu.7198|#5rnH56c5FgYnOE3|efctkxrq016@hotmail.com|r1y92yTRHKw(#|M.C537_BAY.0.U.-CrrZfiIiRglIJsdBsfNKUFC9nz!uZWuu9IVxlVI2xOiA6flGKIqpnoYOaGZGPLNdLR9*Ce9sFWbuLTZufQDHwKSYcIe19tXcEL2dhkGGGAG85yS*vVv3YyYY7ER5PY1rsQ1lc3W!eB5fhFxEEUXzOK0yN7cVEnirPK0c9!1gPv1C4N6JZ*BvCKHGBO5H0EiyCGiDPsJauyjKj08b0yfLBdJ8KWfmUM*LXeDS0FMEFaykFtqwfp11EcryR4wSQH0eHuw5zcUiZb9iMtegpk3bQ4Z!M3jIFJyN6Q1yz904bgQZFA0tt8RpAFaBslOoUXsb3Lyfg4AnaAO1vvpSn!gPIi7Hg6WcIxcecEhjTfZT29o*|9e5f94bc-e8a4-4e73-b8be-63364c29d753|efctkxrq016jn2as6f@smvmail.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 33,
+      "tabName": "1k acc 274",
+      "rowCount": 783,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "tnhkhianh.475964",
+          "V06gw#PrM519c531",
+          "klodthaftlij@outlook.com",
+          "YEZval190@",
+          "1g ca  phe sua",
+          "bac ninh",
+          "27/4 ánh"
+        ],
+        [
+          "minhsn.130023",
+          "jn9p2PybsDc#4n",
+          "parloamperkc@outlook.com",
+          "qTcuczlf",
+          "6c pepsi",
+          "bac ninh",
+          "27/4 ánh"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 34,
+      "tabName": "Bản sao 274",
+      "rowCount": 992,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "minhsn.130023",
+          "jn9p2PybsDc#4n",
+          "parloamperkc@outlook.com",
+          "DPVFd3oQ9xzy)",
+          "M.C532_BAY.0.U.-Ck!F0uqgAt7iZgfiUglSa6n8ZDkMXf3AxioEniHhfZNtEyZCykcZveeQrN78yWlwaLgGzWnlXmnfJzpz2XkH0Y47IqQ!ZHVfDcocGQ5Lkx*3QcFEZsSVEDoVA!jSCT!UMZiWpypZ6OW55Ec!LvGq!LXKQ7p9oehtcUw0IVwEi3lqfM1oEE*I1evpqTPoIuVDaZCNPaKNSXRoBmRCKVxCPn4HtszQ8*FThhuxkwwZCm2ROk7TTXRC9KrNYN91FwNp7nChcv*91!BaoxYH6CVmpnECoWuWaRXl*8BqbqEQUkxIR48Q*f5j*gOsIqB4ahfS*4GRzPa6lwZBBv0R6PN7f!Bg*6TMBU7K3rLoGK6FGEBe",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "parloamperkc61xg4ky@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "minhsn.130023|jn9p2PybsDc#4n|parloamperkc@outlook.com|DPVFd3oQ9xzy)|M.C532_BAY.0.U.-Ck!F0uqgAt7iZgfiUglSa6n8ZDkMXf3AxioEniHhfZNtEyZCykcZveeQrN78yWlwaLgGzWnlXmnfJzpz2XkH0Y47IqQ!ZHVfDcocGQ5Lkx*3QcFEZsSVEDoVA!jSCT!UMZiWpypZ6OW55Ec!LvGq!LXKQ7p9oehtcUw0IVwEi3lqfM1oEE*I1evpqTPoIuVDaZCNPaKNSXRoBmRCKVxCPn4HtszQ8*FThhuxkwwZCm2ROk7TTXRC9KrNYN91FwNp7nChcv*91!BaoxYH6CVmpnECoWuWaRXl*8BqbqEQUkxIR48Q*f5j*gOsIqB4ahfS*4GRzPa6lwZBBv0R6PN7f!Bg*6TMBU7K3rLoGK6FGEBe|9e5f94bc-e8a4-4e73-b8be-63364c29d753|parloamperkc61xg4ky@fviainboxes.com"
+        ],
+        [
+          "longvnhnguyt.652038",
+          "Z9JE8#6Vzh3",
+          "brehmberrul9@outlook.com",
+          "9P5f0NcES1k5(",
+          "M.C538_BAY.0.U.-CpaxkZ13fe!aFs3sVU9VI7rfV6hMGsdRQtqXKdIqsqI*MuJK2d7n3Aa3VRvr!mIUh0mIL3QRBEOWsMiN!KEihc8UX*5AFXbCda34r*e*eNTD6yGoyiTH!U4prqeftDjzHm!1EWrBvdwebG0D1ODLy3iq8ZFjIBU4wgISHDh5umE6ouy8FkEypHu0ZAvZZN*0ZYcF2qzx1rhmUbOVBtfFslA7gPki1l3zq3Rsepu8XAL7RyamHLN8!k7pigHfSHROrZCRpHbW8933cloutkQbz5CY20Z*V8bvH1l!z2kWyaVEzq1gZI!E9NYg6rP86*ltlUpOslJIjb3DrQBJMTz4v70wF2sf1MJJ3FXu3g8vnJZ8",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "brehmberrul9tuy7r2s@fviainboxes.com",
+          "",
+          "1g ca  phe sua",
+          "bac ninh",
+          "",
+          "longvnhnguyt.652038|Z9JE8#6Vzh3|brehmberrul9@outlook.com|9P5f0NcES1k5(|M.C538_BAY.0.U.-CpaxkZ13fe!aFs3sVU9VI7rfV6hMGsdRQtqXKdIqsqI*MuJK2d7n3Aa3VRvr!mIUh0mIL3QRBEOWsMiN!KEihc8UX*5AFXbCda34r*e*eNTD6yGoyiTH!U4prqeftDjzHm!1EWrBvdwebG0D1ODLy3iq8ZFjIBU4wgISHDh5umE6ouy8FkEypHu0ZAvZZN*0ZYcF2qzx1rhmUbOVBtfFslA7gPki1l3zq3Rsepu8XAL7RyamHLN8!k7pigHfSHROrZCRpHbW8933cloutkQbz5CY20Z*V8bvH1l!z2kWyaVEzq1gZI!E9NYg6rP86*ltlUpOslJIjb3DrQBJMTz4v70wF2sf1MJJ3FXu3g8vnJZ8|9e5f94bc-e8a4-4e73-b8be-63364c29d753|brehmberrul9tuy7r2s@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 35,
+      "tabName": "224",
+      "rowCount": 185,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "snbongc_921029",
+          "SG#u6u51",
+          "headdpeete22@outlook.com",
+          "PAm6HcXB",
+          "kh mã",
+          "",
+          "thảo 22/4",
+          "",
+          "snbongc_921029|SG#u6u51|headdpeete22@outlook.com|PAm6HcXB|M.C533_BAY.0.U.-Ch3cbd2GKE9ic6j1bt9ODi7OFfXzHEczisjoq!Y6gU0knV19c*w9D28MmvLQPvRvRSamwvksdzkIjlX3AE34QzV1bo8qYtIcsHTYYUrpNm0RUczyF*IIP*SCohFbFERqP!H5tOrZNuh5TjXnEoML4ZscbSVeEy6ESRW47JkKjDK5r8yrnT7!7HkNYx7Avmp6iZOzZ6c5s5i!Nq1mikFeyppC5RWyQAIj2xRyXvdnhYRAuqWS**IR17Cq2i6VSfVmSHquo7iDCMzme2rlfb6z2twKvzqVcpydiMPPtttrd6qocm93zC7yqKefvn3NyLxoDp6zhKOIuLsw10ntFZoAQKQGcpjYNRcyFKPaqzil*vIljxdk3u*Enecl5rqEyXTJAFJJteZQ4m834vePC5bmgvU$|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ],
+        [
+          "tuhumn_974568",
+          "DY714#JzA0",
+          "rotkoshaiamu@hotmail.com",
+          "Njmlh6Wo",
+          "lỗi",
+          "",
+          "thảo 22/4",
+          "",
+          "tuhumn_974568|DY714#JzA0|rotkoshaiamu@hotmail.com|Njmlh6Wo|M.C524_BAY.0.U.-CsVp0r6D!kz6K81NXDGFZvH2qCuTxypV3iv23uKybIPyizgpuAs3aHqJ2OGSq8*28cdpy!Ss5BJx8u2nCwtJ4VygZOR1SEH0O*mVgTkmGAftP!Ry6w5UbCxNGWbOGfY0H1JCG0bmcNsEIBbJMjFWWSpX9KQ147fyKULRZuXCVtSPt!t0!Bq6u*yUBRVQM1o8XOvocYMSSKLcUurJpOHHG*ea13LJXONxwOFc5kHn4M2KYw1xsHnr0!ee0xkvnQ8It6ls6PQdmMPpDYRfB7VlLPbKydXBfDt2KMQXfKL45oPloPNLgFsa4*SCTBHTLSd9kAcKXQtJUyFSNds!Yzq36Zf2jMwoap6hhGzYgmAg3OLGNPATYAY8XlhO5caWvpFWm!8LAC55aFLWti8uNoWXeDE$|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 36,
+      "tabName": "acc 234 ",
+      "rowCount": 734,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "nhtquanghng_468",
+          "28@rw56wE6y8",
+          "cflwlvl6438@hotmail.com",
+          "Jt75VKWPkYT",
+          "xit"
+        ],
+        [
+          "minhnhmthin.322",
+          "66wr5@nFnj",
+          "yiygdgjg229@hotmail.com",
+          "GkL0G6gVD9x",
+          "x2"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 37,
+      "tabName": "1k acc 144",
+      "rowCount": 900,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "hnhvn.904707",
+          "NOde8O77S@NMZPyb6Z6",
+          "rvuozwsog335@hotmail.com",
+          "wXcprwO0FQa",
+          "gửi toàn",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "M.C557_BAY.0.U.-CmpD6tdhLMwFudAeKKbhsdIyKb8CjItcxsAaqoAnQVdRO4OU9LR2iayWeykcdgtacuIWCkrDkxc5PIa97GvHXec4KYZAXO17iTTV!iC9Q2DrZdW8RcN3dYefFRhA9sTn2vjdVCC!JvF6mhmTfXMuBqHqXKMxqhL7LLg15eJnOKYm8yhZ2IGfOePVCwcs!Ypj3ycBPOR2LZD8dCXzA1ADrIgvC5SDu99!9xWl5X86f1d87xgU891fF9kgohoC2KlZpdS!KBLVBDilbNvsL3kcE1*UH1hTq4ItiX3NImeGplv3UViwXvewdnoyG1tci1gfzQ*IePcRlA8evnGgN7bZySYnubG5tv1oJ815x0v9pWhu",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "hnhvn.904707|NOde8O77S@NMZPyb6Z6|rvuozwsog335@hotmail.com|wXcprwO0FQa|M.C557_BAY.0.U.-CmpD6tdhLMwFudAeKKbhsdIyKb8CjItcxsAaqoAnQVdRO4OU9LR2iayWeykcdgtacuIWCkrDkxc5PIa97GvHXec4KYZAXO17iTTV!iC9Q2DrZdW8RcN3dYefFRhA9sTn2vjdVCC!JvF6mhmTfXMuBqHqXKMxqhL7LLg15eJnOKYm8yhZ2IGfOePVCwcs!Ypj3ycBPOR2LZD8dCXzA1ADrIgvC5SDu99!9xWl5X86f1d87xgU891fF9kgohoC2KlZpdS!KBLVBDilbNvsL3kcE1*UH1hTq4ItiX3NImeGplv3UViwXvewdnoyG1tci1gfzQ*IePcRlA8evnGgN7bZySYnubG5tv1oJ815x0v9pWhu|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ],
+        [
+          "thinguyn.1970",
+          "aRW7144@Wjga",
+          "xassonmpd2015@hotmail.com",
+          "mPpevBFewZtHA",
+          "gửi toàn",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "M.C524_BAY.0.U.-CuxrN94hfDTBVQzSrkR0ebjTZh9cGcr0HWgBcAGyqpmWEZ!gRvAaH9Iip4LOCK5U3VXsfqmjc2pMZGykGLYcw2yeARXkWBwa9VjbGMMVsUlHRjLZi*kXWel!00JCY5SmKWhYhghkqFZKC6pF7lFjqQ5vclry9jymkmZpit0cFwyGGBHgAhVojXxdHkPpls5sHRcKbTI2gK9Qzf6llrR9XX6BYHLdGMne9aKy4rHTCWEctnHIndKFvqPnfHX79Z*lZMrGK5k6zFkF1eUkkeDIxO1Adp3Hv4sBUFXPuTJlwVwLs9T6gLqveJ6luqsmTpg0pIcoDqH23lsIyCzmGtN9TN8$",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "thinguyn.1970|aRW7144@Wjga|xassonmpd2015@hotmail.com|mPpevBFewZtHA|M.C524_BAY.0.U.-CuxrN94hfDTBVQzSrkR0ebjTZh9cGcr0HWgBcAGyqpmWEZ!gRvAaH9Iip4LOCK5U3VXsfqmjc2pMZGykGLYcw2yeARXkWBwa9VjbGMMVsUlHRjLZi*kXWel!00JCY5SmKWhYhghkqFZKC6pF7lFjqQ5vclry9jymkmZpit0cFwyGGBHgAhVojXxdHkPpls5sHRcKbTI2gK9Qzf6llrR9XX6BYHLdGMne9aKy4rHTCWEctnHIndKFvqPnfHX79Z*lZMrGK5k6zFkF1eUkkeDIxO1Adp3Hv4sBUFXPuTJlwVwLs9T6gLqveJ6luqsmTpg0pIcoDqH23lsIyCzmGtN9TN8$|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 38,
+      "tabName": "1k acc 104",
+      "rowCount": 1000,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "linbnh.951998",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "tmhin.691179",
+          "mpyU6A81Rd@u",
+          "epxzhwz890@hotmail.com",
+          "lQfmkMqvIfPM",
+          "thạch kimi 990g",
+          "phúc thọ",
+          "phương 2k",
+          "\"2026-12-04T00:00:00.000Z\"",
+          "M.C539_BAY.0.U.-CoALNZvE9lXdh29FlqONfB7w5UtjSTLv2ddvcmfes*zAKRJ8Uw3lo8zrXW!fZAVQPu!AcJidqaaFVvkWNgTtQ4LWZcEf!hIAsoJ9GAXeymbZG4JEmY4RUAFweAUb125dvsIhlGMmBzgmvLHmdFXOBvLLBmciMpJXOI3vevJ8TCHrmyfRSNVtc!2l535FIgLl2vXlMRK!iJVDF7JPCsItr8t2i0ecbCl2MxxAvl0Z8PEOlbokDZeqWN7Lr71wSyDF5odErqJO9qYRZ1mbQOxwWFxVb10Ad!Oj7obQPEBW1r0Ay7u56292!JqY3c53XqF9Hi*i9540BNSYUE2yw*VcZP3KaCe*3krVyf2iWSkV1joFoXCr8dyOwNst4Nx7H5CmemInT0KSnuMM!rDAP3cj1S4$",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "da sd de lam tk ai"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 39,
+      "tabName": "1000 acc new 5-4",
+      "rowCount": 634,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "trctrungkin.622899",
+          "mt5Yn4X58hLas1@OO1o",
+          "gilahzapkayu@hotmail.com",
+          "SxmTX6fX",
+          "cơm cháy chà bông",
+          "xuân sơn",
+          "7/4 ánh"
+        ],
+        [
+          "kium.496917",
+          "nW19#G0T6",
+          "wojanmaxim4o@hotmail.com",
+          "zMc7xhxC",
+          "xit x2",
+          "\"2026-10-04T00:00:00.000Z\"",
+          "thảo 9/4"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 40,
+      "tabName": "1000 acc",
+      "rowCount": 1000,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "trntrngc_478201",
+          "pG6#GZ03",
+          "feitokorus1c@outlook.com",
+          "rewaWBUs",
+          "k mã",
+          "phương 2k",
+          "",
+          "23/3"
+        ],
+        [
+          "thuynnam_447744",
+          "UjS0g17I7DrJI@3",
+          "onielyakimpc@hotmail.com",
+          "XdcFfCrq",
+          "3 ly modern",
+          "phương 2k",
+          "xuân khanh",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 41,
+      "tabName": "1132026",
+      "rowCount": 850,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "lankhutd_162355",
+          "5cpw4@6uWSzq5",
+          "utschherrave@hotmail.com",
+          "mFFitgcB",
+          "ngâ,m 12/3",
+          "",
+          "phương 2k",
+          "",
+          "perf_feed_cache={%22expireTimestamp%22:1748347200000%2C%22itemIds%22:[%227482382291239456007%22%2C%227496478100402867474%22%2C%227487590474082045190%22]}; store-country-sign=MEIEDBwnuKOUh3WD_RP_ZQQgWA3dRN0cBgIwzOVhG6sBuoXGUkjcfe6BQghJnA_CuooEEMhTGF2_0xoHRXwZSjAhjN0; msToken=En2B658xLgNqeLES2vwk5Z-VXhU2rLudZ0pcYw8OZpGumSls7Ftb23mS0pLXVnpOz2BK2UyW66OIsLjR1jjMNAP2g7nPesko02mMnTnmN5vUU8RF3BMwvU194RUVtr8l-o_YtNLoVWnbxg==; odin_tt=e507e195291b5b20f757cd9971e6724814d0169b818c8e0aee84a60302077d6a3b3a23e26bf02549af660b98eecc8b4cd440b950326b603d16ed5b01e15f733430862eb9090c1c01ca7c9970441e5fda; ssid_ucp_v1=1.0.0-KDgyY2UxMWFlNzg5YzM1OGIyYmUzNWQ4ZWNkYmY5MDIwM2VlZGQ3Y2UKGgiRiKmg9pfUkGgQjJzMwQYYsws4BEDqB0gEEAMaAm15IiA2ZDIzZDI0OWM3MzhkNDRhNmUyM2IwMjU2MTMyYzRjYQ; ttwid=1%7Cf8dVjVErY46AnlhJsgaZu4A8pbPa9mJFWI2cjBzsasw%7C1748176396%7Cc88b59aea685b2f753b75e915d6f2730c138c52c3d1392f204cf57506a68a932; passport_csrf_token=bfb66f430151ce6bba018f0adf20748b; tt-target-idc=alisg; tt_chain_token=FAWPQUyy/lZvhyz4KC1sPg==; tt-target-idc-sign=mbFDWlmTs8gKgRsZMNndUQgd4UT64ibYgP69BD9ZMuCoEp8Cfp-5WSPwLIDAWPAO9P9s6JsmpZsRH_lRRZRr9gdqS85DHBgvVShSIzqFhsKK_obF9JETLAKxN0ApozYiBKf3u5tGyONuMZ20jYPN4_278JOgJ2N5JNhGBVexuTOIZFtjsk0YNsjmenOhaygTVLlfjjSulrMOXHysOcn71A170ePR_xzPKux8Hcnd0Vuz7S_y6mUTMnY7vGBTJQ1z1wlyN6ltSEzKeavAyFA4ZdZSD9sK8HdR23aSE8xY5oZ0grXvoFuHSZX_fIm7ZSdFP4rtiZY_jod1gpllcKfkzUbLQwsqz1xv-eU-4bmFqIxLx3wdKCq_cOLvjNrnOu3UTPqt6Q55MML5erc37gOulho5F9_XGEo6ugrOk1iEWRFfhCa66KuO1qqTzXJd97rKiUNVSilXh44kJdFm7GWJ1ztjXqphqovAbNsJnP-GyNh1u4ZhDh0P0rfmQrQv2Uab; msToken=0tUv19c1FUszBX7Tn-Ei-WdaPpG7dNwEaR8PElxs6U0zBWr9Apg0bFl2TQBcCL-JaM1rkyeOZcqhBJPYKSRYuq2OWhfn82jOAkP99y6U-PyI85ffcxmERFgPgndZwxbh5lkFbUDfd2_I5Q==; passport_csrf_token_default=bfb66f430151ce6bba018f0adf20748b; passport_fe_beating_status=true; tt_csrf_token=B8tX6zQ8-IRYueMOquDlnlRUCjIcIBNR7hGI; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgfvhjsOJ0o8lKU52xYf4oOYN8NZQ; store-idc=alisg; sid_guard=6d23d249c738d44a6e23b0256132c4ca%7C1748176396%7C15551992%7CFri%2C+21-Nov-2025+12%3A33%3A08+GMT; store-country-code=vn; sessionid_ss=6d23d249c738d44a6e23b0256132c4ca; tiktok_webapp_theme=dark; sessionid=6d23d249c738d44a6e23b0256132c4ca; uid_tt=95c42851096559f1df936893e899ddbdad29b4349c1addec31534bcbd3574391; delay_guest_mode_vid=5; uid_tt_ss=95c42851096559f1df936893e899ddbdad29b4349c1addec31534bcbd3574391; s_v_web_id=verify_mb3n2m70_6Hx4fU6b_nIdY_4EFW_AUXc_1lWH3d2CcByZ; last_login_method=handle; sid_ucp_v1=1.0.0-KDgyY2UxMWFlNzg5YzM1OGIyYmUzNWQ4ZWNkYmY5MDIwM2VlZGQ3Y2UKGgiRiKmg9pfUkGgQjJzMwQYYsws4BEDqB0gEEAMaAm15IiA2ZDIzZDI0OWM3MzhkNDRhNmUyM2IwMjU2MTMyYzRjYQ; d_ticket=8c198719ad17e09271fc30762359ff7806e61; tiktok_webapp_theme_source=auto; multi_sids=7503367237123326993%3A6d23d249c738d44a6e23b0256132c4ca; sid_tt=6d23d249c738d44a6e23b0256132c4ca",
+          ""
+        ],
+        [
+          "tucs_228932",
+          "1z08Ly2Hgu0Ux7I#",
+          "nyamegodby3b@hotmail.com",
+          "Mgljrvan",
+          "k mã",
+          "",
+          "phương 2k",
+          "",
+          "perf_feed_cache={%22expireTimestamp%22:0%2C%22itemIds%22:[]}; store-country-sign=MEIEDCu_-5Of4g-iupQyqAQgg74ZqU3ZY6IrmKjX9kUeJ3tv3vE_RqVMRGhsz09gO1AEEJx2naia_JZNuYEJYCrtF2E; msToken=B4oNxUPLFDM6RU_49IfbmW0QUHTxLqoofsZSkgWnpRlJ7vIh0cZuZ6DXmzhnh51a1ubZUN30ZPBXD10gKrE6fWDGJ5nz0yHiGKHwqAvXe1nxIOPjLccxeZex4YVUBqNmhYpkB2guMWG5FA==; odin_tt=fbcdf8f71ad78c16d487f90405394a6a143accff03815d0f4d355fc1491cc160f3d06f9b91904aa7e772cb1c547f3461eb3cb35968dcb13c0ee8fc4d104d65b019fa93668dd03ff97a810eb7ebbefdc9; ssid_ucp_v1=1.0.0-KDZhZTdmYTJmYjM4MTk2M2I1YmNmNGFlZGQ0ZWQ0YzBmYmYxOWVkZDMKGgiSiJv-k5_dkGgQgrrMwQYYsws4BEDqB0gEEAMaAm15IiA4M2MyNjQzNjg1ODUyY2ViMTM4ZGNkOWI2YTk5ODJmNA; ttwid=1%7Cpsu63DBcEUPZWTV-76lh5k79V-AiqYWEE5epTNLfdcU%7C1748180226%7C0ab9c1eb0d9c590395cbcd75e3b2e747994789840b14d76c64be964c63cc25fd; passport_csrf_token=9455236b9336ad75d1060ef7d444cc29; tt-target-idc=alisg; tt_chain_token=nDLrIzudrSEDuU0x1rLIAg==; tt-target-idc-sign=CUCHKWFDiXIs5uB0pDc2iW8PbK6DHKSmoI3655W7WS1-YTphtvPRbnW8vlM0EYVmiFHeS7Yq8OL-Y5xW6_8EdmmxqjV85baFdkcE0NW0qPu2cqL5IhZLqZ8FnVcJVwH4PoO4GkcX3tSh4AW9dQOrYmkRCrOhWro5doe44ZeHviC59nq-gu39GsyQWrPoMhWGFs9fOy7a2dM8YG3zAOsyA9m4Q6MtFY8AdbY8_ZUFDo1ELuhcNXLrAoC1Hs_3n7HdjWYFaTqlEFdJKJq1-fDGSS9t4b8l4RBV6sXBQA8NYfCq9xDoRC0uBv9mX9qKhwLlY63DOOPc0-9Obj7wUglBKWvaLfk2_vKbSf8clk9b0alvugZJis6rOJ_Tp2Gih4WP2fWrFyMdvozYNDMNe5qOLQqiOAakJpr4Vnvb7c-OFgTJC6kLGwPPj44_9AR-TAoUtAMWsqeASMpsMxpzq7vhdUW_7RzDltETCi6bRsH1ZHR9FnkH_cqpEtuloduodAxB; msToken=B4oNxUPLFDM6RU_49IfbmW0QUHTxLqoofsZSkgWnpRlJ7vIh0cZuZ6DXmzhnh51a1ubZUN30ZPBXD10gKrE6fWDGJ5nz0yHiGKHwqAvXe1nxIOPjLccxeZex4YVUBqNmhYpkB2guMWG5FA==; passport_csrf_token_default=9455236b9336ad75d1060ef7d444cc29; passport_fe_beating_status=true; tt_csrf_token=DruEVkOy-apnei6kOGj7YqflvQB-StpBPdQg; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgfml639B0r8lKF5rdWP4UOYN8NJA; store-idc=alisg; sid_guard=83c2643685852ceb138dcd9b6a9982f4%7C1748180226%7C15551992%7CFri%2C+21-Nov-2025+13%3A36%3A58+GMT; store-country-code=vn; sessionid_ss=83c2643685852ceb138dcd9b6a9982f4; sessionid=83c2643685852ceb138dcd9b6a9982f4; tiktok_webapp_theme=light; uid_tt=2e33d578eb7baf8e8f359e22a09f0f4aa385719515e235839810d4ea24468abb; delay_guest_mode_vid=5; uid_tt_ss=2e33d578eb7baf8e8f359e22a09f0f4aa385719515e235839810d4ea24468abb; s_v_web_id=verify_mb3pd2zm_Q8RdUK0W_2rov_4huf_8qL7_SdegmaBoWNRv; last_login_method=handle; sid_ucp_v1=1.0.0-KDZhZTdmYTJmYjM4MTk2M2I1YmNmNGFlZGQ0ZWQ0YzBmYmYxOWVkZDMKGgiSiJv-k5_dkGgQgrrMwQYYsws4BEDqB0gEEAMaAm15IiA4M2MyNjQzNjg1ODUyY2ViMTM4ZGNkOWI2YTk5ODJmNA; d_ticket=c1d03e695ed231d1a967d5a7528c6640acf23; tiktok_webapp_theme_source=system; multi_sids=7503407068041626642%3A83c2643685852ceb138dcd9b6a9982f4; sid_tt=83c2643685852ceb138dcd9b6a9982f4",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 42,
+      "tabName": "1932026",
+      "rowCount": 200,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user8729986207374",
+          "@m4kd4XjMwj8y01",
+          "lzqizkv9987@hotmail.com",
+          "pQLp5vf6sd",
+          "M.C511_BAY.0.U.-CmSlIwExavHtUX1QA0FnFP6C583AE0hGR44Wa3ubUi1sVxuNnG*5oKnQ!9GbHZW!7QLIM3cz9rIO0Iq7c6NlIqsYh1DOR2orsUwirxbFf8fxYw3UWFNsDeqkqd*osanV2650pnFYbJhb5V*52bb00b1KjszWcAQgdB0eqN!IDvXFC6QIJn!q0NNMEaQ9Xt2k8b*JjtCGkuYDJ2!ud!UrwkSVHm6jhwfPY*YmQ1K5YBjRx67nlIx67t56LiqFWQvxG34!mCtmQDRtGkEEdUgbzdXCE*udGZ!BlJgQ5BN9ojQfWKpQktRkMcDoEi5JXVoN!!IXFK*QGfdC8FrLF75RtYmvr!8i7Pq9iOPrRc0tzZ2inivUU92emYjzx5W72Yq7T0TdSjfVdF3ROuveqD87VxmOkPEC0jmzaYCgtFWCspht",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "lzqizkv9987@fviainboxes.com",
+          "",
+          "Ngâm",
+          "",
+          "phương 2k",
+          "user8729986207374|@m4kd4XjMwj8y01|lzqizkv9987@hotmail.com|pQLp5vf6sd|M.C511_BAY.0.U.-CmSlIwExavHtUX1QA0FnFP6C583AE0hGR44Wa3ubUi1sVxuNnG*5oKnQ!9GbHZW!7QLIM3cz9rIO0Iq7c6NlIqsYh1DOR2orsUwirxbFf8fxYw3UWFNsDeqkqd*osanV2650pnFYbJhb5V*52bb00b1KjszWcAQgdB0eqN!IDvXFC6QIJn!q0NNMEaQ9Xt2k8b*JjtCGkuYDJ2!ud!UrwkSVHm6jhwfPY*YmQ1K5YBjRx67nlIx67t56LiqFWQvxG34!mCtmQDRtGkEEdUgbzdXCE*udGZ!BlJgQ5BN9ojQfWKpQktRkMcDoEi5JXVoN!!IXFK*QGfdC8FrLF75RtYmvr!8i7Pq9iOPrRc0tzZ2inivUU92emYjzx5W72Yq7T0TdSjfVdF3ROuveqD87VxmOkPEC0jmzaYCgtFWCspht|9e5f94bc-e8a4-4e73-b8be-63364c29d753|lzqizkv9987@fviainboxes.com"
+        ],
+        [
+          "user3900556554586",
+          "p26V57#T",
+          "gcnsxly641@outlook.com",
+          "C6BqnYsRBLZm",
+          "M.C530_BAY.0.U.-CgK5sBKxIhXPvG!Ar*S10xLWnMkp!qTXsBdv*tzJFArpOuzIj778dw9SgFxQCAbp15ji35yRB7UffWovkgMpGeV2MUpWCJB6vmwTkK!wP!vXTE14syT*fOEKOZghyaAxiZWRwlEQ7MHpNpgquPBl!UV6Cfa4KlnXwSAD6M3ASYcCpCf5KfqoP5wNi2290bnHefSLW1ylRuhtxk7SWWJjoMKScQqnJJuaYeoDF*OVK3g0UfMed0sbxhzlj89HnTrqkk86wOccaAjZ4v2jSp8zjpM8QXljNqSo9XdSuvgMSpsKAbUdWBqZ2cJIT9nx9nLe6kRkQFizNlGlqQqW9CySF7Y4tepr3TKkoNw1*32wh9FwSOyA7Bi5hglPVt1bD!9!aIlnThk9iFAPfbl0aNnwHBiulV4F4!79!xafNA5hbmV5",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "gcnsxly641@fviainboxes.com",
+          "",
+          "ngâm",
+          "",
+          "phương 2k",
+          "user3900556554586|p26V57#T|gcnsxly641@outlook.com|C6BqnYsRBLZm|M.C530_BAY.0.U.-CgK5sBKxIhXPvG!Ar*S10xLWnMkp!qTXsBdv*tzJFArpOuzIj778dw9SgFxQCAbp15ji35yRB7UffWovkgMpGeV2MUpWCJB6vmwTkK!wP!vXTE14syT*fOEKOZghyaAxiZWRwlEQ7MHpNpgquPBl!UV6Cfa4KlnXwSAD6M3ASYcCpCf5KfqoP5wNi2290bnHefSLW1ylRuhtxk7SWWJjoMKScQqnJJuaYeoDF*OVK3g0UfMed0sbxhzlj89HnTrqkk86wOccaAjZ4v2jSp8zjpM8QXljNqSo9XdSuvgMSpsKAbUdWBqZ2cJIT9nx9nLe6kRkQFizNlGlqQqW9CySF7Y4tepr3TKkoNw1*32wh9FwSOyA7Bi5hglPVt1bD!9!aIlnThk9iFAPfbl0aNnwHBiulV4F4!79!xafNA5hbmV5|9e5f94bc-e8a4-4e73-b8be-63364c29d753|gcnsxly641@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 43,
+      "tabName": "2522026",
+      "rowCount": 500,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user14029792266861",
+          "Qx17cLl2gaGrLdZ@b9H3",
+          "baizaautonff@outlook.com",
+          "mWSNkKYD",
+          "simply 1 lít",
+          "phương 2k",
+          "25/2 đã về",
+          "",
+          "user14029792266861|Qx17cLl2gaGrLdZ@b9H3|baizaautonff@outlook.com|mWSNkKYD|M.C545_BAY.0.U.-CnqcjeLvX5Z!H1zSq!NO0GgT84ZcQlpuAyyUyCO3N!Orl7K0r0ijSyup7cnORnBKih!0CYewZbwmf5jW8WYhEaMrsF*c3MFPum1ldRKqeVAEtvxaYsx!PO*Vm3lYjUfnATaxhUPcCMGzaHV873F*FS5qCXJX!rSOaTGJ20XMBodi9ckryTAtAaExFUxm9dDFg5dH8!uAyCLIaay3SPE8djHUP98zzJmEhq4KdN5TFTUuVf1MKXz2dSPId!njPMfaEdODT!FlMk3f9xFeCWysxIjljgns108vnddcbx3w!!ZELa!7gfSODnxU9paoO2b*XxrH4SH76fX40sogNgwNRy6OP2fgyZgMAwquUsLA*Wg!lKxxr6JaQz3Uhu0cfd*bPgwmDqrKYigh2oNBVVW8Ycc604WTIjt*lChMr1!3UPIF|2429d14c-f4c7-495c-8894-956e92597c34|baizaautonff@fviainboxes.com"
+        ],
+        [
+          "user1868118801829",
+          "C#L875z1",
+          "habigoramasd@outlook.com",
+          "tAHVITV8",
+          "lốc tea plus",
+          "phương 2k",
+          "\"2026-02-03T00:00:00.000Z\"",
+          "",
+          "user1868118801829|C#L875z1|habigoramasd@outlook.com|tAHVITV8|M.C557_BAY.0.U.-Ch4Ma9pGbkWzJ4hlY78R2QogXygeSZuui!4t3XVuN8ZKnhCC1AACgzX41NmN2Rrv3wwiSHsHp2J2fUpGaufLO1wEqNBpeLJmlqyMe1OXjMjpPUVgQ*hX80PiIsEMTqmMKJNH!kz!*i49B2M3cNU6ujnxvcHgj9NyztOZhEq4LANgJH7XHBbrTJQpb2IZgfK17eLuHBDg*Hl407XQMR!ayv*T2xeV0MkfLalmnjhI6ulge84UhnEJpIoHigmSeZsVD4v!oy!UXHg6WZkAHCAPEdupR!FJ6d2dSMRA1873PNoMra0S0AJvDIL4Aq8S!m6TF0f6mMNBChF4S42!YAxCWn3numFt2X0cXpWg9VpDDqwowfeGeVjOEBTytQbd1SAsE7bNKixfH1OPA*fCWh4nIt5oYEe3zW44lBcmcuqWCnW!|2429d14c-f4c7-495c-8894-956e92597c34|habigoramasd@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 44,
+      "tabName": "1022026",
+      "rowCount": 500,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user6836300404232",
+          "H4#GO7YDOzlhVf4",
+          "ofvyrhzw923@hotmail.com",
+          "a4AHtYi7IQPxh",
+          "M.C521_BAY.0.U.-CoMAG6EXg4AbyUd4bF0nMP2WmYhzCG2rx*t278OFlQh1zPRUNlllQzmtDdzaoLrqvrcM3OfDhwmzXwBigW9gK5nSKVMcY2ErJG1MuI6KbnW0!lyWK5qGt6QVILUr7am!MwaUZy609WVI3hVd64Uyhdxa3gvOZ8pUKiXexlRsFamwa!CcqBr71Je6TsFsN69sWcZxKLXER7VX2RjhA3sgpXE9734*UWEOOoViie4At6hH8f3KKRL8fmwLz5hrLXEQQ!72a3empKTqw4V0F!vym*nEjaVGtu2x9PDz0CvrY1Un5R1GozFSR*xA9w9PR4s0AhSl5C6mCv5xdBhYVDjfJNiTu*CtnzDQzRT1ND0ncEww*Ev80de5Nzadk!J8!og5IE9vLKDacz9u9NJRMSH00JecMw3n2u4CHJySV7!Ct7Lr",
+          "2429d14c-f4c7-495c-8894-956e92597c34",
+          "ofvyrhzw923@fviainboxes.com",
+          "",
+          "1 day xa vai",
+          "đã về",
+          "thảo 23/2",
+          "",
+          "user6836300404232|H4#GO7YDOzlhVf4|ofvyrhzw923@hotmail.com|a4AHtYi7IQPxh|M.C521_BAY.0.U.-CoMAG6EXg4AbyUd4bF0nMP2WmYhzCG2rx*t278OFlQh1zPRUNlllQzmtDdzaoLrqvrcM3OfDhwmzXwBigW9gK5nSKVMcY2ErJG1MuI6KbnW0!lyWK5qGt6QVILUr7am!MwaUZy609WVI3hVd64Uyhdxa3gvOZ8pUKiXexlRsFamwa!CcqBr71Je6TsFsN69sWcZxKLXER7VX2RjhA3sgpXE9734*UWEOOoViie4At6hH8f3KKRL8fmwLz5hrLXEQQ!72a3empKTqw4V0F!vym*nEjaVGtu2x9PDz0CvrY1Un5R1GozFSR*xA9w9PR4s0AhSl5C6mCv5xdBhYVDjfJNiTu*CtnzDQzRT1ND0ncEww*Ev80de5Nzadk!J8!og5IE9vLKDacz9u9NJRMSH00JecMw3n2u4CHJySV7!Ct7Lr|2429d14c-f4c7-495c-8894-956e92597c34|ofvyrhzw923@fviainboxes.com"
+        ],
+        [
+          "user84852845450610",
+          "1at57d3AW3p#d1sfe5",
+          "zainotaamudo@outlook.com",
+          "pupUdw7s",
+          "M.C521_BAY.0.U.-Ch0h2Zqu78W4BAJ6qok0nweSnlF1LRj61XxX0!KyCWREbHnw0c1pfJ6tQsttsJJ29Pr!bhVqHcPxSsy86MmhpKgMFXg!Pn7UvtSgYNnPjsuC3zn3DkwFVDexrBY7sOGIaj0IR2uGi7n9bfLZxr4dd8xXtjSBDni4fG8hk50Mg92f28!IXGxLvwmKq4UzcyeJRBaqCJdLH0elu8ufyMO*mr0nj*ZHLLjVVMg*bfNaA6edLnZhEqQT!W5fSpHCp*gPs4oRBSSr9C1YxOSUlJ2kOLXB1yYxo2ScAD2m6rNjVc0f2boQuMgl7OKzKWuem8zYH7O74LroBjzTfx2vKPuie0fYhXb0JDS4UmDcpesYLsZ8SKYEaCtPqio7!2aqsNYUd1PbxWnHX9nyK7PrvOJ7sLEpSy9qbG!6B26UGKrash6C",
+          "2429d14c-f4c7-495c-8894-956e92597c34",
+          "zainotaamudo@fviainboxes.com",
+          "",
+          "1 day xa vai",
+          "đã về",
+          "thảo 23/2",
+          "",
+          "user84852845450610|1at57d3AW3p#d1sfe5|zainotaamudo@outlook.com|pupUdw7s|M.C521_BAY.0.U.-Ch0h2Zqu78W4BAJ6qok0nweSnlF1LRj61XxX0!KyCWREbHnw0c1pfJ6tQsttsJJ29Pr!bhVqHcPxSsy86MmhpKgMFXg!Pn7UvtSgYNnPjsuC3zn3DkwFVDexrBY7sOGIaj0IR2uGi7n9bfLZxr4dd8xXtjSBDni4fG8hk50Mg92f28!IXGxLvwmKq4UzcyeJRBaqCJdLH0elu8ufyMO*mr0nj*ZHLLjVVMg*bfNaA6edLnZhEqQT!W5fSpHCp*gPs4oRBSSr9C1YxOSUlJ2kOLXB1yYxo2ScAD2m6rNjVc0f2boQuMgl7OKzKWuem8zYH7O74LroBjzTfx2vKPuie0fYhXb0JDS4UmDcpesYLsZ8SKYEaCtPqio7!2aqsNYUd1PbxWnHX9nyK7PrvOJ7sLEpSy9qbG!6B26UGKrash6C|2429d14c-f4c7-495c-8894-956e92597c34|zainotaamudo@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 45,
+      "tabName": "332026",
+      "rowCount": 920,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "tihu_796129",
+          "w679S49y9O#",
+          "fearypleilcq@hotmail.com",
+          "uUR5EG5v",
+          "store-country-sign=MEIEDDYsGhS2Q5ECN7IE9gQgA617SbhRSiYAiB87igKMqAmlDAHBUg7MM6yggGBJ_e0EEN5UZkgmOXIjVfOR6WJMuTY; perf_feed_cache={%22expireTimestamp%22:1748325600000%2C%22itemIds%22:[%227500207262082911506%22%2C%227496448379791232264%22%2C%227501877954864073992%22]}; msToken=SlIORm6mtUCHrXhiWQtnY74CnDqa4XY6LmshA8E2OTaV51q0aPGFpUQ8kNXY59PRAgh-Jgtvojw1y68suzvxOWZufmIOHGQx_2EEV15T4G_k-n51hK76r5-oLjI_w2zqaVnsmUNiojVTgQ==; odin_tt=71dc7dc181dd8a70dbbe41e7693e1be6c5d8177b7c2d4fb3ef8da867f452dc8c6d57d9047897801c6001a7385f0c0388aa10d716d90c0d6f1f478b4e2cdf7873adf162592bafc5df456d089f5489aa5d; ssid_ucp_v1=1.0.0-KDcxOGM3MWUxMDg1OTNlZWJhNmE1YTNjNmY0OTk1YTU2NTlhOTE4OTcKGgiSiN2kgc_VjWgQ8-bKwQYYsws4BEDqB0gEEAMaAm15IiAxNjRiODVkNDk4NGM0ODcwNTAyZTQxOGY3MzM5YzYzOQ; ttwid=1%7CP25XryVtupTmqDZphjT8rQY5b9lfwipNPz0sA5LOzpg%7C1748153203%7Caf14efbc1f6f9ff6ab038fa93bee49a5701f507a78ed32fa0a483757142ba258; passport_csrf_token=480f00687358565bccd0aea78a8e8dcb; tt-target-idc=alisg; tt_chain_token=01V+ep7Au2YyqRvHtHqJuA==; tt-target-idc-sign=HMHkXIUbY_zYumKNgQS-wyGxFZ71BjgSqfB-4BMr1Udam3bLrTE3sSllO9N9SQwQMn98u5DGrJtyBNIbae2Cz27ssAlV8cDcrm3wHdpQru6qtn1CpKfQnHRIA7bjCJ0g2O-Q1LqN7tL5Ij3h0kh0Z-BIxooFW0NpzbaBVlXWYBcygTAT5nCtFrPu7KYM9zNsxyFUdzD5fgaB2UujVoXruhLQbLL0JM2uSB0YDCMxRuzuDrOQ-cw4QVEMmYZCPkEh2HY9WayCpIxmQxMpEn0MQXSDrQ5ZYRG2uPt962K1kfv5UNjEnf08b_STrcowmFlmHvFo7AfXMGzx9mkn0MMm_TyDR5rtVG-48Q5f_96l7n5QFlio6wdDyNsnNpiBxKKdEHILjT_6oG_j-Dcq28n0kPyxg2IBNgTFaU1e1GIyqf_npXMhpkNf2EorEswRLGpIuYnzr-oikGSB2UdMIoAKnCAVebaGU3aqP7AWNlkPEAbVNrTwFu2jhd39Lu1p2TpK; msToken=SlIORm6mtUCHrXhiWQtnY74CnDqa4XY6LmshA8E2OTaV51q0aPGFpUQ8kNXY59PRAgh-Jgtvojw1y68suzvxOWZufmIOHGQx_2EEV15T4G_k-n51hK76r5-oLjI_w2zqaVnsmUNiojVTgQ==; passport_csrf_token_default=480f00687358565bccd0aea78a8e8dcb; passport_fe_beating_status=true; tt_csrf_token=VGcLT7I5-uXHfxybRu6VxAz1IIYCiLjfgaGY; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgluN-cpZ0r8lMqAW4Rv4oOYN8M-g; store-idc=alisg; sid_guard=164b85d4984c4870502e418f7339c639%7C1748153203%7C15551990%7CFri%2C+21-Nov-2025+06%3A06%3A33+GMT; store-country-code=vn; sessionid_ss=164b85d4984c4870502e418f7339c639; sessionid=164b85d4984c4870502e418f7339c639; tiktok_webapp_theme=light; uid_tt=25873e0d8b1d4b8b78668d5c9d1bcdb70a891888a7fcfa497a055f8c9fe83816; delay_guest_mode_vid=5; uid_tt_ss=25873e0d8b1d4b8b78668d5c9d1bcdb70a891888a7fcfa497a055f8c9fe83816; s_v_web_id=verify_mb399g72_wUZLXwSC_Rie9_4c1r_Apkb_8PA4FSQtrGNe; last_login_method=handle; sid_ucp_v1=1.0.0-KDcxOGM3MWUxMDg1OTNlZWJhNmE1YTNjNmY0OTk1YTU2NTlhOTE4OTcKGgiSiN2kgc_VjWgQ8-bKwQYYsws4BEDqB0gEEAMaAm15IiAxNjRiODVkNDk4NGM0ODcwNTAyZTQxOGY3MzM5YzYzOQ; d_ticket=98019aae39b80c7c140b5c5b91a7907d05626; tiktok_webapp_theme_source=auto; multi_sids=7501684678057214994%3A164b85d4984c4870502e418f7339c639; sid_tt=164b85d4984c4870502e418f7339c639",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "2 dây xả vải",
+          "bn",
+          "thảo 5/2"
+        ],
+        [
+          "ynchuoanh_584396",
+          "UI05M@Mkoh3K",
+          "deachcollshc@hotmail.com",
+          "PevPf8fy",
+          "perf_feed_cache={%22expireTimestamp%22:1748394000000%2C%22itemIds%22:[%227492063556402154759%22%2C%227496448379791232264%22%2C%227487881524889570565%22]}; msToken=he0rQRg8MlJoXeXJsmEWElYBU3RoaVY0QGDTZjsvyQ27t0RilZoWCddYh7J0vEnpTIpcUyfEsH78d_EppB-elVKjWxN0e5knfvbjjxcgik50TuCs-lnEquuw8VkZHQReJCpZ5AZDlXbY; odin_tt=7008f79b9243f9cebb7638c398594b5a8843c8f4539eba9dc4efc1326a03b5884afa39199aed02a308035af71f9c18aaf3baaaeb31db15fed30048a87e21a9ca0de50de1788f24455bb511f60c465222; store-country-sign=MEIEDFMAPpElEHv_u7r7ggQg0vKlyIBFvxMfvB0BT--NTm_KsZa10su4epFSwN1_yvcEELvhzLOpzlXbKRjUKjOd3wo; ttwid=1%7CHfzloFyudQPYe-_wOLTfQGqLBR7wRe7-9ACPHiYkh1Q%7C1748223847%7Cb35fbdee171d4e6c9255c1c7dfd700d658297232ae6c272fe0d8a6f653d0243c; tiktok_webapp_theme_source=system; passport_csrf_token=d62c63099bcfaca5e15193a134cf301e; tt-target-idc=alisg; tt_chain_token=s9EvjY0N5wLEXbg6GCmX6A==; tt-target-idc-sign=M8QbreaxsdfzoijdZ6WUj8FNox46IyBU3A4E7Yg6ObjcS46dt-CSkmTtpPu8cf72ihAxUfmdcEWApAaTbnelo-tPytV5r0U2VnDsZwJJaQ4J5YcHroFpnfN6aD_oGr9BQVJpp71ZkAkZAXsWd6lF5WQjgt2L46X17GEnez2WM6eGFlM8EhRV7mJQgAinKPrdi1hP0t7J3XJtbp9DRuq10fP4fP3xdIKliztCQ74xKguog4kyno-Sh81VPwYCL4NReLOQyOrc81BzX7RLYqzxUvPct68Cy1XWn_UF9DcXQzPsGO8iK1d1Ne8n5UnSpNhFcRD_52kzQofajxeRrarJQdWXaqXwQ2BpQ0kO4RsyBsa6-psam33yR4Pq7vcWIOTtnGg-IZlcbez228BaW--U0vY38lUEZdxQP1VNHMYBbltV2f5JA-2-hDQIYhxIejXNV9GpDRGkeJyVbxQVfKHRRjln-LEBZgBye0AH16WStfeYaax5k25vMycve-3Zc7wQ; tt_csrf_token=7uFoPbzG-ZsD253ZqkOGGYW853Mia0H5yxIg; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgfo4bbIl0p8lJeFMSLP4MOYN8AXA; store-idc=alisg; sid_tt=ec20f4d98cea2533df707e359d86d5fd; d_ticket=d73127c81c23556244f7bbe23c1ea5ec8dd11; sid_ucp_v1=1.0.0-KDZiYzAyNzVlYmVlYWJhMjk1YzMzZTM1Y2M5MWNkM2E5YzFkYThhMjMKGgiQiMKYlaTTkGgQ4Y7PwQYYsws4BEDqB0gEEAMaA3NnMSIgZWMyMGY0ZDk4Y2VhMjUzM2RmNzA3ZTM1OWQ4NmQ1ZmQ; sessionid=ec20f4d98cea2533df707e359d86d5fd; tiktok_webapp_theme=light; uid_tt=ea9005fb5a762ac1a225de50e630ad8f7ae31bd54bdba8b07e73f8690673e366; sid_guard=ec20f4d98cea2533df707e359d86d5fd%7C1748223841%7C15552000%7CSat%2C+22-Nov-2025+01%3A44%3A01+GMT; store-country-code=vn; sessionid_ss=ec20f4d98cea2533df707e359d86d5fd; ssid_ucp_v1=1.0.0-KDZiYzAyNzVlYmVlYWJhMjk1YzMzZTM1Y2M5MWNkM2E5YzFkYThhMjMKGgiQiMKYlaTTkGgQ4Y7PwQYYsws4BEDqB0gEEAMaA3NnMSIgZWMyMGY0ZDk4Y2VhMjUzM2RmNzA3ZTM1OWQ4NmQ1ZmQ; uid_tt_ss=ea9005fb5a762ac1a225de50e630ad8f7ae31bd54bdba8b07e73f8690673e366; s_v_web_id=verify_mb4fbq7f_r1PGovFF_j4dB_40LI_ARYV_lzqfdow2bHsR; last_login_method=handle; msToken=orrTaXtIYtpcEXKduaAb2V6Q4xWelc3p3VPH8rIFQ88SK5JmHy6hB9VJ9bePKR-yeLrijcE8p1jhvjE0cX9jnWQenSL_LwpuBmqlA9GkCqeDC0D4l-YJTKXfT9n--zTGKJMb-O-E_QJS; passport_csrf_token_default=d62c63099bcfaca5e15193a134cf301e; multi_sids=7503363259698807824%3Aec20f4d98cea2533df707e359d86d5fd",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "bàn chải đr cho bé",
+          "phúc hoà pt",
+          "thảo 4/2"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 46,
+      "tabName": "22 new",
+      "rowCount": 601,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "thytbo_454815",
+          "D0XGdq223@",
+          "sadankocar7s@hotmail.com",
+          "gklG4zZ8",
+          "bánh Bon",
+          "ngô  quyền",
+          "3/2 tú",
+          "",
+          "",
+          "thytbo_454815|D0XGdq223@|sadankocar7s@hotmail.com|gklG4zZ8|perf_feed_cache={%22expireTimestamp%22:1748314800000%2C%22itemIds%22:[%227482382291239456007%22%2C%227499832591806172423%22%2C%227495905273010294034%22]}; store-country-sign=MEIEDCqXDcHCbz-AD5H7JAQgBFFE6T79KB6Yh5MqqfcID7nlhJ-Jz7QIrAwgW62dY2oEEHVP9xoYO4kY__m-rGxMGy8; msToken=O0IpGnH0LmuFI0fGEEb1WXSyjw4othzphwXQFXjms4lLJRvXO2HJxZfGVykiCPzuiBQH2bTrJMdmSd0GiTH6F8367_DkhH8yRcoX-FDXoQZGTzFRgpMvSNdLzqZzMU3fSgZvitI4p2D-BA==; odin_tt=9315f8125d6cd8e320b34696c3cede6e04b8c3ad1dfc1497ca385c0502784923422d1532721d5df9b51821203b81cc7f097dd7eba5456b1e947b15639f8424de777db1cb20da0a843be03ddcda5f95bf; ssid_ucp_v1=1.0.0-KDU3MDQ5MGIwZjFiYTM4NmU0ZDIzMWQ5YTJlY2M0Y2MzMWViNGM4N2UKGgiSiLqckc2pjWgQwpHKwQYYsws4BEDqB0gEEAMaAm15IiA0NGY4YzY1NzY3NjFjY2JjMTljYjM1ZGY3MmY3NjQ2MQ; ttwid=1%7CIue4di-tK9lm0B5n4yv4GfaWD8-rC1CBlFvhhSZijcM%7C1748142274%7C22c66397a6bcfa2355a9dfb49a72f8a02654059cb374071c8d25cacc034bbf7d; passport_csrf_token=0b61fde96c6ce56e2fd66c95bec1b1e9; tt-target-idc=alisg; tt_chain_token=H7Ovl6BhtBEgZaasnHleUA==; tt-target-idc-sign=SNij7XltcA8fqs5SVUvtO5f4277MVClY1hRuFU1T7Titzd157bL3Eu132KZsMdHto6bds-idnTmCL4m7CsPew_Hwuvdgr3XlfV72MBS5u8r1w7S61vxmI7PxRzmie8kSR8zNyIEy2Ek9D1iapvYiIn7OvUW3NW0pOjo_w4QHqvn0P5U1YQc0V1R0CcSsx02Uvmc0sofe8u1KSpB4RIZvdIfKeIdJo5HKEmoI1iUhj91UcPHh_aq1jADvEbxFVsKCXxLKvQf2VcUDn_DpPwPLzTJHxgZsX7nE8ly9udQP8kA0V44Np3T6SvYFvMt4GoZ34XeETWTrc1pcrzzRT7ii2pyNLdU9oY936C7LjBEvzdLXglm__8xuYI1fYxnUioHeArCre8P4Q_74Jq1sObvQE0-CROcOVXp3cGPVdVqZ1q5tymtgsvi4TNnyEMHq1Y_ND9Ma9C9VDGS2hKIylH78iQESXzA45-YH2YnXuBdyafelzBa2UQCoMW0iM6iei40O; msToken=O0IpGnH0LmuFI0fGEEb1WXSyjw4othzphwXQFXjms4lLJRvXO2HJxZfGVykiCPzuiBQH2bTrJMdmSd0GiTH6F8367_DkhH8yRcoX-FDXoQZGTzFRgpMvSNdLzqZzMU3fSgZvitI4p2D-BA==; passport_csrf_token_default=0b61fde96c6ce56e2fd66c95bec1b1e9; passport_fe_beating_status=true; tt_csrf_token=mOpwfvUl-L3urWPMqEE5i918ig4L1FY_1oik; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgkSM6bvF0r8lMRVtuf_4oOYN8LrA; store-idc=alisg; sid_guard=44f8c6576761ccbc19cb35df72f76461%7C1748142274%7C15551991%7CFri%2C+21-Nov-2025+03%3A04%3A25+GMT; store-country-code=vn; sessionid_ss=44f8c6576761ccbc19cb35df72f76461; sessionid=44f8c6576761ccbc19cb35df72f76461; tiktok_webapp_theme=light; uid_tt=101b967761549278c01169b4a2377db9390d31f01e806a08ccfb4719e0cf9d4c; delay_guest_mode_vid=5; uid_tt_ss=101b967761549278c01169b4a2377db9390d31f01e806a08ccfb4719e0cf9d4c; s_v_web_id=verify_mb32qhbd_So0gyWyK_fAYY_4rxZ_91PG_MU0s6kUmtgSF; last_login_method=handle; sid_ucp_v1=1.0.0-KDU3MDQ5MGIwZjFiYTM4NmU0ZDIzMWQ5YTJlY2M0Y2MzMWViNGM4N2UKGgiSiLqckc2pjWgQwpHKwQYYsws4BEDqB0gEEAMaAm15IiA0NGY4YzY1NzY3NjFjY2JjMTljYjM1ZGY3MmY3NjQ2MQ; d_ticket=4e8f0724265320aafa8d6013aece561040060; tiktok_webapp_theme_source=auto; multi_sids=7501491099568866322%3A44f8c6576761ccbc19cb35df72f76461; sid_tt=44f8c6576761ccbc19cb35df72f76461"
+        ],
+        [
+          "cnhthnhthun_416881",
+          "tBZ@q7vHhq8jDqKWh2C5",
+          "lidiacincor2@hotmail.com",
+          "IwvzyC5t",
+          "bánh Bon",
+          "ngô  quyền",
+          "3/2 tú",
+          "",
+          "",
+          "cnhthnhthun_416881|tBZ@q7vHhq8jDqKWh2C5|lidiacincor2@hotmail.com|IwvzyC5t|perf_feed_cache={%22expireTimestamp%22:1748332800000%2C%22itemIds%22:[%227492063556402154759%22%2C%227496448379791232264%22%2C%227502449413818813714%22]}; store-country-sign=MEIEDId65YMGXgyn4We1ygQggZYe86SkOayKbAAQ3LiI2AuxV3xKBcupBep1HtSM7YcEEKloDVRIz7Ca7-FA-POEY1k; ttwid=1%7CCRa2fCGmUI7crDtaqfO-1oq5OqJ0ZgbloTiUS70Z20c%7C1748163309%7C714a5f922ac481b13d3fa639229b6b9de5b8c09ac406c91978f61b74732cc373; ssid_ucp_v1=1.0.0-KGIyZTVlOGVhMzllZTE2ZTRhZjU1ZWY2NTc4NGZmNDMxYmVjMzQxYWYKGgiSiNSU-drCjWgQ7bXLwQYYsws4BEDqB0gEEAMaAm15IiAzZDkwNTkwNTc5ZmVjMzc0NzkxMjQwMTVjMGI2ODljZA; msToken=EhJ1LC3NHPfLLkuu60vx6a5QywdO4ZgVuv0tBZIoshgKiX7tsqp3lK0177EvYkvhGQQ9deUCW7tbHoBP9hWUB_jcIaSNWeeoN3p8nVTHgljRxu0zIRG-C62KWp26F9-hGMyrv-wLPA1UnU5BGThnFQ4=; odin_tt=3d2c19a2388814ebc1c7d576ddb9248487583495f58bfbe906605ce116a5305852900175f49cb25a2aa06ceed8f631916a5ff9b498be31bb5005c9335ee335e2287a7aea41fc46f5f42b8b71a11b11b4; passport_csrf_token=646b25f6be264f9d03858104a4ef37e4; tt-target-idc=alisg; tt_chain_token=Qlz8LyrtTtJ329WqeaG/3Q==; tt-target-idc-sign=P505bdekkSfbJ2Sn6gMboJs4u2wRLDoGloDsc7PEwfTcuFtsUuVxmPeUuBk6l56Q0SMrYeYVFoa1agDE5PiCc3BkTBf1u0DbCdUXyaH_xnzYcsHtelDp-jsOjXyLY5DBgFokTsZz3F9QJQZz2zY1FSTPT54CaHJo_TeCK4bT2kRFKi9w-YYN0oot8Gq_-_h1wvQdcbrDqOtlNU7U1vD9vIN9txU5yPitMJnU7djAJnHhrsKrE3T7nIkR-GzwhvBwbIYO3d9gnvtnbhapuwXdtj9Az-WQlkN9tiQ8sJjIjjhs_xy9z5yjIL0YCru5ZfZIfNYxzQ0hpP822nzaLsHy7Kx5GpeDlfXyQF2RX3Dn3rWzeqqyGlyZgEh7_CkBLIKATnhHqxWPE_5Pm-o1STNsHcgplJPZ_5k5MXoya3JKFM6Via6U6NN3kW-y44l81TB6IEAOtL-lvw5F4rGmoOtkYElMnZ839x2DSyT_2PxhCZIntiwTy9nzfe-jRy7n4WOI; msToken=EhJ1LC3NHPfLLkuu60vx6a5QywdO4ZgVuv0tBZIoshgKiX7tsqp3lK0177EvYkvhGQQ9deUCW7tbHoBP9hWUB_jcIaSNWeeoN3p8nVTHgljRxu0zIRG-C62KWp26F9-hGMyrv-wLPA1UnU5BGThnFQ4=; passport_csrf_token_default=646b25f6be264f9d03858104a4ef37e4; passport_fe_beating_status=true; tt_csrf_token=Ha1z0N4p-O7fNnMnieISUMuO-h4arXv2Ojp4; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgl5HAap90r8lND-vmMf5AOYN8MQw; store-idc=alisg; sid_guard=3d90590579fec37479124015c0b689cd%7C1748163309%7C15551993%7CFri%2C+21-Nov-2025+08%3A55%3A02+GMT; store-country-code=vn; sessionid_ss=3d90590579fec37479124015c0b689cd; sessionid=3d90590579fec37479124015c0b689cd; tiktok_webapp_theme=light; uid_tt=6fc60c597740f2d2762e8ff36bd07c53b65e59d96630104f7cea4786c1e06eeb; delay_guest_mode_vid=5; uid_tt_ss=6fc60c597740f2d2762e8ff36bd07c53b65e59d96630104f7cea4786c1e06eeb; s_v_web_id=verify_mb3faisp_Tzyioi6J_Thlv_4tYm_ALHF_ZU0OoBAwWivV; last_login_method=handle; sid_ucp_v1=1.0.0-KGIyZTVlOGVhMzllZTE2ZTRhZjU1ZWY2NTc4NGZmNDMxYmVjMzQxYWYKGgiSiNSU-drCjWgQ7bXLwQYYsws4BEDqB0gEEAMaAm15IiAzZDkwNTkwNTc5ZmVjMzc0NzkxMjQwMTVjMGI2ODljZA; d_ticket=46a580dc9e8aea8e6a72de50e470ca8d792d3; tiktok_webapp_theme_source=auto; multi_sids=7501601525309178898%3A3d90590579fec37479124015c0b689cd; sid_tt=3d90590579fec37479124015c0b689cd"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 47,
+      "tabName": "acc new 231",
+      "rowCount": 500,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user8398707307004",
+          "326xj47#u5Xu",
+          "iyksvaz8413@hotmail.com",
+          "98Coczq0jV",
+          "M.C512_BAY.0.U.-CvXBCgTJwZDfJe4WWAaCBym1z0SmtZopwn0dCAA*2GG71JZdYOOJ!xOGWIHumxZGYgHUhcNnKAwidaumwIzB8j58p6ZeG9wfn4er48pysyu5rGCUSQK2NzvRT7vAbDVWfCc21hG8PtVTdh8yB9uPnihoPESY7Bpa3pG6r*nu!In85m85xY5uApPRUlfwKn7NpxGkgRFJtGoVoOBIG3dAt!pn77oFyt4AXi*W7RyKn3VmbYt982SqyuhXKLil7TM0SPVPc!KngTde9qU!*OIUk*eLwAqrO2Hbw0eMpUYeIVs0Ek7INoIhZrRzpvN3EgqsDhB915lPP!OeasAYy3LnDffEvjNloFiCaC4wlOEuXwuQAbOXdQmw!HDvHWtcvQcJDe!HkZlWVF46urLPP41rBrE5K6G2YVcTeKeMz66w*mxP",
+          "2429d14c-f4c7-495c-8894-956e92597c34",
+          "iyksvaz8413@fviainboxes.com",
+          "10 thia inox",
+          "phương 2k xuan khanh",
+          "",
+          "user8398707307004|326xj47#u5Xu|iyksvaz8413@hotmail.com|98Coczq0jV|M.C512_BAY.0.U.-CvXBCgTJwZDfJe4WWAaCBym1z0SmtZopwn0dCAA*2GG71JZdYOOJ!xOGWIHumxZGYgHUhcNnKAwidaumwIzB8j58p6ZeG9wfn4er48pysyu5rGCUSQK2NzvRT7vAbDVWfCc21hG8PtVTdh8yB9uPnihoPESY7Bpa3pG6r*nu!In85m85xY5uApPRUlfwKn7NpxGkgRFJtGoVoOBIG3dAt!pn77oFyt4AXi*W7RyKn3VmbYt982SqyuhXKLil7TM0SPVPc!KngTde9qU!*OIUk*eLwAqrO2Hbw0eMpUYeIVs0Ek7INoIhZrRzpvN3EgqsDhB915lPP!OeasAYy3LnDffEvjNloFiCaC4wlOEuXwuQAbOXdQmw!HDvHWtcvQcJDe!HkZlWVF46urLPP41rBrE5K6G2YVcTeKeMz66w*mxP|2429d14c-f4c7-495c-8894-956e92597c34|iyksvaz8413@fviainboxes.com"
+        ],
+        [
+          "user4929581502813",
+          "Eu6@7w44",
+          "vuxpktul338@outlook.com",
+          "ICh8UXafj9oXS",
+          "M.C511_BAY.0.U.-CjGPnIagLZE9b4Uw9E1xZYql!Rmsi94FtAsaXVxrl1PbhehQeZdqIVKQIH9*0k0tqW*v9cVMmyNB1L8nIp0fX3A0JLwUyO5rY9T2kdBh2RDGbsFDoE1tKDr1RdllHR1F2jmVf51lHcOAnGQUcOkooyb*MN6f7fZB8!vBpeawjosZgRvZC6RrlQgmPJH3taThTaf9DKQW*l2VDw7zuS75cLXFtrW4oyfg204aUkoQ3C7QpCTQfEf2hNpJUqN2A*OBrR3MoPN89eerIwiml21R9ueIBIsAKYbhWgzZwAPthBM06fQsUMnAB2OcRsyte7!CkVuZqk8RFJqksKySIpx7lbXRdPT2EW*Jk4LsUYNc9nxX3rnx65XIAouj2wjuIa!G550QvkimsMt*lmkSYvC6wdAD1sYBK4rJwyQDjy4ACIFh",
+          "2429d14c-f4c7-495c-8894-956e92597c34",
+          "vuxpktul338@fviainboxes.com",
+          "10 thìa inox",
+          "phương 2k xuan khanh",
+          "26/1",
+          "user4929581502813|Eu6@7w44|vuxpktul338@outlook.com|ICh8UXafj9oXS|M.C511_BAY.0.U.-CjGPnIagLZE9b4Uw9E1xZYql!Rmsi94FtAsaXVxrl1PbhehQeZdqIVKQIH9*0k0tqW*v9cVMmyNB1L8nIp0fX3A0JLwUyO5rY9T2kdBh2RDGbsFDoE1tKDr1RdllHR1F2jmVf51lHcOAnGQUcOkooyb*MN6f7fZB8!vBpeawjosZgRvZC6RrlQgmPJH3taThTaf9DKQW*l2VDw7zuS75cLXFtrW4oyfg204aUkoQ3C7QpCTQfEf2hNpJUqN2A*OBrR3MoPN89eerIwiml21R9ueIBIsAKYbhWgzZwAPthBM06fQsUMnAB2OcRsyte7!CkVuZqk8RFJqksKySIpx7lbXRdPT2EW*Jk4LsUYNc9nxX3rnx65XIAouj2wjuIa!G550QvkimsMt*lmkSYvC6wdAD1sYBK4rJwyQDjy4ACIFh|2429d14c-f4c7-495c-8894-956e92597c34|vuxpktul338@fviainboxes.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 48,
+      "tabName": "1k nick 46",
+      "rowCount": 3281,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "stanakenlypk@hotmail.com",
+          "",
+          "",
+          "",
+          "Mặt hàng",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "kimberlywalker1nm017m",
+          "h31b2010wI@v#U",
+          "Vietuu10z6@hotmail.com",
+          "FRnxbPV^p$Lz0",
+          "6 lọ Muối hảo hảo",
+          "\"2025-11-06T00:00:00.000Z\"",
+          "",
+          "xit, phi",
+          "",
+          "kimberlywalker1nm017m|h31b2010wI@v#U|Vietuu10z6@hotmail.com|FRnxbPV^p$Lz0",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 49,
+      "tabName": "ttt",
+      "rowCount": 413,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "yonyin1203",
+          "732fl 931",
+          "",
+          "farvejminiel@hotmail.com|J2F24RIN7jc9|M.C545_BAY.0.U.-CpZHMt!uQ8mIg3JmJZ4rccHfV51PMxEpPLHIpwuR!L0Xq!Qbh8qauwpU*cnjlp1vlDNaBRa4NqO3lklOd0tpiJ*2T7XZO8p5ndPwslZiBFf!YepADkH1IbmN8NHszKDPEr!HZQTcCH9Qvi2aBTBHO002psnXJ6hdrN0cd8S*bwQkgRkIMRTO5btB8MCm8TnlZLcPiUk!kVlwtf9P3M45fuYlF5rbiRC6lTSYksRxio5qdApGyfpTYpdxRlTWgb13FHxIJaNaP9ZqSHURVp62HHP0UqY6PGqPh!WVpKH4*2yDN4q*6MJtlrz*!qQ7FMlW2O1Ks7VvHd2RqhECyDVOrLSKVve19DaoZKQxomxVc0sGsHAF3xMOiyFRSPWbzQy8h9!BR8xwkhokS7WGoONRiKKwsaN!RTkSJzCaF67asb62|9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          ""
+        ],
+        [
+          "_lbkv",
+          "680 2k5 tim",
+          "xit gio",
+          "gayaafitesa@hotmail.com|2QHGbu1XLyIv|M.C545_BAY.0.U.-CmMdtXOCLIW*N7yHsNMla*js0gvekSL2wy4M8Ug!SwSW1swPxsn17pb9*awdvL*EW3*IddnbFwoi551vHgstlPnzueYCQF!hCwz*NI6gdGJ9TTvoEqY99BtrpBtd28pahkDoI4MnoW5uXq2538VcseOjkeWS4ci1*Om5MHQnJUm0nlLehpIWcGUtdpLA2wrDxl*xy4Y2!AGYM4w*2tHH2Pu*Gcd6PiXeLtYccpzRHZ36rGBPzYOvmoO44*2TR5vuq0cUxCq3UiukLTIn5*oMfK8XjktJp1fCGw8U5pADlivUbiKYk7cGx8beRxCkgpFJMtRCyKYG2DzodS1z55kWhfO5kL95l4cJXZw!1btpvKINYglBSGdwtnYfYTZuMqsFiJ28J!oh5jRvgjsgTHdq8quNqrOtIG6*2mJYWUt2Fpgk|9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 50,
+      "tabName": "tong ac shopee",
+      "rowCount": 389,
+      "detectedType": "custom_layout",
+      "sample": []
+    },
+    {
+      "tabIndex": 51,
+      "tabName": "Sheet158",
+      "rowCount": 40,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "v9_yguu_rt",
+          "Dvtka4567",
+          "84921346256",
+          "ferreromicheline8211@hotmail.com",
+          "AOW0Ja6yLY",
+          ".shopee.vn=SPC_F=NCkUVWaeVK0Q7eIJ2Q8D0gaKfFxY2pBE",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "v9_yguu_rt|Dvtka4567|84921346256|ferreromicheline8211@hotmail.com|AOW0Ja6yLY|.shopee.vn=SPC_F=NCkUVWaeVK0Q7eIJ2Q8D0gaKfFxY2pBE"
+        ],
+        [
+          "frynj1r_7y",
+          "Dvtka1234",
+          "84562421528",
+          "adelaideflame50@hotmail.com",
+          "5H7940t6Z91",
+          ".shopee.vn=SPC_F=ikNXkFZq8trIdCsPzK5Z45o6tJT4xucE",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "frynj1r_7y|Dvtka1234|84562421528|adelaideflame50@hotmail.com|5H7940t6Z91|.shopee.vn=SPC_F=ikNXkFZq8trIdCsPzK5Z45o6tJT4xucE"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 52,
+      "tabName": "Phương 2k",
+      "rowCount": 93,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "",
+          "sản phẩm",
+          "ngày đặt",
+          "địa chỉ"
+        ],
+        [
+          "nguyentruclamkkcsjig90zdk@thhdfws.us|Phan9999",
+          "xà phòng",
+          "\"2025-10-09T00:00:00.000Z\"",
+          "ngô quyền",
+          "2đơn 1k"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 53,
+      "tabName": "200 acc 922025",
+      "rowCount": 200,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user5916671385790|#U1t499A2jzaNwc9T|tyskaimrenb7@outlook.com|MXwxCNcl|M.C542_BAY.0.U.-Ck*Dn8yOr2vA3DIP9Xf*vnzHfiw1DA18a5MniWt!NMRnNsfO6qiPmryThY*YgIK4*vwF33uO63qBl5AaPHGSyA9J20p2HOjQ46DlkWWZmhB*zU576BuE0gZMBbp*D8Ps63zPbMtVXvESKelPS9HMUfU4fp6csIZorVJBZxJpElVt3*2dcXUOruBQTF*y42JuJEF6e4UtlR7K2FQmzbfQT8gHqGbnkLgf!8fZCgkPcUDxLAAW2vI3V1!H!3BJh8IKToBTH3b7JxgHwiy9*9nRt9rrz2CwctZ6SDQVTLVQPnVHtn8LzAIf96kDltfV0yoN65H5CNWmVYQ2BfsXHNgNi6tAcr*GkYY9sRWZa4DWQ5zqp0E4sE24pBeYa*MQu!MOsJZBxRNaP0Mxjaehuc95ZbkGSwUwy9axN!Dh2bZYodVX|2429d14c-f4c7-495c-8894-956e92597c34|tyskaimrenb7@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "user5433225192993|h1t1pwcf88@khkX2C|vjlntbdum2888@hotmail.com|3iu539LIY4G|M.C547_BAY.0.U.-CpS15mzm4Visac0*GjrDS7zuLXFhrhOVnI2oIvYnacCX0USGPWajJCzxt0a7omChvYoV!0BsyhBxuwtZYHmxH*UbgL!jPNh!XCYN4rOVnul2nvet7spoMtW3936ldTo8vtpRC8HWO4vVBqHV1fjnExRcI*z!bYG*8LZx2kf5VASYcRZ1xXkObDIZyXKQX2JkoxTjFKRnuYpOI!OCvR6JyKrR58ZdexGLwrGIPGKm0x4u4eqBwl!W1Cr6!K5ZCbNBrMFkYIwRMNdGtFY3O*hJNv*OLULzdWPKtRAeWr99rklbDEzp*7qwYUX32hHgdJHEB3S7ZYm0SG2hhtj0cpBR5ceh68gPZHuuao7lA77cSd51bhDKfqhKbAR54g2UNxR2Vi!o3XjWWLgsAx5vR4ByuCYOQYU!LV85Quz86A9onUA0|2429d14c-f4c7-495c-8894-956e92597c34|vjlntbdum2888@fviainboxes.com",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 54,
+      "tabName": "HA",
+      "rowCount": 545,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "donhatnamcnao0h943fy8@charl.us|",
+          "Phan9999",
+          "",
+          "dây dầu gội x4",
+          "\"2025-05-07T00:00:00.000Z\""
+        ],
+        [
+          "trancaokyuy81q8x52qpv@atpm.us|Phan9999",
+          "",
+          "",
+          "xit"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 55,
+      "tabName": "1k nick new 248",
+      "rowCount": 438,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "",
+          "PASS",
+          "MAIL",
+          "PASSMAIL",
+          "SẢN PHẨM",
+          "ĐỊA CHỈ",
+          "NGƯỜI ĐẶT",
+          "",
+          "8f915ae7416462855e7e978ab8f9b73f"
+        ],
+        [
+          "san.962989",
+          "@K4aX7@QOCJr",
+          "jetersents5f@hotmail.com",
+          "FrRxolEH",
+          "đặt r",
+          "",
+          "",
+          "",
+          "f0beadb7a0f79a05639c1e78c95ca583"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 56,
+      "tabName": "Sheet68",
+      "rowCount": 21,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "Hungtraniq37",
+          "84996598475",
+          "damh7876@hotmail.com"
+        ],
+        [
+          "Quendiac08",
+          "84996562458",
+          "daoh752877@hotmail.com"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 57,
+      "tabName": "Trang",
+      "rowCount": 221,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "nguyenhoaihungwh9pfy4xdvye@thhdfws.us|Phan9999",
+          "",
+          "",
+          "",
+          "2 xà phòng",
+          "\"2025-01-09T00:00:00.000Z\"",
+          "phú thịnh",
+          "2 đơn 1k"
+        ],
+        [
+          "lecongthanhbo1qrxv46256@thhdfws.us|Phan9999",
+          "",
+          "",
+          "",
+          "1 bánh gạo",
+          "\"2025-01-09T00:00:00.000Z\"",
+          "lê lợi",
+          "2 đơn 1k"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 58,
+      "tabName": "2k acc 250 đồng",
+      "rowCount": 2101,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "qhkwn300",
+          "Vu112233*",
+          "kq3gd2vn@dcpa.net",
+          "Vu112233*",
+          "mắm  lý sơn+bột rau câu",
+          "16/7",
+          "ngô quyền",
+          "vi",
+          "",
+          "",
+          "",
+          "",
+          "qhkwn300|Vu112233*|kq3gd2vn@dcpa.net|Vu112233*"
+        ],
+        [
+          "uwgfjv4f",
+          "TikTok112233*",
+          "gnt4xs14wtkw@dcpa.net",
+          "TikTok112233*",
+          "xit x2",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "uwgfjv4f|TikTok112233*|gnt4xs14wtkw@dcpa.net|TikTok112233*"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 59,
+      "tabName": "hiến",
+      "rowCount": 141,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "saichigiangh59wxuyu304r@phubt.com|Phan9999",
+          "",
+          "2 goi bot canh",
+          "27/7",
+          "kim son",
+          "",
+          ""
+        ],
+        [
+          "ngoanhtuan79p1e0nx7yjl@phubt.com|Phan9999",
+          "",
+          "4 chai stinh",
+          "27/7",
+          "kim son"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 60,
+      "tabName": "file cua hiep",
+      "rowCount": 64,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "thinthanh_168438",
+          "@K4aIpK8gP!S",
+          "satersagoo6n@hotmail.com",
+          "XKVNIVoe",
+          "ko có mã"
+        ],
+        [
+          "limcnhhiu_542747",
+          "@K4afy@Si3RG",
+          "balanssameon@hotmail.com",
+          "J9F5XH20"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 61,
+      "tabName": "300 nick 136",
+      "rowCount": 1452,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN"
+        ],
+        [
+          "1",
+          "",
+          "",
+          "",
+          "",
+          "ko co ma",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 62,
+      "tabName": "File cua fi",
+      "rowCount": 202,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN"
+        ],
+        [
+          "",
+          "thchnh.849471",
+          "@K4aFa@eW2@9",
+          "kaniyekaltto27@hotmail.com",
+          "D0UY3O23",
+          "đa dat",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 63,
+      "tabName": "1900ac mã 77k",
+      "rowCount": 1514,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "bmy3wl8eogc",
+          "Abcd123@",
+          "uq6nzk3c8hz@dcpa.net",
+          "Abcd123@",
+          "1  bột canh hao hao",
+          "phuong 2k",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "ixxi5v0",
+          "Abcd123@",
+          "u7jath@dcpa.net",
+          "Abcd123@",
+          "1 an cốm",
+          "",
+          "20/1 trag",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 64,
+      "tabName": "nhom 278",
+      "rowCount": 60,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "29_13qw9oq",
+          "Tuyetthanhjj72",
+          "374406614",
+          "gvemqz3554@hotmail.com",
+          "rrgybbqq1357",
+          ".shopee.vn=SPC_F=y2BRRDGz9qKLCPBgbhN91ZYZMrPH2K5i",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "29_13qw9oq|Tuyetthanhjj72|374406614|gvemqz3554@hotmail.com|rrgybbqq1357|.shopee.vn=SPC_F=y2BRRDGz9qKLCPBgbhN91ZYZMrPH2K5i"
+        ],
+        [
+          "0d8yzpyl11",
+          "Hoangvanleop36",
+          "354638884",
+          "milesmary1840@hotmail.com",
+          "ugfkmlm6432",
+          ".shopee.vn=SPC_F=Xa6eXqXx26hCVZIQq2a3rtmWYkn3A0Zj",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "0d8yzpyl11|Hoangvanleop36|354638884|milesmary1840@hotmail.com|ugfkmlm6432|.shopee.vn=SPC_F=Xa6eXqXx26hCVZIQq2a3rtmWYkn3A0Zj"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 65,
+      "tabName": "500 nick 186",
+      "rowCount": 1245,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "318",
+          "",
+          "",
+          "",
+          "",
+          "XXIT",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 66,
+      "tabName": "ACC TIKTOK  TOÀN",
+      "rowCount": 501,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "user4463740883562",
+          "1Tikq9dnmbs@",
+          "5s3gnbyob30ai@dcpa.net",
+          "MailTM@",
+          "1 bánh gạo cóm",
+          "quang trung",
+          "23/9 tr",
+          "",
+          ""
+        ],
+        [
+          "user3988694967830",
+          "1Tiksatl$qz",
+          "b6qsh7l80sh1c2t@dcpa.net",
+          "MailTM@",
+          "1 bánh gạo to",
+          "sơn đong",
+          "24/9 tr",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 67,
+      "tabName": "Linh",
+      "rowCount": 195,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "Phan9999",
+          "milo gói",
+          "\"2025-03-09T00:00:00.000Z\"",
+          "ngô quyền",
+          "2 đơn 1k",
+          "",
+          "",
+          "22/9",
+          "7+1"
+        ],
+        [
+          "lieuquocmanh7jhv1qvsj1in@bnyhr.us|Phan9999",
+          "1 vỉ milo 110ml",
+          "\"2025-03-09T00:00:00.000Z\"",
+          "ngô quyền",
+          "2 đơn 1k",
+          "",
+          "",
+          "21/9",
+          "9 đơn"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 68,
+      "tabName": "NGAY 215",
+      "rowCount": 35,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "DAT DON NGAY 21/5"
+        ],
+        [
+          "",
+          "TK:",
+          "deborahanderson2jp645k",
+          "MK:",
+          "u04m100dO@a#R",
+          "EMAIL:",
+          "Nhan4n648o@hotmail.com",
+          "PASS:",
+          "Ea@*XHOk4LKVi",
+          "hai ngu 900 cum hai tho loc (A  HUY)",
+          "",
+          "THỌ LỘC"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 69,
+      "tabName": "200 nic k11 6",
+      "rowCount": 176,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "ten",
+          "Pass",
+          "mail",
+          "PassMail",
+          "Sản phẩm",
+          "Ngày",
+          "Địa chỉ",
+          "Note"
+        ],
+        [
+          "kiuon.739569",
+          "@K4adrC5UL0@",
+          "hassashanita36@hotmail.com",
+          "BU9ykO34",
+          "1 bịch giấy ăn",
+          "\"2025-12-06T00:00:00.000Z\"",
+          "Vien son",
+          "hiep",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 70,
+      "tabName": "ngày 216",
+      "rowCount": 976,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "491",
+          "tv.234979",
+          "@K4aCPpN30P@",
+          "ackerlhaydor@hotmail.com",
+          "WiCnih96",
+          "3 loc sua vinamik 180ml",
+          "22/6",
+          "quang trung",
+          "som",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 71,
+      "tabName": "3k ac ngày 269",
+      "rowCount": 1513,
+      "detectedType": "pipe_delimited",
+      "sample": [
+        [
+          "user8386141287815",
+          "@Toan2025",
+          "seppidkrajajc9jw@hotmail.com",
+          "syyKSoAR7leIA",
+          "M.C518_BAY.0.U.-ChSM0kauwvecS6oZ4tfG5Rg29GIAP6Y4EjjBQEaN*kwwu2h31PzCMTlbM83pUgQ*6vS3pQ9ypS!odZK9XJXAOInXFcsU8K!crhQCUDeTTY0wHSDtLdYIA2!ebcifm*sQyZR9m6ah!47UpoFbHAOtWdZfrzOe6BqoA4D8VR5dodkcbHDZvcRx9i5FB5UIIAh3PedQ8vFm0jwHaogMreHifiVg4BFdRLshnypdYlTyap34OcsIvHZ6U7NziXBEsKH*O5H3VLw9kMiieeTsGASeK498kwRR50ATGUf2SgKGkBfBq*fPtCdT4L7*izCkbWq*ck8vrBF3JsRZ*6o5R5Mh41vv4tJkMYONLx*b4recSHOFouwCdhDMFXyTW4R4uhATDWHlH!3UPDUxBjj2vMuMi*VuLETtiZWFpQYZsL2Q4kt6",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "ke de do 4t",
+          "son dong",
+          "",
+          "user8386141287815|@Toan2025|seppidkrajajc9jw@hotmail.com|syyKSoAR7leIA|M.C518_BAY.0.U.-ChSM0kauwvecS6oZ4tfG5Rg29GIAP6Y4EjjBQEaN*kwwu2h31PzCMTlbM83pUgQ*6vS3pQ9ypS!odZK9XJXAOInXFcsU8K!crhQCUDeTTY0wHSDtLdYIA2!ebcifm*sQyZR9m6ah!47UpoFbHAOtWdZfrzOe6BqoA4D8VR5dodkcbHDZvcRx9i5FB5UIIAh3PedQ8vFm0jwHaogMreHifiVg4BFdRLshnypdYlTyap34OcsIvHZ6U7NziXBEsKH*O5H3VLw9kMiieeTsGASeK498kwRR50ATGUf2SgKGkBfBq*fPtCdT4L7*izCkbWq*ck8vrBF3JsRZ*6o5R5Mh41vv4tJkMYONLx*b4recSHOFouwCdhDMFXyTW4R4uhATDWHlH!3UPDUxBjj2vMuMi*VuLETtiZWFpQYZsL2Q4kt6|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ],
+        [
+          "user72671165131052",
+          "@Toan2025",
+          "lubasjbelov7nw@hotmail.com",
+          "ZNN85CZpuniP",
+          "M.C532_BL2.0.U.-CprV7nctJXSoeTyBEPdL8Mhqed0e902Xk!msDcCskEhYQPmBKAC07!XYZQnCC8DYOJe2fuEC!bZ01lPJ5lYmdlc4Erv59b8XNtbK9T0YzApV*agdcPoP!gPj1NyNhjgqteyq7l2L!2YVemHTTu8zi1T!MoPweMK1cCSqz1TO3BgvdqVH7rjuPLjbE8Vz2PQZyxXRiwKWLAFrzlJBvBgxzpwwn7EbRjwHyarACajdXN8T6KsqX144FsgYQ7FAwU1bn7zdl5XSyuZNVFBeoef0H3WYueaHniYgeQOUeK1ndKymfI1OXPJ5TClgk8BdkTT4sMIq9uYSzopddkLtnDQ86luxFbceMIxRPuwhGyxqFdadEhH0F4lqRBPtvWNFUgLBt!teSnItb04JpnLFjH*77eoTxzh6KKiW1ELPyzq87RHg",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "",
+          "",
+          "khẩu trang 100c",
+          "tùng thiện",
+          "",
+          "user72671165131052|@Toan2025|lubasjbelov7nw@hotmail.com|ZNN85CZpuniP|M.C532_BL2.0.U.-CprV7nctJXSoeTyBEPdL8Mhqed0e902Xk!msDcCskEhYQPmBKAC07!XYZQnCC8DYOJe2fuEC!bZ01lPJ5lYmdlc4Erv59b8XNtbK9T0YzApV*agdcPoP!gPj1NyNhjgqteyq7l2L!2YVemHTTu8zi1T!MoPweMK1cCSqz1TO3BgvdqVH7rjuPLjbE8Vz2PQZyxXRiwKWLAFrzlJBvBgxzpwwn7EbRjwHyarACajdXN8T6KsqX144FsgYQ7FAwU1bn7zdl5XSyuZNVFBeoef0H3WYueaHniYgeQOUeK1ndKymfI1OXPJ5TClgk8BdkTT4sMIq9uYSzopddkLtnDQ86luxFbceMIxRPuwhGyxqFdadEhH0F4lqRBPtvWNFUgLBt!teSnItb04JpnLFjH*77eoTxzh6KKiW1ELPyzq87RHg|9e5f94bc-e8a4-4e73-b8be-63364c29d753"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 72,
+      "tabName": "toan 1310",
+      "rowCount": 40,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "TK:",
+          "user2042818748188",
+          "MK:",
+          "Dy1p3978s8@",
+          "EMAIL:",
+          "t0eh33wdelb43@dcpa.net",
+          "PASS:",
+          "MailTM@",
+          "MA 40K"
+        ],
+        [
+          "TK:",
+          "user5574161810147",
+          "MK:",
+          "Dy1!e1x22b",
+          "EMAIL:",
+          "615600cgncxeq5f@dcpa.net",
+          "PASS:",
+          "MailTM@",
+          "MA 71K"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 73,
+      "tabName": "500 NICK 256",
+      "rowCount": 855,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN"
+        ],
+        [
+          "nngcdiu_551295",
+          "@K4a@apbv0G3",
+          "jugakazda@hotmail.com",
+          "aOanvV39",
+          "kh co ma",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 74,
+      "tabName": "600 acc 286",
+      "rowCount": 967,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "",
+          "user1388014905255",
+          "Zxcv@1kdbk1D",
+          "rudigellyn3061s@hotmail.com",
+          "1jXH05R8GW",
+          "1 CHAI DAU AN 1L",
+          "\"2025-01-07T00:00:00.000Z\"",
+          "DUONG LAM",
+          "SOM",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "469",
+          "huyhngnh_309585",
+          "@K4a3h!GTH7l",
+          "powalaggen0t@hotmail.com",
+          "IQN0IdZP",
+          "1 lo muoi hao hao",
+          "\"2025-01-07T00:00:00.000Z\"",
+          "tst",
+          "som",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 75,
+      "tabName": "NICK 297",
+      "rowCount": 31,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "user2616981223659",
+          "@xIiN8lQaU",
+          "MarelihgMoscardelli@hotmail.com",
+          "Fclnk7431",
+          "M.C553_BL2.0.U.MsaArtifacts.-CktkM67zxqyVTAyIe5I8u3Sfkfqw0iG5c*i9ZtfN!olLJgbyzoUbVS9B1HD0bG2pWFOw9eV4sGdz8N*!F6DH00OskJ9!ilbw5L7s81W6rRQkmr6gobZ8PGOE6dt3QNphDDNg!ilgUwgn8LJz3k5*Q2N7sqpj3GOwGw8b3gpcoJ*EnmPmipsL8Nc6BHE6j4O6j5AK0DjnZDIntxC024MIKIlOJg1NxlSynN7RTGcgyG8HfnsLWDUD6BbJT5Na4uywqcSmkQmCMVXbLwmrO6N7ha6aaJvOm8rAFz6FSHCOnm2orP5grU7SIn31nQr70bfqguKLsUaAYmJTj3LghJGQusZKbJNxGi4V9aExKbAodr21*FbbuDYd!deZuP64eiMmdfSIY7aEBtAXSJOhZcrCsbZO6GyNTF!Up5!700SDlr8w",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ssid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;ttwid=1%7CIfsGSeCuQyP98iL30PI53eEqrMCqOdj2NyG2I6w3giY%7C1784974300%7C3f29efe8d7b0ed0b3da281258a4b0fdcec406a7140190b0b39f1567e9cbf9f63;multi_sids=7666405933770540040%3A46743aa5eddd149a9aa8cdc7a7470e86;store-idc=alisg;uid_tt=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;msToken=8Tmva4ma94BFjKu3hNulg_3PkT-DQHE4tSoGKXR0bcmLQz6X5RXeItRO8Fx3ty305AvnCGEQ7XEqDrgpKPYrthoeZqGBHpr2s_P-Yk2ovo9EXVWc_igb65aSkvguOMv_YFd55dlAAvAlx95kAyR6_CpzAA0B2Uo8VIpye_Q0;store-country-code-src=uid;tiktok_webapp_theme_source=auto;delay_guest_mode_vid=5;store-country-sign=MEIEDNENWYuSGyRNQI9OvQQgmCi_5dZY3k6wowDLoegiibRF-clg9MEWcQCAS1MpAC4EEIp3-tPIqzaUT0KcANZCkBM;cmpl_token=AgQYAPOF_hfkTtK6WmUzmmXdMfAFEkL2lr-XDmCmabY;tt_chain_token=vlQESgfRUO+Z0PaFc027/A==;sid_ucp_v1=1.0.1-KDY0N2FkMTcwNDY0ZTg1YTBmYWY5N2ViZWY0ZjMzNTJmZjdhYTM1MjMKIgiIiNySwfKismoQsJeS0wYYswsgDDCvl5LTBjgBQOsHSAQQAxoCbXkiIDQ2NzQzYWE1ZWRkZDE0OWE5YWE4Y2RjN2E3NDcwZTg2Mk4KICVzaqVfvA4APg1UNHsy5SCiB-rA3H3VOY23s9rMNBmaEiBRxpn78pZ59Y0Kbve-6Kny8-tC-Fui0vrGc17X9fDnLhgEIgZ0aWt0b2s;last_login_method=email;tt_csrf_token=BjqWxo5E-v9owgDdhn0n2Is88yceVgenAWy0;tiktok_webapp_theme=dark;sid_guard=46743aa5eddd149a9aa8cdc7a7470e86%7C1784974256%7C15552000%7CThu%2C+21-Jan-2027+10%3A10%3A56+GMT;sid_tt=46743aa5eddd149a9aa8cdc7a7470e86;tt-target-idc-sign=FSq9wCk2vidBP104XQ31ICSOis_cdV7UOv8Zak7cthkKbIfhw2jxstq7CjVdfym3j2fQij_Cva8Dmlq_o0LrPPG4u1w-eUWshzc6He8yirkfjOfnZx4KQpvsVUNytebB8n-e4plazGWcP1Zj3z1TQKcQcd27xJNjEW5_iCIQOVudbW_uKnSFptUX4nbikzX6H92CPwmLSn96Zs3RWqbujOAxQGmjVkn1fh0CmYIlVl_Fc35W2TGjkUa00JqWLWT860Ja_KkeW1ZoH7nvylfoxusYXZOWE_BwChMcRodUe-v9Dl-Qp7FJ7HY-W1FvwKdjjMqL-glWt-wKndFa2N0LdFfwILcRo6jx3DvCXRrC9CiF2ebdt-8h9kcfVnU-rEMt0pdMcfwMU5pk7Jkvrx5bvHnZITKzul0_CLP1rl15NGLX7IwZo7ZgvS---OuaNYSH0nmFXK8EiNuq4rkBy9G3kOkGCerLEbzLhW6XJoccIjyOL7Wb493IxEugvDQwlYfG;msToken=wv4XZa9AthbC_iLK1KW_gAXYJMupJaTs22TlehMT5BzSXLCB_gL1Uv427DtQH135vUdrxtiqzZLXNKfcLzQT4719psbO4fA44U38JXkrrrvi8cKUT1kolUGzv_pYQz0W2Agq40M6YkOGT1mp1JNAKwYVf5RKDlqP_VuYPd9g;store-country-code=vn;tt-target-idc=alisg;s_v_web_id=verify_ms07jlts_OeS9JXbf_zXCF_4cOA_8TIC_s5IZ27uH4ibz;tt_ticket_guard_has_set_public_key=1;passport_fe_beating_status=true;sessionid=46743aa5eddd149a9aa8cdc7a7470e86;sessionid_ss=46743aa5eddd149a9aa8cdc7a7470e86;tt_session_tlb_tag=sttt%7C4%7CRnQ6pe3dFJqaqM3Hp0cOhv_________6pU1TelCzrbGWH2CfMGMLeyI1aG4Cpq0GOnZQeaq3LS4%3D;uid_tt_ss=8dab3446fa8a714083281965a586d1d0ac2ba9bc4f3adb362b48a5c59d41b1d8;odin_tt=5b6edf5a9995a02e88cece40cec16961fb06f5bcffb56d7dcc541ebf24896d118f31dfd27f24cc03ccc2ec372d1006189401e86aef621973bd31f605fda8b8c5;",
+          "",
+          "sl 1 l",
+          "29/7",
+          "long zzz"
+        ],
+        [
+          "user2309728536108",
+          "fkU#jPt2kj",
+          "brah.guayaga@hotmail.com",
+          "hnjac141951",
+          "M.C543_SN1.0.U.MsaArtifacts.-CscodJc4T0rLk**7GoqPv5y*q14NXstRnN87BewA9RW9ZvMIMNxHYFPZZ0I8tFhfO30n1nDuMmg90I1TgrVNFdWDBvx0OkOwiHpkdzqg03fsVGCjnpUsS0PYW6qK7uU2WDQYnxRTa5Ay54gkbY7l!UpeOljbbjKUOxz107IVvafMcL9JFdaKsCU7zJ3jtz0AKXMKJ2vzoFXPy8db4!oXn8D2hCo34kekzvXavas7gOPqrQyOqz7nIv9hTIDvuZZQt78eJnxQLtvUALLHnAEso8yIeDqqvhV3MHp8gjJG4bfGzPJNftpjzXi*DaH3!0o2o!iFJbzF1khqgUPPU6yC1ADRLPgNckfSHCZtJDERy1uiskREnXZ61UHkPz*pQQLybY2dS4fiiiflCJAf9T924uSCKGOtCytM7tIFfrC4F342",
+          "9e5f94bc-e8a4-4e73-b8be-63364c29d753",
+          "ttwid=1%7ChoOERBzwPzViIAJB-Ti3xADuHOdLvLvFHrfjcx9y0xY%7C1784971203%7C8e37b17b0bb02863092135e2a63d04358b562bfbb0bf3338cb2e6e717c40289c;delay_guest_mode_vid=5;uid_tt_ss=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;s_v_web_id=verify_ms05pl3b_CoGfcW2h_RtuI_49c1_8ieP_d3fkyEc9h6MU;odin_tt=d841f3debc4706f7b788b80dc5f2a7d5ffe897b6b21e2421f6423b76246ba6a0993cb9cc09e60aa702fc7c1e8db7f86dce374a77e7cf929896c00fce4974b3b5;tt_csrf_token=53SAkygZ-lblcI7zCtYGUATFOoUO7YEPDjQ8;last_login_method=email;tt_chain_token=TM10TSC63OW/ChxSEd4M0Q==;sid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;store-country-sign=MEIEDGSrvtTHM4hj2L7XbQQgfC0xufyqTnxvdWs_ea9-96-pf5uAtKtoT8h0KkNlQaYEEIHUd-v2W3o71IGwyd_lAKc;x-web-secsdk-uid=08cd5694-af60-4847-959a-e517849f1f0e;tiktok_webapp_theme=dark;msToken=jK8-JfkMzEiROQXLl3VeyKHAb6AGNGUbIKsLeVY2dlLcOUS8USmKj2HjopPw-xVhRGDaEqsFE5P7-aJApsMOy5hNwuUBKj1ERc8VwVXsQKORWMjWvUYcAWGyCgH-NhTp9r89-eF7Gsm-TOkDsPj9znB3X9IGodJJIQk_sl6h;tiktok_webapp_theme_source=auto;multi_sids=7666392725490779156%3Acb0364607b123169f2d967dfac08d20c;cmpl_token=AgQYAPOF_hfkTtK6WpE3T7adLfAF5l-Gn7-KDmCmafs;tt_ticket_guard_has_set_public_key=1;tt-target-idc-sign=ophXz5ASqdo6LgCfJ6aohhkzNk70BB65_YLGpPSaVN5k-nMDzhle_3JeyKms2OH6aJ2SSzHinqp_kCzO2Ry6Q2wkD6YTK00V44Wtm4po7LEk9AW2lkaBCn_vjrXUjoI-PTgkIjKWo9PMD8-PbCH_ZIJE4C69cxjlXqykcpuvEw7HwNTrHtkMEXPAgPB_KPsoiU8o_rF0lIzooq3lqzA8irVu43fXHQnlrKxlXDcs8A6lyVHm32Ew-BBZDuvqwImGyktzp97lcY3zLIG0lSQI08Xn7Dnu4lMfxgzDzxFx9hFRkD9RQfbB15JaIiEOjykT-ACgxRrGPhgLVmPf6ly-sbU7HnnYVtEh94fn83Nx4glgkPsQCTaQCHaKQ7UI6TlwX2neBZfKgCPfI0u1gbbA8cHFtiJ7F5PwwAaXt3X6p0fc3M6rw5S_6qAGv-bf7uuEeFkbHT6sISQU9nVEzJHtcoCaqixBVYPoN_NR7J2k6N5qWSKuq03p_0EhXDl1cUMk;sessionid_ss=cb0364607b123169f2d967dfac08d20c;tt_session_tlb_tag=sttt%7C1%7CywNkYHsSMWny2WffrAjSDP_________Oms5KPLV2pdgi_TGSMhh39InTlvzWueOtUIoJxRRBGkU%3D;store-country-code=vn;uid_tt=7bf91418838e905259a4ed78997985c151eea999f486e6f65281760778ed9ac5;ssid_ucp_v1=1.0.1-KDUzNTMxMGMyMzAyMmJjYmVhNGQ2MDA5Y2FiOWI3MzdjODA0MjY0NzcKIgiUiJG8jPKfsmoQrv-R0wYYswsgDDCt_5HTBjgBQOsHSAQQAxoDbXkyIiBjYjAzNjQ2MDdiMTIzMTY5ZjJkOTY3ZGZhYzA4ZDIwYzJOCiAR9_u0Wg_D4-Vz5zW5XtZH70PUiAmUS7eUauvs86CfEhIgn619GW-R2_vZNJuRdyKbrbjj_DJcdvpwVRpoS_9H12AYBCIGdGlrdG9r;tt-target-idc=alisg;perf_feed_cache={%22expireTimestamp%22:1785574800000%2C%22itemIds%22:[%227638429187644067080%22%2C%227656064000542690568%22%2C%227661273233202744594%22]};sid_guard=cb0364607b123169f2d967dfac08d20c%7C1784971182%7C15552000%7CThu%2C+21-Jan-2027+09%3A19%3A42+GMT;passport_fe_beating_status=true;sid_tt=cb0364607b123169f2d967dfac08d20c;sessionid=cb0364607b123169f2d967dfac08d20c;msToken=FDn4jKMojRhboxyWQ-ot3TAh4eY9Zgd-qG_2FJMEHIZuHm96pzr143M2C-yYDF6Aer2Rfvk5vY6rRjkaWYvoKlltI9LvF4D49LueMokzWpMWQz3h6iW-66GHESpPsGvnrGdQiH0-YWuZntCQInTJe2VQk6UnG2bkTGKaO3a-;store-idc=alisg;store-country-code-src=uid;",
+          "",
+          "bcs",
+          "29/7"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 76,
+      "tabName": "500 nick 37",
+      "rowCount": 440,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "a",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN"
+        ],
+        [
+          "102",
+          "linhhngnguyt.302956",
+          "@K4aAbx@qu6l",
+          "yechomiskey21@hotmail.com",
+          "WoSr8T40",
+          "247",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 77,
+      "tabName": "137 500 acc",
+      "rowCount": 449,
+      "detectedType": "custom_layout",
+      "sample": [
+        [
+          "STT",
+          "USER",
+          "PASS",
+          "MAIL",
+          "PASS MAIL",
+          "SẢN PHẨM",
+          "NGÀY ĐẶT",
+          "ĐC NHẬN HÀNG",
+          "TÊN NGƯỜI ĐẶT",
+          "TÌNH TRẠNG SHIP",
+          "NGÀY NHẬN",
+          "Số Ship",
+          "TÊN ĐẶT ĐƠN",
+          "MÃ ĐƠN HÀNG",
+          "THANH TOÁN",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "trctin_919081",
+          "@K4aFGgjV19!",
+          "baliemarkka@hotmail.com",
+          "89HWMc59",
+          "slgn",
+          "231",
+          "ct1",
+          "log",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 78,
+      "tabName": "dang video",
+      "rowCount": 846,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "hotnh_410790",
+          "@K4aY7!rgJy5",
+          "qoxansowik@hotmail.com",
+          "CPehCX75",
+          "2 bánh akiko",
+          "tst",
+          "phương 25/9"
+        ],
+        [
+          "vnquchi.329515",
+          "@K4aTtK7k@nC",
+          "meieltamax@hotmail.com",
+          "hDQr2b37",
+          "2 muối hảo hảo",
+          "sơn lộc",
+          "phương 25/9",
+          ""
+        ]
+      ]
+    },
+    {
+      "tabIndex": 79,
+      "tabName": "200ac ngay 2511",
+      "rowCount": 130,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "user36065923979025",
+          "x0Ahe3CK1cr#0",
+          "agohadonil65@hotmail.com",
+          "SS1MvM87",
+          "",
+          "v"
+        ],
+        [
+          "user9238306727713",
+          "#6U59N99",
+          "jxlhdbmkoz435@hotmail.com",
+          "8QgcgyFC1",
+          "2dau an mezan 400ml",
+          "v"
+        ]
+      ]
+    },
+    {
+      "tabIndex": 80,
+      "tabName": "232026",
+      "rowCount": 1000,
+      "detectedType": "standard_4col",
+      "sample": [
+        [
+          "sngnhthng_618301",
+          "9EQ@7IPb1",
+          "roycejadus4k@hotmail.com",
+          "qkkquYWN",
+          "da gui cho k",
+          "perf_feed_cache={%22expireTimestamp%22:1748368800000%2C%22itemIds%22:[%227499084604301774097%22%2C%227502087470209715464%22%2C%227499322834574085422%22]}; store-country-sign=MEIEDDaI8HsrEog8CJwWhQQgjylE8OpTfT1uI4OyaOw_5cP_WsjZprpWUeTMnTi8T1IEENb-xRKGBSZV83EzLD0Wguo; tiktok_webapp_theme=dark; tiktok_webapp_theme_source=auto; msToken=XZYesPmlhow_wRUiBwEpRrUicvwlOaWx4OsZNoWSaXm6qkKQpPnOU9jNewWUasPfqewnvy2bgulMXexmcntqNCiEApZGu9bF2-0shoBhD_cRoYhGtjpibCXCzdrRXuP54N_s8_b5YqVu7w==; odin_tt=59326f4094e65362583f65123c49521a836f4c155b004174e527582b6b9107f5cea9d43bfdd383b23cf0f3e2d551875090c53a490b7707a23887f5f3b85ecfedc019e38aef9949c983ac5380dd069b50; ssid_ucp_v1=1.0.0-KGViODFjMTM2M2I4M2EwZjQ3YmVjZGQyMDJjYzcyNTdmNWE5ZTUwNzkKGgiRiJXqrbzAjWgQqcHNwQYYsws4BEDqB0gEEAMaAm15IiBiZDE0ZjM3N2NlMWVmYjk4ODJiMzhlMTY0NTE3ZWUyYg; passport_csrf_token=acd2273f009a594b39372dbfde3b1d7f; tt-target-idc=alisg; tt_chain_token=cWYcSpMxFBWYmPWgzXmtSg==; tt-target-idc-sign=QXh6zWQebdm-cBsc_WvactPANXAg9gVKQoMo3VZuGHifi9kF7g-J1Xwm7-HmRPKO9jlvFC45gPAufXas70RKz6FdFJuN5qt6URo-rYDXcbXb4LR-LTF1lMfJ9W1fjOEPebifBFQGs75VvfTw4RQrBjk4SSRR9HtnqThePBftsgWeCbFWtnJ3JdVyMB9OPBRy6MpSAS_UHdmdDTgwBi-MlZMg7tB8t7Rw3P9ZBSchoqBxzTChG4b3_g0ejxdos7gKn5WR6mXpv0A2szdXNOeyQV5FUv5feJy09NphXZdB2x8QOos-5JrEesK1QUKi7mArya0xFYsPGlGQdcbj9OQABoqFKwSyCEwKyiO8UReqZ2Ji2ZYMQ8uGxG9JswnzJUBEDN_rxccDygnqBBGrQH4wi3gDv3urhT3zpip0NyfVu-8Lk1aD18bGIYuy4LJVIK1oYEdMFdlZIHZnth-eHk988YaAwB2edAitTRqIiISCW_NC0klNqfJxe__dGqvE_ItR; msToken=XZYesPmlhow_wRUiBwEpRrUicvwlOaWx4OsZNoWSaXm6qkKQpPnOU9jNewWUasPfqewnvy2bgulMXexmcntqNCiEApZGu9bF2-0shoBhD_cRoYhGtjpibCXCzdrRXuP54N_s8_b5YqVu7w==; passport_csrf_token_default=acd2273f009a594b39372dbfde3b1d7f; passport_fe_beating_status=true; ttwid=1%7CUiWB0tXplyNZ33F0qoVVtcmZTPZ5a66G9KTo7w68ASU%7C1748197545%7Cee337a28ed2da050bed3c397b5c76512747a02bfe45be600403a1db0d464eaf3; tt_csrf_token=Ecr4Nx9X-tBgHcNZ_PdVRZBYY57gJspnPLEk; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgl70VVd50o8lL5WzAIv4oOYN8OBQ; store-idc=alisg; sid_guard=bd14f377ce1efb9882b38e164517ee2b%7C1748197545%7C15551993%7CFri%2C+21-Nov-2025+18%3A25%3A38+GMT; store-country-code=vn; sessionid_ss=bd14f377ce1efb9882b38e164517ee2b; sessionid=bd14f377ce1efb9882b38e164517ee2b; uid_tt=e60390671ca7ec42be1b0887d457ea80445db0a6918d0c62a9fac30795dd5fc5; delay_guest_mode_vid=5; uid_tt_ss=e60390671ca7ec42be1b0887d457ea80445db0a6918d0c62a9fac30795dd5fc5; s_v_web_id=verify_mb3znr9z_22mQToId_ks7V_4zCi_9dWr_7AxdVDEAnUbp; last_login_method=handle; sid_ucp_v1=1.0.0-KGViODFjMTM2M2I4M2EwZjQ3YmVjZGQyMDJjYzcyNTdmNWE5ZTUwNzkKGgiRiJXqrbzAjWgQqcHNwQYYsws4BEDqB0gEEAMaAm15IiBiZDE0ZjM3N2NlMWVmYjk4ODJiMzhlMTY0NTE3ZWUyYg; d_ticket=914e9e443b0f9ce9c92e55719e4e31cc940b6; multi_sids=7501591678202233873%3Abd14f377ce1efb9882b38e164517ee2b; sid_tt=bd14f377ce1efb9882b38e164517ee2b",
+          ""
+        ],
+        [
+          "nngthinkim_703711",
+          "kgTjcH25u9jzqQwAO2#",
+          "sutkapigue9f@hotmail.com",
+          "WFhONrra",
+          "da gui cho k",
+          "perf_feed_cache={%22expireTimestamp%22:1748372400000%2C%22itemIds%22:[%227496448379791232264%22%2C%227507197614698335493%22%2C%227492063556402154759%22]}; msToken=NpYZNsNCVhY468LG91n76jfEn0QkNaPNX2gm2X8rhnb0jkYO_hROZ5BmKeV1s5mA5SpBEhQztpfusoK2BGHCZ0_Co-Kzis69KwrUSBGlF9wGiuuq46UDAAUstAzahFUKUmIXqJNSfcSQzA==; odin_tt=decdae8d8b86d48b28cda56a43d1d11526edaa33d67d09c10d48394e687060b4e7d5b2a82ee02b0ebeb37c445fe8b9114b4be905fbda50247f1870a5ea7a6db77c93116b346329e6c2cacaecefee4823; store-country-sign=MEIEDACRd7EkoPzl-kGMcAQgEE3L2rHuGtK-8n14II-jPwR8fNJOUjLqmOiRUQPdaKcEEGta96nGEyJsF9sYiRCA9QY; ssid_ucp_v1=1.0.0-KGVjYjkzY2FiZDMzMjNmMGI1YWY1MGRmM2VjNGJjNzY5M2I3ZTM2NTYKGgiSiIji2sHGjWgQntjNwQYYsws4BEDqB0gEEAMaAm15IiAxNWNlYzJmMTliZTJhOTBjZjEyNTg4YzhhMmUzMmRmMg; ttwid=1%7Cb7g3Ly9SGvQEXkrET9YZkP8C2HyWqyZY3qG2c1h7p8Q%7C1748200478%7Ca88a6480aa07ee88d54b3bbe9cefad23489e6abb79f003d7a10684a19a746df5; passport_csrf_token=6ca149b385298359269ed8a7c8ee751b; tt-target-idc=alisg; tt_chain_token=QlW0sGZTYMEaHmEDTXXrWQ==; tt-target-idc-sign=kRvJrx3jCmd8krhUeAVU3xihywMjDFsBTdLD1msZmzD282zJr9gpbZSDhPJCkbXfDnmHykQS3xda1le0wrOgkr4axRVcPqjnykMLgREueYQ4yBWKGgM1KtQjwJIzz40LnykfFEFacw6rY7xnoDjcsE8K1eAx0X1Q2OOY4I6LaBI1HBpsLiRy789Fy0f4PAdGbApTAwTyMC6Y8IrrHJj5JRYM4G65MyU1iHsoKy7l5g8aQM3PTVR2RUagQw9UBc0lkrd3xw5E78VqSxDfLh54JIChV-A9RyxVuYT0LFZyHOdeMvcfR8QXIhEO1hg2ubxsKBWq74OPzhrx_eDTYzGM_pnUj0HDKfg0MYLiHqg_UsLb92moJ9uFyYykqdWsAxrn8qGJj58qOb6xl293eGTopgwAB1VX-8iMSQ-b5ctTowiM-UwsHHNpj_ijZfDdN2_Dg-0OIpIw06LDT0zRF1er4eEP5cHVcWZ0RRxszFztW94zpFXiRaquUxOXXA76_9li; msToken=NpYZNsNCVhY468LG91n76jfEn0QkNaPNX2gm2X8rhnb0jkYO_hROZ5BmKeV1s5mA5SpBEhQztpfusoK2BGHCZ0_Co-Kzis69KwrUSBGlF9wGiuuq46UDAAUstAzahFUKUmIXqJNSfcSQzA==; passport_csrf_token_default=6ca149b385298359269ed8a7c8ee751b; passport_fe_beating_status=true; tt_csrf_token=UUA1huD4-NShfjTE7ypOKgPUdUtRfddLsuVU; store-country-code-src=uid; cmpl_token=AgQQAPOFF-RO0rgl9KokcN0r8lLy0trVP4UOYN8P1g; store-idc=alisg; sid_guard=15cec2f19be2a90cf12588c8a2e32df2%7C1748200478%7C15551987%7CFri%2C+21-Nov-2025+19%3A14%3A25+GMT; store-country-code=vn; sessionid_ss=15cec2f19be2a90cf12588c8a2e32df2; sessionid=15cec2f19be2a90cf12588c8a2e32df2; tiktok_webapp_theme=light; uid_tt=0581f12de4b325afc0eede09d5c59d63135ec360b621aabb32e47a20ff3e4917; delay_guest_mode_vid=5; uid_tt_ss=0581f12de4b325afc0eede09d5c59d63135ec360b621aabb32e47a20ff3e4917; s_v_web_id=verify_mb41eo6y_uGkGkQhQ_hA0v_4iBJ_BWfW_s9BrLxrcPz7j; last_login_method=handle; sid_ucp_v1=1.0.0-KGVjYjkzY2FiZDMzMjNmMGI1YWY1MGRmM2VjNGJjNzY5M2I3ZTM2NTYKGgiSiIji2sHGjWgQntjNwQYYsws4BEDqB0gEEAMaAm15IiAxNWNlYzJmMTliZTJhOTBjZjEyNTg4YzhhMmUzMmRmMg; d_ticket=8bf02b1acc822c488039e8af2114f21c0230d; tiktok_webapp_theme_source=system; multi_sids=7501618250342597650%3A15cec2f19be2a90cf12588c8a2e32df2; sid_tt=15cec2f19be2a90cf12588c8a2e32df2",
+          ""
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@arms/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "dependencies": {
+    "mongoose": "^8.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

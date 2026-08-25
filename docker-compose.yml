@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: arms-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    command: |
+      bash -c "
+      mongod --replSet rs0 --bind_ip_all &
+      until mongosh --eval 'db.runCommand({ping: 1})' &>/dev/null; do
+        echo 'Waiting for MongoDB to start...'
+        sleep 1
+      done
+      echo 'Initializing replica set...'
+      mongosh --eval 'rs.initiate({_id: \"rs0\", members: [{_id: 0, host: \"localhost:27017\"}]})'
+      wait
+      "
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: arms-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  mongo-data:
+  redis-data:
