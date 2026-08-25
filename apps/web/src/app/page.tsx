@@ -48,6 +48,7 @@ export default function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   // Auth State
+  const [authChecking, setAuthChecking] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -246,6 +247,7 @@ export default function App() {
         : 'overview';
       setActiveTab(targetTab);
     }
+    setAuthChecking(false);
 
     // Sync tab when user uses Browser Back/Forward buttons
     const onHashChange = () => {
@@ -794,6 +796,26 @@ export default function App() {
       logTerminalRef.current.scrollTop = logTerminalRef.current.scrollHeight;
     }
   }, [systemLogsData, activeTab, systemLogsAutoScroll]);
+
+  // ----------------------------------------------------
+  // RENDER: AUTH VERIFICATION STATE (Prevents Login Flash)
+  // ----------------------------------------------------
+  if (authChecking) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-[var(--bg-main)]">
+        <div className="flex flex-col items-center gap-3 animate-pulse">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-xl shadow-purple-950/30">
+            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-purple-400 animate-spin" style={{ animationDuration: '3s' }} />
+            </div>
+          </div>
+          <div className="font-mono text-xs text-desc font-bold tracking-wider">
+            Đang tải dữ liệu...
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // ----------------------------------------------------
   // RENDER: LOGIN SCREEN (When not logged in)
