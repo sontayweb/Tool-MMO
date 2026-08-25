@@ -571,9 +571,10 @@ export default function App() {
   const fetchExports = async () => {
     try {
       const res = await api.getExports();
-      setExportsList(res.exports || []);
+      setExportsList(Array.isArray(res) ? res : (res?.exports || []));
     } catch (err) {
       console.error(err);
+      setExportsList([]);
     }
   };
 
@@ -599,9 +600,10 @@ export default function App() {
   const fetchBackups = async () => {
     try {
       const res = await api.getBackups();
-      setBackupsList(res.backups || []);
+      setBackupsList(Array.isArray(res) ? res : (res?.backups || []));
     } catch (err) {
       console.error(err);
+      setBackupsList([]);
     }
   };
 
@@ -675,9 +677,10 @@ export default function App() {
   const fetchApiKeys = async () => {
     try {
       const res = await api.getApiKeys();
-      setApiKeysList(res.keys || []);
+      setApiKeysList(Array.isArray(res) ? res : (res?.keys || []));
     } catch (err) {
       console.error(err);
+      setApiKeysList([]);
     }
   };
 
@@ -722,9 +725,10 @@ export default function App() {
   const fetchTeamsAndUsers = async () => {
     try {
       const res = await api.getUsers();
-      setUsersList(res.users || []);
+      setUsersList(Array.isArray(res) ? res : (res?.users || []));
     } catch (err) {
       console.error(err);
+      setUsersList([]);
     }
   };
 
