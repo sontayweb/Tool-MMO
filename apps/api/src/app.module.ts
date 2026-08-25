@@ -14,6 +14,7 @@ import { IntegrationsModule } from './modules/integrations/integrations.module.j
 import { BackupModule } from './modules/backup/backup.module.js';
 import { ApiKeysModule } from './modules/api-keys/api-keys.module.js';
 import { UsersModule } from './modules/users/users.module.js';
+import { TeamsModule } from './modules/teams/teams.module.js';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { UsersModule } from './modules/users/users.module.js';
     IntegrationsModule,
     BackupModule,
     ApiKeysModule,
-    UsersModule
+    UsersModule,
+    TeamsModule
   ],
   controllers: [AppController],
   providers: [AppService],

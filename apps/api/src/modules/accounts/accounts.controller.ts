@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, Param, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Body, Query, Param, UseGuards, Request } from '@nestjs/common';
 import { AccountsService } from './accounts.service.js';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/roles.guard.js';
@@ -76,6 +76,12 @@ export class AccountsController {
     return this.accountsService.getAnalyticsSummary();
   }
 
+  @Get('analytics/time-series')
+  @Roles('OWNER', 'MANAGER')
+  async getTimeSeriesAnalytics(@Query('period') period?: '7d' | '30d' | '90d') {
+    return this.accountsService.getTimeSeriesAnalytics(period);
+  }
+
   @Get('duplicates/scan')
   @Roles('OWNER', 'MANAGER')
   async scanDuplicates() {
@@ -140,5 +146,52 @@ export class AccountsController {
       req.user
     );
   }
+
+  // ----------------------------------------------------------------
+  // INGEST API: Dành cho shopee_checker_project & tool ngoại vi
+  // ----------------------------------------------------------------
+  @Post('ingest')
+  async ingestAccounts(
+    @Body() body: any,
+    @Request() req: any
+  ) {
+    const actor = req.user || { username: 'API_INGEST', role: 'MANAGER' };
+    const accounts = Array.isArray(body) ? body : (body.accounts || [body]);
+    return this.accountsService.ingestAccounts({ accounts }, actor);
+  }
+
+  // ----------------------------------------------------------------
+  // CONSUME API: Dành cho Web Shop bán lẻ (dichvutaikhoanao)
+  // ----------------------------------------------------------------
+  @Post('consume')
+  async consumeAccounts(
+    @Body() body: {
+      platform?: string;
+      quantity: number;
+      health_status?: string;
+      team?: string;
+      sold_to?: string;
+      order_id?: string;
+      note?: string;
+    },
+    @Request() req: any
+  ) {
+    const actor = req.user || { username: 'API_CONSUMER', role: 'MANAGER' };
+    return this.accountsService.consumeAccounts(body, actor);
+  }
+
+  // ----------------------------------------------------------------
+  // PATCH: Cập nhật thông tin 1 tài khoản
+  // ----------------------------------------------------------------
+  @Patch(':username')
+  @Roles('OWNER', 'MANAGER')
+  async updateAccount(
+    @Param('username') username: string,
+    @Body() body: any,
+    @Request() req: any
+  ) {
+    return this.accountsService.updateAccount(username, body, req.user);
+  }
 }
+
 

@@ -40,6 +40,8 @@ import { AccountFilters, AccountFiltersState } from '../components/accounts/Acco
 import { AccountsTable } from '../components/accounts/AccountsTable';
 import { BulkActionBar } from '../components/accounts/BulkActionBar';
 import { AccountDetailModal } from '../components/accounts/AccountDetailModal';
+import { SmartExportDialog } from '../components/accounts/SmartExportDialog';
+import { FarmMatrixView } from '../components/farm/FarmMatrixView';
 
 export default function App() {
   // Theme State
@@ -59,6 +61,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [isSmartExportOpen, setIsSmartExportOpen] = useState(false);
 
   // Global Toast State
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -870,6 +873,17 @@ export default function App() {
         onCopyText={copyToClipboard}
       />
 
+      {/* Smart 1-Click Export Dialog */}
+      <SmartExportDialog
+        isOpen={isSmartExportOpen}
+        onClose={() => setIsSmartExportOpen(false)}
+        onExportSuccess={(count, soldTo) => {
+          showToast(`Đã xuất thành công ${count} tài khoản cho ${soldTo}!`, 'success');
+          fetchAccounts(1);
+          fetchDashboardStats();
+        }}
+      />
+
       {/* Collapsible Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -894,6 +908,7 @@ export default function App() {
           activeTab={activeTab}
           onOpenMobileMenu={() => setIsMobileDrawerOpen(true)}
           onRefresh={fetchDashboardStats}
+          onOpenSmartExport={() => setIsSmartExportOpen(true)}
           isRefreshing={isRefreshingGlobal}
           theme={theme}
           toggleTheme={toggleTheme}
@@ -1252,6 +1267,15 @@ export default function App() {
                 )}
               </div>
             </div>
+          )}
+
+          {/* TAB: FARM MATRIX */}
+          {activeTab === 'farm' && (
+            <FarmMatrixView
+              onPushToBrowser={(code) =>
+                showToast(`Đã đẩy cấu hình dàn máy ${code} sang Antidetect Browser thành công!`, 'success')
+              }
+            />
           )}
 
           {/* TAB 6: BACKUPS & DISASTER RECOVERY */}

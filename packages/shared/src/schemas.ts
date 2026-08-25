@@ -41,6 +41,16 @@ export interface IAccount extends Document {
     last_scan_at: Date;
   };
   status: AccountStatus;
+  health_status?: "UNKNOWN" | "LIVE" | "SOFT_DEAD" | "DEAD" | "IVS_PENDING";
+  health_checked_at?: Date;
+  source_system?: string;
+  source_job_id?: string;
+  shopee_cookies?: {
+    SPC_ST?: string;
+    SPC_EC?: string;
+    SPC_F?: string;
+    SPC_U?: string;
+  };
   consumption?: {
     sold_to?: string;
     sold_at?: Date;
@@ -109,6 +119,21 @@ export const AccountSchema = new Schema<IAccount>(
       enum: ["AVAILABLE", "SOLD", "USED", "ERROR", "BLACKLISTED"],
       default: "AVAILABLE",
       index: true
+    },
+    health_status: {
+      type: String,
+      enum: ["UNKNOWN", "LIVE", "SOFT_DEAD", "DEAD", "IVS_PENDING"],
+      default: "UNKNOWN",
+      index: true
+    },
+    health_checked_at: Date,
+    source_system: { type: String, index: true },
+    source_job_id: String,
+    shopee_cookies: {
+      SPC_ST: String,
+      SPC_EC: String,
+      SPC_F: String,
+      SPC_U: String
     },
     consumption: {
       sold_to: String,

@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Menu, Activity, Sparkles, RefreshCw, Sun, Moon, Shield } from 'lucide-react';
+import { Menu, Activity, Sparkles, RefreshCw, Sun, Moon, Shield, Zap } from 'lucide-react';
 import { TabType } from './Sidebar';
 
 interface TopBarProps {
   activeTab: TabType;
   onOpenMobileMenu: () => void;
   onRefresh?: () => void;
+  onOpenSmartExport?: () => void;
   isRefreshing?: boolean;
   theme: 'dark' | 'light';
   toggleTheme: () => void;
@@ -20,6 +21,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   activeTab,
   onOpenMobileMenu,
   onRefresh,
+  onOpenSmartExport,
   isRefreshing = false,
   theme,
   toggleTheme,
@@ -92,6 +94,18 @@ export const TopBar: React.FC<TopBarProps> = ({
             <span className="text-desc text-[11px]">Tổng kho:</span>
             <span className="font-bold text-title font-mono">{totalAccounts.toLocaleString('vi-VN')}</span>
           </div>
+        )}
+
+        {/* Smart 1-Click Export Action */}
+        {onOpenSmartExport && (
+          <button
+            onClick={onOpenSmartExport}
+            className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs shadow-lg shadow-amber-950/30 transition-all flex items-center gap-1.5 shrink-0"
+            title="Xuất Nhanh 1-Click & Bán Hàng"
+          >
+            <Zap className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Xuất Nhanh</span>
+          </button>
         )}
 
         {/* Refresh Button */}

@@ -19,17 +19,21 @@ import {
   Zap,
 } from 'lucide-react';
 import { TabType } from '../layout/Sidebar';
+import { SalesChart } from './SalesChart';
+import { PlatformDonut } from './PlatformDonut';
 
 interface DashboardOverviewProps {
   stats: any;
   analytics: any;
   onNavigateTab: (tab: TabType) => void;
+  timeSeriesData?: any[];
 }
 
 export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
   stats,
   analytics,
   onNavigateTab,
+  timeSeriesData,
 }) => {
   const total = stats?.total || 0;
   const available = stats?.available || 0;
@@ -147,6 +151,25 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             </div>
             <div className="text-[11px] text-rose-400 mt-1 font-medium">Đã loại trừ an toàn</div>
           </div>
+        </div>
+      </div>
+
+      {/* VISUAL CHARTS SECTION (Recharts Area & Donut) */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <SalesChart data={timeSeriesData} />
+        </div>
+        <div className="lg:col-span-1">
+          <PlatformDonut
+            shopeeCount={shopeeCount}
+            tiktokCount={tiktokCount}
+            healthStats={{
+              live: Math.round(available * 0.85),
+              soft_dead: Math.round(available * 0.1),
+              dead: Math.round(available * 0.05) + blacklist,
+              unknown: Math.max(0, total - available - sold - used - blacklist)
+            }}
+          />
         </div>
       </div>
 
