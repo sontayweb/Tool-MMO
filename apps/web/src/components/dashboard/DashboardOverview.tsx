@@ -316,12 +316,12 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
                     #{idx + 1}
                   </div>
                   <div>
-                    <div className="font-bold text-title text-xs truncate">{buyer._id || 'Khách Vãng Lai'}</div>
+                    <div className="font-bold text-title text-xs truncate">{buyer.buyer_name || buyer._id || 'Khách Mua Nhanh'}</div>
                     <div className="text-[10px] text-desc mt-0.5">Lượng mua</div>
                   </div>
                 </div>
                 <div className="font-mono font-bold text-cyan-400 text-sm">
-                  {buyer.count.toLocaleString('vi-VN')} TK
+                  {(buyer.total_purchased || buyer.count || 0).toLocaleString('vi-VN')} TK
                 </div>
               </div>
             ))}

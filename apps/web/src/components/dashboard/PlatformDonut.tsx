@@ -147,15 +147,15 @@ export const PlatformDonut: React.FC<PlatformDonutProps> = ({
         <div className="flex justify-around text-xs pt-1 border-t border-[var(--border-subtle)]">
           <div className="flex items-center gap-1 text-[11px]">
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="text-desc">Live: {healthStats.live.toLocaleString('vi-VN')}</span>
+            <span className="text-desc">Live: {(healthStats?.live || 0).toLocaleString('vi-VN')}</span>
           </div>
           <div className="flex items-center gap-1 text-[11px]">
             <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span className="text-desc">Soft: {healthStats.soft_dead.toLocaleString('vi-VN')}</span>
+            <span className="text-desc">Soft: {(healthStats?.soft_dead || 0).toLocaleString('vi-VN')}</span>
           </div>
           <div className="flex items-center gap-1 text-[11px]">
             <span className="w-2 h-2 rounded-full bg-rose-400" />
-            <span className="text-desc">Dead: {healthStats.dead.toLocaleString('vi-VN')}</span>
+            <span className="text-desc">Dead: {(healthStats?.dead || 0).toLocaleString('vi-VN')}</span>
           </div>
         </div>
       </div>

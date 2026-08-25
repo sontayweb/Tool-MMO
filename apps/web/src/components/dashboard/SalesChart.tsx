@@ -47,11 +47,11 @@ export const SalesChart: React.FC<SalesChartProps> = ({ data }) => {
           <div className="space-y-1">
             <div className="text-emerald-400 font-semibold flex justify-between gap-4">
               <span>Sẵn sàng:</span>
-              <span>{payload[0]?.value?.toLocaleString('vi-VN')} TK</span>
+              <span>{Number(payload[0]?.value || 0).toLocaleString('vi-VN')} TK</span>
             </div>
             <div className="text-cyan-400 font-semibold flex justify-between gap-4">
               <span>Đã bán:</span>
-              <span>{payload[1]?.value?.toLocaleString('vi-VN')} TK</span>
+              <span>{Number(payload[1]?.value || 0).toLocaleString('vi-VN')} TK</span>
             </div>
           </div>
         </div>
