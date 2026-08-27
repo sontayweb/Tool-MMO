@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   Music2,
   KeyRound,
+  Coins,
 } from 'lucide-react';
 
 interface AccountDetailModalProps {
@@ -212,6 +213,40 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
               </div>
             </div>
 
+            {/* Phone Number */}
+            <div className="bg-[var(--bg-card)] p-3 rounded-xl border border-[var(--border-subtle)]">
+              <div className="text-[10px] text-desc uppercase font-sans flex items-center gap-1">
+                <Smartphone className="w-3 h-3" />
+                <span>Số điện thoại (SĐT)</span>
+              </div>
+              <div className="flex items-center justify-between mt-1">
+                <span className="text-amber-400 font-bold font-mono">
+                  {account.phone || '---'}
+                </span>
+                {account.phone && (
+                  <button
+                    onClick={() => handleCopy(account.phone, 'phone', 'Số điện thoại')}
+                    className="text-desc hover:text-title p-1"
+                  >
+                    {copiedKey === 'phone' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Shopee Coins / Machine ID */}
+            <div className="bg-[var(--bg-card)] p-3 rounded-xl border border-[var(--border-subtle)]">
+              <div className="text-[10px] text-desc uppercase font-sans flex items-center gap-1">
+                <Coins className="w-3 h-3" />
+                <span>{account.platform === 'TIKTOK' ? 'Mã máy dàn Farm' : 'Số xu Shopee'}</span>
+              </div>
+              <div className="text-title mt-1 font-bold font-mono text-emerald-400">
+                {account.platform === 'TIKTOK'
+                  ? (account.machine_id || '---')
+                  : (account.coins ? `${Number(account.coins).toLocaleString()} xu` : (account.custom_metadata?.coins || '---'))}
+              </div>
+            </div>
+
             {/* Product / Note */}
             <div className="bg-[var(--bg-card)] p-3 rounded-xl border border-[var(--border-subtle)]">
               <div className="text-[10px] text-desc uppercase font-sans flex items-center gap-1">
@@ -308,6 +343,30 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Raw Record Inspection */}
+        {account.raw && (
+          <div className="app-card-inner rounded-2xl p-4 space-y-2 border border-[var(--border-subtle)] font-mono text-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-desc uppercase tracking-wider font-sans flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-amber-400" />
+                <span>Dòng Dữ Liệu Gốc (Raw Record - Hàng #{account.raw.row_number || '?'})</span>
+              </span>
+              {account.raw.raw_text && (
+                <button
+                  onClick={() => handleCopy(account.raw.raw_text, 'raw', 'Dữ liệu thô')}
+                  className="text-xs text-amber-400 hover:underline flex items-center gap-1 font-sans font-bold"
+                >
+                  {copiedKey === 'raw' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                  <span>Sao Chép Dòng Gốc</span>
+                </button>
+              )}
+            </div>
+            <div className="bg-[var(--bg-input)] p-3 rounded-xl border border-[var(--border-subtle)] text-[11px] text-zinc-300 break-all overflow-x-auto">
+              {account.raw.raw_text || JSON.stringify(account.raw.values || account.raw)}
+            </div>
+          </div>
+        )}
 
         {/* Footer quick button */}
         <div className="flex items-center justify-end gap-3 pt-2">

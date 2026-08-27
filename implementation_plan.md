@@ -116,7 +116,7 @@ function onOpen() {
     .addItem('🚀 [AUTO] Chạy Toàn Bộ Pipeline (4→5→6)', 'runFullPipeline')
     .addSeparator()
     .addItem('⚡ Kiểm tra kết nối API (Test Connection)', 'testConnection')
-    .addItem('⚙️ Cấu hình thông tin kết nối (Setup Wizard)', 'runSetupWizard')
+    .addItem(' Cấu hình thông tin kết nối (Setup Wizard)', 'runSetupWizard')
     .addToUi();
 }
 ```

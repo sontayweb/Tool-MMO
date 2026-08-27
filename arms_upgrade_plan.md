@@ -434,7 +434,7 @@ EXPANDED (256px)               COLLAPSED (64px)
 │ 🖥️ Dàn Máy Farm    │        │  🖥️  │
 │ 💰 CRM & Kế Toán    │        │  💰  │
 │ ─────────────────── │        │  ─── │
-│ ⚙️ Cài đặt          │        │  ⚙️  │
+│  Cài đặt          │        │    │
 │ 🌙 Chế độ sáng      │        │  🌙  │
 │ 🚪 Đăng xuất        │        │  🚪  │
 └─────────────────────┘        └──────┘
@@ -466,7 +466,7 @@ const soldTo = await inputDialog({
 
 ---
 
-## ⚙️ PHẦN 5: NÂNG CẤP BACKEND
+##  PHẦN 5: NÂNG CẤP BACKEND
 
 ### 5.1 Swagger API Docs
 

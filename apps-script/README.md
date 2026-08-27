@@ -22,7 +22,7 @@ Tài liệu này hướng dẫn chi tiết cách cấu hình **Google Apps Scrip
 
 ### Bước 3: Cấu hình khóa kết nối bảo mật (Script Properties)
 Để gửi dữ liệu về server ARMS an toàn, bạn cần cấu hình các biến bảo mật như sau:
-1. Ở menu bên trái trình soạn thảo Apps Script, bấm vào biểu tượng bánh răng **Project Settings (Cài đặt dự án)** ⚙️.
+1. Ở menu bên trái trình soạn thảo Apps Script, bấm vào biểu tượng bánh răng **Project Settings (Cài đặt dự án)** .
 2. Cuộn xuống dưới cùng tìm mục **Script Properties (Thuộc tính tập lệnh)** và bấm **Add script property**.
 3. Nhập các thuộc tính sau:
 

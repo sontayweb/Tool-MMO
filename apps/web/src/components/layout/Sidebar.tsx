@@ -20,11 +20,13 @@ import {
   Sparkles,
   Server,
   TrendingUp,
+  Cloud,
 } from 'lucide-react';
 
 export type TabType =
   | 'overview'
   | 'accounts'
+  | 'ingress'
   | 'import'
   | 'lookup'
   | 'exports'
@@ -69,7 +71,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setIsMobileOpen,
   stats,
 }) => {
-  const mainNavItems = [
+  const coreNavItems = [
     {
       id: 'overview' as TabType,
       label: 'Tổng Quan Kho',
@@ -84,32 +86,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
       iconColor: 'text-cyan-500 dark:text-cyan-400',
     },
     {
-      id: 'import' as TabType,
-      label: 'Nhập Kho Offline',
-      icon: Upload,
-      iconColor: 'text-indigo-500 dark:text-indigo-400',
+      id: 'ingress' as TabType,
+      label: 'Kéo Data Google Drive',
+      icon: Cloud,
+      badge: 'DRIVE',
+      badgeColor: 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
+      iconColor: 'text-blue-500 dark:text-blue-400',
+    },
+  ];
+
+  const tiktokNavItems = [
+    {
+      id: 'farm' as TabType,
+      label: 'Dàn Máy Nuôi Boxphone',
+      icon: Server,
+      iconColor: 'text-pink-500 dark:text-pink-400',
+      tag: 'TIKTOK',
     },
     {
       id: 'lookup' as TabType,
-      label: 'Tra Cứu Nhanh',
+      label: 'Tra Cứu Nhanh Danh Sách',
       icon: Search,
-      iconColor: 'text-emerald-500 dark:text-emerald-400',
+      iconColor: 'text-cyan-500 dark:text-cyan-400',
+    },
+  ];
+
+  const logisticsNavItems = [
+    {
+      id: 'import' as TabType,
+      label: 'Nhập Kho Offline / File',
+      icon: Upload,
+      iconColor: 'text-indigo-500 dark:text-indigo-400',
     },
     {
       id: 'exports' as TabType,
       label: 'Trung Tâm Xuất File',
       icon: Download,
       iconColor: 'text-blue-500 dark:text-blue-400',
-    },
-  ];
-
-  const mmoNavItems = [
-    {
-      id: 'farm' as TabType,
-      label: 'Dàn Máy Boxphone',
-      icon: Server,
-      iconColor: 'text-amber-500 dark:text-amber-400',
-      tag: 'HOT',
     },
     {
       id: 'crm' as TabType,
@@ -136,14 +149,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       id: 'teams' as TabType,
-      label: 'Đội Nhóm & Quyền',
+      label: 'Đội Nhóm & Phân Quyền',
       icon: Users,
       iconColor: 'text-purple-500 dark:text-purple-400',
       roles: ['OWNER', 'MANAGER'],
     },
     {
       id: 'systemlogs' as TabType,
-      label: 'Nhật Ký Tập Trung',
+      label: 'Nhật Ký Tập Trung Live',
       icon: Terminal,
       iconColor: 'text-rose-500 dark:text-rose-400',
       badge: 'LIVE',
@@ -318,30 +331,44 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Navigation Sections */}
         <div className={`flex-1 overflow-y-auto ${isCollapsed ? 'px-1 py-3 space-y-3' : 'px-3 py-2 space-y-4'}`}>
-          {/* Main Section */}
+          {/* Section 1: Core DWH */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
-                Quản Lý Kho
+              <div className="px-3 py-1 text-[10px] font-bold text-cyan-400/80 uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                Tổng Kho Trung Tâm
               </div>
             )}
-            {mainNavItems.map(renderNavButton)}
+            {coreNavItems.map(renderNavButton)}
           </div>
 
-          {/* MMO Special Section */}
+          {/* Section 2: Dedicated TikTok Subsystem */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
-                MMO Chuyên Nghiệp
+              <div className="px-3 py-1 text-[10px] font-bold text-pink-400/80 uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
+                Phân Hệ TikTok MMO
               </div>
             )}
-            {mmoNavItems.map(renderNavButton)}
+            {tiktokNavItems.map(renderNavButton)}
           </div>
 
-          {/* Infra & Security Section */}
+          {/* Section 3: Logistics & CRM */}
           <div className="space-y-1">
             {!isCollapsed && (
-              <div className="px-3 py-1 text-[10px] font-bold text-[var(--sidebar-text-muted)] uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-bold text-indigo-400/80 uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                Kho Vận & Xuất Nhập
+              </div>
+            )}
+            {logisticsNavItems.map(renderNavButton)}
+          </div>
+
+          {/* Section 4: Infra & Security */}
+          <div className="space-y-1">
+            {!isCollapsed && (
+              <div className="px-3 py-1 text-[10px] font-bold text-purple-400/80 uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
                 Hạ Tầng & Bảo Mật
               </div>
             )}

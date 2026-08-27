@@ -1,0 +1,267 @@
+====================================================================================================
+                        BÁO CÁO TỔNG HỢP CHI TIẾT TỪNG FILE TRONG HỆ THỐNG ARMS DWH
+====================================================================================================
+Thời gian đối soát: 27/08/2026
+Dự án: ARMS Data Warehouse (Hệ thống Quản lý, Cào Dữ liệu & Xuất Bán Tài Khoản MMO Đa Nền Tảng)
+Môi trường: Monorepo (apps/api - Port 4000, apps/web - Port 3000, apps/worker, packages/shared)
+Cơ sở dữ liệu: MongoDB (Cổng 27017) & Redis 7 BullMQ (Cổng 6380)
+
+----------------------------------------------------------------------------------------------------
+PHẦN 1: TỔNG QUAN KIẾN TRÚC TOÀN HỆ THỐNG
+----------------------------------------------------------------------------------------------------
+Hệ thống gồm 4 phân hệ chính hoạt động độc lập:
+1. Backend REST API (apps/api): Cung cấp toàn bộ API quản trị, xác thực, cào dữ liệu Google Drive và quản lý tài khoản.
+2. Worker Engine (apps/worker): Xử lý hàng đợi BullMQ chạy nền (Background Queues) cho các tác vụ nặng (Scan file, Export hàng loạt).
+3. Frontend Dashboard (apps/web): Giao diện Next.js 16 + React 19 điều hành tập trung toàn bộ kho tài khoản.
+4. Thư Viện Dùng Chung (packages/shared): Chứa toàn bộ Mongoose Schemas, Crypto AES-256, Account Parser, Normalizer.
+
+====================================================================================================
+PHẦN 2: CHI TIẾT TỪNG FILE TRONG PACKAGES/SHARED (THƯ VIỆN DÙNG CHUNG)
+====================================================================================================
+
+1. packages/shared/src/schemas.ts
+   - Chức năng: Định nghĩa toàn bộ Mongoose Schemas và TypeScript Interfaces của hệ thống.
+   - Các Schema cốt lõi:
+     + AccountSchema (IAccount): Quản lý từng tài khoản MMO.
+       * Trường định danh: username, username_normalized.
+       * Trường nền tảng: platform ('SHOPEE' | 'TIKTOK' | 'FACEBOOK' | 'MAIL' | 'OTHER').
+       * Trường bảo mật mã hóa AES-256: password_enc, cookie_enc, token_enc, session_token, email_password_enc.
+       * Trường dàn máy & metadata: machine_id, email, custom_metadata, quality (has_cookie, has_token, has_email).
+       * Trạng thái tài nguyên: status ('AVAILABLE' | 'SOLD' | 'USED' | 'ERROR' | 'BLACKLISTED').
+       * Lịch sử thao tác: history (IAccountHistory).
+       * CHỈ MỤC KÉP QUAN TRỌNG: AccountSchema.index({ platform: 1, username_normalized: 1 }, { unique: true })
+         -> Đảm bảo tài khoản Shopee và TikTok cùng tên đăng nhập vẫn tồn tại độc lập 100%, không bao giờ ghi đè lẫn nhau.
+     + ScanBatchSchema (IScanBatch): Quản lý từng đợt scan file hoặc Google Sheets Ingress.
+     + AuditLogSchema (IAuditLog): Ghi nhật ký kiểm toán toàn bộ thao tác trong hệ thống.
+     + ExportJobSchema (IExportJob): Quản lý các lệnh xuất file TXT / XLSX.
+     + ApiKeySchema (IApiKey): Quản lý Service API Keys cho tool ngoài.
+     + UserSchema (IUser): Quản lý tài khoản nhân viên và phân quyền (OWNER, MANAGER, LEADER, MEMBER).
+
+2. packages/shared/src/crypto.service.ts
+   - Chức năng: Mã hóa và giải mã dữ liệu nhạy cảm bằng thuật toán AES-256-GCM chuẩn quân sự.
+   - Các hàm chính:
+     + encrypt(plainText): Mã hóa chuỗi đầu vào kèm Vector khởi tạo (IV) ngẫu nhiên và Auth Tag.
+     + decrypt(cipherText): Giải mã chuỗi về nguyên bản, tự động phát hiện lỗi giả mạo dữ liệu.
+
+3. packages/shared/src/account.parser.ts
+   - Chức năng: Bộ não bóc tách dữ liệu tài khoản đa định dạng (Universal Account Parser).
+   - Khả năng xử lý:
+     + detectPlatform(): Tự động nhận diện nền tảng (SHOPEE, TIKTOK, FACEBOOK, MAIL) dựa trên từ khóa file, tab và nội dung.
+     + parseLine(): Bóc tách chuỗi Pipe (User|Pass|Mail|PassMail|Cookie|Token|Machine).
+     + parseRow(): Bóc tách từng hàng trong Excel (nhận diện vị trí Email, Password, Cookie ttwid, Cookie Shopee, Mã máy Boxphone M.C542..., p2k1).
+     + parseText(): Bóc tách toàn bộ file văn bản nhiều dòng.
+
+4. packages/shared/src/username.normalizer.ts
+   - Chức năng: Chuẩn hóa tên đăng nhập về dạng thống nhất (chữ thường, loại bỏ khoảng trắng thừa, ký tự ẩn).
+   - Hàm: normalize(raw), isValid(username).
+
+5. packages/shared/src/index.ts
+   - Chức năng: Export toàn bộ types, schemas, services của packages/shared cho API và Worker sử dụng.
+
+====================================================================================================
+PHẦN 3: CHI TIẾT TỪNG FILE TRONG APPS/API (BACKEND REST API)
+====================================================================================================
+
+1. apps/api/src/main.ts
+   - Chức năng: Điểm khởi động NestJS API Backend (chạy tại cổng 4000).
+   - Thiết lập: CORS, Cookie Parser, Swagger API Documentation (/api/docs), Global Validation Pipe, tải biến môi trường .env.
+
+2. apps/api/src/app.module.ts
+   - Chức năng: Root Module kết nối toàn bộ hệ thống API.
+   - Imports: DatabaseModule (MongoDB), RedisModule (BullMQ), AuthModule, AccountsModule, IntegrationsModule, ScanModule, ExportModule, BackupModule, AuditModule, ApiKeyModule.
+
+3. apps/api/src/modules/integrations/google-drive.service.ts
+   - Chức năng: Phân hệ Kéo dữ liệu từ Google Drive / Google Sheets chuyên sâu cho Shopee & Tổng thể.
+   - Cơ chế cốt lõi:
+     + OAuth2 Client tự động nạp client_secret_*.json và google_token.json, tự động làm mới Token khi hết hạn.
+     + Vòng lặp phân trang pageToken quét sạch toàn bộ file trên Google Drive & Shared Drives.
+     + Bộ lọc nghiêm ngặt !isTikTokFile: Loại trừ 100% tất cả file TikTok ra ngoài để tránh lẫn lộn.
+     + Hybrid Stream: Đọc Google Sheets API v4 hoặc stream XLSX qua Drive API v3 để chống tràn RAM và chống lỗi Quota 429.
+     + Mã hóa AES-256 toàn bộ mật khẩu, cookie, token trước khi ghi vào MongoDB.
+     + Lưu DB theo khóa kép: { platform: 'SHOPEE', username_normalized: parsed.username_normalized }.
+     + Auto-Sync Cron: Hẹn giờ tự động quét ngầm mỗi 15p, 30p, 1h, 6h.
+
+4. apps/api/src/modules/integrations/google-drive.controller.ts
+   - Chức năng: Cung cấp các REST endpoint cho Google Drive Ingress.
+   - Endpoints:
+     + GET /api/integrations/google-drive/status: Lấy trạng thái kết nối và tiến trình thời gian thực.
+     + POST /api/integrations/google-drive/sync-now: Kích hoạt đồng bộ ngầm ngay lập tức.
+     + POST /api/integrations/google-drive/settings: Bật/tắt tự động quét theo lịch.
+     + GET /api/integrations/google-drive/auth-url: Tạo link đăng nhập Google Drive OAuth.
+
+5. apps/api/src/modules/integrations/tiktok-drive.service.ts
+   - Chức năng: Phân hệ Kéo dữ liệu TikTok chuyên sâu từ Google Drive (Dựa trên cấu trúc file 700 Acc tiktok 4.2026.xlsx).
+   - Cơ chế cốt lõi:
+     + Vòng lặp phân trang pageToken quét toàn bộ Google Drive & Shared Drives.
+     + Bộ lọc nghiêm ngặt isTikTokFile: CHỈ quét các file thuộc về TikTok (chứa từ khóa tiktok, 700 acc, farm, boxphone, tt_).
+     + Bóc tách chuyên sâu các trường TikTok: Cookie ttwid, sessionid, ssid_ucp, odin_tt, Hotmail/Outlook gốc & Password Mail, Dàn máy Boxphone (M.C542..., p2k1), Device UUID.
+     + Mã hóa AES-256 và lưu DB theo khóa kép: { platform: 'TIKTOK', username_normalized: parsed.username_normalized }.
+     + Tự động kích hoạt Khóa An Toàn Snapshot trước khi thực hiện nạp đợt TikTok mới.
+
+6. apps/api/src/modules/integrations/tiktok-drive.controller.ts
+   - Chức năng: REST Controller cho phân hệ TikTok Drive.
+   - Endpoints:
+     + GET /api/integrations/tiktok-drive/status: Trả về trạng thái, % tiến độ, 4 chỉ số KPI TikTok và Live Terminal Logs.
+     + POST /api/integrations/tiktok-drive/sync-now: Kích hoạt cào và chuẩn hóa kho TikTok 1-click.
+
+7. apps/api/src/modules/integrations/google-sheets.controller.ts
+   - Chức năng: Nhận dữ liệu đồng bộ từ Google Apps Script webhook hoặc script ngoài.
+   - Endpoints:
+     + POST /api/integrations/google-sheets/sync: Tạo file upload tạm và đẩy Job vào BullMQ ScanQueue.
+     + POST /api/integrations/google-sheets/save-sheet-index: Lưu mục lục sheet vào collection discovered_sheets.
+
+8. apps/api/src/modules/integrations/integrations.module.ts
+   - Chức năng: Đăng ký các Controller và Provider của phân hệ tích hợp Drive/Sheets.
+
+9. apps/api/src/modules/backup/backup.service.ts
+   - Chức năng: Quản lý bản Snapshot sao lưu dữ liệu và Khóa Bảo Vệ Dữ Liệu Tối Thượng (Fail-Safe Snapshot Guard).
+   - Các hàm chính:
+     + createSnapshot(): Nén toàn bộ Accounts, ScanBatches, AuditLogs thành file .json.gz lưu vào data/backups/.
+     + listBackups(): Lấy danh sách các bản snapshot kèm dung lượng MB và thời gian tạo.
+     + restoreSnapshot(): Phục hồi 1-click toàn bộ dữ liệu từ bản snapshot nén.
+     + ensurePreDestructiveSnapshot(actionName, actor): KHÓA AN TOÀN BẢO VỆ DỮ LIỆU. Bắt buộc tạo snapshot trước khi thực hiện bất kỳ lệnh xóa/làm sạch nào. Nếu tạo snapshot lỗi -> CHẶN TUYỆT ĐỐI tác vụ ngay lập tức.
+     + cleanOldBackups(): Tự động dọn dẹp các bản backup cũ quá 14 ngày.
+
+10. apps/api/src/modules/backup/backup.controller.ts
+    - Chức năng: REST Controller cho tính năng Sao lưu & Phục hồi.
+    - Endpoints:
+      + GET /api/backups: Lấy danh sách snapshot.
+      + POST /api/backups/create: Tạo snapshot mới.
+      + POST /api/backups/:fileName/restore: Phục hồi dữ liệu từ snapshot.
+      + GET /api/backups/:fileName/download: Tải file .json.gz về máy.
+
+11. apps/api/src/modules/backup/backup.module.ts
+    - Chức năng: Đăng ký BackupService và BackupController, export BackupService cho các module khác dùng chung.
+
+12. apps/api/src/modules/accounts/accounts.service.ts
+    - Chức năng: Xử lý toàn bộ logic nghiệp vụ của Kho Tài Khoản MMO.
+    - Các hàm chính:
+      + findAll(): Tìm kiếm, lọc đa chiều (platform, status, machine_id, cookie, team, date), phân trang tốc độ cao.
+      + getByUsername(): Tra cứu chi tiết 1 tài khoản kèm lịch sử thao tác history đầy đủ.
+      + lookupBulk(): Tra cứu hàng loạt danh sách username dán vào.
+      + updateStatus(): Đổi trạng thái tài khoản (AVAILABLE, SOLD, USED, ERROR, BLACKLISTED).
+      + bulkMarkSold() / bulkMarkUsed() / bulkBlacklist(): Thao tác hàng loạt trên nhiều tài khoản.
+      + scanDuplicates(): Quét và gom nhóm các tài khoản bị trùng lặp theo cặp { platform, username_normalized } trong MongoDB.
+      + cleanDuplicates(): Tự động hợp nhất và làm sạch bản ghi trùng lặp CÙNG NỀN TẢNG (Tự động kích hoạt ensurePreDestructiveSnapshot trước khi xóa, bảo vệ tuyệt đối không xóa chéo giữa Shopee và TikTok).
+      + getStats(): Thống kê số lượng theo nền tảng, trạng thái, dàn máy nuôi.
+
+13. apps/api/src/modules/accounts/accounts.controller.ts
+    - Chức năng: Cung cấp toàn bộ REST API cho Kho Tài Khoản (bảo vệ bởi JwtAuthGuard và RolesGuard).
+
+14. apps/api/src/modules/accounts/accounts.module.ts
+    - Chức năng: Đăng ký AccountsService, AccountsController và import BackupModule.
+
+15. apps/api/src/modules/audit/audit.service.ts & audit.module.ts
+    - Chức năng: Ghi vết tập trung toàn bộ hành động (Ingress, Login, Export, Delete, Backup) vào MongoDB collection audit_logs.
+
+16. apps/api/src/modules/scan/scan.service.ts, scan.controller.ts, scan.module.ts
+    - Chức năng: Quản lý các lô Scan Batch, đẩy job vào BullMQ ScanQueue để Worker xử lý.
+
+17. apps/api/src/modules/export/export.service.ts, export.controller.ts, export.module.ts
+    - Chức năng: Tạo lệnh xuất file (Export Job) ra TXT / Excel, hỗ trợ đánh dấu "Đã Bán" ngay sau khi xuất.
+
+18. apps/api/src/modules/auth/auth.service.ts, auth.controller.ts, auth.module.ts, jwt-auth.guard.ts, roles.guard.ts
+    - Chức năng: Xác thực đăng nhập bằng JWT Token, mã hóa mật khẩu bcrypt, phân quyền 4 cấp độ (OWNER, MANAGER, LEADER, MEMBER).
+
+====================================================================================================
+PHẦN 4: CHI TIẾT TỪNG FILE TRONG APPS/WEB (FRONTEND DASHBOARD NEXT.JS 16)
+====================================================================================================
+
+1. apps/web/src/app/page.tsx
+   - Chức năng: Component trung tâm điều phối toàn bộ Web Dashboard (Root Coordinator).
+   - Quản lý State toàn cục: Phiên đăng nhập, Tab đang mở (activeTab), Danh sách tài khoản, Bộ lọc, Thông báo Toast, Modal xem chi tiết.
+   - Render động các Tab:
+     + overview: Bảng Điều Khiển Tổng Quan KPI.
+     + accounts: Kho Dữ Liệu Tài Khoản (AccountsTable + AccountFilters + BulkActionBar).
+     + ingress: TRANG QUẢN LÝ TẬP TRUNG KÉO DỮ LIỆU GOOGLE DRIVE (DriveIngressHub).
+     + import: Nhập Kho File Offline & Công cụ Làm Sạch Trùng Lặp.
+     + lookup: Tra Cứu Nhanh Danh Sách Username.
+     + farm: Trung Tâm Quản Lý Dàn Máy Boxphone (FarmMatrixView).
+     + exports: Trung Tâm Xuất File TXT / Excel.
+     + backups: Quản Trị Bản Sao Lưu Snapshot & Phục Hồi 1-Click.
+     + apikeys: Quản Lý Khóa Service API.
+     + teams: Quản Lý Nhân Viên & Phân Quyền.
+     + systemlogs: Màn Hình Nhật Ký Tập Trung Live Audit Stream.
+
+2. apps/web/src/lib/api.ts
+   - Chức năng: API Client tập trung gọi toàn bộ endpoint Backend từ trình duyệt.
+   - Chứa các hàm: getAccounts, getStats, lookupBulk, updateStatus, uploadOffline, getGoogleDriveStatus, startGoogleDriveSync, saveGoogleDriveSettings, getTikTokDriveStatus, startTikTokDriveSync, getBackups, createBackup, restoreBackup, getSystemLogs...
+
+3. apps/web/src/components/ingress/DriveIngressHub.tsx
+   - Chức năng: TRANG QUẢN LÝ TẬP TRUNG KÉO DỮ LIỆU GOOGLE DRIVE (Full-Page Dashboard Canvas).
+   - Cấu trúc trang:
+     + Header Monitor: Đèn báo kết nối OAuth2 Google Drive, Đèn báo Auto-Sync Cron.
+     + Tab 1 (Phân Hệ TikTok Drive): 4 Thẻ KPI (Tổng nick, % Cookie ttwid, Hotmail gốc, Dàn máy Boxphone) + Nút "Bắt Đầu Cào TikTok Ngay" + Thanh tiến độ + Live Terminal Console riêng của TikTok.
+     + Tab 2 (Phân Hệ Shopee Drive): Thống kê nạp mới / đè + Nút "Bắt Đầu Quét Ngay" (đã lọc bỏ 100% file TikTok) + Live Console riêng của Shopee.
+     + Tab 3 (Hẹn Giờ Tự Động & Khóa An Toàn): Công tắc Auto-Sync Cron (15p, 30p, 1h, 6h) + Thông tin Khóa Bảo Vệ Snapshot.
+
+4. apps/web/src/components/layout/Sidebar.tsx
+   - Chức năng: Menu điều hướng bên trái, phân chia thành 4 khối phân hệ rõ ràng:
+     + 🌟 TỔNG KHO TRUNG TÂM: Tổng Quan Kho, Kho Tài Khoản, Kéo Data Google Drive (Tab ingress mới).
+     + 🎵 PHÂN HỆ TIKTOK MMO: Dàn Máy Nuôi Boxphone, Tra Cứu Nhanh.
+     + 📦 KHO VẬN & XUẤT NHẬP: Nhập Kho Offline / File, Trung Tâm Xuất File, Doanh Thu & Khách Hàng.
+     + ⚙️ HẠ TẦNG & BẢO MẬT: Sao Lưu Snapshot, Cổng Kết Nối Tool API, Đội Nhóm & Phân Quyền, Nhật Ký Tập Trung Live.
+
+5. apps/web/src/components/layout/TopBar.tsx
+   - Chức năng: Thanh tiêu đề trên cùng, đã được tinh gọn sạch sẽ:
+     + Hiển thị Tiêu đề và Mô tả của Tab hiện tại.
+     + Badge Tổng kho thời gian thực.
+     + Nút "⚡ Xuất Nhanh" 1-click phục vụ bán hàng.
+     + Nút Làm Mới dữ liệu.
+     + Nút Chuyển đổi Theme (Sáng / Tối).
+     + Badge Profile người dùng đăng nhập.
+
+6. apps/web/src/components/accounts/AccountFilters.tsx
+   - Chức năng: Bộ lọc đa chiều cho Kho Tài Khoản.
+   - Dải phím chuyển đổi phân hệ nhanh 1-Click:
+     [✨ TẤT CẢ KHO] | [🎵 PHÂN HỆ TIKTOK MMO] | [🛒 PHÂN HỆ SHOPEE] | [📘 FACEBOOK] | [📧 HÒM MAIL]
+   - Các trường lọc: Tìm kiếm từ khóa, Lọc trạng thái, Lọc máy nuôi boxphone, Lọc có/không cookie, Lọc theo team.
+
+7. apps/web/src/components/accounts/AccountsTable.tsx
+   - Chức năng: Bảng hiển thị danh sách tài khoản chuyên nghiệp.
+   - Tính năng: Checkbox chọn nhiều dòng, Ẩn/Hiện mật khẩu, Copy 1-click, Phân trang, Huy hiệu nhận diện độc quyền cho từng nền tảng (TikTok Neon Cyan/Pink, Shopee Cam, Facebook Xanh Dương, Mail Tím).
+
+8. apps/web/src/components/accounts/AccountDetailModal.tsx
+   - Chức năng: Cửa sổ xem toàn bộ thông tin chi tiết, cookie, token, metadata và lịch sử thao tác của 1 tài khoản.
+
+9. apps/web/src/components/accounts/SmartExportDialog.tsx
+   - Chức năng: Hộp thoại xuất nhanh 1-click theo số lượng, tự động đổi trạng thái sang "SOLD" và gán tên khách hàng.
+
+10. apps/web/src/components/farm/FarmMatrixView.tsx
+    - Chức năng: Bảng ma trận quản lý tài khoản theo từng dàn máy nuôi Boxphone / Máy ảo.
+
+====================================================================================================
+PHẦN 5: CHI TIẾT TỪNG FILE TRONG APPS/WORKER (BULLMQ QUEUE WORKER)
+====================================================================================================
+
+1. apps/worker/src/main.ts
+   - Chức năng: Điểm khởi động của Worker Process độc lập. Tải biến môi trường và kết nối Redis BullMQ.
+
+2. apps/worker/src/worker.module.ts
+   - Chức năng: Đăng ký các Processor xử lý hàng đợi: ScanProcessor và ExportProcessor.
+
+3. apps/worker/src/processors/scan.processor.ts
+   - Chức năng: Đọc từng file Excel/TXT trong hàng đợi, dùng AccountParser bóc tách từng dòng, mã hóa AES-256 và bulkWrite nạp vào MongoDB.
+
+4. apps/worker/src/processors/export.processor.ts
+   - Chức năng: Trích xuất hàng chục nghìn tài khoản từ MongoDB thành file TXT hoặc XLSX nén sẵn để người dùng tải về.
+
+====================================================================================================
+PHẦN 6: CÁC SCRIPT VẬN HÀNH & FILE CẤU HÌNH GỐC
+====================================================================================================
+
+1. AGENTS.md & apps/web/AGENTS.md
+   - Chức năng: Quy chuẩn 8 quy tắc vận hành và tư duy kiến trúc toàn diện cho AI (Bảo vệ dữ liệu, Plan First, Trung thực, Kiến trúc hệ thống toàn cảnh, Phân định ranh giới phân hệ).
+
+2. active_drive_ingress.js
+   - Chức năng: Script gốc cào Google Drive độc lập (Toàn bộ logic phân trang pageToken, Quota backoff, Stream XLSX đã được chuyển hóa vào GoogleDriveService và TikTokDriveService trong Backend).
+
+3. connect_google_drive.js
+   - Chức năng: Script xác thực OAuth2 lần đầu để sinh ra file google_token.json.
+
+4. check_db_status.js
+   - Chức năng: Script kiểm tra nhanh số lượng tài khoản và danh sách collection trong MongoDB.
+
+5. 700 Acc tiktok 4.2026.xlsx
+   - Chức năng: File mẫu thực tế chứa hơn 700 tài khoản TikTok phục vụ kiểm thử và chuẩn hóa logic bóc tách cho Phân hệ TikTok Drive.
+====================================================================================================

@@ -2,8 +2,10 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 
 // Load dotenv from root folder (checks multiple possible paths in monorepo)
+dotenv.config({ path: path.join(process.cwd(), '../.env') });
 dotenv.config({ path: path.join(process.cwd(), '../../.env') });
 dotenv.config({ path: path.join(__dirname, '../../../.env') });
+dotenv.config({ path: path.join(__dirname, '../../../../.env') });
 dotenv.config({ path: path.join(process.cwd(), '.env') });
 
 import { NestFactory } from '@nestjs/core';
@@ -48,6 +50,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   const port = process.env.PORT || 4000;
+  console.log(`[DATABASE URI IN USE]: ${process.env.MONGODB_URI}`);
   await app.listen(port);
   console.log(`API is running on: http://localhost:${port}/api`);
   console.log(`Swagger Docs available at: http://localhost:${port}/api/docs`);

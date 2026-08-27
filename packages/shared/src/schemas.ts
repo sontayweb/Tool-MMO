@@ -21,13 +21,16 @@ export interface IAccount extends Document {
   token_enc?: string;
   session_token?: string;
   machine_id?: string;
+  phone?: string;
+  coins?: string | number;
   email?: string;
   email_password_enc?: string;
   custom_metadata?: Record<string, any>;
   raw?: {
-    values: Record<string, any>;
+    values?: any;
     row_number?: number;
     row_hash?: string;
+    raw_text?: string;
   };
   metadata: {
     source_file?: string;
@@ -89,19 +92,22 @@ export const AccountSchema = new Schema<IAccount>(
       index: true
     },
     username: { type: String, required: true },
-    username_normalized: { type: String, required: true, unique: true },
+    username_normalized: { type: String, required: true },
     password_enc: { type: String },
     cookie_enc: { type: String },
     token_enc: { type: String },
     session_token: { type: String },
     machine_id: { type: String, index: true },
+    phone: { type: String, index: true },
+    coins: { type: Schema.Types.Mixed },
     email: { type: String },
     email_password_enc: { type: String },
     custom_metadata: { type: Schema.Types.Mixed },
     raw: {
-      values: { type: Map, of: Schema.Types.Mixed },
+      values: { type: Schema.Types.Mixed },
       row_number: Number,
-      row_hash: String
+      row_hash: String,
+      raw_text: String
     },
     metadata: {
       source_file: String,
@@ -156,6 +162,7 @@ export const AccountSchema = new Schema<IAccount>(
 );
 
 
+AccountSchema.index({ platform: 1, username_normalized: 1 }, { unique: true });
 AccountSchema.index({ status: 1, "metadata.last_scan_at": -1 });
 AccountSchema.index({ "metadata.source_sheet": 1, status: 1 });
 AccountSchema.index({ "metadata.batch_id": 1 });

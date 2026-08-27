@@ -1,0 +1,82 @@
+================================================================================
+🎵 BÁO CÁO ĐỐI SOÁT PHÂN HỆ TIKTOK DRIVE (DRY-RUN CHỈ ĐỌC)
+Thời gian quét: 23:35:09 27/8/2026
+Tổng số file TikTok: 18 file
+Tổng số tài khoản TikTok phát hiện: 66127 nick
+• Có Cookie (ttwid / sessionid): 3912 (6%)
+• Có Hotmail / Outlook gốc: 53231 (80%)
+• Dàn máy nuôi Boxphone: 196 dàn (p2k12, P2K0, P2K1, P2K2, P2K3, P2K4, P2K5, P2K6, P2K7, P2K8, P2K9, P2K10, P2K11, P2K12, P2K13, P2K14, P2K15, P2K16, P2K17, P2K18, P2K19, P2K20, P2K21, P2K22, P2K23, P2K24, P2K25, P2K26, P2K27, P2K28, P2K29, P2K30, P2K31, P2K32, P2K33, P2K34, P2K35, P2K36, P2K37, P2K38, P2K39, P2K40, P2K41, P2K42, P2K43, P2K44, P2K45, P2K46, P2K47, P2K48, P2K49, P2K50, P2K51, P2K52, P2K53, P2K54, P2K55, P2K56, P2K57, P2K58, P2K59, P2K60, P2K61, P2K62, P2K63, P2K64, P2K65, P2K66, P2K67, P2K68, P2K69, P2K70, P2K71, P2K72, P2K73, P2K74, P2K75, P2K76, P2K77, P2K78, P2K79, P2K80, P2K81, P2K82, P2K83, P2K84, P2K85, P2K86, P2K87, P2K88, P2K89, P2K90, P2K91, P2K92, P2K93, P2K94, P2K95, P2K96, P2K97, P2K98, P2K99, P2K100, P2K101, P2K102, P2K103, P2K104, P2K105, P2K106, P2K107, P2K108, P2K109, P2K110, P2K111, P2K112, P2K113, P2K114, P2K115, P2K116, P2K117, P2K118, P2K119, P2K120, P2K121, P2K122, P2K123, P2K124, P2K125, P2K126, P2K127, P2K128, P2K129, P2K130, P2K131, P2K132, P2K133, P2K134, P2K135, P2K136, P2K137, P2K138, P2K139, P2K140, p2k2, p2k3, p2k4, p2k5, p2k6, p2k7, p2k8, p2k9, p2k10, p2k11, p2k13, p2k14, p2k15, p2k16, p2k17, p2k18, p2k19, p2k20, p2k21, p2k22, p2k23, p2k24, p2k25, p2k26, p2k27, p2k28, p2k29, p2k30, p2k31, p2k32, p2k33, p2k34, p2k35, p2k36, p2k37, p2k38, p2k39, p2k40, p2k41, p2k42, p2k43, p2k44, p2k45, p2k46, p2k47, p2k48, p2k49, p2k50, p38k537, Máy 3, Máy 4, Máy 5, Máy 1, Máy 2)
+================================================================================
+
+[File 1] "700 Acc tiktok 4.2026.xlsx"
+  - Tổng nick: 57763
+  - Chi tiết tab: Lọc 307 (323 dòng) | Sheet139 (149 dòng) | Sheet146 (1000 dòng) | Sheet145 (1500 dòng) | nick chua dung (806 dòng) | đơn bị nhảy (12 dòng) | mail dùng lại (0 dòng) | nick tu ref (522 dòng) | Sheet155 (30 dòng) | TOÀN (888 dòng) | PHI (1870 dòng) | HÁT (1114 dòng) | Sheet151 (61 dòng) | LONG (2234 dòng) | VI (1661 dòng) | LAN PHUONG (1933 dòng) | PHUONG 94 (1922 dòng) | T TRANG  (1335 dòng) | THAO (1801 dòng) | ÁNH (1705 dòng) | 2552026 (624 dòng) | 215 (481 dòng) | 1952026 (499 dòng) | Sheet126 (427 dòng) | Sheet120 (499 dòng) | 200acc 55 (223 dòng) | 1kacc 135 (907 dòng) | 85 (949 dòng) | 700 nic 236 (875 dòng) | 223 (199 dòng) | 25 - 1 (289 dòng) | 25 (99 dòng) | 1k acc 274 (782 dòng) | Bản sao 274 (991 dòng) | 224 (184 dòng) | acc 234  (733 dòng) | 1k acc 144 (899 dòng) | 1k acc 104 (999 dòng) | 1000 acc new 5-4 (633 dòng) | 1000 acc (999 dòng) | 1132026 (849 dòng) | 1932026 (199 dòng) | 2522026 (499 dòng) | 1022026 (499 dòng) | 332026 (919 dòng) | 22 new (600 dòng) | acc new 231 (499 dòng) | 1k nick 46 (3280 dòng) | ttt (412 dòng) | tong ac shopee (389 dòng) | Sheet158 (39 dòng) | Phương 2k (92 dòng) | 200 acc 922025 (199 dòng) | HA (544 dòng) | 1k nick new 248 (437 dòng) | Sheet68 (20 dòng) | Trang (220 dòng) | 2k acc 250 đồng (2100 dòng) | hiến (140 dòng) | file cua hiep (63 dòng) | 300 nick 136 (1451 dòng) | File cua fi (201 dòng) | 1900ac mã 77k (1513 dòng) | nhom 278 (59 dòng) | 500 nick 186 (1244 dòng) | ACC TIKTOK  TOÀN (500 dòng) | Linh (194 dòng) | NGAY 215 (34 dòng) | 200 nic k11 6 (175 dòng) | ngày 216 (975 dòng) | 3k ac ngày 269 (1512 dòng) | toan 1310 (39 dòng) | 500 NICK 256 (854 dòng) | 600 acc 286 (966 dòng) | NICK 297 (30 dòng) | 500 nick 37 (439 dòng) | 137 500 acc (448 dòng) | dang video (845 dòng) | 200ac ngay 2511 (129 dòng) | 232026 (999 dòng)
+--------------------------------------------------------------------------------
+[File 2] "Phi và Chị hương Tiktok"
+  - Tổng nick: 59
+  - Chi tiết tab: Sheet1 (59 dòng)
+--------------------------------------------------------------------------------
+[File 3] "đặt tiktok mẫu"
+  - Tổng nick: 43
+  - Chi tiết tab: Trang tính1 (24 dòng) | Trang tính2 (19 dòng)
+--------------------------------------------------------------------------------
+[File 4] "tiktok  tran kim xuyn"
+  - Tổng nick: 2823
+  - Chi tiết tab: Trang tính1 (84 dòng) | Trang tính2 (199 dòng) | Trang tính3 (186 dòng) | Trang tính8 (199 dòng) | Trang tính4 (199 dòng) | Trang tính13 (14 dòng) | Trang tính5 (947 dòng) | Trang tính6 (100 dòng) | Trang tính7 (298 dòng) | Trang tính9 (199 dòng) | Trang tính10 (99 dòng) | Trang tính11 (299 dòng) | Trang tính12 (0 dòng)
+--------------------------------------------------------------------------------
+[File 5] "Minh Hùng Đỗ Tài nguyên tiktok"
+  - Tổng nick: 120
+  - Chi tiết tab: Sheet1 (21 dòng) | Sheet2 (99 dòng)
+--------------------------------------------------------------------------------
+[File 6] "boxphone hieu nguye"
+  - Tổng nick: 321
+  - Chi tiết tab: 103 (54 dòng) | Trang tính3 (53 dòng) | 134 (108 dòng) | 164 (53 dòng) | 204 (53 dòng) | 254 (0 dòng)
+--------------------------------------------------------------------------------
+[File 7] "Học Viên Boxphone 372 Bình Dương"
+  - Tổng nick: 39
+  - Chi tiết tab: Trang tính1 (39 dòng)
+--------------------------------------------------------------------------------
+[File 8] "Học viên Boxphone 174"
+  - Tổng nick: 3200
+  - Chi tiết tab: Sheet1 (20 dòng) | Sheet2 (19 dòng) | Sheet3 (9 dòng) | Sheet4 (201 dòng) | Sheet14 (49 dòng) | Sheet11 (129 dòng) | Sheet12 (101 dòng) | Sheet13 (643 dòng) | Sheet15 (61 dòng) | Sheet16 (357 dòng) | Sheet5 (58 dòng) | Sheet6 (97 dòng) | Sheet7 (99 dòng) | DANG CONG QUY PT (1046 dòng) | Hiền (100 dòng) | Sheet17 (0 dòng) | Sheet9 (49 dòng) | Sheet10 (162 dòng)
+--------------------------------------------------------------------------------
+[File 9] "NN-BoxPhone Farm"
+  - Tổng nick: 606
+  - Chi tiết tab: tháng 9 (341 dòng) | Box 6 - hop (8 dòng) | Nguyên Liệu (198 dòng) | Nick Trên 1k FL (50 dòng) | Trang tính5 (9 dòng)
+--------------------------------------------------------------------------------
+[File 10] "Ngô Tiến Hải Tài Nguyên Tiktok"
+  - Tổng nick: 231
+  - Chi tiết tab: lần 1 (161 dòng) | lần 2 (51 dòng) | lần 3 (19 dòng)
+--------------------------------------------------------------------------------
+[File 11] "Học Viên Boxphone 158 anh Duy Anh"
+  - Tổng nick: 423
+  - Chi tiết tab: Nháp (39 dòng) | ko xác định (113 dòng) | 2025-10-14 123850 (57 dòng) | 2025-10-17 164324 (59 dòng) | 2025-10-12 163215 (57 dòng) | 2025-10-09 190146 (57 dòng) | 2025-10-07 100155 (20 dòng) | 2025-10-06 123755 (21 dòng)
+--------------------------------------------------------------------------------
+[File 12] "Học viên Boxphone 247"
+  - Tổng nick: 256
+  - Chi tiết tab: Lượt 2211 (256 dòng)
+--------------------------------------------------------------------------------
+[File 13] "acc tiktok thanh viễn"
+  - Tổng nick: 27
+  - Chi tiết tab: acc shoppee vien thanh (14 dòng) | mail gắn (13 dòng)
+--------------------------------------------------------------------------------
+[File 14] "Boxphone 183 Nhật Minh TONG XU"
+  - Tổng nick: 123
+  - Chi tiết tab: Trang tính1 (123 dòng)
+--------------------------------------------------------------------------------
+[File 15] "25 Học Viên Tiktok + Affilate"
+  - Tổng nick: 21
+  - Chi tiết tab: Sheet1 (21 dòng)
+--------------------------------------------------------------------------------
+[File 16] "42 Học Viên Tiktok + Affilate"
+  - Tổng nick: 51
+  - Chi tiết tab: Sheet1 (20 dòng) | Sheet3 (0 dòng) | Sheet2 (11 dòng) | Sheet4 (20 dòng)
+--------------------------------------------------------------------------------
+[File 17] "Phi và Chí Phương Tiktok"
+  - Tổng nick: 19
+  - Chi tiết tab: Sheet1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 18] "Quản lí tiktok mẫu"
+  - Tổng nick: 2
+  - Chi tiết tab: Acc (2 dòng) | Đặt đơn (0 dòng)
+--------------------------------------------------------------------------------

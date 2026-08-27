@@ -218,4 +218,21 @@ export class BackupService {
       this.logger.error('Failed to clean old backups', err);
     }
   }
+
+  /**
+   * 🛡️ KHÓA AN TOÀN BẢO VỆ DỮ LIỆU: Bắt buộc tạo Snapshot trước khi xóa hoặc làm sạch lớn
+   * Nếu tạo snapshot thất bại -> Ném lỗi và CHẶN TUYỆT ĐỐI tác vụ xóa
+   */
+  async ensurePreDestructiveSnapshot(actionDescription: string, actor: { username: string; role: string }) {
+    this.logger.warn(`[SAFETY GUARD] Yêu cầu tác vụ nguy hiểm: "${actionDescription}". Đang tự động tạo Snapshot khẩn cấp trước...`);
+    try {
+      const note = `[Tự động Snapshot trước khi ${actionDescription}] bởi @${actor.username}`;
+      const snapshot = await this.createSnapshot(actor, note);
+      this.logger.log(`[SAFETY GUARD] ✅ Đã lưu Snapshot an toàn: ${snapshot.fileName} (${snapshot.size_mb} MB)`);
+      return snapshot;
+    } catch (err: any) {
+      this.logger.error(`[SAFETY GUARD] ❌ KHÔNG THỂ TẠO SNAPSHOT: ${err.message}`);
+      throw new Error(`🚨 BẢO VỆ DỮ LIỆU: Không thể tạo bản sao lưu Snapshot trước khi thực hiện "${actionDescription}". Hệ thống đã CHẶN TUYỆT ĐỐI tác vụ này để tránh mất mát dữ liệu!`);
+    }
+  }
 }

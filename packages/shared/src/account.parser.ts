@@ -31,18 +31,33 @@ export class AccountParser {
     const tab = (context?.source_tab || '').toLowerCase();
     const raw = text.toLowerCase();
 
-    if (file.includes('tiktok') || tab.includes('tiktok') || raw.includes('fviainboxes') || raw.includes('smvmail') || raw.includes('tiktok')) {
-      return 'TIKTOK';
-    }
-    if (file.includes('shopee') || file.includes('shopi') || tab.includes('shopee') || tab.includes('shopi') || raw.includes('spc_f=') || raw.includes('.shopee.vn')) {
+    // 1. Ưu tiên số 1: Dấu hiệu Cookie / Dữ liệu đặc trưng trong dòng hoặc Tên Tab con
+    if (raw.includes('spc_f=') || raw.includes('spc_ec=') || raw.includes('.shopee.vn') || tab.includes('shopee') || tab.includes('shopi')) {
       return 'SHOPEE';
     }
-    if (file.includes('facebook') || file.includes('fb') || tab.includes('facebook')) {
+    if (raw.includes('ttwid=') || raw.includes('odin_tt=') || raw.includes('fviainboxes') || raw.includes('smvmail') || tab.includes('tiktok')) {
+      return 'TIKTOK';
+    }
+    if (raw.includes('eaaaa') || tab.includes('facebook') || tab.includes('fb')) {
       return 'FACEBOOK';
     }
+
+    // 2. Ưu tiên số 2: Ngữ cảnh Tên File nguồn
+    if (file.includes('shopee') || file.includes('shopi')) {
+      return 'SHOPEE';
+    }
+    if (file.includes('tiktok')) {
+      return 'TIKTOK';
+    }
+    if (file.includes('facebook') || file.includes('fb')) {
+      return 'FACEBOOK';
+    }
+
+    // 3. Ưu tiên số 3: Mail
     if (raw.includes('@hotmail') || raw.includes('@gmail') || raw.includes('@outlook')) {
       return 'MAIL';
     }
+
     return 'OTHER';
   }
 
@@ -203,18 +218,26 @@ export class AccountParser {
     lineNumber = 1,
     context?: { source_file?: string; source_tab?: string }
   ): IParsedAccountLine {
-    const rawLine = row.map(c => c !== undefined && c !== null ? String(c) : '').join('|');
+    const cleanCells: string[] = (row || []).map(c => {
+      if (c === null || c === undefined) return '';
+      if (typeof c === 'object') {
+        return String(c.text || c.result || JSON.stringify(c) || '').trim();
+      }
+      return String(c).trim();
+    });
+
+    const rawLine = cleanCells.join('|');
     const platform = AccountParser.detectPlatform(rawLine, context);
 
     // Kiểm tra xem trong hàng có cell nào chứa chuỗi pipe đầy đủ không (ví dụ cell cuối chứa pipe token)
-    const pipeCell = row.find(c => typeof c === 'string' && c.includes('|') && (c.includes('@') || c.includes('M.C')));
+    const pipeCell = cleanCells.find(c => c && c.includes('|') && (c.includes('@') || c.includes('M.C') || c.includes('.shopee.vn') || c.includes('SPC_F=')));
     if (pipeCell) {
-      const parsed = AccountParser.parseLine(String(pipeCell), lineNumber, context);
+      const parsed = AccountParser.parseLine(pipeCell, lineNumber, context);
       parsed.raw = rawLine;
       return parsed;
     }
 
-    const cells = row.map(c => c !== undefined && c !== null ? String(c).trim() : '');
+    const cells = cleanCells;
     const nonEmpty = cells.filter(c => c.length > 0);
 
     if (nonEmpty.length === 0) {
@@ -231,66 +254,117 @@ export class AccountParser {
 
     let username = '';
     let password = '';
+    let phone = '';
+    let cookie = '';
     let email = '';
     let emailPassword = '';
     let machineId = '';
     let product = '';
     let note = '';
+    let coins = '';
     const customMetadata: Record<string, any> = {};
 
-    // 1. Quét tìm Email trước
-    let emailIdx = -1;
-    for (let i = 0; i < cells.length; i++) {
-      const c = cells[i];
-      if (c.includes('@') && (c.includes('.') || c.includes('hotmail') || c.includes('gmail') || c.includes('outlook'))) {
-        email = c;
-        emailIdx = i;
-        break;
+    // 1. Kiểm tra định dạng 6 cột chuẩn Shopee: Username(0), Password(1), Phone(2), Email(3), Pass Mail(4), Cookie(5)
+    if (cells.length >= 6 && (cells[5].includes('SPC_F=') || cells[5].includes('SPC_EC=') || cells[5].includes('.shopee.vn') || cells[5].includes('spc_'))) {
+      username = cells[0];
+      password = cells[1];
+      phone = cells[2];
+      email = cells[3];
+      emailPassword = cells[4];
+      cookie = cells[5];
+
+      // Tìm số xu ở cột 6 trở đi
+      for (let k = 6; k < cells.length; k++) {
+        const val = cells[k];
+        if (val.toLowerCase().includes('xu') || (/^\d+$/.test(val) && Number(val) <= 500000)) {
+          coins = val;
+          break;
+        }
       }
     }
+    // 2. Kiểm tra định dạng 7 cột chuẩn Shopee có STT: STT(0), Username(1), Password(2), Phone(3), Email(4), Pass Mail(5), Cookie(6)
+    else if (cells.length >= 7 && (cells[6].includes('SPC_F=') || cells[6].includes('SPC_EC=') || cells[6].includes('.shopee.vn') || cells[6].includes('spc_'))) {
+      username = cells[1];
+      password = cells[2];
+      phone = cells[3];
+      email = cells[4];
+      emailPassword = cells[5];
+      cookie = cells[6];
 
-    if (emailIdx !== -1) {
-      // Cell liền sau Email thường là Pass Mail
-      if (emailIdx + 1 < cells.length && cells[emailIdx + 1]) {
-        emailPassword = cells[emailIdx + 1];
+      for (let k = 7; k < cells.length; k++) {
+        const val = cells[k];
+        if (val.toLowerCase().includes('xu') || (/^\d+$/.test(val) && Number(val) <= 500000)) {
+          coins = val;
+          break;
+        }
+      }
+    }
+    // 3. Phân tích linh hoạt theo đặc trưng từng cột (Content-Aware Dynamic Parsing)
+    else {
+      let emailIdx = -1;
+      for (let i = 0; i < cells.length; i++) {
+        const c = cells[i];
+        if (c.includes('@') && (c.includes('.') || c.includes('hotmail') || c.includes('gmail') || c.includes('outlook'))) {
+          email = c;
+          emailIdx = i;
+          break;
+        }
       }
 
-      // Các cell đứng trước Email là Username và Password
-      const beforeCells = cells.slice(0, emailIdx).filter(c => c.length > 0);
-      if (beforeCells.length >= 2) {
-        // Kiểm tra xem cell đầu có phải STT (số 1, 2, 3...) không
-        if (/^\d+$/.test(beforeCells[0]) && beforeCells.length >= 3) {
-          username = beforeCells[1];
-          password = beforeCells[2];
-        } else {
+      if (emailIdx !== -1) {
+        if (emailIdx + 1 < cells.length && cells[emailIdx + 1]) {
+          emailPassword = cells[emailIdx + 1];
+        }
+
+        const beforeCells = cells.slice(0, emailIdx).filter(c => c.length > 0);
+        if (beforeCells.length >= 3) {
           username = beforeCells[0];
           password = beforeCells[1];
+          if (/^(84|0)\d{8,11}$/.test(beforeCells[2])) {
+            phone = beforeCells[2];
+          }
+        } else if (beforeCells.length === 2) {
+          username = beforeCells[0];
+          password = beforeCells[1];
+        } else if (beforeCells.length === 1) {
+          username = beforeCells[0];
         }
-      } else if (beforeCells.length === 1) {
-        username = beforeCells[0];
+
+        const afterCells = cells.slice(emailIdx + 2);
+        afterCells.forEach((c) => {
+          if (!c) return;
+          if (c.includes('.shopee.vn') || c.includes('SPC_F=') || c.includes('SPC_EC=') || c.includes('ttwid=')) {
+            cookie = c;
+          } else if (/^(m\.c\d+|p\d+k\d+|máy\s*\d+|box\s*\d+)$/i.test(c)) {
+            machineId = c;
+          } else if (c.toLowerCase().includes('xu') || (/^\d+$/.test(c) && Number(c) <= 500000)) {
+            coins = c;
+          } else if (!product && c.length > 2 && isNaN(Number(c)) && !c.includes('=')) {
+            product = c;
+          } else {
+            note += (note ? ' | ' : '') + c;
+          }
+        });
+      } else {
+        let uIdx = 0;
+        if (/^\d+$/.test(cells[0]) && cells.length > 1) uIdx = 1;
+        username = cells[uIdx] || '';
+        password = cells[uIdx + 1] || '';
       }
-
-      // Các cell đứng sau Pass Mail là Product, Machine, Note
-      const afterCells = cells.slice(emailIdx + 2);
-      afterCells.forEach((c, idx) => {
-        if (!c) return;
-        if (/^(p\d+k\d+|máy\s*\d+|box\s*\d+)$/i.test(c)) {
-          machineId = c;
-        } else if (!product && c.length > 2 && isNaN(Number(c))) {
-          product = c;
-        } else {
-          note += (note ? ' | ' : '') + c;
-        }
-      });
-
-    } else {
-      // Không có email, lấy theo thứ tự tự nhiên
-      let uIdx = 0;
-      if (/^\d+$/.test(cells[0]) && cells.length > 1) uIdx = 1;
-      username = cells[uIdx] || '';
-      password = cells[uIdx + 1] || '';
     }
 
+    // Quét bổ sung Cookie nếu chưa tìm thấy
+    if (!cookie) {
+      const cookieCell = cells.find(c => c.includes('.shopee.vn') || c.includes('SPC_F=') || c.includes('SPC_EC=') || c.includes('ttwid='));
+      if (cookieCell) cookie = cookieCell;
+    }
+
+    // Loại trừ username bị lệch format (theo rule Code.gs dòng 1348)
+    if (username && (username.includes('@') || username.includes('spc_f') || username.includes('.shopee') || username.length > 35)) {
+      username = '';
+    }
+
+    if (coins) customMetadata['coins'] = coins;
     if (product) customMetadata['product'] = product;
     if (note) customMetadata['note'] = note;
 
@@ -304,6 +378,8 @@ export class AccountParser {
       username,
       username_normalized: usernameNorm,
       password: password || undefined,
+      phone: phone || undefined,
+      cookie: cookie || undefined,
       machine_id: machineId || undefined,
       email: email || undefined,
       email_password: emailPassword || undefined,

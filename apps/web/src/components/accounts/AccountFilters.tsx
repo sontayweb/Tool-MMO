@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Search, Filter, X, RefreshCw } from 'lucide-react';
+import { Search, Filter, X, RefreshCw, Music2, ShoppingBag, Globe, Mail, Layers, Sparkles } from 'lucide-react';
 
 export interface AccountFiltersState {
   search: string;
@@ -36,6 +36,10 @@ export const AccountFilters: React.FC<AccountFiltersProps> = ({
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleSelectSubsystem = (platformValue: string) => {
+    setFilters((prev) => ({ ...prev, platform: platformValue }));
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       onApplyFilters();
@@ -44,6 +48,69 @@ export const AccountFilters: React.FC<AccountFiltersProps> = ({
 
   return (
     <div className="app-card rounded-2xl p-4 md:p-5 space-y-4 border border-[var(--border-subtle)]">
+      {/* 🌟 Quick Subsystem Platform Tabs (Tách biệt trực quan 100%) */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 select-none scrollbar-none">
+        <button
+          type="button"
+          onClick={() => handleSelectSubsystem('ALL')}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 ${filters.platform === 'ALL' || !filters.platform
+            ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
+            : 'bg-[var(--bg-input)] text-desc hover:text-title hover:bg-white/5 border border-[var(--border-subtle)]'
+            }`}
+        >
+          <Layers className="w-3.5 h-3.5" />
+          <span>✨ TẤT CẢ KHO</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleSelectSubsystem('TIKTOK')}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 ${filters.platform === 'TIKTOK'
+            ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-slate-950 shadow-lg shadow-pink-500/25'
+            : 'bg-[var(--bg-input)] text-desc hover:text-cyan-400 hover:bg-cyan-500/5 border border-[var(--border-subtle)]'
+            }`}
+        >
+          <Music2 className="w-3.5 h-3.5 text-pink-400" />
+          <span> PHÂN HỆ TIKTOK MMO</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleSelectSubsystem('SHOPEE')}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 ${filters.platform === 'SHOPEE'
+            ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-lg shadow-orange-500/25'
+            : 'bg-[var(--bg-input)] text-desc hover:text-orange-400 hover:bg-orange-500/5 border border-[var(--border-subtle)]'
+            }`}
+        >
+          <ShoppingBag className="w-3.5 h-3.5 text-orange-400" />
+          <span> PHÂN HỆ SHOPEE</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleSelectSubsystem('FACEBOOK')}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 ${filters.platform === 'FACEBOOK'
+            ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+            : 'bg-[var(--bg-input)] text-desc hover:text-blue-400 hover:bg-blue-500/5 border border-[var(--border-subtle)]'
+            }`}
+        >
+          <Globe className="w-3.5 h-3.5 text-blue-400" />
+          <span> FACEBOOK</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleSelectSubsystem('MAIL')}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 ${filters.platform === 'MAIL'
+            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+            : 'bg-[var(--bg-input)] text-desc hover:text-indigo-400 hover:bg-indigo-500/5 border border-[var(--border-subtle)]'
+            }`}
+        >
+          <Mail className="w-3.5 h-3.5 text-indigo-400" />
+          <span> HÒM MAIL</span>
+        </button>
+      </div>
+
       {/* Top row: Search and primary selects */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Search input */}

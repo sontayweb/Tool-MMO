@@ -2,8 +2,10 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 
 // Load dotenv from root folder (checks multiple possible paths in monorepo)
+dotenv.config({ path: path.join(process.cwd(), '../.env') });
 dotenv.config({ path: path.join(process.cwd(), '../../.env') });
 dotenv.config({ path: path.join(__dirname, '../../../.env') });
+dotenv.config({ path: path.join(__dirname, '../../../../.env') });
 dotenv.config({ path: path.join(process.cwd(), '.env') });
 
 import { NestFactory } from '@nestjs/core';

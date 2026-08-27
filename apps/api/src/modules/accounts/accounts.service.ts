@@ -3,13 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IAccount, UsernameNormalizer, CryptoService } from '@arms/shared';
 import { AuditService } from '../audit/audit.service.js';
+import { BackupService } from '../backup/backup.service.js';
 
 @Injectable()
 export class AccountsService {
   constructor(
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,
     private readonly cryptoService: CryptoService,
-    private readonly auditService: AuditService
+    private readonly auditService: AuditService,
+    private readonly backupService: BackupService
   ) {}
 
   async findAll(query: {
@@ -79,6 +81,7 @@ export class AccountsService {
     const skip = query.skip || 0;
 
     const total = await this.accountModel.countDocuments(filter);
+    console.log(`[API MONGODB TRUY VẤN] Filter:`, JSON.stringify(filter), `| Tổng số tài khoản đếm được từ DB:`, total);
     const accounts = await this.accountModel.find(filter)
       .sort({ createdAt: -1 })
       .limit(limit)
@@ -395,13 +398,16 @@ export class AccountsService {
   }
 
   // ----------------------------------------------------------------
-  // DB Duplicate Scanner & Health Checker
+  // DB Duplicate Scanner & Health Checker (Grouped by Platform + Username)
   // ----------------------------------------------------------------
   async scanDuplicates() {
     const duplicateGroups = await this.accountModel.aggregate([
       {
         $group: {
-          _id: '$username_normalized',
+          _id: {
+            platform: '$platform',
+            username_normalized: '$username_normalized'
+          },
           count: { $sum: 1 },
           ids: { $push: '$_id' },
           usernames: { $push: '$username' },
@@ -412,7 +418,7 @@ export class AccountsService {
       {
         $match: {
           count: { $gt: 1 },
-          _id: { $ne: null }
+          '_id.username_normalized': { $ne: null }
         }
       },
       { $sort: { count: -1 } },
@@ -426,7 +432,8 @@ export class AccountsService {
       total_redundant_docs: totalDuplicateDocs,
       is_clean: duplicateGroups.length === 0,
       groups: duplicateGroups.map(g => ({
-        username_normalized: g._id,
+        platform: g._id.platform,
+        username_normalized: g._id.username_normalized,
         count: g.count,
         usernames: [...new Set(g.usernames)],
         statuses: [...new Set(g.statuses)],
@@ -438,10 +445,16 @@ export class AccountsService {
   }
 
   async cleanDuplicates(actor: { username: string; role: string }) {
+    // 🛡️ BẢO VỆ DỮ LIỆU: Bắt buộc tạo Snapshot Backup trước khi xóa bản ghi trùng lặp
+    await this.backupService.ensurePreDestructiveSnapshot('Làm sạch và xóa nick trùng lặp', actor);
+
     const duplicateGroups = await this.accountModel.aggregate([
       {
         $group: {
-          _id: '$username_normalized',
+          _id: {
+            platform: '$platform',
+            username_normalized: '$username_normalized'
+          },
           count: { $sum: 1 },
           ids: { $push: '$_id' }
         }
@@ -449,7 +462,7 @@ export class AccountsService {
       {
         $match: {
           count: { $gt: 1 },
-          _id: { $ne: null }
+          '_id.username_normalized': { $ne: null }
         }
       }
     ]);
@@ -591,8 +604,11 @@ export class AccountsService {
       username: acc.username,
       username_normalized: acc.username_normalized,
       email: acc.email,
+      phone: acc.phone,
+      coins: acc.coins || acc.custom_metadata?.coins,
       machine_id: acc.machine_id,
       custom_metadata: acc.custom_metadata,
+      raw: acc.raw,
       status: acc.status,
       metadata: acc.metadata,
       consumption: acc.consumption,

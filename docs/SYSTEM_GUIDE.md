@@ -1,4 +1,4 @@
-# 📘 HƯỚNG DẪN VẬN HÀNH HỆ THỐNG ARMS DWH v4.0
+#  HƯỚNG DẪN VẬN HÀNH HỆ THỐNG ARMS DWH v4.0
 
 Tài liệu hướng dẫn sử dụng và kiểm thử trực quan hệ thống **ARMS Data Warehouse Enterprise v4.0**.
 

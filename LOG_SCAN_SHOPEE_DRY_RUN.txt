@@ -1,0 +1,778 @@
+================================================================================
+🛒 BÁO CÁO ĐỐI SOÁT PHÂN HỆ SHOPEE DRIVE (DRY-RUN CHỈ ĐỌC)
+Thời gian quét: 23:36:26 27/8/2026
+Tổng số file Shopee: 147 file
+Tổng số tài khoản Shopee phát hiện: 152792 nick
+• Có Cookie Shopee (SPC_EC / SPC_F): 89838
+================================================================================
+
+[File 1] "Sheet Tổng Hợp Danh Sách Tài Khoản Shopee"
+  - Tổng nick: 0
+  - Chi tiết tab: Backup (0 dòng) | FOUND_SHOPEE_SHEETS (0 dòng) | DANH_SACH_TAI_KHOAN_CHI_TIET (0 dòng) | backuptk1 (0 dòng) | backup2 (0 dòng) | backup1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 2] "tài khoản shopee 292"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 3] "50accBảng tính không có tiêu đề"
+  - Tổng nick: 471
+  - Chi tiết tab: Trang tính1 (200 dòng) | Trang tính2 (99 dòng) | Trang tính4 (73 dòng) | 100acc (99 dòng)
+--------------------------------------------------------------------------------
+[File 4] "anh quân"
+  - Tổng nick: 97
+  - Chi tiết tab: Trang tính1 (97 dòng)
+--------------------------------------------------------------------------------
+[File 5] "TK T1 2025"
+  - Tổng nick: 4779
+  - Chi tiết tab: T1 May 1 (320 dòng) | proxy  (982 dòng) | Trang tính6 (25 dòng) | T1 May 2 (560 dòng) | T1 May 3 (561 dòng) | T1 May 4 (275 dòng) | TK lỗi (29 dòng) | tt moi (7 dòng) | Trang tính14 (0 dòng) | T2 M4 (304 dòng) | T2 M3 (639 dòng) | T2 M2 (718 dòng) | T2 M1 (359 dòng)
+--------------------------------------------------------------------------------
+[File 6] "nickshopee hao nguyen"
+  - Tổng nick: 330
+  - Chi tiết tab: 74 (21 dòng) | 293 (20 dòng) | 124 (20 dòng) | 164 (39 dòng) | 214 (38 dòng) | 254 (38 dòng) | 284 (40 dòng) | 25 (40 dòng) | 56 (39 dòng) | Trang tính17 (35 dòng)
+--------------------------------------------------------------------------------
+[File 7] "Tài Khoản Shopss"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 8] "SHOPI 20-12"
+  - Tổng nick: 10079
+  - Chi tiết tab: MÁY 1 A750 (1844 dòng) | chi huyen 710 (199 dòng) | chi huyen hai duong (99 dòng) | chi tuyen ha duong 80 may (99 dòng) | Vu suy chuyen (117 dòng) | Duy anh (55 dòng) | Sheet43 (20 dòng) | Sheet44 (30 dòng) | ac tiktok chay job (186 dòng) | tong accc tiktok (1487 dòng) | Sheet40 (2642 dòng) | AC TIKTOK BAN (617 dòng) | AC TIKTOK  (24 dòng) | tong nick tiktok ngon (0 dòng) | acc đã lọc ngày 79 (99 dòng) | ds nick shopper moi loc (2507 dòng) | Sheet38 (33 dòng) | Vi (21 dòng)
+--------------------------------------------------------------------------------
+[File 9] "Tài Khoản Shopee 2"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 10] "pHONG"
+  - Tổng nick: 218
+  - Chi tiết tab: Trang tính1 (68 dòng) | Trang tính2 (149 dòng) | Trang tính3 (1 dòng)
+--------------------------------------------------------------------------------
+[File 11] "Bảng tính không có tiêu đề"
+  - Tổng nick: 21
+  - Chi tiết tab: Trang tính1 (21 dòng)
+--------------------------------------------------------------------------------
+[File 12] "Tài khoản shopee "
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 13] "TK đã lọc 26.7"
+  - Tổng nick: 0
+  - Chi tiết tab: Trang tính1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 14] "24/7"
+  - Tổng nick: 19
+  - Chi tiết tab: Trang tính1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 15] "Thu xu Tùng"
+  - Tổng nick: 155
+  - Chi tiết tab: 108 (17 dòng) | 128 (21 dòng) | 158 (59 dòng) | 178 (19 dòng) | 188 (39 dòng)
+--------------------------------------------------------------------------------
+[File 16] "phamthang1994"
+  - Tổng nick: 78240
+  - Chi tiết tab: Lọc Sản Phẩm Trang Chủ Shopee (6584 dòng) | Bản sao của Lọc Sản Phẩm Trang  (3114 dòng) | Trang tính13 (3414 dòng) | Trang tính14 (3514 dòng) | Trang tính15 (3614 dòng) | Trang tính16 (3714 dòng) | Trang tính17 (4114 dòng) | Trang tính18 (4214 dòng) | Trang tính19 (4314 dòng) | Trang tính20 (4414 dòng) | Trang tính21 (3560 dòng) | Trang tính22 (1889 dòng) | Trang tính23 (2487 dòng) | Trang tính24 (2194 dòng) | Trang tính25 (2607 dòng) | Trang tính26 (2607 dòng) | Trang tính27 (2607 dòng) | Trang tính28 (2607 dòng) | Trang tính29 (2607 dòng) | Trang tính30 (2607 dòng) | Trang tính31 (2607 dòng) | Trang tính32 (2619 dòng) | Trang tính33 (2919 dòng) | Trang tính34 (3019 dòng) | Data Check Cửa Số Live (4 dòng) | Check Cửa Số Live (0 dòng) | Check Cửa Số Live 1 (16 dòng) | Check Cửa Số Live 2 (0 dòng) | MÁY 3 LẦN 1 (18 dòng) | MÁY 3 LẦN 2 +LẦN 3 (62 dòng) | lan5 (52 dòng) | Trang tính10 (48 dòng) | Trang tính11 (47 dòng) | Trang tính12 (47 dòng)
+--------------------------------------------------------------------------------
+[File 17] "copy chi trang"
+  - Tổng nick: 49
+  - Chi tiết tab: Trang tính1 (49 dòng)
+--------------------------------------------------------------------------------
+[File 18] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1596
+  - Chi tiết tab: Trang tính1 (399 dòng) | 245 (399 dòng) | prx 245 (399 dòng) | Trang tính2 (399 dòng)
+--------------------------------------------------------------------------------
+[File 19] "Danh sách việc cần làm"
+  - Tổng nick: 193
+  - Chi tiết tab: Việc cần làm (48 dòng) | Trang tính2 (145 dòng)
+--------------------------------------------------------------------------------
+[File 20] "Nick  shoppee 348"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 21] "Danh sách việc cần làm"
+  - Tổng nick: 48
+  - Chi tiết tab: Việc cần làm (48 dòng)
+--------------------------------------------------------------------------------
+[File 22] "Chạy song để rửa lưu sang đây nha Anh "
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 23] "shopee65"
+  - Tổng nick: 53
+  - Chi tiết tab: Trang tính1 (13 dòng) | Trang tính2 (40 dòng)
+--------------------------------------------------------------------------------
+[File 24] "gửi chị phương"
+  - Tổng nick: 200
+  - Chi tiết tab: Trang tính1 (200 dòng)
+--------------------------------------------------------------------------------
+[File 25] "nick ai khách"
+  - Tổng nick: 8
+  - Chi tiết tab: capcut (4 dòng) | grok (4 dòng)
+--------------------------------------------------------------------------------
+[File 26] "Shopee xu 369"
+  - Tổng nick: 168
+  - Chi tiết tab: 283 (19 dòng) | 303 (18 dòng) | 24 (18 dòng) | Trang tính5 (17 dòng) | Trang tính6 (96 dòng) | Trang tính4 (0 dòng) | 224 (0 dòng)
+--------------------------------------------------------------------------------
+[File 27] "Tk Shopee"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 28] "30 tk 35 - 60k xu anh vững"
+  - Tổng nick: 30
+  - Chi tiết tab: Trang tính1 (30 dòng)
+--------------------------------------------------------------------------------
+[File 29] "Rửa xu Shopee"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 30] "Tk shopee"
+  - Tổng nick: 76
+  - Chi tiết tab: Trang tính1 (19 dòng) | Trang tính2 (19 dòng) | Trang tính3 (19 dòng) | Trang tính4 (19 dòng)
+--------------------------------------------------------------------------------
+[File 31] "Bảng tính không có tiêu đề"
+  - Tổng nick: 241
+  - Chi tiết tab: Trang tính1 (199 dòng) | Trang tính2 (11 dòng) | Trang tính3 (22 dòng) | Trang tính4 (9 dòng)
+--------------------------------------------------------------------------------
+[File 32] "Nick shoppee ninh binh"
+  - Tổng nick: 288
+  - Chi tiết tab: 143 (96 dòng) | 1.04 (99 dòng) | Trang tính2 (93 dòng)
+--------------------------------------------------------------------------------
+[File 33] "Bảng tính không có tiêu đề"
+  - Tổng nick: 35
+  - Chi tiết tab: Trang tính1 (35 dòng)
+--------------------------------------------------------------------------------
+[File 34] "Check xu"
+  - Tổng nick: 187
+  - Chi tiết tab: 1322026 (99 dòng) | 28022026 (45 dòng) | 332026 (43 dòng)
+--------------------------------------------------------------------------------
+[File 35] "nik shopi 20/3/2026"
+  - Tổng nick: 36
+  - Chi tiết tab: Trang tính1 (36 dòng)
+--------------------------------------------------------------------------------
+[File 36] "Tài khoản Shopee"
+  - Tổng nick: 600
+  - Chi tiết tab: 61 (201 dòng) | 91 (198 dòng) | 191 (102 dòng) | Trang tính10 (99 dòng)
+--------------------------------------------------------------------------------
+[File 37] "tổng xu  17/3/2026"
+  - Tổng nick: 77
+  - Chi tiết tab: nik shoppi 4499 mua183 (38 dòng) | tổng xu  (39 dòng)
+--------------------------------------------------------------------------------
+[File 38] "nickshopee"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 39] "Ngân sách hàng tháng"
+  - Tổng nick: 39
+  - Chi tiết tab: Tóm tắt (36 dòng) | Giao dịch (3 dòng)
+--------------------------------------------------------------------------------
+[File 40] "mr linh"
+  - Tổng nick: 30
+  - Chi tiết tab: Trang tính1 (30 dòng)
+--------------------------------------------------------------------------------
+[File 41] "Nick shoppeHai ha 202"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 42] "File rửa xu"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 43] "Bảng tính không có tiêu đề"
+  - Tổng nick: 57
+  - Chi tiết tab: Trang tính1 (57 dòng)
+--------------------------------------------------------------------------------
+[File 44] "NN-Đặt Đơn T6"
+  - Tổng nick: 22341
+  - Chi tiết tab: 1-6 (76 dòng) | 215 (25 dòng) | ngày 22 (38 dòng) | ngày 23 (45 dòng) | ngày 24 (974 dòng) | thông tin xong (247 dòng) | 5k nick (4899 dòng) | file 2 (1978 dòng) | File lấy data (921 dòng) | Gấu Bông (1001 dòng) | data 2 (200 dòng) | box phone (198 dòng) | 256 (1797 dòng) | mail (6 dòng) | Giá Sản Phẩm (999 dòng) | Tháng 6 (2176 dòng) | 47 (1000 dòng) | Địa Chỉ Ảo (980 dòng) | 206 data (501 dòng) | 26 (106 dòng) | Trang tính19 (1499 dòng) | data 4 ok (1538 dòng) | 216 data (766 dòng) | data 3 (100 dòng) | 31 (94 dòng) | 30 (54 dòng) | hàng về  (123 dòng)
+--------------------------------------------------------------------------------
+[File 45] "Bảng tính không có tiêu đề"
+  - Tổng nick: 9
+  - Chi tiết tab: Trang tính1 (9 dòng)
+--------------------------------------------------------------------------------
+[File 46] "Bảng thống kê xu"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 47] "Bảng tính không có tiêu đề"
+  - Tổng nick: 9
+  - Chi tiết tab: Trang tính1 (9 dòng)
+--------------------------------------------------------------------------------
+[File 48] "Bảng tính không có tiêu đề"
+  - Tổng nick: 2525
+  - Chi tiết tab: Trang tính1 (2523 dòng) | Trang tính2 (2 dòng)
+--------------------------------------------------------------------------------
+[File 49] "Nick đang chạy lưu vào đây  Anh"
+  - Tổng nick: 2831
+  - Chi tiết tab: 2025-10-26 115936 (60 dòng) | 2026-01-06 173013 (59 dòng) | 2026-01-08 153346 (59 dòng) | 2026-01-10 211047 (59 dòng) | 2026-01-13 074614 (59 dòng) | 2026-01-14 172544 (59 dòng) | 2026-01-16 063523 (59 dòng) | 2026-01-18 103040 (59 dòng) | 2026-01-21 073722 (59 dòng) | 2026-01-23 073615 (59 dòng) | 2026-01-25 074633 (59 dòng) | 2026-01-26 075331 (59 dòng) | 2026-01-30 081809 (59 dòng) | 2026-01-02 083449 (59 dòng) | 2025-11-08 134432 (59 dòng) | 2025-11-11 054735 (59 dòng) | 2025-11-12 101514 (59 dòng) | 2025-11-27 111705 (59 dòng) | 2025-11-14 105421 (59 dòng) | 2025-11-16 135329 (59 dòng) | 2025-11-18 121059 (59 dòng) | 2025-11-20 103521 (59 dòng) | 2025-11-22 052532 (59 dòng) | 2025-11-24 112252 (59 dòng) | 2025-10-26 155935 (59 dòng) | 2025-11-06 094442 (59 dòng) | 2025-10-27 090033 (59 dòng) | Trang tính19 (59 dòng) | 2025-11-29 144306 (59 dòng) | Trang tính21 (56 dòng) | 2025-12-01 091409 (59 dòng) | 2025-12-02 084713 (59 dòng) | 2025-12-04 065355 (59 dòng) | 2025-12-14 075026 (59 dòng) | 2025-12-16 092615 (59 dòng) | 2025-12-29 064507 (59 dòng) | 2025-12-30 192116 (59 dòng) | 2025-12-26 171517 (59 dòng) | 2025-12-24 153844 (59 dòng) | 2025-12-24 174749 (59 dòng) | 2025-12-06 055206 (59 dòng) | 2025-10-28 143316 (60 dòng) | 2025-10-29 203350 (59 dòng) | 2025-10-30 170935 (59 dòng) | 2026-02-02 080342 (59 dòng) | 2026-02-04 074308 (59 dòng) | Trang tính60 (59 dòng) | Trang tính59 (59 dòng) | Trang tính58 (0 dòng)
+--------------------------------------------------------------------------------
+[File 50] "Bảng tính không có tiêu đề"
+  - Tổng nick: 0
+  - Chi tiết tab: Trang tính1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 51] "Bảng tính không có tiêu đề"
+  - Tổng nick: 19
+  - Chi tiết tab: Trang tính1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 52] "Tk shopee"
+  - Tổng nick: 39
+  - Chi tiết tab: Trang tính1 (20 dòng) | Trang tính7 (19 dòng) | Trang tính3 (0 dòng) | Trang tính4 (0 dòng) | Trang tính5 (0 dòng) | Trang tính6 (0 dòng)
+--------------------------------------------------------------------------------
+[File 53] "Bảng tính không có tiêu đề"
+  - Tổng nick: 77
+  - Chi tiết tab: Trang tính1 (77 dòng)
+--------------------------------------------------------------------------------
+[File 54] "Bảng tính không có tiêu đề"
+  - Tổng nick: 59
+  - Chi tiết tab: Trang tính1 (59 dòng) | Trang tính2 (0 dòng)
+--------------------------------------------------------------------------------
+[File 55] "Rửa xu Shopee"
+  - Tổng nick: 0
+  - Chi tiết tab: 
+  - Lỗi: {
+  "error": {
+    "code": 403,
+    "message": "This file is too large to be exported.",
+    "errors": [
+      {
+        "message": "This file is too large to be exported.",
+        "domain": "global",
+        "reason": "exportSizeLimitExceeded"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[File 56] "Bảng tính không có tiêu đề"
+  - Tổng nick: 415
+  - Chi tiết tab: Trang tính1 (59 dòng) | Trang tính2 (59 dòng) | Trang tính3 (61 dòng) | Trang tính4 (59 dòng) | Trang tính5 (59 dòng) | Trang tính6 (59 dòng) | Trang tính7 (59 dòng)
+--------------------------------------------------------------------------------
+[File 57] "Nick 17/1"
+  - Tổng nick: 198
+  - Chi tiết tab: Trang tính1 (198 dòng)
+--------------------------------------------------------------------------------
+[File 58] "Bảng tính không có tiêu đề"
+  - Tổng nick: 407
+  - Chi tiết tab: 312 (80 dòng) | 812 (81 dòng) | 1212 (73 dòng) | Trang tính7 (0 dòng) | Trang tính6 (14 dòng) | 512 (79 dòng) | 1512 (80 dòng)
+--------------------------------------------------------------------------------
+[File 59] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1129
+  - Chi tiết tab: Trang tính1 (111 dòng) | Trang tính2 (133 dòng) | Trang tính3 (110 dòng) | Trang tính4 (275 dòng) | 181 (500 dòng)
+--------------------------------------------------------------------------------
+[File 60] "nick đặt đơn"
+  - Tổng nick: 24
+  - Chi tiết tab: Trang tính1 (24 dòng)
+--------------------------------------------------------------------------------
+[File 61] "Ngân sách hàng năm"
+  - Tổng nick: 191
+  - Chi tiết tab: Thiết lập (8 dòng) | Chi phí (109 dòng) | Thu nhập (14 dòng) | Tóm tắt (60 dòng)
+--------------------------------------------------------------------------------
+[File 62] "Bảng tính không có tiêu đề"
+  - Tổng nick: 52
+  - Chi tiết tab: Trang tính1 (52 dòng)
+--------------------------------------------------------------------------------
+[File 63] "xu du"
+  - Tổng nick: 73
+  - Chi tiết tab: Trang tính1 (73 dòng)
+--------------------------------------------------------------------------------
+[File 64] "Bảng tính không có tiêu đề"
+  - Tổng nick: 9
+  - Chi tiết tab: Trang tính1 (9 dòng)
+--------------------------------------------------------------------------------
+[File 65] "THU XU bùi trưởng- tiến anh"
+  - Tổng nick: 401
+  - Chi tiết tab: 16.9-25.9 đã check đã tt 9.10 (194 dòng) | từ 110 (207 dòng)
+--------------------------------------------------------------------------------
+[File 66] "CỦA TOÀN"
+  - Tổng nick: 1072
+  - Chi tiết tab: GỬI LẠI 1400 ACC BỜM  (1072 dòng)
+--------------------------------------------------------------------------------
+[File 67] "Trieu Dai - Tuyet Tran Thi Shopee Xu"
+  - Tổng nick: 374
+  - Chi tiết tab: Sheet1 (258 dòng) | Sheet2 (80 dòng) | Sheet3 (19 dòng) | nick ngày 13-11 (17 dòng)
+--------------------------------------------------------------------------------
+[File 68] "Lê Quang Huy Shopee Xu"
+  - Tổng nick: 40
+  - Chi tiết tab: Sheet1 (40 dòng)
+--------------------------------------------------------------------------------
+[File 69] "Bản sao của Xe oto"
+  - Tổng nick: 946
+  - Chi tiết tab: MÁY 1 LẦN 1 (99 dòng) | MÁY 1 LẦN 2 (57 dòng) | MÁY 1 LẦN 3 (68 dòng) | MÁY 1 LẦN 4 (60 dòng) | lan5 (117 dòng) | lần6 (58 dòng) | lan7 (50 dòng) | lan8 (60 dòng) | dưới30k (75 dòng) | dưới40k (50 dòng) | dưới50k (34 dòng) | 50k (105 dòng) | lần9 (57 dòng) | Trang tính19 (56 dòng)
+--------------------------------------------------------------------------------
+[File 70] "3INLYCYETN"
+  - Tổng nick: 573
+  - Chi tiết tab: 3INLYCYETN (500 dòng) | Sheet1 (73 dòng)
+--------------------------------------------------------------------------------
+[File 71] "Bảng tính không có tiêu đề"
+  - Tổng nick: 59
+  - Chi tiết tab: Trang tính1 (59 dòng)
+--------------------------------------------------------------------------------
+[File 72] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1406
+  - Chi tiết tab: 4 lo ac dau rien (104 dòng) | lo thu xu (987 dòng) | 0611 ngâm 5 tháng (18 dòng) | 3110 Ngâm 5 tháng  (19 dòng) | 1310 ngam 5 thang (19 dòng) | 710 ngam 2 thang (18 dòng) | 110 ngam 5 thang (21 dòng) | 249ngâm 5  tháng (21 dòng) | ngày 169 (22 dòng) | 310 ac ngâm 5 tháng (19 dòng) | 210 ngâm 5 tháng (20 dòng) | 199 (19 dòng) | 610 ngâm 5 tháng (18 dòng) | 311 ngâm 5 tháng (19 dòng) | 269 ngâm 5 tháng (15 dòng) | 229 ngâm 5 tháng (11 dòng) | 2210 ngâm 5 tháng (19 dòng) | 2010 ngâm 5 tháng (19 dòng) | 810 ngam 5 thang (18 dòng)
+--------------------------------------------------------------------------------
+[File 73] "Acc shoppee"
+  - Tổng nick: 288
+  - Chi tiết tab: Trang tính2 (95 dòng) | Trang tính3 (97 dòng) | Trang tính4 (94 dòng) | Bán Nick Shoppe (2 dòng)
+--------------------------------------------------------------------------------
+[File 74] "Đức Phương 42 tr xu"
+  - Tổng nick: 703
+  - Chi tiết tab: Trang tính1 (703 dòng)
+--------------------------------------------------------------------------------
+[File 75] "Bảng tính không có tiêu đề"
+  - Tổng nick: 16
+  - Chi tiết tab: Trang tính1 (16 dòng)
+--------------------------------------------------------------------------------
+[File 76] "Bảng tính không có tiêu đề"
+  - Tổng nick: 16
+  - Chi tiết tab: Trang tính1 (16 dòng)
+--------------------------------------------------------------------------------
+[File 77] "Báo cáo seeding team Mai"
+  - Tổng nick: 2478
+  - Chi tiết tab: Mai (1197 dòng) | Ngọc Ánh (868 dòng) | Vân Anh (185 dòng) | Minh Ánh (173 dòng) | Duyên (55 dòng)
+--------------------------------------------------------------------------------
+[File 78] "Hoc viên nhặt xu thủ công 86"
+  - Tổng nick: 99
+  - Chi tiết tab: Trang tính1 (99 dòng)
+--------------------------------------------------------------------------------
+[File 79] "gui anh toan"
+  - Tổng nick: 27
+  - Chi tiết tab: Trang tính1 (9 dòng) | Trang tính2 (18 dòng)
+--------------------------------------------------------------------------------
+[File 80] "Nhặt xu thủ công 52 {ở Nhật Bản}"
+  - Tổng nick: 90
+  - Chi tiết tab: Sheet1 (31 dòng) | Sheet2 (19 dòng) | Sheet3 (40 dòng)
+--------------------------------------------------------------------------------
+[File 81] "Bảng tính không có tiêu đề"
+  - Tổng nick: 30
+  - Chi tiết tab: Trang tính1 (30 dòng)
+--------------------------------------------------------------------------------
+[File 82] "Bảng tính không có tiêu đề"
+  - Tổng nick: 20
+  - Chi tiết tab: Trang tính1 (20 dòng)
+--------------------------------------------------------------------------------
+[File 83] "Bảng tính không có tiêu đề"
+  - Tổng nick: 23
+  - Chi tiết tab: Trang tính1 (23 dòng)
+--------------------------------------------------------------------------------
+[File 84] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1
+  - Chi tiết tab: Trang tính1 (1 dòng)
+--------------------------------------------------------------------------------
+[File 85] "Bảng tính không có tiêu đề"
+  - Tổng nick: 45
+  - Chi tiết tab: Trang tính1 (45 dòng)
+--------------------------------------------------------------------------------
+[File 86] "Bảng tính không có tiêu đề"
+  - Tổng nick: 20
+  - Chi tiết tab: Trang tính1 (20 dòng)
+--------------------------------------------------------------------------------
+[File 87] "Bảng tính không có tiêu đề"
+  - Tổng nick: 0
+  - Chi tiết tab: Trang tính1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 88] "Bảng tính không có tiêu đề"
+  - Tổng nick: 20
+  - Chi tiết tab: Trang tính1 (20 dòng)
+--------------------------------------------------------------------------------
+[File 89] "Phạm Đình Đức Shopee"
+  - Tổng nick: 82
+  - Chi tiết tab: 9t4 (82 dòng)
+--------------------------------------------------------------------------------
+[File 90] "hùng gà"
+  - Tổng nick: 71
+  - Chi tiết tab: Trang tính1 (71 dòng)
+--------------------------------------------------------------------------------
+[File 91] "Acc Chí Phương chưa chạy"
+  - Tổng nick: 161
+  - Chi tiết tab: Trang tính1 (99 dòng) | Trang tính2 (62 dòng)
+--------------------------------------------------------------------------------
+[File 92] "Bảng tính không có tiêu đề"
+  - Tổng nick: 40
+  - Chi tiết tab: Trang tính1 (40 dòng)
+--------------------------------------------------------------------------------
+[File 93] "Bảng tính không có tiêu đề"
+  - Tổng nick: 0
+  - Chi tiết tab: Sheet11 (0 dòng)
+--------------------------------------------------------------------------------
+[File 94] "Bảng tính không có tiêu đề"
+  - Tổng nick: 18
+  - Chi tiết tab: Trang tính1 (18 dòng)
+--------------------------------------------------------------------------------
+[File 95] "Bảng tính không có tiêu đề"
+  - Tổng nick: 44
+  - Chi tiết tab: Trang tính1 (44 dòng)
+--------------------------------------------------------------------------------
+[File 96] "Bảng tính không có tiêu đề"
+  - Tổng nick: 19
+  - Chi tiết tab: Trang tính1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 97] "Bảng tính không có tiêu đề"
+  - Tổng nick: 48
+  - Chi tiết tab: Trang tính1 (48 dòng)
+--------------------------------------------------------------------------------
+[File 98] "Duy anh 10/2 "
+  - Tổng nick: 112
+  - Chi tiết tab: 102 (56 dòng) | 309 (56 dòng)
+--------------------------------------------------------------------------------
+[File 99] "Bảng tính không có tiêu đề"
+  - Tổng nick: 14
+  - Chi tiết tab: Trang tính1 (14 dòng)
+--------------------------------------------------------------------------------
+[File 100] "Lịch làm việc"
+  - Tổng nick: 31
+  - Chi tiết tab: Lịch làm việc (31 dòng)
+--------------------------------------------------------------------------------
+[File 101] "Phạm Đình Đức Shopee"
+  - Tổng nick: 485
+  - Chi tiết tab: 278 (59 dòng) | Coin (60 dòng) | HCXY1758460069 (61 dòng) | ANVU1758239907 (61 dòng) | UBQS1758022311 (61 dòng) | FCVD1757725415 (61 dòng) | ATUX1757560056 (61 dòng) | Sheet1 (61 dòng)
+--------------------------------------------------------------------------------
+[File 102] "250909"
+  - Tổng nick: 61
+  - Chi tiết tab: Sheet1 (61 dòng)
+--------------------------------------------------------------------------------
+[File 103] "250909"
+  - Tổng nick: 61
+  - Chi tiết tab: Sheet1 (61 dòng)
+--------------------------------------------------------------------------------
+[File 104] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1
+  - Chi tiết tab: Trang tính1 (1 dòng)
+--------------------------------------------------------------------------------
+[File 105] "Anh quý 10/2"
+  - Tổng nick: 75
+  - Chi tiết tab: Trang tính1 (75 dòng)
+--------------------------------------------------------------------------------
+[File 106] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1
+  - Chi tiết tab: Trang tính1 (1 dòng)
+--------------------------------------------------------------------------------
+[File 107] "Bảng tính không có tiêu đề"
+  - Tổng nick: 56
+  - Chi tiết tab: Trang tính1 (56 dòng)
+--------------------------------------------------------------------------------
+[File 108] "Bảng tính không có tiêu đề"
+  - Tổng nick: 39
+  - Chi tiết tab: Trang tính1 (39 dòng)
+--------------------------------------------------------------------------------
+[File 109] "Lịch làm việc"
+  - Tổng nick: 31
+  - Chi tiết tab: Lịch làm việc (31 dòng)
+--------------------------------------------------------------------------------
+[File 110] "long"
+  - Tổng nick: 98
+  - Chi tiết tab: Sheet1 (98 dòng)
+--------------------------------------------------------------------------------
+[File 111] "Bảng tính không có tiêu đề"
+  - Tổng nick: 9
+  - Chi tiết tab: Trang tính1 (9 dòng)
+--------------------------------------------------------------------------------
+[File 112] "Bảng tính không có tiêu đề"
+  - Tổng nick: 1
+  - Chi tiết tab: Trang tính1 (1 dòng)
+--------------------------------------------------------------------------------
+[File 113] "tong.xlsx"
+  - Tổng nick: 925
+  - Chi tiết tab: 11.8 sent (101 dòng) | 15.8(sent (102 dòng) | 18.8(sent) (102 dòng) | 22.8(sent) (102 dòng) | 25.8 sent (102 dòng) | 28.8 sent (102 dòng) | 30.8 sent (101 dòng) | 1.9 sent (101 dòng) | 4.9 sent (101 dòng) | Tong Xu (10 dòng) | tk (1 dòng)
+--------------------------------------------------------------------------------
+[File 114] "HMFB1754595800"
+  - Tổng nick: 15
+  - Chi tiết tab: HMFB1754595800 (15 dòng)
+--------------------------------------------------------------------------------
+[File 115] "HMFB1754595800"
+  - Tổng nick: 15
+  - Chi tiết tab: HMFB1754595800 (15 dòng)
+--------------------------------------------------------------------------------
+[File 116] "HMFB1754595800.xlsx"
+  - Tổng nick: 15
+  - Chi tiết tab: HMFB1754595800 (15 dòng)
+--------------------------------------------------------------------------------
+[File 117] "nick shoppee"
+  - Tổng nick: 827
+  - Chi tiết tab: Trang tính1 (610 dòng) | Loạt 2 (140 dòng) | Trang tính4 (57 dòng) | Trang tính3 (20 dòng)
+--------------------------------------------------------------------------------
+[File 118] "THONG KE XU"
+  - Tổng nick: 179
+  - Chi tiết tab: Trang tính1 (103 dòng) | Trang tính2 (76 dòng)
+--------------------------------------------------------------------------------
+[File 119] "Học viên nhặt xu thủ công 60"
+  - Tổng nick: 19
+  - Chi tiết tab: Sheet1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 120] "250922.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: HCXY1758460069 (61 dòng)
+--------------------------------------------------------------------------------
+[File 121] "Gửi cho pi"
+  - Tổng nick: 21
+  - Chi tiết tab: Sheet1 (21 dòng)
+--------------------------------------------------------------------------------
+[File 122] "LAN PHUONG "
+  - Tổng nick: 500
+  - Chi tiết tab: LAN PHUONG  (500 dòng)
+--------------------------------------------------------------------------------
+[File 123] "LAN PHUONG"
+  - Tổng nick: 999
+  - Chi tiết tab: 500 ACC PHƯƠNG· (500 dòng) | GUI LAI TOAN· (499 dòng)
+--------------------------------------------------------------------------------
+[File 124] "250920.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: ANVU1758239907 (61 dòng)
+--------------------------------------------------------------------------------
+[File 125] "0916.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: UBQS1758022311 (61 dòng)
+--------------------------------------------------------------------------------
+[File 126] "Ông Cao Thường Shopee Xu"
+  - Tổng nick: 0
+  - Chi tiết tab: Sheet1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 127] "Hoàng Châu shopee xu"
+  - Tổng nick: 0
+  - Chi tiết tab: Sheet1 (0 dòng)
+--------------------------------------------------------------------------------
+[File 128] "0913.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: FCVD1757725415 (61 dòng)
+--------------------------------------------------------------------------------
+[File 129] "0911.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: ATUX1757560056 (61 dòng)
+--------------------------------------------------------------------------------
+[File 130] "Copy of phamthang1994"
+  - Tổng nick: 4360
+  - Chi tiết tab: Lọc Sản Phẩm Trang Chủ Shopee (4330 dòng) | Data Check Cửa Số Live (4 dòng) | Check Cửa Số Live (10 dòng) | Check Cửa Số Live 1 (16 dòng) | Check Cửa Số Live 2 (0 dòng)
+--------------------------------------------------------------------------------
+[File 131] "Copy of phamthang1994 - September 13, 12:06 AM"
+  - Tổng nick: 224
+  - Chi tiết tab: MÁY 3 LẦN 1 (18 dòng) | MÁY 3 LẦN 2 +LẦN 3 (62 dòng) | lần4 (52 dòng) | dưới40k (16 dòng) | dưới50k (30 dòng) | 50k (46 dòng)
+--------------------------------------------------------------------------------
+[File 132] "250909.xlsx"
+  - Tổng nick: 61
+  - Chi tiết tab: Sheet1 (61 dòng)
+--------------------------------------------------------------------------------
+[File 133] "Quang shopee xu"
+  - Tổng nick: 40
+  - Chi tiết tab: Lần 1 (20 dòng) | Sheet3 (0 dòng) | Lần 2 (20 dòng)
+--------------------------------------------------------------------------------
+[File 134] "list 24-8.xlsx"
+  - Tổng nick: 119
+  - Chi tiết tab: Account (59 dòng) | Coin (60 dòng)
+--------------------------------------------------------------------------------
+[File 135] "300 acc gửi sư phụ link"
+  - Tổng nick: 523
+  - Chi tiết tab: Sheet1 (523 dòng)
+--------------------------------------------------------------------------------
+[File 136] "Tài phát"
+  - Tổng nick: 60
+  - Chi tiết tab: Trang tính1 (60 dòng)
+--------------------------------------------------------------------------------
+[File 137] "Đặt đơn"
+  - Tổng nick: 34
+  - Chi tiết tab: Sheet1 (34 dòng)
+--------------------------------------------------------------------------------
+[File 138] "Dongvandb"
+  - Tổng nick: 39
+  - Chi tiết tab: Sheet1 (39 dòng) | Sheet2 (0 dòng)
+--------------------------------------------------------------------------------
+[File 139] "Trần Quốc Tâm"
+  - Tổng nick: 77
+  - Chi tiết tab: Trần Quốc Tâm (77 dòng)
+--------------------------------------------------------------------------------
+[File 140] "Copy of Shopee Thu Nhặt Xu"
+  - Tổng nick: 804
+  - Chi tiết tab: Ngọc Vinh 207 (20 dòng) | đàm ngọc dũng (35 dòng) | Tuấn khá (20 dòng) | Văn Tới 217 (13 dòng) | Anh Nhím Con 1 207 (107 dòng) | Anh Nhím Con 2 207 (121 dòng) | Mạnh Cường (70 dòng) | Anh Nhím Con (133 dòng) | nháp (179 dòng) | Thế 2 (49 dòng) | Mạnh cầm (40 dòng) | Tự reg đã thu (17 dòng)
+--------------------------------------------------------------------------------
+[File 141] "Ca huỳnh 80 acc 26t7"
+  - Tổng nick: 79
+  - Chi tiết tab: Sheet1 (79 dòng)
+--------------------------------------------------------------------------------
+[File 142] "anh nhsim 23t7"
+  - Tổng nick: 70
+  - Chi tiết tab: Sheet1 (7 dòng) | Sheet2 (63 dòng)
+--------------------------------------------------------------------------------
+[File 143] "WDP "
+  - Tổng nick: 86
+  - Chi tiết tab: Wbs (43 dòng) | unit (43 dòng)
+--------------------------------------------------------------------------------
+[File 144] "ních shoppe"
+  - Tổng nick: 19
+  - Chi tiết tab: Trang tính1 (19 dòng)
+--------------------------------------------------------------------------------
+[File 145] "Kim Oanh Shopee 18/7"
+  - Tổng nick: 297
+  - Chi tiết tab: Sheet1 (290 dòng) | Sheet2 (7 dòng)
+--------------------------------------------------------------------------------
+[File 146] "Địa chỉ của hiệp"
+  - Tổng nick: 2546
+  - Chi tiết tab: Sheet1 (22 dòng) | email (10 dòng) | hiệp (20 dòng) | Phúc thọ (46 dòng) | Son Tay (88 dòng) | Sheet7 (2360 dòng)
+--------------------------------------------------------------------------------
+[File 147] "Chia nick shopper"
+  - Tổng nick: 402
+  - Chi tiết tab: may tay trai (77 dòng) | May 2 man (65 dòng) | may tay phai 2 (118 dòng) | may tay phai 3 (70 dòng) | may tay phai 4 (72 dòng)
+--------------------------------------------------------------------------------

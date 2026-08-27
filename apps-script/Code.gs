@@ -37,7 +37,7 @@ function onOpen() {
     .addItem('🛑 [AUTO] Dừng Pipeline Đang Chạy', 'stopPipeline')
     .addSeparator()
     .addItem('⚡ Kiểm tra kết nối API (Test Connection)', 'testConnection')
-    .addItem('⚙️ Cấu hình thông tin kết nối (Setup Wizard)', 'runSetupWizard')
+    .addItem(' Cấu hình thông tin kết nối (Setup Wizard)', 'runSetupWizard')
     .addToUi();
 }
 

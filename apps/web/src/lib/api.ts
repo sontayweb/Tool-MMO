@@ -380,5 +380,55 @@ export const api = {
   // Centralized System Logs
   async getSystemLogs(limit = 150) {
     return request(`/audit-logs/system-logs?limit=${limit}`);
+  },
+
+  // Shopee Drive Automated Ingress
+  async getShopeeDriveStatus() {
+    return request('/integrations/shopee-drive/status');
+  },
+
+  async startShopeeDriveSync() {
+    return request('/integrations/shopee-drive/sync-now', {
+      method: 'POST',
+    });
+  },
+
+  async getShopeeDriveAuthUrl() {
+    return request('/integrations/shopee-drive/auth-url');
+  },
+
+  async saveShopeeDriveSettings(settings: { auto_sync_enabled?: boolean; sync_interval_minutes?: number }) {
+    return request('/integrations/shopee-drive/settings', {
+      method: 'POST',
+      body: JSON.stringify(settings),
+    });
+  },
+
+  // Backward compatibility alias
+  async getGoogleDriveStatus() {
+    return this.getShopeeDriveStatus();
+  },
+
+  async startGoogleDriveSync() {
+    return this.startShopeeDriveSync();
+  },
+
+  async getGoogleDriveAuthUrl() {
+    return this.getShopeeDriveAuthUrl();
+  },
+
+  async saveGoogleDriveSettings(settings: { auto_sync_enabled?: boolean; sync_interval_minutes?: number }) {
+    return this.saveShopeeDriveSettings(settings);
+  },
+
+  // Dedicated TikTok Drive Ingress
+  async getTikTokDriveStatus() {
+    return request('/integrations/tiktok-drive/status');
+  },
+
+  async startTikTokDriveSync() {
+    return request('/integrations/tiktok-drive/sync-now', {
+      method: 'POST',
+    });
   }
 };

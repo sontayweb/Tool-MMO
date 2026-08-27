@@ -35,8 +35,10 @@ export const TopBar: React.FC<TopBarProps> = ({
         return { title: 'Bảng Điều Khiển Tổng Quan', desc: 'Báo cáo chỉ số KPI, tỷ lệ tài nguyên và chất lượng dữ liệu' };
       case 'accounts':
         return { title: 'Kho Dữ Liệu Tài Khoản', desc: 'Quản lý, phân loại, tìm kiếm và thao tác hàng loạt' };
+      case 'ingress':
+        return { title: 'Trung Tâm Điều Hành Kéo Dữ Liệu Google Drive', desc: 'Quản lý tập trung kéo data Sheets & Excel từ Google Drive về Kho DWH' };
       case 'import':
-        return { title: 'Nhập Kho Offline & Drive Sync', desc: 'Tải lên tệp TXT/Excel hoặc tự động hóa đồng bộ từ Google Drive' };
+        return { title: 'Nhập Kho Offline & File', desc: 'Tải lên tệp TXT/Excel trực tiếp từ máy tính' };
       case 'lookup':
         return { title: 'Tra Cứu Nhanh Danh Sách', desc: 'Dán danh sách username để kiểm tra trạng thái tức thì' };
       case 'exports':

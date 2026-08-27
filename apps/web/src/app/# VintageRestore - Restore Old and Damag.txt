@@ -1,0 +1,17 @@
+# VintageRestore - Restore Old and Damaged Photos Instantly
+
+[OOld Photo Restore](http://localhost:3000/)
+[Workspace](http://localhost:3000/)
+[Gallery](http://localhost:3000/gallery)
+[Pricing](http://localhost:3000/pricing)
+[Deploy](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSamurAIGPT%2Fcommon-saas-template)
+[Sign In](http://localhost:3000/login)
+Original Damaged Photo
+Restoration Mode
+AI Engine Module
+Restoration Instructions
+Provide custom keywords to guide the AI restoration. The default prompt handles scratches, face sharpening, and realistic colorization automatically.
+Restoration Workspace
+Select a restoration mode, upload a photo, and click restore to compare your before and after results side-by-side.
+Recent Restorations
+Your restored photos will appear here
