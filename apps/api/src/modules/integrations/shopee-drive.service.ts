@@ -220,15 +220,71 @@ export class ShopeeDriveService {
       }
     });
 
+    const logDir = path.join(process.cwd(), 'logs');
+    if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+    const logFilePath = path.join(logDir, 'shopee_drive_sync.log');
+
+    const appendDiskLog = (msg: string) => {
+      try {
+        fs.appendFileSync(logFilePath, `[${new Date().toISOString()}] ${msg}\n`, 'utf8');
+      } catch {}
+    };
+
+    appendDiskLog(`=== BẮT ĐẦU ĐỒNG BỘ SHOPEE DRIVE (${validFiles.length} files) ===`);
+
     for (let fIdx = 0; fIdx < validFiles.length; fIdx++) {
       const file = validFiles[fIdx];
       this.progress.current_file = file.name || 'Untitled';
-      this.progress.logs.push(`[${new Date().toLocaleTimeString()}] [${fIdx + 1}/${validFiles.length}] Đang xử lý file Shopee: "${file.name}"...`);
+      const logLine = `[${new Date().toLocaleTimeString()}] [${fIdx + 1}/${validFiles.length}] Đang xử lý file Shopee: "${file.name}"...`;
+      this.progress.logs.push(logLine);
+      appendDiskLog(logLine);
+
+      const beforeInserted = this.progress.accounts_inserted;
+      const beforeUpdated = this.progress.accounts_updated;
 
       try {
         await this.processDriveFile(drive, file);
+        const added = this.progress.accounts_inserted - beforeInserted;
+        const updated = this.progress.accounts_updated - beforeUpdated;
+        
+        appendDiskLog(`  ↳ File "${file.name}": +${added} mới, +${updated} cập nhật`);
+
+        // Ghi AuditLog bền vững cho từng file
+        await this.auditService.record({
+          action: 'DRIVE_FILE_PROCESSED',
+          actor_id: actor,
+          actor_username: actor,
+          target_type: 'SHOPEE_FILE',
+          target_id: file.id,
+          details: {
+            file_index: fIdx + 1,
+            total_files: validFiles.length,
+            file_name: file.name,
+            new_inserted: added,
+            updated: updated,
+            status: 'SUCCESS'
+          }
+        });
       } catch (fileErr: any) {
-        this.progress.logs.push(`[${new Date().toLocaleTimeString()}] ⚠️ Bỏ qua file "${file.name}" do lỗi: ${fileErr.message}`);
+        const errLine = `[${new Date().toLocaleTimeString()}] ⚠️ Bỏ qua file "${file.name}" do lỗi: ${fileErr.message}`;
+        this.progress.logs.push(errLine);
+        appendDiskLog(`❌ ${errLine}`);
+
+        // Ghi AuditLog lỗi cho file
+        await this.auditService.record({
+          action: 'DRIVE_FILE_FAILED',
+          actor_id: actor,
+          actor_username: actor,
+          target_type: 'SHOPEE_FILE',
+          target_id: file.id,
+          details: {
+            file_index: fIdx + 1,
+            total_files: validFiles.length,
+            file_name: file.name,
+            status: 'ERROR',
+            error: fileErr.message
+          }
+        });
       }
 
       this.progress.files_processed++;

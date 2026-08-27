@@ -264,14 +264,27 @@ export class AccountParser {
     let coins = '';
     const customMetadata: Record<string, any> = {};
 
-    // 1. Kiểm tra định dạng 6 cột chuẩn Shopee: Username(0), Password(1), Phone(2), Email(3), Pass Mail(4), Cookie(5)
+    // 1. Kiểm tra định dạng 6 cột Shopee:
+    // Case A: STT(0), Username(1), Password(2), Email(3), Pass Mail(4), Cookie(5) (khi ô 0 là số thứ tự)
+    // Case B: Username(0), Password(1), Phone(2), Email(3), Pass Mail(4), Cookie(5)
     if (cells.length >= 6 && (cells[5].includes('SPC_F=') || cells[5].includes('SPC_EC=') || cells[5].includes('.shopee.vn') || cells[5].includes('spc_'))) {
-      username = cells[0];
-      password = cells[1];
-      phone = cells[2];
-      email = cells[3];
-      emailPassword = cells[4];
-      cookie = cells[5];
+      if (/^\d+$/.test(cells[0]) && cells[3].includes('@')) {
+        // Có STT ở cột 0
+        username = cells[1];
+        password = cells[2];
+        phone = '';
+        email = cells[3];
+        emailPassword = cells[4];
+        cookie = cells[5];
+      } else {
+        // Không có STT ở cột 0
+        username = cells[0];
+        password = cells[1];
+        phone = /^(84|0)\d{8,11}$/.test(cells[2]) ? cells[2] : '';
+        email = cells[3];
+        emailPassword = cells[4];
+        cookie = cells[5];
+      }
 
       // Tìm số xu ở cột 6 trở đi
       for (let k = 6; k < cells.length; k++) {
@@ -318,14 +331,24 @@ export class AccountParser {
 
         const beforeCells = cells.slice(0, emailIdx).filter(c => c.length > 0);
         if (beforeCells.length >= 3) {
-          username = beforeCells[0];
-          password = beforeCells[1];
-          if (/^(84|0)\d{8,11}$/.test(beforeCells[2])) {
-            phone = beforeCells[2];
+          if (/^\d+$/.test(beforeCells[0])) {
+            // beforeCells = [STT, Username, Password]
+            username = beforeCells[1];
+            password = beforeCells[2];
+          } else {
+            username = beforeCells[0];
+            password = beforeCells[1];
+            if (/^(84|0)\d{8,11}$/.test(beforeCells[2])) {
+              phone = beforeCells[2];
+            }
           }
         } else if (beforeCells.length === 2) {
-          username = beforeCells[0];
-          password = beforeCells[1];
+          if (/^\d+$/.test(beforeCells[0])) {
+            username = beforeCells[1];
+          } else {
+            username = beforeCells[0];
+            password = beforeCells[1];
+          }
         } else if (beforeCells.length === 1) {
           username = beforeCells[0];
         }
