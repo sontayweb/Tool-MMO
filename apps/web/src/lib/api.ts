@@ -82,6 +82,16 @@ async function request(path: string, options: RequestInit = {}) {
   });
 
   if (!response.ok) {
+    if (response.status === 401) {
+      removeToken();
+      removeRole();
+      removeTeam();
+      removeDisplayName();
+      if (typeof window !== 'undefined') {
+        window.location.reload();
+      }
+    }
+
     let errorMsg = 'Đã xảy ra lỗi hệ thống';
     try {
       const data = await response.json();
@@ -155,6 +165,17 @@ export const api = {
   },
 
   // Accounts
+  async getSanitationStats() {
+    return request('/accounts/sanitation/stats');
+  },
+
+  async cleanSanitationAccounts(category: string, action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX') {
+    return request('/accounts/sanitation/clean', {
+      method: 'POST',
+      body: JSON.stringify({ category, action }),
+    });
+  },
+
   async getAccounts(params: {
     page?: number;
     limit?: number;
@@ -169,7 +190,9 @@ export const api = {
     search?: string;
     has_cookie?: string;
     has_email?: string;
+    has_password?: string;
     has_token?: string;
+    data_quality?: string;
     tags?: string;
   }) {
     const query = new URLSearchParams();
@@ -184,6 +207,51 @@ export const api = {
       }
     });
     return request(`/accounts?${query.toString()}`);
+  },
+
+  async exportAccountsExcel(params: {
+    platform?: string;
+    status?: string;
+    machine_id?: string;
+    search?: string;
+    has_cookie?: string;
+    has_email?: string;
+    has_password?: string;
+    has_token?: string;
+    data_quality?: string;
+    tags?: string;
+  }) {
+    const query = new URLSearchParams();
+    Object.entries(params).forEach(([key, val]) => {
+      if (val !== undefined && val !== '' && val !== 'ALL') {
+        query.append(key, val.toString());
+      }
+    });
+
+    const token = getToken();
+    const headers: Record<string, string> = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const res = await fetch(`${BASE_URL}/accounts/export/excel?${query.toString()}`, {
+      headers,
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ message: 'Xuất file Excel thất bại' }));
+      throw new Error(err.message || 'Xuất file Excel thất bại');
+    }
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Kho_Tai_Khoan_${params.platform || 'ALL'}_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   },
 
   async markSold(usernames: string[], soldTo: string, note?: string) {
@@ -201,9 +269,29 @@ export const api = {
   },
 
   async blacklist(usernames: string[], reason: string) {
-    return request('/accounts/blacklist', {
+    return request('/accounts/bulk-blacklist', {
       method: 'POST',
-      body: JSON.stringify({ usernames, reason }),
+      body: JSON.stringify({ usernames, note: reason }),
+    });
+  },
+
+  async deleteAccounts(usernames: string[]) {
+    return request('/accounts/bulk-delete', {
+      method: 'POST',
+      body: JSON.stringify({ usernames }),
+    });
+  },
+
+  async restoreAccountsFromTrash(usernames: string[]) {
+    return request('/accounts/trash/restore', {
+      method: 'POST',
+      body: JSON.stringify({ usernames }),
+    });
+  },
+
+  async emptyTrash() {
+    return request('/accounts/trash/empty', {
+      method: 'POST',
     });
   },
 
@@ -328,6 +416,13 @@ export const api = {
     });
   },
 
+  async autoFixAccounts(usernames: string[]) {
+    return request('/accounts/auto-fix', {
+      method: 'POST',
+      body: JSON.stringify({ usernames }),
+    });
+  },
+
   // Upload Offline File (Preview / Commit)
   async uploadOffline(file: File, mode: 'preview' | 'commit' = 'preview') {
     const formData = new FormData();
@@ -387,9 +482,10 @@ export const api = {
     return request('/integrations/shopee-drive/status');
   },
 
-  async startShopeeDriveSync() {
+  async startShopeeDriveSync(options?: { create_snapshot?: boolean }) {
     return request('/integrations/shopee-drive/sync-now', {
       method: 'POST',
+      body: options ? JSON.stringify(options) : undefined,
     });
   },
 
@@ -409,8 +505,8 @@ export const api = {
     return this.getShopeeDriveStatus();
   },
 
-  async startGoogleDriveSync() {
-    return this.startShopeeDriveSync();
+  async startGoogleDriveSync(options?: { create_snapshot?: boolean }) {
+    return this.startShopeeDriveSync(options);
   },
 
   async getGoogleDriveAuthUrl() {

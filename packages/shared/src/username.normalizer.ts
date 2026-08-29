@@ -23,9 +23,34 @@ export class UsernameNormalizer {
     return cleaned.trim().toLowerCase();
   }
 
+  static readonly INVALID_USERNAMES = new Set([
+    'stt', 'stt.', 'no', 'no.', 'username', 'user', 'account', 'tai khoan', 'tên đăng nhập', 
+    'tendangnhap', 'tk', 'password', 'pass', 'cookie', 'cookies', 'token', 'email', 'mail',
+    'status', 'trang thai', 'trạng thái', 'tong cong', 'tổng cộng', 'ghi chu', 'ghi chú', 
+    'note', 'stt/user', 'stt/ten', 'ngay', 'ngày', 'date', 'phone', 'sdt', 'sđt', 'so dien thoai'
+  ]);
+
   static isValid(username: string): boolean {
     const normalized = this.normalize(username);
-    return normalized.length > 0;
+    if (!normalized || normalized.length < 2) return false;
+
+    // 1. Kiểm tra từ khóa Header / Tiêu đề bảng
+    if (this.INVALID_USERNAMES.has(normalized)) return false;
+
+    // 2. Loại bỏ các dòng là đường phân cách (---, ===, ***, ...)
+    if (/^[_\-=\*\.\,\#\s]+$/.test(normalized)) return false;
+
+    // 3. Loại bỏ chuỗi là URL hoặc Cookie bị paste nhầm vào ô username
+    if (normalized.startsWith('http://') || normalized.startsWith('https://') || normalized.includes('spc_f=') || normalized.includes('.shopee.vn') || normalized.includes('ttwid=')) {
+      return false;
+    }
+
+    // 4. Loại bỏ Session Token / Device Artifact / UUID / Chuỗi rác quá dài
+    if (normalized.startsWith('m.c') || normalized.length > 35 || /^[0-9a-f]{8}-[0-9a-f]{4}/i.test(normalized)) {
+      return false;
+    }
+
+    return true;
   }
 }
 

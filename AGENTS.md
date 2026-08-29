@@ -8,3 +8,15 @@
 6. **KIẾN TRÚC HỆ THỐNG TOÀN DIỆN (SYSTEM ARCHITECTURE FIRST)**: Mọi giải pháp kỹ thuật phải được đánh giá trong bức tranh tổng thể của kiến trúc thông tin, luồng dữ liệu (Data Pipeline) và khả năng mở rộng (Scalability); tuyệt đối không áp dụng giải pháp tạm bợ làm phân mảnh hệ thống.
 7. **TƯ DUY SẢN PHẨM THỰC CHIẾN (PRODUCT & SCALE THINKING)**: Thiết kế giải pháp dựa trên quy mô dữ liệu lớn và luồng thao tác thực tế của người vận hành; đảm bảo không gian làm việc trực quan, tối ưu hóa hiệu suất và phản hồi thời gian thực.
 8. **PHÂN ĐỊNH RANH GIỚI NGHIỆP VỤ (DOMAIN-DRIVEN DESIGN)**: Mọi phân hệ nghiệp vụ độc lập phải được cô lập hoàn toàn về mặt logic, dữ liệu và không gian điều hành; đảm bảo tính toàn vẹn và không gây xung đột chéo giữa các miền dữ liệu.
+9. **NGUYÊN TẮC THIẾT KẾ UX/UI THỰC CHIẾN (PRAGMATIC & ZERO-CLUTTER UX)**:
+   - CẤM thiết kế rườm rà, máy móc (Over-Engineering).
+   - CẤM dùng dropdown/select option cho các trường nhị phân (Có / Không). Luôn dùng Checkbox hoặc Toggle Chip trực quan.
+   - Luôn thiết kế các bộ lọc nhanh 1-Click theo đúng gói nghiệp vụ thực tế (Nick Full Info, Nick có Cookie, Nick lỗi rác cần xóa...).
+   - Mọi nút bấm thao tác hàng loạt phải có trạng thái Loading Spinner + Toast thông báo rõ ràng, không làm đơ giao diện.
+10. **CHUẨN HÓA DỮ LIỆU & LÀM SẠCH TẬN GỐC (STRICT DATA INTEGRITY)**:
+   - CẤM lưu các chuỗi Token phiên thiết bị (`M.C...`), chuỗi Base64 dài > 35 ký tự, hoặc số STT thuần túy (`66`, `69`...) làm Username.
+   - Toàn bộ dữ liệu nạp vào phải được kiểm duyệt nghiêm ngặt qua `UsernameNormalizer.isValid` ngay tại cửa vào Ingestion.
+   - Logic Cứu Hộ / Auto-Fix CHỈ ĐƯỢC TÍNH là cứu thành công khi tài khoản có đầy đủ Password hoặc Cookie sống; các bản ghi rác không thể cứu phải bị chuyển vào `BLACKLISTED` với nhãn `unfixable`, tuyệt đối không để nguyên ở `AVAILABLE`.
+11. **KIỂM CHỨNG TOÀN DIỆN TRƯỚC KHI BÀN GIAO (END-TO-END VERIFICATION)**:
+   - Trước khi báo cáo hoàn thành, phải đối soát toàn bộ chuỗi: Giao diện (FE) ➔ API Endpoint ➔ Xử lý Logic Backend ➔ Truy vấn MongoDB ➔ File Xuất / Tải về thực tế.
+   - Kiểm tra kỹ các module CommonJS / ESM để tránh lỗi crash runtime.

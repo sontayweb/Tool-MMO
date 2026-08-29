@@ -39,6 +39,7 @@ export const GoogleDriveSyncModal: React.FC<GoogleDriveSyncModalProps> = ({
   const [intervalMin, setIntervalMin] = useState(60);
   const [authUrl, setAuthUrl] = useState<string | null>(null);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const [createSnapshot, setCreateSnapshot] = useState(true);
 
   const logsEndRef = useRef<HTMLDivElement>(null);
   const pollTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -97,7 +98,7 @@ export const GoogleDriveSyncModal: React.FC<GoogleDriveSyncModalProps> = ({
   const handleStartSync = async () => {
     try {
       setSyncing(true);
-      await api.startGoogleDriveSync();
+      await api.startGoogleDriveSync({ create_snapshot: createSnapshot });
       setToastMsg('Đã kích hoạt tiến trình đồng bộ ngầm thành công!');
       loadStatus(true);
     } catch (err: any) {
@@ -224,7 +225,7 @@ export const GoogleDriveSyncModal: React.FC<GoogleDriveSyncModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="flex flex-col items-end gap-3 w-full md:w-auto">
             {!isConnected ? (
               <button
                 onClick={handleGetAuthUrl}
@@ -234,16 +235,28 @@ export const GoogleDriveSyncModal: React.FC<GoogleDriveSyncModalProps> = ({
                 Liên Kết Tài Khoản Drive
               </button>
             ) : (
-              <button
-                onClick={handleStartSync}
-                disabled={isRunning}
-                className={`btn btn-primary text-sm font-bold flex items-center gap-2 px-6 py-2.5 shadow-lg shadow-blue-500/30 w-full md:w-auto justify-center ${
-                  isRunning ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
-              >
-                <RefreshCw className={`w-4 h-4 ${isRunning ? 'animate-spin' : ''}`} />
-                {isRunning ? 'Đang Đồng Bộ Ngầm...' : 'Bắt Đầu Đồng Bộ Ngay'}
-              </button>
+              <div className="flex flex-col items-center md:items-end gap-2 w-full">
+                <button
+                  onClick={handleStartSync}
+                  disabled={isRunning}
+                  className={`btn btn-primary text-sm font-bold flex items-center gap-2 px-6 py-2.5 shadow-lg shadow-blue-500/30 w-full md:w-auto justify-center ${
+                    isRunning ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                >
+                  <RefreshCw className={`w-4 h-4 ${isRunning ? 'animate-spin' : ''}`} />
+                  {isRunning ? 'Đang Đồng Bộ Ngầm...' : 'Bắt Đầu Đồng Bộ Ngay'}
+                </button>
+                <label className="flex items-center gap-2 text-xs text-[var(--text-muted)] cursor-pointer hover:text-white transition-colors">
+                  <input 
+                    type="checkbox" 
+                    checked={createSnapshot} 
+                    onChange={(e) => setCreateSnapshot(e.target.checked)}
+                    disabled={isRunning}
+                    className="rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-500 focus:ring-offset-gray-900"
+                  />
+                  Tạo bản sao lưu (Snapshot) bảo vệ DB trước khi kéo
+                </label>
+              </div>
             )}
           </div>
         </div>

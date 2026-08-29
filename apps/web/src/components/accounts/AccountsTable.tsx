@@ -59,6 +59,11 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
         return 'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30';
       case 'USED':
         return 'bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30';
+      case 'TRASH':
+        return 'bg-amber-500/20 text-amber-500 border border-amber-500/40 font-bold';
+      case 'ERROR':
+        return 'bg-rose-500/20 text-rose-500 border border-rose-500/50 shadow-sm shadow-rose-500/20 animate-pulse';
+      case 'BLACKLISTED':
       case 'BLACKLIST':
       default:
         return 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30';

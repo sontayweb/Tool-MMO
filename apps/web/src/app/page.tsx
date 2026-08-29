@@ -44,6 +44,7 @@ import { SmartExportDialog } from '../components/accounts/SmartExportDialog';
 import { FarmMatrixView } from '../components/farm/FarmMatrixView';
 import { DriveIngressHub } from '../components/ingress/DriveIngressHub';
 import { SystemLogsView } from '../components/dashboard/SystemLogsView';
+import { AccountSanitationView } from '../components/accounts/AccountSanitationView';
 
 export default function App() {
   // Theme State
@@ -120,15 +121,14 @@ export default function App() {
     search: '',
     platform: 'ALL',
     status: 'ALL',
+    data_quality: '',
     machine_id: '',
     source_file: '',
     managed_by: '',
-    has_cookie: '',
-    has_email: '',
-    has_token: '',
     team: 'ALL',
     limit: 50,
   });
+  const [exportAccountsLoading, setExportAccountsLoading] = useState(false);
 
   // Tab 3: Offline Import State
   const [importFile, setImportFile] = useState<File | null>(null);
@@ -213,6 +213,7 @@ export default function App() {
     'systemlogs',
     'farm',
     'crm',
+    'sanitation',
   ];
 
   // Helper to switch tab and sync URL hash + localStorage
@@ -278,6 +279,13 @@ export default function App() {
     }
   }, [isLoggedIn, activeTab]);
 
+  // Reactive auto-fetch for accounts whenever select filters change
+  useEffect(() => {
+    if (isLoggedIn && activeTab === 'accounts') {
+      fetchAccounts(1, accountFilters);
+    }
+  }, [accountFilters.platform, accountFilters.status, accountFilters.data_quality, accountFilters.limit]);
+
   // Handle Login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -332,25 +340,23 @@ export default function App() {
   };
 
   // Fetch Accounts
-  const fetchAccounts = async (pageToFetch = accountsPage) => {
+  const fetchAccounts = async (pageToFetch = accountsPage, currentFilters = accountFilters) => {
     setAccountsLoading(true);
     try {
       const res = await api.getAccounts({
         page: pageToFetch,
-        limit: accountFilters.limit,
-        platform: accountFilters.platform === 'ALL' ? undefined : accountFilters.platform,
-        status: accountFilters.status === 'ALL' ? undefined : accountFilters.status,
-        machine_id: accountFilters.machine_id ? accountFilters.machine_id.trim() : undefined,
-        search: accountFilters.search ? accountFilters.search.trim() : undefined,
-        has_cookie: accountFilters.has_cookie || undefined,
-        has_email: accountFilters.has_email || undefined,
-        has_token: accountFilters.has_token || undefined,
+        limit: currentFilters.limit,
+        platform: currentFilters.platform === 'ALL' ? undefined : currentFilters.platform,
+        status: currentFilters.status === 'ALL' ? undefined : currentFilters.status,
+        machine_id: currentFilters.machine_id ? currentFilters.machine_id.trim() : undefined,
+        search: currentFilters.search ? currentFilters.search.trim() : undefined,
+        data_quality: currentFilters.data_quality || undefined,
       });
 
       setAccounts(res.accounts || []);
       setAccountsTotal(res.total || 0);
       setAccountsPage(res.page || pageToFetch);
-      setAccountsTotalPages(res.total_pages || Math.ceil((res.total || 0) / accountFilters.limit) || 1);
+      setAccountsTotalPages(res.total_pages || Math.ceil((res.total || 0) / currentFilters.limit) || 1);
     } catch (err: any) {
       showToast(err.message || 'Lỗi khi nạp danh sách tài khoản', 'error');
     } finally {
@@ -470,6 +476,98 @@ export default function App() {
         }
       },
     });
+  };
+
+  const handleBulkMoveToTrash = () => {
+    if (selectedUsernames.length === 0) return;
+
+    setConfirmDialog({
+      isOpen: true,
+      title: `Chuyển ${selectedUsernames.length} tài khoản vào Thùng Rác?`,
+      message: 'Các tài khoản sẽ được ẩn khỏi kho chính và chuyển vào Thùng Rác. Bạn có thể khôi phục lại bất cứ lúc nào.',
+      confirmText: 'Chuyển Vào Thùng Rác',
+      variant: 'danger',
+      onConfirm: async () => {
+        try {
+          await api.deleteAccounts(selectedUsernames);
+          showToast(`Đã chuyển ${selectedUsernames.length} tài khoản vào Thùng Rác!`, 'info');
+          setSelectedUsernames([]);
+          setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+          fetchAccounts(accountsPage);
+          fetchDashboardStats();
+        } catch (err: any) {
+          showToast(err.message || 'Lỗi khi chuyển vào thùng rác', 'error');
+        }
+      },
+    });
+  };
+
+  const handleBulkRestore = () => {
+    if (selectedUsernames.length === 0) return;
+
+    setConfirmDialog({
+      isOpen: true,
+      title: `Khôi phục ${selectedUsernames.length} tài khoản về kho khả dụng?`,
+      message: 'Các tài khoản được chọn sẽ được khôi phục trạng thái AVAILABLE và hiển thị lại trên kho hàng chính.',
+      confirmText: 'Khôi Phục Ngay',
+      variant: 'success',
+      onConfirm: async () => {
+        try {
+          const res = await api.restoreAccountsFromTrash(selectedUsernames);
+          showToast(`Khôi phục thành công ${res.restored_count} tài khoản về kho!`, 'success');
+          setSelectedUsernames([]);
+          setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+          fetchAccounts(accountsPage);
+          fetchDashboardStats();
+        } catch (err: any) {
+          showToast(err.message || 'Lỗi khi khôi phục tài khoản', 'error');
+        }
+      },
+    });
+  };
+
+  const handleBulkAutoFix = () => {
+    if (selectedUsernames.length === 0) return;
+
+    setConfirmDialog({
+      isOpen: true,
+      title: `Khôi phục dữ liệu lỗi (${selectedUsernames.length} tài khoản)`,
+      message: 'Hệ thống sẽ thử chạy lại thuật toán bóc tách dữ liệu gốc. Nếu khôi phục thành công, tài khoản sẽ được mở khóa (AVAILABLE). Những tài khoản là bản ghi trùng lặp (rác thừa) sẽ bị gắn nhãn và chuyển vào BLACKLISTED. Bạn có chắc chắn muốn tiến hành?',
+      confirmText: 'Bắt Đầu Cứu Hộ',
+      variant: 'warning',
+      onConfirm: async () => {
+        try {
+          const res = await api.autoFixAccounts(selectedUsernames);
+          showToast(`Cứu hộ hoàn tất: Cứu sống ${res.fixed} nick, phát hiện ${res.failed_duplicate} nick rác trùng lặp!`, 'info');
+          setSelectedUsernames([]);
+          setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+          fetchAccounts(accountsPage);
+          fetchDashboardStats();
+        } catch (err: any) {
+          showToast(err.message || 'Lỗi trong quá trình cứu hộ', 'error');
+        }
+      },
+    });
+  };
+
+  // Instant Excel Export (theo Filter hiện tại)
+  const handleExportAccountsExcel = async () => {
+    setExportAccountsLoading(true);
+    try {
+      showToast('Đang tạo tệp Excel theo bộ lọc...', 'info');
+      await api.exportAccountsExcel({
+        platform: accountFilters.platform === 'ALL' ? undefined : accountFilters.platform,
+        status: accountFilters.status === 'ALL' ? undefined : accountFilters.status,
+        machine_id: accountFilters.machine_id ? accountFilters.machine_id.trim() : undefined,
+        search: accountFilters.search ? accountFilters.search.trim() : undefined,
+        data_quality: accountFilters.data_quality || undefined,
+      });
+      showToast('Xuất tệp Excel thành công!', 'success');
+    } catch (err: any) {
+      showToast(err.message || 'Lỗi khi xuất tệp Excel', 'error');
+    } finally {
+      setExportAccountsLoading(false);
+    }
   };
 
   // Tab 3: Offline Import Handlers
@@ -1011,21 +1109,22 @@ export default function App() {
                 setFilters={setAccountFilters}
                 onApplyFilters={() => fetchAccounts(1)}
                 onResetFilters={() => {
-                  setAccountFilters({
+                  const defaultFilters: AccountFiltersState = {
                     search: '',
                     platform: 'ALL',
                     status: 'ALL',
+                    data_quality: '',
                     machine_id: '',
                     source_file: '',
                     managed_by: '',
-                    has_cookie: '',
-                    has_email: '',
-                    has_token: '',
                     team: 'ALL',
                     limit: 50,
-                  });
-                  fetchAccounts(1);
+                  };
+                  setAccountFilters(defaultFilters);
+                  fetchAccounts(1, defaultFilters);
                 }}
+                onExportExcel={handleExportAccountsExcel}
+                isExporting={exportAccountsLoading}
                 isLoading={accountsLoading}
               />
 
@@ -1053,6 +1152,10 @@ export default function App() {
                 onMarkSold={handleBulkMarkSold}
                 onMarkUsed={handleBulkMarkUsed}
                 onBlacklist={handleBulkBlacklist}
+                onAutoFix={handleBulkAutoFix}
+                onDeleteToTrash={handleBulkMoveToTrash}
+                onRestore={handleBulkRestore}
+                isTrashMode={accountFilters.status === 'TRASH'}
               />
             </div>
           )}
@@ -1361,6 +1464,35 @@ export default function App() {
               onPushToBrowser={(code) =>
                 showToast(`Đã đẩy cấu hình dàn máy ${code} sang Antidetect Browser thành công!`, 'success')
               }
+            />
+          )}
+
+          {/* TAB: SANITATION HUB */}
+          {activeTab === 'sanitation' && (
+            <AccountSanitationView 
+              userRole={userRole} 
+              onRefreshGlobalStats={fetchDashboardStats} 
+              onNavigateToAccounts={(category) => {
+                if (category === 'corrupted') {
+                  const updatedFilters = { ...accountFilters, data_quality: 'corrupted', status: 'ALL' };
+                  setAccountFilters(updatedFilters);
+                  fetchAccounts(1, updatedFilters);
+                } else if (category === 'missing_core') {
+                  const updatedFilters = { ...accountFilters, data_quality: 'missing_core', status: 'ALL' };
+                  setAccountFilters(updatedFilters);
+                  fetchAccounts(1, updatedFilters);
+                } else if (category === 'trash') {
+                  const updatedFilters = { ...accountFilters, status: 'TRASH', data_quality: '' };
+                  setAccountFilters(updatedFilters);
+                  fetchAccounts(1, updatedFilters);
+                } else if (category === 'blacklisted') {
+                  const updatedFilters = { ...accountFilters, status: 'BLACKLISTED', data_quality: '' };
+                  setAccountFilters(updatedFilters);
+                  fetchAccounts(1, updatedFilters);
+                }
+                handleTabChange('accounts');
+              }}
+              showToast={showToast}
             />
           )}
 

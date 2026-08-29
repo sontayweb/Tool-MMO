@@ -21,6 +21,7 @@ import {
   Server,
   TrendingUp,
   Cloud,
+  ShieldAlert,
 } from 'lucide-react';
 
 export type TabType =
@@ -35,7 +36,8 @@ export type TabType =
   | 'teams'
   | 'systemlogs'
   | 'farm'
-  | 'crm';
+  | 'crm'
+  | 'sanitation';
 
 interface SidebarProps {
   activeTab: TabType;
@@ -139,6 +141,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: Archive,
       iconColor: 'text-teal-500 dark:text-teal-400',
       roles: ['OWNER', 'MANAGER'],
+    },
+    {
+      id: 'sanitation' as TabType,
+      label: 'Dọn Dẹp & Cứu Hộ',
+      icon: ShieldAlert,
+      iconColor: 'text-red-500 dark:text-red-400',
+      roles: ['OWNER', 'MANAGER'],
+      badge: 'FIX',
+      badgeColor: 'bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30',
     },
     {
       id: 'apikeys' as TabType,

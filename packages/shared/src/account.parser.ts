@@ -229,16 +229,20 @@ export class AccountParser {
     const rawLine = cleanCells.join('|');
     const platform = AccountParser.detectPlatform(rawLine, context);
 
-    // Kiểm tra xem trong hàng có cell nào chứa chuỗi pipe đầy đủ không (ví dụ cell cuối chứa pipe token)
-    const pipeCell = cleanCells.find(c => c && c.includes('|') && (c.includes('@') || c.includes('M.C') || c.includes('.shopee.vn') || c.includes('SPC_F=')));
-    if (pipeCell) {
-      const parsed = AccountParser.parseLine(pipeCell, lineNumber, context);
-      parsed.raw = rawLine;
-      return parsed;
-    }
-
     const cells = cleanCells;
     const nonEmpty = cells.filter(c => c.length > 0);
+
+    // Kiểm tra xem trong hàng có cell nào chứa chuỗi pipe đầy đủ không (ví dụ paste nhầm 1 cục vào 1 ô)
+    const pipeCell = cleanCells.find(c => c && c.includes('|') && (c.includes('@') || c.includes('M.C') || c.includes('.shopee.vn') || c.includes('SPC_F=')));
+    if (pipeCell) {
+      const pipeCount = (pipeCell.match(/\|/g) || []).length;
+      // Chỉ ưu tiên parse theo Pipe nếu dòng này có rất ít cột (bị dính vào 1-2 ô) HOẶC ô đó chứa rất nhiều dấu |
+      if (nonEmpty.length <= 2 || pipeCount >= 3) {
+        const parsed = AccountParser.parseLine(pipeCell, lineNumber, context);
+        parsed.raw = rawLine;
+        return parsed;
+      }
+    }
 
     if (nonEmpty.length === 0) {
       return {
@@ -256,6 +260,8 @@ export class AccountParser {
     let password = '';
     let phone = '';
     let cookie = '';
+    let token = '';
+    let sessionToken = '';
     let email = '';
     let emailPassword = '';
     let machineId = '';
@@ -358,6 +364,9 @@ export class AccountParser {
           if (!c) return;
           if (c.includes('.shopee.vn') || c.includes('SPC_F=') || c.includes('SPC_EC=') || c.includes('ttwid=')) {
             cookie = c;
+          } else if (c.startsWith('M.C') || (c.length > 60 && !c.includes('@') && !c.includes(' '))) {
+            sessionToken = c;
+            token = c;
           } else if (/^(m\.c\d+|p\d+k\d+|máy\s*\d+|box\s*\d+)$/i.test(c)) {
             machineId = c;
           } else if (c.toLowerCase().includes('xu') || (/^\d+$/.test(c) && Number(c) <= 500000)) {
@@ -403,6 +412,8 @@ export class AccountParser {
       password: password || undefined,
       phone: phone || undefined,
       cookie: cookie || undefined,
+      token: token || undefined,
+      session_token: sessionToken || undefined,
       machine_id: machineId || undefined,
       email: email || undefined,
       email_password: emailPassword || undefined,

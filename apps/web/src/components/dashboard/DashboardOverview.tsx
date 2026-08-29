@@ -41,7 +41,8 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
   const available = stats?.available || 0;
   const sold = stats?.sold || 0;
   const used = stats?.used || 0;
-  const blacklist = stats?.blacklist || 0;
+  const blacklist = stats?.by_status?.BLACKLISTED || 0;
+  const errorCount = stats?.by_status?.ERROR || 0;
 
   const availableRate = total > 0 ? ((available / total) * 100).toFixed(1) : '0';
   const soldRate = total > 0 ? ((sold / total) * 100).toFixed(1) : '0';
@@ -66,6 +67,27 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 
   return (
     <div className="space-y-6 animate-fadeIn">
+      {/* Error Alert Banner */}
+      {errorCount > 0 && (
+        <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center">
+              <Ban className="w-5 h-5 text-rose-500" />
+            </div>
+            <div>
+              <div className="text-sm font-bold">Phát hiện {errorCount.toLocaleString()} tài khoản lỗi cấu trúc!</div>
+              <div className="text-xs mt-0.5">Vui lòng vào tab "Kho Tài Khoản", lọc trạng thái ERROR để xử lý hoặc xóa.</div>
+            </div>
+          </div>
+          <button
+            onClick={() => onNavigateTab('accounts')}
+            className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl transition-colors"
+          >
+            Xử Lý Ngay
+          </button>
+        </div>
+      )}
+
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Total Accounts */}

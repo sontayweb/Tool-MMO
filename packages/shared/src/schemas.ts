@@ -1,7 +1,7 @@
 import { Schema, Document, Types } from 'mongoose';
 
 // Account Types & Schema
-export type AccountStatus = "AVAILABLE" | "SOLD" | "USED" | "ERROR" | "BLACKLISTED";
+export type AccountStatus = "AVAILABLE" | "SOLD" | "USED" | "ERROR" | "BLACKLISTED" | "TRASH";
 
 export interface IAccountHistory {
   action: string;
@@ -44,6 +44,8 @@ export interface IAccount extends Document {
     last_scan_at: Date;
   };
   status: AccountStatus;
+  deleted_at?: Date;
+  deleted_by?: string;
   health_status?: "UNKNOWN" | "LIVE" | "SOFT_DEAD" | "DEAD" | "IVS_PENDING";
   health_checked_at?: Date;
   source_system?: string;
@@ -115,17 +117,19 @@ export const AccountSchema = new Schema<IAccount>(
       source_sheet: String,
       source_tab_label: String,
       managed_by: String,
-      team: { type: String, index: true },
+      team: { type: String, default: "ALL", index: true },
       batch_id: { type: Schema.Types.ObjectId, ref: 'ScanBatch' },
       first_scan_at: { type: Date, default: Date.now },
-      last_scan_at: { type: Date, default: Date.now }
+      last_scan_at: { type: Date, default: Date.now, index: true }
     },
     status: {
       type: String,
-      enum: ["AVAILABLE", "SOLD", "USED", "ERROR", "BLACKLISTED"],
+      enum: ["AVAILABLE", "SOLD", "USED", "ERROR", "BLACKLISTED", "TRASH"],
       default: "AVAILABLE",
       index: true
     },
+    deleted_at: { type: Date, index: true },
+    deleted_by: { type: String },
     health_status: {
       type: String,
       enum: ["UNKNOWN", "LIVE", "SOFT_DEAD", "DEAD", "IVS_PENDING"],
