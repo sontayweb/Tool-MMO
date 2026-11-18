@@ -356,4 +356,81 @@ describe('AccountsCheckerService - Unit Test Suite', () => {
       assert.ok(status.speed_per_sec !== undefined);
     });
   });
+
+  describe('5. Worker Heartbeat & Claim Report Export', () => {
+    it('recordHeartbeat ghi nhận nhịp tim và hiển thị worker_status.is_alive = true', () => {
+      const hb = service.recordHeartbeat({ worker_name: 'Test_Worker', active_threads: 4 });
+      assert.strictEqual(hb.success, true);
+      assert.strictEqual(hb.active_threads, 4);
+
+      const status = service.getSessionStatus();
+      assert.strictEqual(status.worker_status.is_alive, true);
+      assert.strictEqual(status.worker_status.worker_name, 'Test_Worker');
+      assert.strictEqual(status.worker_status.active_threads, 4);
+    });
+
+    it('exportClaimReport xuất định dạng TXT pipe-delimited chuẩn khiếu nại', async () => {
+      let sentContent = '';
+      const mockRes = {
+        setHeader: () => {},
+        send: (text) => { sentContent = text; }
+      };
+
+      mockAccountModel.find = () => ({
+        select: () => ({
+          lean: async () => [
+            {
+              username: 'shopee_die_1',
+              password_enc: 'enc_p1',
+              quality: { last_check_result: 'BANNED_F02' },
+              custom_metadata: { check_response: { error: 9, message: 'Bị khóa F02' } }
+            }
+          ]
+        })
+      });
+
+      await service.exportClaimReport(
+        { format: 'TXT', usernames: ['shopee_die_1'] },
+        { username: 'admin' },
+        mockRes
+      );
+
+      assert.ok(sentContent.includes('shopee_die_1|plain_enc_p1|BANNED_F02|Bị khóa F02'));
+      const claimAudit = auditLogs.find(a => a.action === 'SHOPEE_CLAIM_EXPORT');
+      assert.ok(claimAudit);
+      assert.strictEqual(claimAudit.details.total_exported, 1);
+    });
+
+    it('exportClaimReport tạo file Excel (.xlsx) với tiêu đề bảng và thông tin đầy đủ', async () => {
+      let headersSet = {};
+      let isEnded = false;
+      const mockRes = {
+        setHeader: (k, v) => { headersSet[k] = v; },
+        write: () => {},
+        end: () => { isEnded = true; }
+      };
+
+      mockAccountModel.find = () => ({
+        select: () => ({
+          lean: async () => [
+            {
+              username: 'shopee_die_2',
+              password_enc: 'enc_p2',
+              quality: { last_check_result: 'WRONG_PASS' },
+              custom_metadata: { check_response: { error: 2, message: 'Sai pass' } }
+            }
+          ]
+        })
+      });
+
+      await service.exportClaimReport(
+        { format: 'EXCEL' },
+        { username: 'admin' },
+        mockRes
+      );
+
+      assert.strictEqual(isEnded, true);
+      assert.ok(headersSet['Content-Type'].includes('spreadsheetml'));
+    });
+  });
 });

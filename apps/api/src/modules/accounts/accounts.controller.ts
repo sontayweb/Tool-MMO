@@ -276,6 +276,24 @@ export class AccountsController {
     return this.checkerService.getSessionStatus();
   }
 
+  @Post('checker/heartbeat')
+  async recordCheckerHeartbeat(
+    @Body() body: { worker_name?: string; active_threads?: number; delay?: number }
+  ) {
+    return this.checkerService.recordHeartbeat(body);
+  }
+
+  @Post('checker/export-claim')
+  @Roles('OWNER', 'MANAGER', 'MEMBER')
+  async exportClaimReport(
+    @Body() body: { session_id?: string; usernames?: string[]; format?: 'EXCEL' | 'TXT' },
+    @Request() req: any,
+    @Res() res: any
+  ) {
+    const actor = req.user || { username: 'API_USER', role: 'MANAGER' };
+    return this.checkerService.exportClaimReport(body, actor, res);
+  }
+
   @Post('checker/stop')
   @Roles('OWNER', 'MANAGER', 'MEMBER')
   async stopCheckerSession(@Request() req: any) {

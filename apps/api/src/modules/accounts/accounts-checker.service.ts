@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as ExcelJS from 'exceljs';
 import { IAccount, UsernameNormalizer, CryptoService } from '@arms/shared';
 import { AuditService } from '../audit/audit.service.js';
 
@@ -54,11 +55,35 @@ export class AccountsCheckerService {
     recent_results: []
   };
 
+  private lastWorkerHeartbeat: {
+    timestamp: number;
+    worker_name?: string;
+    active_threads?: number;
+    delay?: number;
+  } | null = null;
+
   constructor(
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,
     private readonly cryptoService: CryptoService,
     private readonly auditService: AuditService
   ) {}
+
+  // ----------------------------------------------------------------
+  // 0. WORKER HEARTBEAT: Cập nhật nhịp tim trực chiến của Python Worker
+  // ----------------------------------------------------------------
+  recordHeartbeat(dto: { worker_name?: string; active_threads?: number; delay?: number }) {
+    this.lastWorkerHeartbeat = {
+      timestamp: Date.now(),
+      worker_name: dto.worker_name || 'Shopee_ARMS_Worker',
+      active_threads: dto.active_threads || 1,
+      delay: dto.delay
+    };
+    return {
+      success: true,
+      timestamp: this.lastWorkerHeartbeat.timestamp,
+      active_threads: this.lastWorkerHeartbeat.active_threads
+    };
+  }
 
   // ----------------------------------------------------------------
   // 1. START SESSION: Khởi tạo phiên kiểm tra ngầm
@@ -324,6 +349,10 @@ export class AccountsCheckerService {
 
     const speed_per_sec = elapsed_sec > 0 ? (checked / elapsed_sec).toFixed(1) : '0';
 
+    const isWorkerAlive = this.lastWorkerHeartbeat
+      ? Date.now() - this.lastWorkerHeartbeat.timestamp < 12000
+      : false;
+
     return {
       id: this.session.id,
       status: this.session.status,
@@ -339,6 +368,12 @@ export class AccountsCheckerService {
       total_coins: this.session.total_coins,
       elapsed_sec,
       speed_per_sec,
+      worker_status: {
+        is_alive: isWorkerAlive,
+        worker_name: this.lastWorkerHeartbeat?.worker_name || null,
+        active_threads: this.lastWorkerHeartbeat?.active_threads || 0,
+        last_heartbeat_at: this.lastWorkerHeartbeat?.timestamp || null
+      },
       recent_results: this.session.recent_results
     };
   }
@@ -362,5 +397,133 @@ export class AccountsCheckerService {
     });
 
     return this.getSessionStatus();
+  }
+
+  // ----------------------------------------------------------------
+  // 6. EXPORT CLAIM REPORT: Xuất file khiếu nại tài khoản lỗi gửi shop
+  // ----------------------------------------------------------------
+  async exportClaimReport(
+    params: {
+      session_id?: string;
+      usernames?: string[];
+      format?: 'EXCEL' | 'TXT';
+    },
+    actor: { username: string; role?: string; team?: string },
+    res: any
+  ) {
+    const filter: any = { platform: 'SHOPEE', status: 'ERROR' };
+
+    if (params.usernames && params.usernames.length > 0) {
+      const normList = params.usernames.map(u => UsernameNormalizer.normalize(u)).filter(Boolean);
+      filter.username_normalized = { $in: normList };
+    } else if (this.session.recent_results && this.session.recent_results.length > 0) {
+      const errorUsernames = this.session.recent_results
+        .filter(r => r.status !== 'LIVE')
+        .map(r => UsernameNormalizer.normalize(r.username));
+      if (errorUsernames.length > 0) {
+        filter.username_normalized = { $in: errorUsernames };
+      }
+    }
+
+    const docs = await this.accountModel
+      .find(filter)
+      .select('username username_normalized email password_enc platform health_status quality custom_metadata metadata health_checked_at tags')
+      .lean();
+
+    const timestamp = Date.now();
+
+    await this.auditService.record({
+      action: 'SHOPEE_CLAIM_EXPORT',
+      actor_id: actor.username,
+      actor_username: actor.username,
+      details: {
+        total_exported: docs.length,
+        format: params.format || 'EXCEL'
+      }
+    });
+
+    if (params.format === 'TXT') {
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.setHeader('Content-Disposition', `attachment; filename="khieu_nai_shopee_${timestamp}.txt"`);
+
+      let txtContent = '';
+      for (const doc of docs) {
+        let plainPass = '';
+        if (doc.password_enc) {
+          try {
+            plainPass = this.cryptoService.decrypt(doc.password_enc);
+          } catch {
+            plainPass = '';
+          }
+        }
+        const errType = doc.quality?.last_check_result || doc.health_status || 'ERROR';
+        const rawMsg = doc.custom_metadata?.check_response?.message || doc.custom_metadata?.check_response?.error_msg || '';
+        txtContent += `${doc.username}|${plainPass}|${errType}|${rawMsg}\n`;
+      }
+
+      res.send(txtContent);
+      return;
+    }
+
+    // Default: EXCEL (.xlsx)
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Khiếu Nại Lỗi Shopee');
+
+    worksheet.columns = [
+      { header: 'STT', key: 'stt', width: 8 },
+      { header: 'Tài khoản (Username)', key: 'username', width: 24 },
+      { header: 'Mật khẩu', key: 'password', width: 22 },
+      { header: 'Email', key: 'email', width: 28 },
+      { header: 'Phân loại lỗi', key: 'error_type', width: 20 },
+      { header: 'Mã lỗi', key: 'error_code', width: 12 },
+      { header: 'Chi tiết phản hồi từ Shopee', key: 'proof_message', width: 45 },
+      { header: 'Nguồn File / Sheet', key: 'source', width: 25 },
+      { header: 'Thời gian kiểm tra', key: 'checked_at', width: 22 }
+    ];
+
+    const headerRow = worksheet.getRow(1);
+    headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+    headerRow.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFDC2626' }
+    };
+    headerRow.alignment = { vertical: 'middle', horizontal: 'center' };
+
+    let stt = 1;
+    for (const doc of docs) {
+      let plainPass = '';
+      if (doc.password_enc) {
+        try {
+          plainPass = this.cryptoService.decrypt(doc.password_enc);
+        } catch {
+          plainPass = '';
+        }
+      }
+
+      const rawResp = doc.custom_metadata?.check_response || {};
+      const proofMsg = rawResp.message || rawResp.error_msg || doc.quality?.last_check_result || 'Lỗi kiểm tra login';
+      const errorCode = rawResp.error !== undefined ? rawResp.error : (doc.tags?.includes('shopee_check_banned') ? 9 : 2);
+      const source = doc.metadata?.source_sheet || doc.metadata?.source_file || 'Kho Shopee DWH';
+      const checkTime = doc.health_checked_at ? new Date(doc.health_checked_at).toLocaleString('vi-VN') : '';
+
+      worksheet.addRow({
+        stt: stt++,
+        username: doc.username,
+        password: plainPass,
+        email: doc.email || '',
+        error_type: doc.quality?.last_check_result || (errorCode === 9 ? 'BANNED_F02' : 'WRONG_PASS'),
+        error_code: errorCode,
+        proof_message: proofMsg,
+        source,
+        checked_at: checkTime
+      });
+    }
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename="khieu_nai_shopee_${timestamp}.xlsx"`);
+
+    await workbook.xlsx.write(res);
+    res.end();
   }
 }

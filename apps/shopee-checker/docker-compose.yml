@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: shopee_checker_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - shopee_net
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: shopee_checker_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - shopee_net
+
+  api:
+    build:
+      context: .
+      dockerfile: api_backend/Dockerfile
+    container_name: shopee_checker_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - REDIS_URL=redis://redis:6379/0
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - shopee_net
+
+  dashboard:
+    build:
+      context: ./web_dashboard
+      dockerfile: Dockerfile
+    container_name: shopee_checker_dashboard
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8000
+    depends_on:
+      - api
+    networks:
+      - shopee_net
+
+networks:
+  shopee_net:
+    driver: bridge

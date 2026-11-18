@@ -16,7 +16,9 @@ import {
   Clock,
   Coins,
   Download,
-  Filter
+  Filter,
+  FileSpreadsheet,
+  Activity
 } from 'lucide-react';
 
 interface CheckResultItem {
@@ -46,6 +48,12 @@ interface CheckerSessionData {
   total_coins: number;
   speed_per_sec: string;
   elapsed_sec: number;
+  worker_status?: {
+    is_alive: boolean;
+    worker_name?: string | null;
+    active_threads?: number;
+    last_heartbeat_at?: number | null;
+  };
   recent_results: CheckResultItem[];
 }
 
@@ -199,6 +207,48 @@ export const LiveCheckerModal: React.FC<LiveCheckerModalProps> = ({
     showToast?.(`Đã chép ${liveItems.length} tài khoản LIVE vào bộ nhớ tạm!`, 'success');
   };
 
+  // Xuất file khiếu nại tài khoản lỗi gửi shop
+  const [exportingClaim, setExportingClaim] = useState<boolean>(false);
+  const handleExportClaim = async (format: 'EXCEL' | 'TXT' = 'EXCEL') => {
+    setExportingClaim(true);
+    try {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : '';
+      const response = await fetch('/api/accounts/checker/export-claim', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        },
+        body: JSON.stringify({
+          session_id: session?.id,
+          format
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Không thể xuất file khiếu nại');
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = format === 'EXCEL'
+        ? `khieu_nai_shopee_${session?.id || Date.now()}.xlsx`
+        : `khieu_nai_shopee_${session?.id || Date.now()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      showToast?.(`Đã tải file khiếu nại ${session?.error_count || 0} tài khoản lỗi!`, 'success');
+    } catch (err: any) {
+      showToast?.(err.message || 'Lỗi khi xuất file khiếu nại', 'error');
+    } finally {
+      setExportingClaim(false);
+    }
+  };
+
   // Lọc kết quả streaming
   const filteredResults = (session?.recent_results || []).filter(item => {
     if (filterType === 'LIVE') return item.status === 'LIVE' || item.error_code === 0;
@@ -221,12 +271,23 @@ export const LiveCheckerModal: React.FC<LiveCheckerModalProps> = ({
             <Zap className="w-4 h-4 fill-orange-400 text-orange-400" />
           </div>
           <div>
-            <div className="text-base font-bold text-white flex items-center gap-2">
+            <div className="text-base font-bold text-white flex items-center gap-2 flex-wrap">
               Kiểm Tra Shopee Trực Tiếp (Live Checker)
               {isRunning && (
                 <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 animate-pulse">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                   Đang chạy ngầm
+                </span>
+              )}
+              {session?.worker_status?.is_alive ? (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30" title="Python Worker đang kết nối và xử lý">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Worker Trực Chiến ({session.worker_status.active_threads || 1} luồng)
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30" title="Chưa phát hiện Python Worker kết nối. Hãy bật script shopee_arms_sync.py">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  Worker Chưa Kết Nối
                 </span>
               )}
             </div>
@@ -452,15 +513,36 @@ export const LiveCheckerModal: React.FC<LiveCheckerModalProps> = ({
               )}
             </div>
 
-            {/* Quick Export Live button */}
-            <button
-              onClick={handleCopyLiveList}
-              className="px-3 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all"
-              title="Sao chép danh sách các nick LIVE thành công"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Copy Nick LIVE</span>
-            </button>
+            <div className="flex items-center gap-2">
+              {/* Nút Xuất Khiếu Nại Shop */}
+              {session.error_count > 0 && (
+                <button
+                  type="button"
+                  onClick={() => handleExportClaim('EXCEL')}
+                  disabled={exportingClaim}
+                  className="px-3 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 border border-rose-500/40 text-rose-300 text-xs font-bold flex items-center gap-1.5 transition-all disabled:opacity-50"
+                  title="Tải bảng tính Excel chứa danh sách tài khoản bị khóa F02 và sai mật khẩu kèm bằng chứng để gửi shop khiếu nại"
+                >
+                  {exportingClaim ? (
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <FileSpreadsheet className="w-3.5 h-3.5" />
+                  )}
+                  <span>Xuất Khiếu Nại Shop ({session.error_count})</span>
+                </button>
+              )}
+
+              {/* Quick Export Live button */}
+              <button
+                type="button"
+                onClick={handleCopyLiveList}
+                className="px-3 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all"
+                title="Sao chép danh sách các nick LIVE thành công"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Copy Nick LIVE</span>
+              </button>
+            </div>
           </div>
         )}
 
