@@ -2,6 +2,7 @@ import { Controller, Get, Post, Patch, Delete, Body, Query, Param, UseGuards, Re
 import { AccountsService } from './accounts.service.js';
 import { AccountsSanitationService } from './accounts-sanitation.service.js';
 import { AccountsExportService } from './accounts-export.service.js';
+import { AccountsCheckerService } from './accounts-checker.service.js';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/roles.guard.js';
 import { Roles } from '../auth/roles.decorator.js';
@@ -12,7 +13,8 @@ export class AccountsController {
   constructor(
     private readonly accountsService: AccountsService,
     private readonly sanitationService: AccountsSanitationService,
-    private readonly exportService: AccountsExportService
+    private readonly exportService: AccountsExportService,
+    private readonly checkerService: AccountsCheckerService
   ) {}
 
   @Get('stats')
@@ -24,6 +26,18 @@ export class AccountsController {
   @Roles('OWNER', 'MANAGER')
   async getAnalytics() {
     return this.accountsService.getAnalyticsSummary();
+  }
+
+  @Get('crm/stats')
+  @Roles('OWNER', 'MANAGER')
+  async getCrmStats() {
+    return this.accountsService.getCrmStats();
+  }
+
+  @Post()
+  @Roles('OWNER', 'MANAGER', 'MEMBER')
+  async createSingleAccount(@Body() body: any, @Request() req: any) {
+    return this.accountsService.createSingleAccount(body, req.user);
   }
 
   // ----------------------------------------------------------------
@@ -38,7 +52,7 @@ export class AccountsController {
   @Post('sanitation/clean')
   @Roles('OWNER', 'MANAGER')
   async cleanSanitation(
-    @Body() body: { category: string; action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX' },
+    @Body() body: { category: string; action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX' | 'HARD_DELETE' | 'RESTORE' },
     @Request() req: any
   ) {
     return this.sanitationService.cleanSanitation(body.category, body.action, req.user);
@@ -165,10 +179,10 @@ export class AccountsController {
   @Post('bulk-sold')
   @Roles('OWNER', 'MANAGER')
   async bulkMarkSold(
-    @Body() body: { usernames: string[]; sold_to?: string; order_id?: string },
+    @Body() body: { usernames: string[]; sold_to?: string; order_id?: string; unit_price?: number },
     @Request() req: any
   ) {
-    return this.accountsService.bulkMarkSold(body.usernames || [], req.user, body.sold_to, body.order_id);
+    return this.accountsService.bulkMarkSold(body.usernames || [], req.user, body.sold_to, body.order_id, body.unit_price);
   }
 
   @Post('bulk-used')
@@ -227,5 +241,44 @@ export class AccountsController {
     const actor = req.user || { username: 'API_INGEST', role: 'MANAGER' };
     const accounts = Array.isArray(body) ? body : (body.accounts || [body]);
     return this.accountsService.ingestAccounts(accounts, actor);
+  }
+
+  // ----------------------------------------------------------------
+  // SHOPEE HEALTH CHECKER INTEGRATION
+  // ----------------------------------------------------------------
+  @Post('checker/start')
+  @Roles('OWNER', 'MANAGER', 'MEMBER')
+  async startCheckerSession(
+    @Body() body: { usernames?: string[]; mode?: 'SELECTED' | 'ALL_SHOPEE' | 'UNVERIFIED' | 'ERRORS_ONLY'; team?: string },
+    @Request() req: any
+  ) {
+    return this.checkerService.startSession(body, req.user);
+  }
+
+  @Post('checker/lease')
+  async leaseAccountsForChecker(
+    @Body() body: { batch_size?: number }
+  ) {
+    return this.checkerService.leaseAccounts(body.batch_size || 10);
+  }
+
+  @Post('checker/report-single')
+  async reportSingleResult(
+    @Body() body: any,
+    @Request() req: any
+  ) {
+    const actor = req.user || { username: 'SHOPEE_WORKER' };
+    return this.checkerService.reportSingleResult(body, actor);
+  }
+
+  @Get('checker/session')
+  async getCheckerSessionStatus() {
+    return this.checkerService.getSessionStatus();
+  }
+
+  @Post('checker/stop')
+  @Roles('OWNER', 'MANAGER', 'MEMBER')
+  async stopCheckerSession(@Request() req: any) {
+    return this.checkerService.stopSession(req.user);
   }
 }

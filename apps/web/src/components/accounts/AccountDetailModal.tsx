@@ -20,6 +20,8 @@ import {
   Music2,
   KeyRound,
   Coins,
+  ExternalLink,
+  Zap,
 } from 'lucide-react';
 
 interface AccountDetailModalProps {
@@ -271,6 +273,8 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
                   <span>
                     {account.platform === 'TIKTOK'
                       ? 'Token Phiên TikTok (Đăng nhập No-OTP)'
+                      : (account.session_token?.startsWith('M.C') || account.token?.startsWith('M.C'))
+                      ? 'Token Phiên Shopee / Boxphone (Đăng nhập No-OTP)'
                       : 'Cookie Shopee (SPC_F / Session)'}
                   </span>
                 </span>
@@ -297,6 +301,52 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
               </div>
             </div>
           )}
+
+          {/* Quick Copy Formats */}
+          <div className="pt-2 border-t border-[var(--border-subtle)]">
+            <div className="text-[10px] text-desc uppercase font-sans font-bold flex items-center gap-1.5 mb-2">
+              <Zap className="w-3 h-3 text-amber-400" />
+              <span>Sao Chép Nhanh Theo Định Dạng (1-Click)</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {account.username && account.password && (
+                <button
+                  onClick={() => handleCopy(`${account.username}|${account.password}`, 'fmt_up', 'User|Pass')}
+                  className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-[var(--border-subtle)] text-[11px] font-sans flex items-center gap-1 text-title hover:text-purple-300 transition-colors"
+                >
+                  {copiedKey === 'fmt_up' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-desc" />}
+                  <span>User|Pass</span>
+                </button>
+              )}
+              {account.username && account.password && (account.cookie || account.session_token || account.token) && (
+                <button
+                  onClick={() => handleCopy(`${account.username}|${account.password}|${account.cookie || account.session_token || account.token}`, 'fmt_upc', 'User|Pass|Cookie')}
+                  className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-[var(--border-subtle)] text-[11px] font-sans flex items-center gap-1 text-title hover:text-cyan-300 transition-colors"
+                >
+                  {copiedKey === 'fmt_upc' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-desc" />}
+                  <span>User|Pass|Cookie</span>
+                </button>
+              )}
+              {account.username && account.password && account.email && (
+                <button
+                  onClick={() => handleCopy(`${account.username}|${account.password}|${account.email}|${account.email_password || account.pass_email || ''}`, 'fmt_upm', 'User|Pass|Mail|PassMail')}
+                  className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-[var(--border-subtle)] text-[11px] font-sans flex items-center gap-1 text-title hover:text-emerald-300 transition-colors"
+                >
+                  {copiedKey === 'fmt_upm' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-desc" />}
+                  <span>User|Pass|Mail|PassMail</span>
+                </button>
+              )}
+              {account.username && (
+                <button
+                  onClick={() => handleCopy([account.username, account.password, account.cookie || account.session_token || account.token, account.email, account.email_password || account.pass_email].filter(Boolean).join('|'), 'fmt_full', 'Toàn bộ thông tin')}
+                  className="px-2.5 py-1.5 rounded-lg bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-[11px] font-sans flex items-center gap-1 text-purple-300 transition-colors"
+                >
+                  {copiedKey === 'fmt_full' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-purple-400" />}
+                  <span>Full Pipe Format</span>
+                </button>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Source and Audit Information */}
@@ -307,8 +357,21 @@ export const AccountDetailModal: React.FC<AccountDetailModalProps> = ({
               <span>Nguồn Gốc Dữ Liệu</span>
             </div>
             <div className="space-y-1.5 text-title">
-              <div>
-                Tệp nguồn: <strong className="text-purple-400">{account.metadata?.source_file || 'Thủ công / API'}</strong>
+              <div className="flex items-center flex-wrap gap-1.5">
+                <span>Tệp nguồn:</span>
+                <strong className="text-purple-400">{account.metadata?.source_file || 'Thủ công / API'}</strong>
+                {account.metadata?.source_url && (
+                  <a
+                    href={account.metadata.source_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-[10px] text-cyan-400 font-bold hover:underline transition-colors"
+                    title="Mở tệp trực tiếp trên Google Drive"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    <span>Mở Drive</span>
+                  </a>
+                )}
               </div>
               {account.metadata?.source_sheet && (
                 <div>

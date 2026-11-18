@@ -16,6 +16,7 @@ import {
   Music2,
   Globe,
   Layers,
+  Cookie,
 } from 'lucide-react';
 import { TableSkeleton } from '../ui/Skeleton';
 
@@ -73,12 +74,12 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
   return (
     <div className="app-card rounded-2xl overflow-hidden border border-[var(--border-subtle)] shadow-xl">
       {/* Table Container */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs">
+      <div className="overflow-x-auto scrollbar-thin">
+        <table className="w-full min-w-[980px] text-left text-xs">
           {/* Table Header */}
           <thead className="bg-[var(--bg-input)] text-desc border-b border-[var(--border-subtle)] uppercase text-[10px] font-bold tracking-wider">
             <tr>
-              <th className="p-4 w-12 text-center">
+              <th className="p-3.5 w-12 text-center shrink-0">
                 <input
                   type="checkbox"
                   checked={isAllSelected}
@@ -87,13 +88,13 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                   className="rounded accent-purple-500 cursor-pointer"
                 />
               </th>
-              <th className="py-4 px-3">Tài Khoản / Username</th>
-              <th className="py-4 px-3">Mật Khẩu</th>
-              <th className="py-4 px-3">Nền Tảng</th>
-              <th className="py-4 px-3">Dàn Máy / Ghi Chú</th>
-              <th className="py-4 px-3">Trạng Thái</th>
-              <th className="py-4 px-3">Nguồn / Đội Nhóm</th>
-              <th className="py-4 px-4 text-right">Chi Tiết</th>
+              <th className="py-3.5 px-3 min-w-[200px]">Tài Khoản / Username</th>
+              <th className="py-3.5 px-3 min-w-[110px]">Mật Khẩu</th>
+              <th className="py-3.5 px-3 min-w-[100px]">Nền Tảng</th>
+              <th className="py-3.5 px-3 min-w-[150px]">Dàn Máy / Ghi Chú</th>
+              <th className="py-3.5 px-3 min-w-[120px]">Trạng Thái</th>
+              <th className="py-3.5 px-3 min-w-[140px]">Nguồn / Đội Nhóm</th>
+              <th className="py-3.5 px-4 min-w-[80px] text-right">Chi Tiết</th>
             </tr>
           </thead>
 
@@ -126,7 +127,7 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     }`}
                   >
                     {/* Checkbox */}
-                    <td className="p-4 text-center">
+                    <td className="p-3.5 w-12 text-center shrink-0">
                       <input
                         type="checkbox"
                         checked={isSelected}
@@ -135,27 +136,98 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                       />
                     </td>
 
-                    {/* Username */}
-                    <td className="py-3 px-3">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold font-mono text-title">{acc.username}</span>
+                    {/* Username & Phẩm chất */}
+                    <td className="py-3 px-3 min-w-[210px] max-w-[260px]">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {acc.username.startsWith('dup_') ? (
+                          <div className="flex items-center gap-1">
+                            <span
+                              className="font-bold font-mono text-amber-400 text-xs truncate max-w-[130px] inline-block align-middle"
+                              title={`Nick trùng kho: ${acc.username}`}
+                            >
+                              {acc.username.replace(/^dup_/, '').replace(/_[a-f0-9]{4}$/, '')}
+                            </span>
+                            <span
+                              className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-400 whitespace-nowrap"
+                              title={acc.username}
+                            >
+                              Trùng kho
+                            </span>
+                          </div>
+                        ) : acc.username.startsWith('junk_') ? (
+                          <div className="flex items-center gap-1">
+                            <span
+                              className="font-bold font-mono text-desc/60 text-xs truncate max-w-[120px] inline-block align-middle"
+                              title={`Dòng rác bảng tính: ${acc.username}`}
+                            >
+                              {acc.username}
+                            </span>
+                            <span
+                              className="text-[9px] font-medium px-1.5 py-0.5 rounded bg-zinc-500/15 border border-zinc-500/30 text-desc whitespace-nowrap"
+                            >
+                              Rác Excel
+                            </span>
+                          </div>
+                        ) : (
+                          <span
+                            className="font-bold font-mono text-title text-xs truncate max-w-[160px] inline-block align-middle"
+                            title={acc.username}
+                          >
+                            {acc.username}
+                          </span>
+                        )}
+
                         <button
                           onClick={() => onCopyText(acc.username, 'Username')}
-                          className="text-desc hover:text-title p-0.5 opacity-60 hover:opacity-100 transition-opacity"
+                          className="text-desc hover:text-title p-0.5 opacity-60 hover:opacity-100 transition-opacity shrink-0"
                           title="Copy Username"
                         >
                           <Copy className="w-3 h-3" />
                         </button>
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-desc font-mono mt-0.5">
-                        {acc.phone && <span className="text-amber-400 font-semibold">{acc.phone}</span>}
-                        {acc.phone && acc.email && <span>•</span>}
-                        {acc.email && <span className="truncate max-w-[140px]">{acc.email}</span>}
+
+                      {/* Micro-Badges Phẩm chất: SĐT, Cookie, Token, Email */}
+                      <div className="flex items-center gap-1.5 text-[10px] text-desc font-mono mt-1 flex-wrap">
+                        {acc.phone && (
+                          <span className="text-amber-400 font-semibold">{acc.phone}</span>
+                        )}
+
+                        {/* Cookie Badge */}
+                        {(acc.quality?.has_cookie || acc.has_cookie || acc.cookie_enc) && (
+                          <span
+                            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+                            title="Tài khoản có Cookie"
+                          >
+                            <Cookie className="w-2.5 h-2.5" />
+                            <span>Cookie</span>
+                          </span>
+                        )}
+
+                        {/* Token Badge */}
+                        {(acc.quality?.has_token || acc.has_token || acc.token_enc || acc.session_token) && (
+                          <span
+                            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30"
+                            title="Tài khoản có Token Boxphone"
+                          >
+                            <Key className="w-2.5 h-2.5" />
+                            <span>Token</span>
+                          </span>
+                        )}
+
+                        {/* Email Substring */}
+                        {acc.email && (
+                          <span
+                            className="truncate max-w-[130px] text-desc/80"
+                            title={acc.email}
+                          >
+                            {acc.email}
+                          </span>
+                        )}
                       </div>
                     </td>
 
                     {/* Password */}
-                    <td className="py-3 px-3 font-mono text-desc">
+                    <td className="py-3 px-3 min-w-[110px] font-mono text-desc whitespace-nowrap">
                       {acc.password ? (
                         <div className="flex items-center gap-1.5">
                           <span>••••••••</span>
@@ -173,7 +245,7 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     </td>
 
                     {/* Platform */}
-                    <td className="py-3 px-3">
+                    <td className="py-3 px-3 min-w-[100px] whitespace-nowrap">
                       {acc.platform === 'TIKTOK' && (
                         <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border bg-gradient-to-r from-cyan-950/60 to-pink-950/60 text-cyan-400 border-cyan-500/40 shadow-sm shadow-cyan-500/10">
                           <Music2 className="w-3 h-3 text-pink-400" />
@@ -207,7 +279,7 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     </td>
 
                     {/* Machine ID / Coins / Product */}
-                    <td className="py-3 px-3">
+                    <td className="py-3 px-3 min-w-[150px]">
                       {acc.machine_id && (
                         <div className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-[var(--border-subtle)] text-desc">
                           <Smartphone className="w-3 h-3 text-emerald-400" />
@@ -227,7 +299,7 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     </td>
 
                     {/* Status */}
-                    <td className="py-3 px-3">
+                    <td className="py-3 px-3 min-w-[120px] whitespace-nowrap">
                       <span
                         className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${getStatusBadgeClass(
                           acc.status
@@ -238,20 +310,31 @@ export const AccountsTable: React.FC<AccountsTableProps> = ({
                     </td>
 
                     {/* Source / Team */}
-                    <td className="py-3 px-3">
-                      <div className="text-[11px] font-medium text-title truncate max-w-xs">
+                    <td className="py-3 px-3 min-w-[140px] max-w-[180px]">
+                      <div className="text-[11px] font-medium text-title truncate max-w-[160px]" title={acc.metadata?.team || 'KHO_TONG'}>
                         {acc.metadata?.team || 'KHO_TONG'}
                       </div>
                       {acc.metadata?.source_file && (
-                        <div className="text-[10px] text-desc truncate max-w-xs flex items-center gap-1 mt-0.5">
+                        <div
+                          className="text-[10px] text-desc truncate max-w-[160px] flex items-center gap-1 mt-0.5"
+                          title={`Tệp: ${acc.metadata.source_file}${acc.metadata.source_sheet ? ` | Sheet: ${acc.metadata.source_sheet}` : ''}`}
+                        >
                           <FileSpreadsheet className="w-3 h-3 text-purple-400 shrink-0" />
                           <span className="truncate">{acc.metadata.source_file}</span>
+                        </div>
+                      )}
+                      {acc.metadata?.source_sheet && (
+                        <div
+                          className="text-[9px] text-purple-400/90 truncate max-w-[150px] font-mono mt-0.5"
+                          title={`Sheet: ${acc.metadata.source_sheet}`}
+                        >
+                          📑 {acc.metadata.source_sheet}
                         </div>
                       )}
                     </td>
 
                     {/* View Detail Action */}
-                    <td className="py-3 px-4 text-right">
+                    <td className="py-3 px-4 min-w-[80px] text-right whitespace-nowrap">
                       <button
                         onClick={() => onViewDetail(acc)}
                         className="px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 font-semibold text-xs transition-all flex items-center gap-1 ml-auto"

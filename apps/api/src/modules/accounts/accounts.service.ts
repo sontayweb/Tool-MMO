@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IAccount, UsernameNormalizer, CryptoService, PlatformRules } from '@arms/shared';
@@ -72,22 +72,35 @@ export class AccountsService {
     // Domain Rule Engine - Data Quality Filtering
     if (query.data_quality === 'corrupted' || query.data_quality === 'corrupted_username') {
       const corruptedFilter = PlatformRules.getCorruptedMongoFilter(query.platform);
+      if (!filter.$and) {
+        filter.$and = [];
+      }
       if (filter.$or) {
-        filter.$and = [{ $or: filter.$or }, { $or: corruptedFilter.$or }];
+        filter.$and.push({ $or: filter.$or });
         delete filter.$or;
-      } else {
-        filter.$or = corruptedFilter.$or;
       }
+      if (corruptedFilter.$and) {
+        filter.$and.push(...corruptedFilter.$and);
+      } else if (corruptedFilter.$or) {
+        filter.$and.push({ $or: corruptedFilter.$or });
+      }
+      delete filter.status;
     } else if (query.data_quality === 'missing_core') {
-      const missingFilter = PlatformRules.getMissingCoreMongoFilter();
-      if (filter.$and) {
-        filter.$and.push(...missingFilter.$and);
-      } else {
-        filter.$and = missingFilter.$and;
-      }
+      const missingFilter = PlatformRules.getMissingCoreMongoFilter(query.platform);
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push(...missingFilter.$and);
     } else if (query.data_quality === 'full_info') {
-      const fullInfoFilter = PlatformRules.getFullInfoMongoFilter();
-      Object.assign(filter, fullInfoFilter);
+      const fullInfoFilter = PlatformRules.getFullInfoMongoFilter(query.platform);
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push(fullInfoFilter);
+    } else if (query.data_quality === 'has_cookie') {
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push({ $or: [{ 'quality.has_cookie': true }, { cookie_enc: { $nin: [null, ''] } }] });
+    } else if (query.data_quality === 'has_token') {
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push({ $or: [{ 'quality.has_token': true }, { token_enc: { $nin: [null, ''] } }, { session_token: { $nin: [null, ''] } }] });
+    } else if (query.data_quality === 'has_email') {
+      filter.email = { $nin: [null, ''] };
     }
 
     if (query.tags) {
@@ -188,24 +201,201 @@ export class AccountsService {
   // ----------------------------------------------------------------
   // BULK ACTIONS
   // ----------------------------------------------------------------
-  async bulkMarkSold(usernames: string[], actor: { username: string; role: string }, sold_to?: string, order_id?: string) {
+  async bulkMarkSold(usernames: string[], actor: { username: string; role: string }, sold_to?: string, order_id?: string, unit_price?: number) {
     const normalized = usernames.map(u => UsernameNormalizer.normalize(u)).filter(Boolean);
     if (normalized.length === 0) return { modified_count: 0 };
+
+    const actualSoldTo = sold_to || 'Khách Mua Nhanh';
+    const actualOrderId = order_id || `ORD-${Date.now().toString().slice(-6)}`;
+    const timestamp = new Date();
 
     const result = await this.accountModel.updateMany(
       { username_normalized: { $in: normalized } },
       {
-        $set: { status: 'SOLD' },
-        $push: { history: { action: 'SOLD', actor_id: actor.username, timestamp: new Date(), note: `Bán cho: ${sold_to || 'N/A'}, Đơn: ${order_id || 'N/A'}` } }
+        $set: {
+          status: 'SOLD',
+          'consumption.sold_to': actualSoldTo,
+          'consumption.sold_at': timestamp,
+          'consumption.order_id': actualOrderId,
+          'consumption.note': unit_price ? `Đơn giá: ${unit_price.toLocaleString('vi-VN')} đ` : undefined
+        },
+        $push: {
+          history: {
+            action: 'SOLD',
+            actor_id: actor.username,
+            timestamp: timestamp,
+            note: `Bán cho: ${actualSoldTo}, Đơn: ${actualOrderId}`
+          }
+        }
       }
     );
 
     await this.auditService.record({
-      action: 'MARK_SOLD', actor_id: actor.username, actor_username: actor.username,
-      details: { count: usernames.length, modified_count: result.modifiedCount, sold_to, order_id }
+      action: 'MARK_SOLD',
+      actor_id: actor.username,
+      actor_username: actor.username,
+      details: { count: usernames.length, modified_count: result.modifiedCount, sold_to: actualSoldTo, order_id: actualOrderId }
     });
 
-    return { modified_count: result.modifiedCount };
+    return { modified_count: result.modifiedCount, order_id: actualOrderId, sold_to: actualSoldTo };
+  }
+
+  // ----------------------------------------------------------------
+  // CREATE SINGLE ACCOUNT (Thêm 1 tài khoản lẻ thủ công)
+  // ----------------------------------------------------------------
+  async createSingleAccount(payload: {
+    username: string;
+    platform?: string;
+    password?: string;
+    email?: string;
+    email_password?: string;
+    cookie?: string;
+    token?: string;
+    session_token?: string;
+    machine_id?: string;
+    phone?: string;
+    coins?: any;
+    custom_metadata?: any;
+    tags?: string[];
+  }, actor: { username: string; role: string; team?: string }) {
+    if (!payload.username) {
+      throw new BadRequestException('Tên đăng nhập không được để trống.');
+    }
+
+    const platform = payload.platform || 'SHOPEE';
+    if (!PlatformRules.isValidUsername(platform, payload.username)) {
+      throw new BadRequestException(`Tên đăng nhập "${payload.username}" không hợp lệ cho nền tảng ${platform}.`);
+    }
+
+    const normalized = UsernameNormalizer.normalize(payload.username);
+
+    // Kiểm tra trùng
+    const existing = await this.accountModel.findOne({ platform, username_normalized: normalized });
+    if (existing) {
+      throw new BadRequestException(`Tài khoản "${payload.username}" (${platform}) đã tồn tại trong kho.`);
+    }
+
+    const timestamp = new Date();
+    const setFields: any = {
+      username: payload.username.trim(),
+      username_normalized: normalized,
+      platform: platform,
+      status: 'AVAILABLE',
+      phone: payload.phone ? payload.phone.trim() : undefined,
+      coins: payload.coins,
+      email: payload.email ? payload.email.trim() : undefined,
+      machine_id: payload.machine_id ? payload.machine_id.trim() : undefined,
+      custom_metadata: payload.custom_metadata || {},
+      tags: payload.tags || [],
+      metadata: {
+        source_file: 'Thủ công (Web UI)',
+        source_sheet: 'Nhập lẻ',
+        managed_by: actor.username,
+        team: actor.team || 'ALL',
+        first_scan_at: timestamp,
+        last_scan_at: timestamp
+      },
+      raw: {
+        row_number: 1,
+        raw_text: `${payload.username}|${payload.password || ''}|${payload.cookie || ''}|${payload.email || ''}`
+      },
+      quality: {
+        has_cookie: !!payload.cookie,
+        has_token: !!(payload.token || payload.session_token),
+        has_email: !!payload.email,
+        parse_errors: []
+      },
+      history: [{
+        action: 'CREATED_MANUALLY',
+        actor_id: actor.username,
+        timestamp: timestamp,
+        note: `Tạo thủ công bởi ${actor.username}`
+      }]
+    };
+
+    if (payload.password) setFields.password_enc = this.cryptoService.encrypt(payload.password);
+    if (payload.cookie) setFields.cookie_enc = this.cryptoService.encrypt(payload.cookie);
+    if (payload.token) setFields.token_enc = this.cryptoService.encrypt(payload.token);
+    if (payload.session_token) setFields.session_token = this.cryptoService.encrypt(payload.session_token);
+    if (payload.email_password) setFields.email_password_enc = this.cryptoService.encrypt(payload.email_password);
+
+    const newAcc = await this.accountModel.create(setFields);
+
+    await this.auditService.record({
+      action: 'CREATE_MANUAL_ACCOUNT',
+      actor_id: actor.username,
+      actor_username: actor.username,
+      details: { username: newAcc.username, platform: newAcc.platform }
+    });
+
+    return this.formatAccount(newAcc, actor.role);
+  }
+
+  // ----------------------------------------------------------------
+  // CRM & SALES ANALYTICS
+  // ----------------------------------------------------------------
+  async getCrmStats() {
+    const [totalSold, totalAvailable, customerAgg, recentSold] = await Promise.all([
+      this.accountModel.countDocuments({ status: 'SOLD' }),
+      this.accountModel.countDocuments({ status: 'AVAILABLE' }),
+      this.accountModel.aggregate([
+        { $match: { status: 'SOLD' } },
+        {
+          $group: {
+            _id: { $ifNull: ['$consumption.sold_to', 'Khách Vãng Lai'] },
+            total_purchased: { $sum: 1 },
+            last_purchased_at: { $max: { $ifNull: ['$consumption.sold_at', '$updatedAt'] } },
+            shopee_count: { $sum: { $cond: [{ $eq: ['$platform', 'SHOPEE'] }, 1, 0] } },
+            tiktok_count: { $sum: { $cond: [{ $eq: ['$platform', 'TIKTOK'] }, 1, 0] } }
+          }
+        },
+        { $sort: { total_purchased: -1 } },
+        { $limit: 20 }
+      ]),
+      this.accountModel.find({ status: 'SOLD' })
+        .sort({ 'consumption.sold_at': -1, updatedAt: -1 })
+        .limit(100)
+        .select('username platform consumption createdAt updatedAt')
+        .lean()
+    ]);
+
+    // Nhóm recentSold theo order_id
+    const ordersMap = new Map<string, any>();
+    recentSold.forEach((acc: any) => {
+      const orderId = acc.consumption?.order_id || 'ORD-BAN-LE';
+      if (!ordersMap.has(orderId)) {
+        ordersMap.set(orderId, {
+          order_id: orderId,
+          sold_to: acc.consumption?.sold_to || 'Khách Vãng Lai',
+          sold_at: acc.consumption?.sold_at || acc.updatedAt,
+          count: 0,
+          platform: acc.platform,
+          usernames: []
+        });
+      }
+      const order = ordersMap.get(orderId);
+      order.count++;
+      if (order.usernames.length < 5) order.usernames.push(acc.username);
+    });
+
+    const recentOrders = Array.from(ordersMap.values()).slice(0, 20);
+    const estimatedRevenue = totalSold * 5000;
+
+    return {
+      total_sold: totalSold,
+      total_available: totalAvailable,
+      total_customers: customerAgg.length,
+      estimated_revenue: estimatedRevenue,
+      top_customers: customerAgg.map(c => ({
+        customer_name: c._id,
+        total_accounts: c.total_purchased,
+        last_purchased_at: c.last_purchased_at,
+        shopee_count: c.shopee_count,
+        tiktok_count: c.tiktok_count,
+        estimated_spend: c.total_purchased * 5000
+      })),
+      recent_orders: recentOrders
+    };
   }
 
   async bulkMarkUsed(usernames: string[], actor: { username: string; role: string }, used_for?: string) {
@@ -324,13 +514,15 @@ export class AccountsService {
   }
 
   // ----------------------------------------------------------------
-  // ANALYTICS SUMMARY
+  // ANALYTICS SUMMARY (Zero-Discrepancy: Exclude TRASH from active inventory totals)
   // ----------------------------------------------------------------
   async getAnalyticsSummary() {
+    const activeMatch = { status: { $ne: 'TRASH' } };
     const [statusStats, platformStats, qualityStats, total] = await Promise.all([
       this.accountModel.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }]),
-      this.accountModel.aggregate([{ $group: { _id: '$platform', count: { $sum: 1 } } }]),
+      this.accountModel.aggregate([{ $match: activeMatch }, { $group: { _id: '$platform', count: { $sum: 1 } } }]),
       this.accountModel.aggregate([
+        { $match: activeMatch },
         {
           $group: {
             _id: null,
@@ -341,7 +533,7 @@ export class AccountsService {
           }
         }
       ]),
-      this.accountModel.countDocuments({})
+      this.accountModel.countDocuments(activeMatch)
     ]);
 
     const by_status: Record<string, number> = {};
@@ -366,14 +558,15 @@ export class AccountsService {
   }
 
   // ----------------------------------------------------------------
-  // INGEST RAW / API BATCH
+  // INGEST RAW / API BATCH (BulkWrite + Platform Isolation + Status Protection)
   // ----------------------------------------------------------------
   async ingestAccounts(rawList: any[], actor: { username: string; role: string; team?: string }) {
-    let inserted = 0;
-    let updated = 0;
+    const bulkOps: any[] = [];
+    const now = new Date();
 
     for (const item of rawList) {
-      if (!item.username || !PlatformRules.isValidUsername(item.platform, item.username)) {
+      const targetPlatform = (item.platform || 'SHOPEE').toUpperCase();
+      if (!item.username || !PlatformRules.isValidUsername(targetPlatform, item.username)) {
         continue;
       }
 
@@ -384,40 +577,67 @@ export class AccountsService {
       const session_token = item.session_token ? this.cryptoService.encrypt(item.session_token) : undefined;
       const email_password_enc = item.email_password ? this.cryptoService.encrypt(item.email_password) : undefined;
 
+      const setFields: any = {
+        username: item.username,
+        username_normalized: normalized,
+        platform: targetPlatform,
+        'metadata.team': actor.team || 'ALL',
+        'metadata.managed_by': actor.username,
+        'metadata.last_scan_at': now
+      };
+
+      if (item.status) setFields.status = item.status;
+      if (password_enc) setFields.password_enc = password_enc;
+      if (cookie_enc) {
+        setFields.cookie_enc = cookie_enc;
+        setFields['quality.has_cookie'] = true;
+      }
+      if (token_enc) {
+        setFields.token_enc = token_enc;
+        setFields['quality.has_token'] = true;
+      }
+      if (session_token) {
+        setFields.session_token = session_token;
+        setFields['quality.has_token'] = true;
+      }
+      if (item.email) {
+        setFields.email = item.email;
+        setFields['quality.has_email'] = true;
+      }
+      if (email_password_enc) setFields.email_password_enc = email_password_enc;
+      if (item.phone) setFields.phone = item.phone;
+      if (item.coins !== undefined) setFields.coins = item.coins;
+      if (item.machine_id) setFields.machine_id = item.machine_id;
+      if (item.custom_metadata) setFields.custom_metadata = item.custom_metadata;
+      if (item.raw) setFields.raw = item.raw;
+
       const updateDoc: any = {
-        $set: {
-          username: item.username,
-          username_normalized: normalized,
-          platform: item.platform || 'SHOPEE',
+        $set: setFields,
+        $setOnInsert: {
           status: item.status || 'AVAILABLE',
-          'quality.has_cookie': !!item.cookie,
-          'quality.has_email': !!item.email,
-          'quality.has_token': !!item.token,
-          'metadata.team': actor.team || 'ALL',
-          'metadata.managed_by': actor.username
+          'metadata.first_scan_at': now
         }
       };
 
-      if (password_enc) updateDoc.$set.password_enc = password_enc;
-      if (cookie_enc) updateDoc.$set.cookie_enc = cookie_enc;
-      if (token_enc) updateDoc.$set.token_enc = token_enc;
-      if (session_token) updateDoc.$set.session_token = session_token;
-      if (item.email) updateDoc.$set.email = item.email;
-      if (email_password_enc) updateDoc.$set.email_password_enc = email_password_enc;
-      if (item.machine_id) updateDoc.$set.machine_id = item.machine_id;
-      if (item.custom_metadata) updateDoc.$set.custom_metadata = item.custom_metadata;
       if (item.tags && item.tags.length > 0) {
         updateDoc.$addToSet = { tags: { $each: item.tags } };
       }
 
-      const res = await this.accountModel.updateOne(
-        { username_normalized: normalized },
-        updateDoc,
-        { upsert: true }
-      );
+      bulkOps.push({
+        updateOne: {
+          filter: { platform: targetPlatform, username_normalized: normalized },
+          update: updateDoc,
+          upsert: true
+        }
+      });
+    }
 
-      if (res.upsertedCount > 0) inserted++;
-      else updated++;
+    let inserted = 0;
+    let updated = 0;
+    if (bulkOps.length > 0) {
+      const res = await this.accountModel.bulkWrite(bulkOps, { ordered: false });
+      inserted = res.upsertedCount || 0;
+      updated = res.modifiedCount || 0;
     }
 
     await this.auditService.record({
@@ -438,12 +658,20 @@ export class AccountsService {
     let cookie = '';
     let token = '';
     let email_password = '';
+    let session_token = '';
 
     if (role === 'OWNER' || role === 'MANAGER' || role === 'MEMBER') {
       if (account.password_enc) password = this.cryptoService.decrypt(account.password_enc);
       if (account.cookie_enc) cookie = this.cryptoService.decrypt(account.cookie_enc);
       if (account.token_enc) token = this.cryptoService.decrypt(account.token_enc);
       if (account.email_password_enc) email_password = this.cryptoService.decrypt(account.email_password_enc);
+      if (account.session_token) {
+        try {
+          session_token = this.cryptoService.decrypt(account.session_token);
+        } catch {
+          session_token = account.session_token;
+        }
+      }
     }
 
     return {
@@ -451,17 +679,22 @@ export class AccountsService {
       username: account.username,
       platform: account.platform,
       machine_id: account.machine_id,
+      phone: account.phone || '',
+      coins: account.coins,
       email: account.email,
       status: account.status,
       health_status: account.health_status,
       quality: account.quality || {},
       metadata: account.metadata || {},
+      custom_metadata: account.custom_metadata || {},
+      raw: account.raw || null,
       tags: account.tags || [],
       createdAt: account.createdAt,
       updatedAt: account.updatedAt,
       password,
       cookie,
       token,
+      session_token,
       email_password
     };
   }

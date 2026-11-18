@@ -61,11 +61,16 @@ export class ScanController {
   ) {
     const actor = req.user;
     const mode = (req.body?.mode === 'commit') ? 'commit' : 'preview';
+    // Nhận platform từ FE (form body). Default SHOPEE nếu FE không gửi.
+    const platform = (['SHOPEE', 'TIKTOK', 'FACEBOOK', 'MAIL'].includes((req.body?.platform || '').toUpperCase()))
+      ? req.body.platform.toUpperCase()
+      : 'SHOPEE';
     return this.scanService.processOfflineFile(
       file.path,
       file.originalname,
       actor.username,
-      mode
+      mode,
+      platform
     );
   }
 

@@ -3,12 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as ExcelJS from 'exceljs';
 import { IAccount, CryptoService, PlatformRules } from '@arms/shared';
+import { AuditService } from '../audit/audit.service.js';
 
 @Injectable()
 export class AccountsExportService {
   constructor(
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,
     private readonly cryptoService: CryptoService,
+    private readonly auditService: AuditService
   ) {}
 
   async exportExcelStream(
@@ -70,22 +72,35 @@ export class AccountsExportService {
     // Domain Rule Engine - Data Quality Filtering
     if (query.data_quality === 'corrupted' || query.data_quality === 'corrupted_username') {
       const corruptedFilter = PlatformRules.getCorruptedMongoFilter(query.platform);
+      if (!filter.$and) {
+        filter.$and = [];
+      }
       if (filter.$or) {
-        filter.$and = [{ $or: filter.$or }, { $or: corruptedFilter.$or }];
+        filter.$and.push({ $or: filter.$or });
         delete filter.$or;
-      } else {
-        filter.$or = corruptedFilter.$or;
       }
+      if (corruptedFilter.$and) {
+        filter.$and.push(...corruptedFilter.$and);
+      } else if (corruptedFilter.$or) {
+        filter.$and.push({ $or: corruptedFilter.$or });
+      }
+      delete filter.status;
     } else if (query.data_quality === 'missing_core') {
-      const missingFilter = PlatformRules.getMissingCoreMongoFilter();
-      if (filter.$and) {
-        filter.$and.push(...missingFilter.$and);
-      } else {
-        filter.$and = missingFilter.$and;
-      }
+      const missingFilter = PlatformRules.getMissingCoreMongoFilter(query.platform);
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push(...missingFilter.$and);
     } else if (query.data_quality === 'full_info') {
-      const fullInfoFilter = PlatformRules.getFullInfoMongoFilter();
-      Object.assign(filter, fullInfoFilter);
+      const fullInfoFilter = PlatformRules.getFullInfoMongoFilter(query.platform);
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push(fullInfoFilter);
+    } else if (query.data_quality === 'has_cookie') {
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push({ $or: [{ 'quality.has_cookie': true }, { cookie_enc: { $nin: [null, ''] } }] });
+    } else if (query.data_quality === 'has_token') {
+      if (!filter.$and) filter.$and = [];
+      filter.$and.push({ $or: [{ 'quality.has_token': true }, { token_enc: { $nin: [null, ''] } }, { session_token: { $nin: [null, ''] } }] });
+    } else if (query.data_quality === 'has_email') {
+      filter.email = { $nin: [null, ''] };
     }
 
     if (query.tags) {
@@ -172,5 +187,19 @@ export class AccountsExportService {
 
     worksheet.commit();
     await workbook.commit();
+
+    await this.auditService.record({
+      action: 'EXPORT_EXCEL',
+      actor_id: user.username,
+      actor_username: user.username,
+      platform: query.platform || 'ALL',
+      target_type: 'ACCOUNTS_EXCEL',
+      details: {
+        count: index - 1,
+        platform: query.platform || 'ALL',
+        status: query.status || 'AVAILABLE',
+        team: query.team || user.team || 'ALL'
+      }
+    });
   }
 }

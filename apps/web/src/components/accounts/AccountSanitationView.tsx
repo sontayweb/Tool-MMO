@@ -44,19 +44,21 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
     fetchStats();
   }, []);
 
-  const handleClean = (category: string, action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX' | 'HARD_DELETE', label: string) => {
-    let actionTitle = action === 'DELETE' ? 'CHUYỂN VÀO THÙNG RÁC' : action === 'HARD_DELETE' ? 'XÓA VĨNH VIỄN' : action === 'BLACKLIST' ? 'KHÓA BLACKLIST' : 'CỨU HỘ DỮ LIỆU';
+  const handleClean = (category: string, action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX' | 'HARD_DELETE' | 'RESTORE', label: string) => {
+    let actionTitle = action === 'DELETE' ? 'CHUYỂN VÀO THÙNG RÁC' : action === 'HARD_DELETE' ? 'XÓA VĨNH VIỄN' : action === 'BLACKLIST' ? 'KHÓA BLACKLIST' : action === 'RESTORE' ? 'KHÔI PHỤC VỀ AVAILABLE' : 'CỨU HỘ DỮ LIỆU';
     
     setConfirmDialog({
       isOpen: true,
       title: `Xác nhận ${actionTitle} - ${label}`,
       message: action === 'AUTO_FIX' 
         ? `Hệ thống sẽ chạy thuật toán bóc tách dữ liệu gốc cho nhóm "${label}". Những tài khoản bóc tách được Username/Password hợp lệ sẽ được chuyển về AVAILABLE. Bạn có chắc chắn muốn tiến hành?`
+        : action === 'RESTORE'
+        ? `Hệ thống sẽ khôi phục tất cả tài khoản trong "${label}" về trạng thái Sẵn Sàng (AVAILABLE). Bạn có chắc chắn muốn tiếp tục?`
         : action === 'HARD_DELETE'
         ? `CẢNH BÁO: Bạn đang thực hiện XÓA VĨNH VIỄN toàn bộ danh sách "${label}". Dữ liệu này sẽ không thể khôi phục. Bạn có chắc chắn muốn tiếp tục?`
         : `Bạn đang thực hiện thao tác ${actionTitle} đối với nhóm "${label}". Dữ liệu sẽ được chuyển trạng thái an toàn. Bạn có chắc chắn muốn tiếp tục?`,
       confirmText: 'Đồng ý thực hiện',
-      variant: action === 'HARD_DELETE' ? 'danger' : action === 'AUTO_FIX' ? 'warning' : 'info',
+      variant: action === 'HARD_DELETE' ? 'danger' : action === 'AUTO_FIX' ? 'warning' : action === 'RESTORE' ? 'success' : 'info',
       onConfirm: async () => {
         setLoading(true);
         try {
@@ -75,21 +77,20 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-xl font-bold flex items-center gap-2 text-title">
-            <ShieldAlert className="text-amber-500 w-6 h-6" />
-            <span>Trung Tâm Cứu Hộ & Dọn Dẹp Dữ Liệu (Sanitation Hub)</span>
-          </h2>
-          <p className="text-xs text-desc mt-1">
-            Không gian chuyên biệt để phát hiện các tài khoản bất thường vi phạm Domain Rules, cứu hộ lệch cột và quản lý thùng rác.
-          </p>
+    <div className="space-y-5 animate-fade-in">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold text-slate-800 dark:text-slate-100">
+            Quét & Phân Loại Vi Phạm Domain Rules
+          </span>
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-700">
+            Domain Scanner
+          </span>
         </div>
         <button
           onClick={fetchStats}
           disabled={loading}
-          className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-[var(--bg-input)] hover:bg-white/10 text-title border border-[var(--border-subtle)] transition-all flex items-center gap-2"
+          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-700 transition-all flex items-center gap-2 shadow-sm disabled:opacity-40"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span>Tải Lại Số Liệu</span>
@@ -98,33 +99,33 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {/* CARD 1: VI PHẠM QUY CHUẨN NỀN TẢNG (CORRUPTED) */}
-        <div className="app-card rounded-2xl p-5 border border-amber-500/30 flex flex-col justify-between hover:shadow-xl transition-all relative overflow-hidden">
+        <div className="app-card rounded-2xl p-5 border border-amber-300/80 dark:border-amber-500/40 flex flex-col justify-between hover:shadow-lg transition-all relative overflow-hidden bg-white dark:bg-slate-900/60">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-500 border border-amber-500/30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-700 flex items-center gap-1.5">
                 <AlertTriangle className="w-3 h-3" />
                 <span>Vi Phạm Domain Rules</span>
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-title">Tài Khoản Bất Thường / Lỗi</h3>
-              <p className="text-xs text-desc mt-1 leading-relaxed">
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Tài Khoản Bất Thường / Lỗi</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                 Token Boxphone (M.C...), số STT dòng, Base64 dài &gt; 35 ký tự, Email sai định dạng.
               </p>
             </div>
-            <div className="text-3xl font-extrabold text-amber-500 py-1">
+            <div className="text-3xl font-extrabold text-amber-600 dark:text-amber-400 py-1">
               {stats?.corrupted !== undefined ? stats.corrupted.toLocaleString() : '-'}
-              <span className="text-xs text-desc font-normal ml-2">tài khoản</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">tài khoản</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[var(--border-subtle)] space-y-2 mt-4">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 mt-4">
             <div className="flex gap-2">
               {onNavigateToAccounts && (
                 <button
                   onClick={() => onNavigateToAccounts('corrupted')}
                   disabled={!stats?.corrupted}
-                  className="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--bg-input)] hover:bg-white/10 text-title border border-[var(--border-subtle)] transition-all text-center"
+                  className="flex-1 px-3 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Xem Danh Sách
                 </button>
@@ -132,7 +133,7 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
               <button
                 onClick={() => handleClean('corrupted', 'AUTO_FIX', 'Tài Khoản Vi Phạm Domain Rules')}
                 disabled={loading || !stats?.corrupted}
-                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-lg shadow-amber-950/40 transition-all flex items-center justify-center gap-1.5"
+                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white border border-amber-700 dark:border-amber-500 shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <LifeBuoy className="w-3.5 h-3.5" />
                 <span>Cứu Hộ Hàng Loạt</span>
@@ -142,14 +143,14 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
               <button
                 onClick={() => handleClean('corrupted', 'BLACKLIST', 'Tài Khoản Vi Phạm Domain Rules')}
                 disabled={loading || !stats?.corrupted}
-                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition-all"
+                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-purple-100 hover:bg-purple-200 text-purple-950 border-2 border-purple-400 dark:bg-purple-950/70 dark:hover:bg-purple-900/60 dark:text-purple-200 dark:border-purple-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Khóa Blacklist
               </button>
               <button
                 onClick={() => handleClean('corrupted', 'DELETE', 'Tài Khoản Vi Phạm Domain Rules')}
                 disabled={loading || !stats?.corrupted}
-                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 transition-all flex items-center justify-center gap-1"
+                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-950 border-2 border-rose-400 dark:bg-rose-950/70 dark:hover:bg-rose-900/60 dark:text-rose-200 dark:border-rose-600 transition-all flex items-center justify-center gap-1 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Trash2 className="w-3 h-3" />
                 <span>Vào Thùng Rác</span>
@@ -159,33 +160,33 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
         </div>
 
         {/* CARD 2: THIẾU DỮ LIỆU CỐT LÕI (MISSING CORE) */}
-        <div className="app-card rounded-2xl p-5 border border-rose-500/30 flex flex-col justify-between hover:shadow-xl transition-all relative overflow-hidden">
+        <div className="app-card rounded-2xl p-5 border border-rose-300/80 dark:border-rose-500/40 flex flex-col justify-between hover:shadow-lg transition-all relative overflow-hidden bg-white dark:bg-slate-900/60">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-500 border border-rose-500/30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-rose-100 text-rose-900 border border-rose-300 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-700 flex items-center gap-1.5">
                 <AlertOctagon className="w-3 h-3" />
                 <span>Trắng Thông Tin</span>
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-title">Thiếu Dữ Liệu Cốt Lõi</h3>
-              <p className="text-xs text-desc mt-1 leading-relaxed">
-                Tài khoản không có Password LẪN không có Cookie sống (xác không hồn).
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Thiếu Dữ Liệu Cốt Lõi</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Tài khoản không có Password lẫn không có Cookie sống (không đủ điều kiện khả dụng).
               </p>
             </div>
-            <div className="text-3xl font-extrabold text-rose-500 py-1">
+            <div className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 py-1">
               {stats?.missing_core !== undefined ? stats.missing_core.toLocaleString() : '-'}
-              <span className="text-xs text-desc font-normal ml-2">tài khoản</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">tài khoản</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[var(--border-subtle)] space-y-2 mt-4">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 mt-4">
             <div className="flex gap-2">
               {onNavigateToAccounts && (
                 <button
                   onClick={() => onNavigateToAccounts('missing_core')}
                   disabled={!stats?.missing_core}
-                  className="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--bg-input)] hover:bg-white/10 text-title border border-[var(--border-subtle)] transition-all text-center"
+                  className="flex-1 px-3 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Xem Danh Sách
                 </button>
@@ -193,7 +194,7 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
               <button
                 onClick={() => handleClean('missing_core', 'AUTO_FIX', 'Thiếu Dữ Liệu Cốt Lõi')}
                 disabled={loading || !stats?.missing_core}
-                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-lg shadow-amber-950/40 transition-all flex items-center justify-center gap-1.5"
+                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white border border-amber-700 dark:border-amber-500 shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <LifeBuoy className="w-3.5 h-3.5" />
                 <span>Cứu Hộ Hàng Loạt</span>
@@ -203,14 +204,14 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
               <button
                 onClick={() => handleClean('missing_core', 'BLACKLIST', 'Thiếu Dữ Liệu Cốt Lõi')}
                 disabled={loading || !stats?.missing_core}
-                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition-all"
+                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-purple-100 hover:bg-purple-200 text-purple-950 border-2 border-purple-400 dark:bg-purple-950/70 dark:hover:bg-purple-900/60 dark:text-purple-200 dark:border-purple-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Khóa Blacklist
               </button>
               <button
                 onClick={() => handleClean('missing_core', 'DELETE', 'Thiếu Dữ Liệu Cốt Lõi')}
                 disabled={loading || !stats?.missing_core}
-                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 transition-all flex items-center justify-center gap-1"
+                className="flex-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-950 border-2 border-rose-400 dark:bg-rose-950/70 dark:hover:bg-rose-900/60 dark:text-rose-200 dark:border-rose-600 transition-all flex items-center justify-center gap-1 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Trash2 className="w-3 h-3" />
                 <span>Vào Thùng Rác</span>
@@ -220,41 +221,41 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
         </div>
 
         {/* CARD 3: KHO THÙNG RÁC (RECYCLE BIN) */}
-        <div className="app-card rounded-2xl p-5 border border-purple-500/30 flex flex-col justify-between hover:shadow-xl transition-all relative overflow-hidden">
+        <div className="app-card rounded-2xl p-5 border border-purple-300/80 dark:border-purple-500/40 flex flex-col justify-between hover:shadow-lg transition-all relative overflow-hidden bg-white dark:bg-slate-900/60">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-purple-500/15 text-purple-400 border border-purple-500/30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-purple-100 text-purple-900 border border-purple-300 dark:bg-purple-950/50 dark:text-purple-300 dark:border-purple-700 flex items-center gap-1.5">
                 <Trash2 className="w-3 h-3" />
                 <span>Thùng Rác Tạm Lưu</span>
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-title">Kho Thùng Rác (Recycle Bin)</h3>
-              <p className="text-xs text-desc mt-1 leading-relaxed">
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Kho Thùng Rác (Recycle Bin)</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                 Tài khoản đã bị xóa mềm, được cô lập an toàn và có thể khôi phục lại tức thì.
               </p>
             </div>
-            <div className="text-3xl font-extrabold text-purple-400 py-1">
+            <div className="text-3xl font-extrabold text-purple-600 dark:text-purple-400 py-1">
               {stats?.trash !== undefined ? stats.trash.toLocaleString() : '-'}
-              <span className="text-xs text-desc font-normal ml-2">tài khoản</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">tài khoản</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[var(--border-subtle)] space-y-2 mt-4">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 mt-4">
             <div className="flex gap-2">
               {onNavigateToAccounts && (
                 <button
                   onClick={() => onNavigateToAccounts('trash')}
                   disabled={!stats?.trash}
-                  className="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-500/40 transition-all text-center"
+                  className="flex-1 px-3 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Xem Thùng Rác
                 </button>
               )}
               <button
-                onClick={() => handleClean('trash', 'AUTO_FIX', 'Khôi Phục Toàn Bộ Thùng Rác')}
+                onClick={() => handleClean('trash', 'RESTORE', 'Khôi Phục Toàn Bộ Thùng Rác')}
                 disabled={loading || !stats?.trash}
-                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-950/40 transition-all flex items-center justify-center gap-1.5"
+                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-700 dark:border-emerald-500 shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Khôi Phục Tất Cả</span>
@@ -264,7 +265,7 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
               <button
                 onClick={() => handleClean('trash', 'HARD_DELETE', 'Dọn Sạch Vĩnh Viễn Thùng Rác')}
                 disabled={loading || !stats?.trash}
-                className="w-full px-2.5 py-1.5 rounded-xl text-xs font-bold bg-rose-600/30 hover:bg-rose-600/50 text-rose-300 border border-rose-500/40 transition-all flex items-center justify-center gap-1.5"
+                className="w-full px-2.5 py-1.5 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white border border-rose-700 dark:border-rose-500 shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Dọn Sạch Thùng Rác (Xóa Vĩnh Viễn)</span>
@@ -274,70 +275,80 @@ export function AccountSanitationView({ onRefreshGlobalStats, showToast, onNavig
         </div>
 
         {/* CARD 4: BLACKLISTED */}
-        <div className="app-card rounded-2xl p-5 border border-slate-700/50 flex flex-col justify-between hover:shadow-xl transition-all">
+        <div className="app-card rounded-2xl p-5 border border-slate-300 dark:border-slate-700 flex flex-col justify-between hover:shadow-lg transition-all bg-white dark:bg-slate-900/60">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-slate-500/15 text-slate-400 border border-slate-500/30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-slate-200 text-slate-800 border border-slate-300 dark:bg-slate-700/50 dark:text-slate-200 dark:border-slate-600 flex items-center gap-1.5">
                 <XCircle className="w-3 h-3" />
                 <span>Đã Bị Khóa</span>
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-title">Tài Khoản Blacklisted</h3>
-              <p className="text-xs text-desc mt-1 leading-relaxed">
-                Tài khoản đã bị đánh dấu khóa do hỏng, checkpoint hoặc rác không thể cứu.
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Tài Khoản Blacklisted</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Tài khoản đã bị đánh dấu khóa do hỏng, checkpoint hoặc không hợp lệ.
               </p>
             </div>
-            <div className="text-3xl font-extrabold text-slate-400 py-1">
+            <div className="text-3xl font-extrabold text-slate-700 dark:text-slate-300 py-1">
               {stats?.blacklisted !== undefined ? stats.blacklisted.toLocaleString() : '-'}
-              <span className="text-xs text-desc font-normal ml-2">tài khoản</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">tài khoản</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[var(--border-subtle)] flex gap-2 mt-4">
-            {onNavigateToAccounts && (
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 mt-4">
+            <div className="flex gap-2">
+              {onNavigateToAccounts && (
+                <button
+                  onClick={() => onNavigateToAccounts('blacklisted')}
+                  disabled={!stats?.blacklisted}
+                  className="flex-1 px-3 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-600 transition-all text-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Xem Danh Sách
+                </button>
+              )}
               <button
-                onClick={() => onNavigateToAccounts('blacklisted')}
-                disabled={!stats?.blacklisted}
-                className="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--bg-input)] hover:bg-white/10 text-title border border-[var(--border-subtle)] transition-all text-center"
+                onClick={() => handleClean('blacklisted', 'AUTO_FIX', 'Tài Khoản Blacklisted')}
+                disabled={loading || !stats?.blacklisted}
+                className="flex-[1.4] px-3 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white border border-amber-700 dark:border-amber-500 shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                Xem Danh Sách
+                <LifeBuoy className="w-3.5 h-3.5" />
+                <span>Cứu Hộ Lại</span>
               </button>
-            )}
+            </div>
             <button
               onClick={() => handleClean('blacklisted', 'DELETE', 'Tài Khoản Blacklisted')}
               disabled={loading || !stats?.blacklisted}
-              className="flex-1 px-3 py-2 rounded-xl text-xs font-medium bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 transition-all flex items-center justify-center gap-1"
+              className="w-full px-2.5 py-1.5 rounded-xl text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-950 border-2 border-rose-400 dark:bg-rose-950/70 dark:hover:bg-rose-900/60 dark:text-rose-200 dark:border-rose-600 transition-all flex items-center justify-center gap-1 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Trash2 className="w-3 h-3" />
-              <span>Vào Thùng Rác</span>
+              <span>Chuyển Vào Thùng Rác</span>
             </button>
           </div>
         </div>
 
         {/* CARD 5: TRÙNG LẶP */}
-        <div className="app-card rounded-2xl p-5 border border-indigo-500/30 flex flex-col justify-between hover:shadow-xl transition-all">
+        <div className="app-card rounded-2xl p-5 border border-indigo-300/80 dark:border-indigo-500/40 flex flex-col justify-between hover:shadow-lg transition-all bg-white dark:bg-slate-900/60">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-900 border border-indigo-300 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/40 flex items-center gap-1.5">
                 <Layers className="w-3 h-3" />
                 <span>Trùng Khóa Chính</span>
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-title">Nhóm Trùng Lặp</h3>
-              <p className="text-xs text-desc mt-1 leading-relaxed">
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Nhóm Trùng Lặp</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                 Phát hiện các nhóm tài khoản bị trùng username trên cùng một nền tảng.
               </p>
             </div>
-            <div className="text-3xl font-extrabold text-indigo-400 py-1">
+            <div className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 py-1">
               {stats?.duplicates !== undefined ? stats.duplicates.toLocaleString() : '-'}
-              <span className="text-xs text-desc font-normal ml-2">nhóm trùng</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">nhóm trùng</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[var(--border-subtle)] mt-4">
-            <p className="text-[11px] text-indigo-300 leading-relaxed font-medium">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4">
+            <p className="text-[11px] text-indigo-800 dark:text-indigo-200 bg-indigo-50 dark:bg-indigo-950/40 p-2.5 rounded-xl border border-indigo-200 dark:border-indigo-800/60 leading-relaxed font-medium">
               💡 Sử dụng công cụ "Quét Trùng Lặp" ở Tab Nhập Offline để gộp thông minh và giữ lại dữ liệu mới nhất.
             </p>
           </div>

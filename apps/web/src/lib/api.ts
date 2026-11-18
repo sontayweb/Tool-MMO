@@ -104,6 +104,44 @@ async function request(path: string, options: RequestInit = {}) {
 }
 
 export const api = {
+  baseUrl: BASE_URL,
+
+  // Generic HTTP helpers
+  async get(path: string, params?: Record<string, any>) {
+    let url = path;
+    if (params) {
+      const q = new URLSearchParams();
+      Object.entries(params).forEach(([k, v]) => {
+        if (v !== undefined && v !== null && v !== '') {
+          q.append(k, String(v));
+        }
+      });
+      const qs = q.toString();
+      if (qs) url += (url.includes('?') ? '&' : '?') + qs;
+    }
+    return request(url);
+  },
+
+  async post(path: string, body?: any) {
+    return request(path, {
+      method: 'POST',
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  },
+
+  async patch(path: string, body?: any) {
+    return request(path, {
+      method: 'PATCH',
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  },
+
+  async delete(path: string) {
+    return request(path, {
+      method: 'DELETE',
+    });
+  },
+
   // Auth
   async login(username: string, password: string) {
     const res = await request('/auth/login', {
@@ -169,7 +207,7 @@ export const api = {
     return request('/accounts/sanitation/stats');
   },
 
-  async cleanSanitationAccounts(category: string, action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX') {
+  async cleanSanitationAccounts(category: string, action: 'DELETE' | 'BLACKLIST' | 'AUTO_FIX' | 'HARD_DELETE' | 'RESTORE') {
     return request('/accounts/sanitation/clean', {
       method: 'POST',
       body: JSON.stringify({ category, action }),
@@ -424,10 +462,11 @@ export const api = {
   },
 
   // Upload Offline File (Preview / Commit)
-  async uploadOffline(file: File, mode: 'preview' | 'commit' = 'preview') {
+  async uploadOffline(file: File, mode: 'preview' | 'commit' = 'preview', platform = 'SHOPEE') {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('mode', mode);
+    formData.append('platform', platform);
 
     const token = getToken();
     const headers: Record<string, string> = {
@@ -473,8 +512,23 @@ export const api = {
   },
 
   // Centralized System Logs
-  async getSystemLogs(limit = 150) {
-    return request(`/audit-logs/system-logs?limit=${limit}`);
+  async getSystemLogs(params?: number | { limit?: number; action?: string; actor?: string; platform?: string; date_from?: string; date_to?: string; search?: string; category?: string; level?: string }) {
+    if (typeof params === 'number') {
+      return request(`/audit-logs/system-logs?limit=${params}`);
+    }
+    const q = new URLSearchParams();
+    const p = params || {};
+    if (p.limit) q.set('limit', String(p.limit));
+    if (p.action && p.action !== 'ALL') q.set('action', p.action);
+    if (p.actor) q.set('actor', p.actor);
+    if (p.platform && p.platform !== 'ALL') q.set('platform', p.platform);
+    if (p.date_from) q.set('date_from', p.date_from);
+    if (p.date_to) q.set('date_to', p.date_to);
+    if (p.search) q.set('search', p.search);
+    if (p.category && p.category !== 'ALL') q.set('category', p.category);
+    if (p.level && p.level !== 'ALL') q.set('level', p.level);
+    const qs = q.toString();
+    return request(`/audit-logs/system-logs${qs ? `?${qs}` : ''}`);
   },
 
   // Shopee Drive Automated Ingress

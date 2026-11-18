@@ -53,6 +53,8 @@ export const TopBar: React.FC<TopBarProps> = ({
         return { title: 'Cổng Kết Nối Tool API', desc: 'Tạo khóa Service Key cho tool Python, C#, Node.js' };
       case 'teams':
         return { title: 'Quản Lý Đội Nhóm & Phân Quyền', desc: 'Phân quyền nhân viên và cô lập dữ liệu theo từng nhóm' };
+      case 'sanitation':
+        return { title: 'Trung Tâm Cứu Hộ & Dọn Dẹp Dữ Liệu', desc: 'Phát hiện bất thường vi phạm Domain Rules, cứu hộ lệch cột và làm sạch kho dữ liệu' };
       case 'systemlogs':
         return { title: 'Trung Tâm Nhật Ký Tập Trung', desc: 'Luồng log trực tiếp giám sát Ingress và tác vụ quản trị' };
       default:
@@ -63,8 +65,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   const currentTabInfo = getTabTitle(activeTab);
 
   return (
-    <header className="sticky top-0 z-30 px-6 py-3.5 bg-[var(--bg-main)]/80 backdrop-blur-xl border-b border-[var(--border-subtle)] flex items-center justify-between gap-4">
-      {/* Left: Mobile hamburger & Tab Title */}
+    <header className="sticky top-0 z-30 px-6 py-2.5 bg-[var(--bg-main)]/90 backdrop-blur-xl border-b border-[var(--border-subtle)] flex items-center justify-between gap-4">
+      {/* Left: Mobile hamburger & Clean Breadcrumb Context */}
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenMobileMenu}
@@ -73,17 +75,10 @@ export const TopBar: React.FC<TopBarProps> = ({
           <Menu className="w-5 h-5" />
         </button>
 
-        <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-sm md:text-base font-bold text-title">{currentTabInfo.title}</h1>
-            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/25">
-              <Sparkles className="w-2.5 h-2.5" />
-              <span>ARMS v4.0</span>
-            </span>
-          </div>
-          <p className="text-[11px] text-desc hidden sm:block truncate max-w-xl">
-            {currentTabInfo.desc}
-          </p>
+        <div className="flex items-center gap-2 text-xs">
+          <span className="text-desc font-medium">Hệ thống</span>
+          <span className="text-desc/40">/</span>
+          <span className="font-bold text-title">{currentTabInfo.title}</span>
         </div>
       </div>
 

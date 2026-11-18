@@ -10,7 +10,11 @@ import { AuditService } from '../audit/audit.service.js';
 @Injectable()
 export class BackupService {
   private readonly logger = new Logger(BackupService.name);
-  private readonly backupDir = path.resolve(process.cwd(), '../../data/backups');
+  private readonly backupDir = (() => {
+    const cwd = process.cwd();
+    const projectRoot = cwd.includes('apps') ? path.resolve(cwd, '../..') : cwd;
+    return path.resolve(projectRoot, 'data/backups');
+  })();
 
   constructor(
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,

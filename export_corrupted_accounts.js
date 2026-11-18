@@ -9,7 +9,7 @@ async function exportCorruptedAccounts() {
   await mongoose.connect(uri);
   const Account = mongoose.connection.collection('accounts');
 
-  const filter = PlatformRules.getCorruptedMongoFilter();
+  const filter = PlatformRules.getCorruptedMongoFilter(undefined, true);
   console.log('Fetching corrupted accounts matching Domain Rules...');
 
   const total = await Account.countDocuments(filter);
@@ -41,9 +41,10 @@ async function exportCorruptedAccounts() {
     writeStream.write(`     - Lý do vi phạm : ${reason}\n`);
     writeStream.write(`     - Nền tảng      : ${acc.platform || 'OTHER'}\n`);
     writeStream.write(`     - Trạng thái    : ${acc.status || 'BLACKLISTED'}\n`);
+    writeStream.write(`     - Email         : ${acc.email || 'N/A'}\n`);
     writeStream.write(`     - File nguồn    : ${acc.metadata?.source_file || 'N/A'}\n`);
     writeStream.write(`     - Tab nguồn     : ${acc.metadata?.source_sheet || 'N/A'}\n`);
-    writeStream.write(`     - Dữ liệu gốc   : ${JSON.stringify(acc.raw?.values || [])}\n`);
+    writeStream.write(`     - Dữ liệu gốc   : ${JSON.stringify(acc.raw?.values || acc.raw?.raw_text || [])}\n`);
     writeStream.write('----------------------------------------------------------------------------------------\n');
   }
 

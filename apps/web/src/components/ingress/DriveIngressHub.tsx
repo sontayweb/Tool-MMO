@@ -157,202 +157,178 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
   const driveProgress = driveStatus?.progress || {};
 
   return (
-    <div className="space-y-6 animate-fadeIn pb-12">
-      {/* 🌟 Top Page Header */}
-      <div className="app-card rounded-3xl p-6 md:p-8 border border-[var(--border-subtle)] relative overflow-hidden bg-gradient-to-r from-blue-950/20 via-purple-950/20 to-pink-950/20">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                <Cloud className="w-6 h-6 text-white animate-pulse" />
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-extrabold text-title flex items-center gap-2.5">
-                  <span>Trung Tâm Điều Hành Kéo Dữ Liệu Google Drive</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                    INGRESS HUB v4.0
-                  </span>
-                </h2>
-                <p className="text-xs text-desc">
-                  Quản lý tập trung toàn bộ tiến trình quét, bóc tách và nạp dữ liệu từ Google Sheets & Excel về Kho DWH
-                </p>
-              </div>
-            </div>
-          </div>
+    <div className="space-y-5 animate-fadeIn pb-12">
+      {/* 🧭 Sleek Flat Linear-style Toolbar & Navigation */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-200 dark:border-slate-800 text-xs">
+        {/* Subsystem Navigation Tabs */}
+        <div className="flex items-center gap-1.5 select-none flex-wrap">
+          <button
+            onClick={() => setActiveSubsystemTab('shopee')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeSubsystemTab === 'shopee'
+                ? 'bg-orange-500 text-white shadow-sm'
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700'
+            }`}
+          >
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span>ĐỒNG BỘ SHOPEE</span>
+            {driveProgress.is_running && <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />}
+          </button>
 
-          {/* Top Quick Status Badges */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <div className="px-4 py-2.5 rounded-2xl bg-[var(--surface-sunken)] border border-[var(--border-subtle)] flex items-center gap-2.5">
-              <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
-              <div className="text-xs">
-                <span className="text-desc block text-[10px]">Kết Nối OAuth Google</span>
-                <span className="font-bold text-title">{isConnected ? 'Đã Liên Kết Sẵn Sàng' : 'Chưa Kết Nối'}</span>
-              </div>
-            </div>
+          <button
+            onClick={() => setActiveSubsystemTab('tiktok')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeSubsystemTab === 'tiktok'
+                ? 'bg-cyan-600 text-white shadow-sm'
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700'
+            }`}
+          >
+            <Music2 className="w-3.5 h-3.5" />
+            <span>ĐỒNG BỘ TIKTOK</span>
+            {ttProgress.is_running && <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />}
+          </button>
 
-            <div className="px-4 py-2.5 rounded-2xl bg-[var(--surface-sunken)] border border-[var(--border-subtle)] flex items-center gap-2.5">
-              <Clock className="w-4 h-4 text-purple-400" />
-              <div className="text-xs">
-                <span className="text-desc block text-[10px]">Tự Động Quét Ngầm (Cron)</span>
-                <span className="font-bold text-purple-400">{autoSyncEnabled ? `Bật (${intervalMinutes}p)` : 'Đang Tắt'}</span>
-              </div>
-            </div>
-
-            <button
-              onClick={() => fetchAllStatus()}
-              disabled={tiktokLoading || driveLoading}
-              className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-[var(--border-subtle)] text-desc hover:text-title transition-all"
-              title="Làm mới trạng thái"
-            >
-              <RefreshCw className={`w-4 h-4 ${tiktokLoading || driveLoading ? 'animate-spin text-purple-400' : ''}`} />
-            </button>
-          </div>
+          <button
+            onClick={() => setActiveSubsystemTab('autosync')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeSubsystemTab === 'autosync'
+                ? 'bg-indigo-600 text-white shadow-sm'
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700'
+            }`}
+          >
+            <Settings className="w-3.5 h-3.5" />
+            <span>HẸN GIỜ & CRON</span>
+          </button>
         </div>
-      </div>
 
-      {/* 🧭 Subsystem Navigation Tabs */}
-      <div className="flex items-center gap-3 border-b border-[var(--border-subtle)] pb-2 select-none">
-        <button
-          onClick={() => setActiveSubsystemTab('shopee')}
-          className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2.5 ${activeSubsystemTab === 'shopee'
-            ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-lg shadow-orange-500/20'
-            : 'bg-[var(--surface-card)] text-desc hover:text-orange-400 border border-[var(--border-subtle)]'
-            }`}
-        >
-          <ShoppingBag className="w-4 h-4" />
-          <span> ĐỒNG BỘ KHO SHOPEE</span>
-          {driveProgress.is_running && <span className="w-2 h-2 rounded-full bg-slate-950 animate-ping" />}
-        </button>
+        {/* Quick Status Badges */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center gap-1.5 text-[11px]">
+            <span className={`w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
+            <span className="text-slate-500 dark:text-slate-400">OAuth:</span>
+            <span className="font-bold text-slate-900 dark:text-slate-100">{isConnected ? 'Sẵn Sàng' : 'Chưa Kết Nối'}</span>
+          </div>
 
-        <button
-          onClick={() => setActiveSubsystemTab('tiktok')}
-          className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2.5 ${activeSubsystemTab === 'tiktok'
-            ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-pink-500 text-slate-950 shadow-lg shadow-pink-500/20'
-            : 'bg-[var(--surface-card)] text-desc hover:text-cyan-400 border border-[var(--border-subtle)]'
-            }`}
-        >
-          <Music2 className="w-4 h-4" />
-          <span> ĐỒNG BỘ KHO TIKTOK</span>
-          {ttProgress.is_running && <span className="w-2 h-2 rounded-full bg-slate-950 animate-ping" />}
-        </button>
+          <div className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center gap-1.5 text-[11px]">
+            <Clock className="w-3 h-3 text-indigo-500 dark:text-indigo-400" />
+            <span className="text-slate-500 dark:text-slate-400">Cron:</span>
+            <span className="font-bold text-slate-900 dark:text-slate-100">{autoSyncEnabled ? `${intervalMinutes}p` : 'Tắt'}</span>
+          </div>
 
-        <button
-          onClick={() => setActiveSubsystemTab('autosync')}
-          className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2.5 ${activeSubsystemTab === 'autosync'
-            ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
-            : 'bg-[var(--surface-card)] text-desc hover:text-purple-400 border border-[var(--border-subtle)]'
-            }`}
-        >
-          <Settings className="w-4 h-4" />
-          <span> HẸN GIỜ & TỰ ĐỘNG HÓA</span>
-        </button>
+          <button
+            onClick={() => fetchAllStatus()}
+            disabled={tiktokLoading || driveLoading}
+            className="p-1 rounded-md bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 transition-all disabled:opacity-40"
+            title="Làm mới trạng thái"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${tiktokLoading || driveLoading ? 'animate-spin text-indigo-500' : ''}`} />
+          </button>
+        </div>
       </div>
 
       {/* ========================================================================= */}
       {/*  TAB 1: PHÂN HỆ TIKTOK DRIVE INGRESS */}
       {/* ========================================================================= */}
       {activeSubsystemTab === 'tiktok' && (
-        <div className="space-y-6 animate-fadeIn">
+        <div className="space-y-4 animate-fadeIn">
           {/* TikTok KPI Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
-                <span>Tổng Nick TikTok Tìm Thấy</span>
-                <Database className="w-4 h-4 text-cyan-400" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+                <span>Tổng Nick Tìm Thấy</span>
+                <Database className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
               </div>
-              <div className="text-2xl font-extrabold text-cyan-400">
+              <div className="text-xl font-bold text-cyan-600 dark:text-cyan-400 font-mono">
                 {(ttProgress.accounts_found || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-emerald-400 font-semibold">
+              <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
                 +{(ttProgress.accounts_inserted || 0).toLocaleString()} nick mới
               </div>
             </div>
 
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
-                <span>Có Cookie TikTok (ttwid)</span>
-                <Key className="w-4 h-4 text-pink-400" />
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+                <span>Có Cookie (ttwid)</span>
+                <Key className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
               </div>
-              <div className="text-2xl font-extrabold text-pink-400">
+              <div className="text-xl font-bold text-pink-600 dark:text-pink-400 font-mono">
                 {(ttProgress.accounts_with_cookie || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-desc">
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">
                 {ttProgress.accounts_found > 0
-                  ? `${Math.round((ttProgress.accounts_with_cookie / ttProgress.accounts_found) * 100)}% tỷ lệ có cookie`
+                  ? `${Math.round((ttProgress.accounts_with_cookie / ttProgress.accounts_found) * 100)}% có cookie`
                   : 'Chưa có dữ liệu'}
               </div>
             </div>
 
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
                 <span>Có Hotmail / Pass Mail</span>
-                <Mail className="w-4 h-4 text-amber-400" />
+                <Mail className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
               </div>
-              <div className="text-2xl font-extrabold text-amber-400">
+              <div className="text-xl font-bold text-amber-600 dark:text-amber-400 font-mono">
                 {(ttProgress.accounts_with_email || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-desc">Mail gốc & Pass Mail</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">Mail gốc & Pass Mail</div>
             </div>
 
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
-                <span>Dàn Máy Nuôi Boxphone</span>
-                <Smartphone className="w-4 h-4 text-purple-400" />
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+                <span>Dàn Máy Boxphone</span>
+                <Smartphone className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="text-2xl font-extrabold text-purple-400">
+              <div className="text-xl font-bold text-purple-600 dark:text-purple-400 font-mono">
                 {Object.keys(ttProgress.machines_detected || {}).length} máy
               </div>
-              <div className="text-[11px] text-desc">
-                {(ttProgress.accounts_with_machine || 0).toLocaleString()} nick đã map máy
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                {(ttProgress.accounts_with_machine || 0).toLocaleString()} nick map máy
               </div>
             </div>
           </div>
 
           {/* Action Trigger Banner */}
-          <div className="app-card rounded-3xl p-6 border border-cyan-500/30 bg-gradient-to-r from-cyan-950/40 via-purple-950/20 to-pink-950/20 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-            <div className="space-y-1.5 text-center md:text-left">
-              <div className="text-base font-extrabold text-white flex items-center gap-2 justify-center md:justify-start">
-                <Zap className="w-5 h-5 text-cyan-400" />
-                1-Click Cào Toàn Bộ Kho TikTok Từ Google Drive
+          <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="space-y-0.5">
+              <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                <span>Quét & Nạp Kho TikTok Từ Google Drive</span>
               </div>
-              <div className="text-xs text-desc max-w-xl">
-                Tự động bóc tách từ file mẫu <strong className="text-cyan-300">700 Acc tiktok</strong>, mã hóa AES-256, gắn nhãn platform TIKTOK độc lập và bảo vệ chống đè Shopee.
+              <div className="text-[11px] text-slate-600 dark:text-slate-400 max-w-xl">
+                Bóc tách file TikTok trên Drive, mã hóa AES-256, gắn nhãn platform TIKTOK độc lập và bảo vệ chống đè dữ liệu.
               </div>
             </div>
 
             <button
               onClick={handleStartTikTokSync}
               disabled={tiktokSyncing || !isConnected}
-              className={`btn bg-gradient-to-r from-cyan-500 via-sky-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 text-slate-950 text-sm font-extrabold px-8 py-3.5 rounded-2xl shadow-xl shadow-pink-500/20 flex items-center gap-2.5 shrink-0 transition-all ${tiktokSyncing || !isConnected ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
-                }`}
+              className="px-4 py-2 rounded-lg text-xs font-bold bg-cyan-600 hover:bg-cyan-500 text-white shadow-sm flex items-center gap-1.5 shrink-0 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              <RefreshCw className={`w-4 h-4 ${tiktokSyncing ? 'animate-spin' : ''}`} />
-              <span>{tiktokSyncing ? 'Đang Cào Dữ Liệu TikTok...' : 'Bắt Đầu Cào TikTok Ngay'}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${tiktokSyncing ? 'animate-spin' : ''}`} />
+              <span>{tiktokSyncing ? 'Đang Đồng Bộ TikTok...' : 'Bắt Đầu Quét TikTok'}</span>
             </button>
           </div>
 
           {/* Progress bar */}
           {ttProgress.stage && ttProgress.stage !== 'IDLE' && (
-            <div className="app-card rounded-2xl p-5 border border-cyan-500/30 space-y-2.5">
+            <div className="app-card rounded-xl p-3 border border-cyan-300 dark:border-cyan-500/40 bg-white dark:bg-slate-900/60 space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-cyan-400">
+                <span className="font-bold text-cyan-700 dark:text-cyan-300 text-[11px]">
                   {ttProgress.stage === 'SCANNING_TIKTOK_FILES' && '🔍 Đang tìm kiếm các file TikTok trên Google Drive...'}
                   {ttProgress.stage === 'PARSING_TIKTOK_DATA' &&
-                    `⚡ Đang bóc tách file: ${ttProgress.current_file || '...'} (Tab: ${ttProgress.current_tab || '...'})`}
+                    `⚡ Đang bóc tách: ${ttProgress.current_file || '...'} (Tab: ${ttProgress.current_tab || '...'})`}
                   {ttProgress.stage === 'COMPLETED' && '🎉 Đã hoàn tất đồng bộ toàn bộ kho TikTok!'}
                   {ttProgress.stage === 'ERROR' && '❌ Gặp lỗi trong tiến trình'}
                 </span>
-                <span className="text-desc font-mono">
+                <span className="text-slate-500 dark:text-slate-400 font-mono text-[11px]">
                   {ttProgress.files_processed} / {ttProgress.files_total} files (
                   {ttProgress.files_total > 0 ? Math.round((ttProgress.files_processed / ttProgress.files_total) * 100) : 0}%)
                 </span>
               </div>
-              <div className="w-full h-3 bg-[var(--bg-input)] rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-pink-500 transition-all duration-500 rounded-full"
+                  className="h-full bg-cyan-500 transition-all duration-500 rounded-full"
                   style={{
-                    width: `${ttProgress.files_total > 0 ? Math.round((ttProgress.files_processed / ttProgress.files_total) * 100) : 0
-                      }%`,
+                    width: `${ttProgress.files_total > 0 ? Math.round((ttProgress.files_processed / ttProgress.files_total) * 100) : 0}%`,
                   }}
                 />
               </div>
@@ -360,38 +336,39 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
           )}
 
           {/* Live Terminal */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs text-desc px-1">
-              <span className="flex items-center gap-2 font-bold text-cyan-400">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-                Nhật Ký Bóc Tách TikTok Thời Gian Thực (Live Ingress Stream)
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between text-xs px-1">
+              <span className="flex items-center gap-1.5 font-bold text-slate-700 dark:text-slate-300 text-[11px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" />
+                <span>Nhật Ký Đồng Bộ TikTok Thời Gian Thực</span>
               </span>
-              <span>{ttProgress.logs?.length || 0} dòng</span>
+              <span className="text-slate-500 dark:text-slate-400 font-mono text-[10px]">{ttProgress.logs?.length || 0} dòng</span>
             </div>
 
             <div
               ref={tiktokLogsRef}
-              className="bg-[#050811] text-gray-300 font-mono text-xs p-5 rounded-3xl h-64 overflow-y-auto border border-cyan-950/80 space-y-1.5 shadow-2xl select-text"
+              className="bg-[#0b0f19] text-gray-200 font-mono text-[11px] p-3 rounded-xl h-48 overflow-y-auto border border-slate-300 dark:border-slate-800 space-y-1 shadow-inner select-text"
             >
               {ttProgress.logs && ttProgress.logs.length > 0 ? (
                 ttProgress.logs.map((log: string, idx: number) => (
                   <div
                     key={idx}
-                    className={`leading-relaxed ${log.includes('HOÀN TẤT') || log.includes('✅')
-                      ? 'text-cyan-400 font-bold'
-                      : log.includes('LỖI') || log.includes('❌')
+                    className={`leading-relaxed ${
+                      log.includes('HOÀN TẤT') || log.includes('✅')
+                        ? 'text-cyan-400 font-bold'
+                        : log.includes('LỖI') || log.includes('❌')
                         ? 'text-rose-400 font-bold'
                         : log.includes('⚠️')
-                          ? 'text-amber-400'
-                          : 'text-gray-300'
-                      }`}
+                        ? 'text-amber-400'
+                        : 'text-gray-300'
+                    }`}
                   >
                     {log}
                   </div>
                 ))
               ) : (
-                <div className="text-gray-500 text-center py-24">
-                  Chưa có tiến trình cào TikTok nào đang chạy. Bấm "Bắt Đầu Cào TikTok Ngay" ở trên.
+                <div className="text-gray-500 text-center py-16 text-xs">
+                  Chưa có tiến trình cào TikTok nào đang chạy. Bấm "Bắt Đầu Quét TikTok" ở trên.
                 </div>
               )}
             </div>
@@ -403,77 +380,76 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
       {/*  TAB 2: PHÂN HỆ SHOPEE & TỔNG QUAN GOOGLE DRIVE */}
       {/* ========================================================================= */}
       {activeSubsystemTab === 'shopee' && (
-        <div className="space-y-6 animate-fadeIn">
+        <div className="space-y-4 animate-fadeIn">
           {/* Shopee KPI Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
-                <span>Tổng Tài Khoản Đã Tìm Thấy</span>
-                <Database className="w-4 h-4 text-purple-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+                <span>Tổng Nick Đã Tìm Thấy</span>
+                <Database className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
               </div>
-              <div className="text-2xl font-extrabold text-purple-400">
-                {(driveProgress.accounts_total_found || 0).toLocaleString()} nick
+              <div className="text-xl font-bold text-orange-600 dark:text-orange-400 font-mono">
+                {(driveProgress.accounts_total_found || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-desc">Từ toàn bộ Google Sheets</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">Từ toàn bộ Google Sheets</div>
             </div>
 
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
                 <span>Thêm Mới Thành Công</span>
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <div className="text-2xl font-extrabold text-emerald-400">
+              <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                 +{(driveProgress.accounts_inserted || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-desc">Lưu mới vào MongoDB</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">Lưu mới vào MongoDB</div>
             </div>
 
-            <div className="app-card rounded-2xl p-5 border border-[var(--border-subtle)] space-y-1">
-              <div className="flex items-center justify-between text-xs text-desc">
+            <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
                 <span>Cập Nhật Cookie Đè</span>
-                <RefreshCw className="w-4 h-4 text-blue-400" />
+                <RefreshCw className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               </div>
-              <div className="text-2xl font-extrabold text-blue-400">
+              <div className="text-xl font-bold text-blue-600 dark:text-blue-400 font-mono">
                 +{(driveProgress.accounts_updated || 0).toLocaleString()}
               </div>
-              <div className="text-[11px] text-desc">Cập nhật cookie mới nhất</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">Cập nhật cookie mới nhất</div>
             </div>
           </div>
 
           {/* Action Trigger Banner */}
-          <div className="app-card rounded-3xl p-6 border border-blue-500/30 bg-gradient-to-r from-blue-950/40 via-indigo-950/20 to-transparent flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-            <div className="space-y-1.5 text-center md:text-left">
-              <div className="text-base font-extrabold text-white flex items-center gap-2 justify-center md:justify-start">
-                <Zap className="w-5 h-5 text-amber-400" />
-                1-Click Quét & Bóc Tách Toàn Bộ Google Drive
+          <div className="app-card rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="space-y-0.5">
+              <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
+                <span>Quét & Bóc Tách Google Drive (Shopee)</span>
               </div>
-              <div className="text-xs text-desc max-w-xl">
-                Tự động nhận diện Cookie Shopee (SPC_EC, SPC_ST), phân loại thông minh và đồng bộ vào kho.
+              <div className="text-[11px] text-slate-600 dark:text-slate-400 max-w-xl">
+                Tự động nhận diện Cookie Shopee (SPC_EC, SPC_ST), phân loại thông minh và đồng bộ vào kho dữ liệu.
               </div>
             </div>
 
             <button
               onClick={handleStartDriveSync}
               disabled={driveSyncing || !isConnected}
-              className={`btn bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white text-sm font-extrabold px-8 py-3.5 rounded-2xl shadow-xl shadow-blue-500/20 flex items-center gap-2.5 shrink-0 transition-all ${driveSyncing || !isConnected ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
-                }`}
+              className="px-4 py-2 rounded-lg text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-sm flex items-center gap-1.5 shrink-0 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              <RefreshCw className={`w-4 h-4 ${driveSyncing ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${driveSyncing ? 'animate-spin' : ''}`} />
               <span>{driveSyncing ? 'Đang Đồng Bộ Drive...' : 'Bắt Đầu Quét Ngay'}</span>
             </button>
           </div>
 
           {/* Progress bar */}
           {driveProgress.stage && driveProgress.stage !== 'IDLE' && (
-            <div className="app-card rounded-2xl p-5 border border-blue-500/30 space-y-2.5">
+            <div className="app-card rounded-xl p-3 border border-orange-300 dark:border-orange-500/40 bg-white dark:bg-slate-900/60 space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-blue-400">
+                <span className="font-bold text-orange-700 dark:text-orange-300 text-[11px]">
                   {driveProgress.stage === 'SCANNING_DRIVE' && '🔍 Đang quét danh mục file trên Google Drive...'}
                   {driveProgress.stage === 'PROCESSING_FILES' && `⚡ Đang xử lý: ${driveProgress.current_file || '...'}`}
                   {driveProgress.stage === 'COMPLETED' && '🎉 Đã hoàn tất đồng bộ toàn bộ file!'}
                   {driveProgress.stage === 'ERROR' && '❌ Gặp lỗi trong tiến trình'}
                 </span>
-                <span className="text-desc font-mono">
+                <span className="text-slate-500 dark:text-slate-400 font-mono text-[11px]">
                   {driveProgress.files_processed} / {driveProgress.files_total} files (
                   {driveProgress.files_total > 0
                     ? Math.round((driveProgress.files_processed / driveProgress.files_total) * 100)
@@ -481,14 +457,15 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
                   %)
                 </span>
               </div>
-              <div className="w-full h-3 bg-[var(--bg-input)] rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 transition-all duration-500 rounded-full"
+                  className="h-full bg-orange-500 transition-all duration-500 rounded-full"
                   style={{
-                    width: `${driveProgress.files_total > 0
-                      ? Math.round((driveProgress.files_processed / driveProgress.files_total) * 100)
-                      : 0
-                      }%`,
+                    width: `${
+                      driveProgress.files_total > 0
+                        ? Math.round((driveProgress.files_processed / driveProgress.files_total) * 100)
+                        : 0
+                    }%`,
                   }}
                 />
               </div>
@@ -496,37 +473,38 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
           )}
 
           {/* Live Terminal */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs text-desc px-1">
-              <span className="flex items-center gap-2 font-bold text-blue-400">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
-                Nhật Ký Đồng Bộ Google Drive Thời Gian Thực
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between text-xs px-1">
+              <span className="flex items-center gap-1.5 font-bold text-slate-700 dark:text-slate-300 text-[11px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping" />
+                <span>Nhật Ký Đồng Bộ Google Drive Thời Gian Thực</span>
               </span>
-              <span>{driveProgress.logs?.length || 0} dòng</span>
+              <span className="text-slate-500 dark:text-slate-400 font-mono text-[10px]">{driveProgress.logs?.length || 0} dòng</span>
             </div>
 
             <div
               ref={driveLogsRef}
-              className="bg-[#0b0f19] text-gray-300 font-mono text-xs p-5 rounded-3xl h-64 overflow-y-auto border border-gray-800 space-y-1.5 shadow-2xl select-text"
+              className="bg-[#0b0f19] text-gray-200 font-mono text-[11px] p-3 rounded-xl h-48 overflow-y-auto border border-slate-300 dark:border-slate-800 space-y-1 shadow-inner select-text"
             >
               {driveProgress.logs && driveProgress.logs.length > 0 ? (
                 driveProgress.logs.map((log: string, idx: number) => (
                   <div
                     key={idx}
-                    className={`leading-relaxed ${log.includes('HOÀN THÀNH') || log.includes('✅')
-                      ? 'text-emerald-400 font-bold'
-                      : log.includes('LỖI') || log.includes('❌')
+                    className={`leading-relaxed ${
+                      log.includes('HOÀN THÀNH') || log.includes('✅')
+                        ? 'text-emerald-400 font-bold'
+                        : log.includes('LỖI') || log.includes('❌')
                         ? 'text-rose-400 font-bold'
                         : log.includes('⚠️')
-                          ? 'text-amber-400'
-                          : 'text-gray-300'
-                      }`}
+                        ? 'text-amber-400'
+                        : 'text-gray-300'
+                    }`}
                   >
                     {log}
                   </div>
                 ))
               ) : (
-                <div className="text-gray-500 text-center py-24">
+                <div className="text-gray-500 text-center py-16 text-xs">
                   Chưa có tiến trình đồng bộ nào đang chạy. Bấm "Bắt Đầu Quét Ngay" ở trên.
                 </div>
               )}
@@ -539,31 +517,31 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
       {/*  TAB 3: HẸN GIỜ TỰ ĐỘNG & KHÓA AN TOÀN SNAPSHOT */}
       {/* ========================================================================= */}
       {activeSubsystemTab === 'autosync' && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="app-card rounded-3xl p-6 md:p-8 border border-[var(--border-subtle)] space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
-                <Clock className="w-5 h-5" />
+        <div className="space-y-4 animate-fadeIn">
+          <div className="app-card rounded-xl p-4 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-4 shadow-sm">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center">
+                <Clock className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-title">Cấu Hình Quét Ngầm Tự Động (Auto Sync Cron)</h3>
-                <p className="text-xs text-desc">Tự động kích hoạt cào và bóc tách định kỳ không cần thao tác tay</p>
+                <h3 className="text-xs font-bold text-slate-900 dark:text-slate-100">Cấu Hình Quét Ngầm Tự Động (Auto Sync Cron)</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">Tự động kích hoạt cào và bóc tách định kỳ không cần thao tác tay</p>
               </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-[var(--surface-sunken)] border border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="space-y-1 text-center sm:text-left">
-                <div className="text-sm font-bold text-title">Bật / Tắt Quét Định Kỳ</div>
-                <div className="text-xs text-desc">
-                  Trạng thái hiện tại: <strong className="text-purple-400">{autoSyncEnabled ? 'ĐANG BẬT' : 'ĐANG TẮT'}</strong>
+            <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="space-y-0.5 text-center sm:text-left">
+                <div className="text-xs font-bold text-slate-900 dark:text-slate-100">Bật / Tắt Quét Định Kỳ</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Trạng thái: <strong className="text-indigo-600 dark:text-indigo-400">{autoSyncEnabled ? 'ĐANG BẬT' : 'ĐANG TẮT'}</strong>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <select
                   value={intervalMinutes}
                   onChange={(e) => handleSaveAutoSync(autoSyncEnabled, parseInt(e.target.value, 10))}
-                  className="bg-[var(--bg-input)] text-xs font-bold text-title border border-[var(--border-subtle)] rounded-xl px-3 py-2 focus:outline-none focus:border-purple-500"
+                  className="bg-white dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-indigo-500"
                 >
                   <option value={15}>Mỗi 15 phút</option>
                   <option value={30}>Mỗi 30 phút</option>
@@ -573,24 +551,26 @@ export const DriveIngressHub: React.FC<DriveIngressHubProps> = ({
 
                 <button
                   onClick={() => handleSaveAutoSync(!autoSyncEnabled, intervalMinutes)}
-                  className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ${autoSyncEnabled ? 'bg-emerald-500' : 'bg-gray-600'
-                    }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    autoSyncEnabled ? 'bg-emerald-600' : 'bg-slate-300 dark:bg-slate-600'
+                  }`}
                 >
                   <span
-                    className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${autoSyncEnabled ? 'translate-x-6' : 'translate-x-1'
-                      }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      autoSyncEnabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
                   />
                 </button>
               </div>
             </div>
 
             {/* Safety Double-Lock Notice */}
-            <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-              <div className="space-y-1 text-xs">
-                <div className="font-bold text-emerald-400">Khóa Bảo Vệ Dữ Liệu Tự Động Snapshot Đang Bật</div>
-                <div className="text-desc">
-                  Trước mỗi đợt nạp hoặc làm sạch dữ liệu lớn, hệ thống luôn tự động tạo bản Snapshot nén <code className="text-emerald-300">.json.gz</code> lưu vào <code className="text-emerald-300">data/backups/</code>. Nếu tạo Snapshot thất bại, tiến trình sẽ tự động bị CHẶN TUYỆT ĐỐI để đảm bảo không bao giờ mất mát dữ liệu.
+            <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800/60 flex items-start gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <div className="space-y-0.5 text-[11px]">
+                <div className="font-bold text-emerald-800 dark:text-emerald-300">Khóa Bảo Vệ Dữ Liệu Tự Động Snapshot Đang Bật</div>
+                <div className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                  Trước mỗi đợt nạp hoặc làm sạch dữ liệu lớn, hệ thống luôn tự động tạo bản Snapshot nén <code className="text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/60 px-1 py-0.5 rounded font-mono">.json.gz</code> lưu vào <code className="text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/60 px-1 py-0.5 rounded font-mono">data/backups/</code>. Nếu tạo Snapshot thất bại, tiến trình sẽ tự động hủy để đảm bảo an toàn.
                 </div>
               </div>
             </div>

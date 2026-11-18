@@ -41,10 +41,13 @@ import { AccountsTable } from '../components/accounts/AccountsTable';
 import { BulkActionBar } from '../components/accounts/BulkActionBar';
 import { AccountDetailModal } from '../components/accounts/AccountDetailModal';
 import { SmartExportDialog } from '../components/accounts/SmartExportDialog';
+import { LiveCheckerModal } from '../components/accounts/LiveCheckerModal';
 import { FarmMatrixView } from '../components/farm/FarmMatrixView';
 import { DriveIngressHub } from '../components/ingress/DriveIngressHub';
 import { SystemLogsView } from '../components/dashboard/SystemLogsView';
 import { AccountSanitationView } from '../components/accounts/AccountSanitationView';
+import { CrmDashboardView } from '../components/crm/CrmDashboardView';
+import { AddAccountModal } from '../components/accounts/AddAccountModal';
 
 export default function App() {
   // Theme State
@@ -66,6 +69,8 @@ export default function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isSmartExportOpen, setIsSmartExportOpen] = useState(false);
+  const [isAddAccountOpen, setIsAddAccountOpen] = useState(false);
+  const [isLiveCheckerOpen, setIsLiveCheckerOpen] = useState(false);
 
   // Global Toast State
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -96,6 +101,9 @@ export default function App() {
     description?: string;
     required?: boolean;
     variant?: 'purple' | 'emerald' | 'amber' | 'blue';
+    confirmText?: string;
+    cancelText?: string;
+    loading?: boolean;
     onSubmit: (val: string) => void;
   }>({
     isOpen: false,
@@ -134,6 +142,7 @@ export default function App() {
   const [importFile, setImportFile] = useState<File | null>(null);
   const [importPreviewData, setImportPreviewData] = useState<any>(null);
   const [importLoading, setImportLoading] = useState(false);
+  const [importPlatform, setImportPlatform] = useState<'SHOPEE' | 'TIKTOK' | 'FACEBOOK'>('SHOPEE');
   const [dupScanLoading, setDupScanLoading] = useState(false);
   const [dupScanResult, setDupScanResult] = useState<any>(null);
 
@@ -532,19 +541,19 @@ export default function App() {
     setConfirmDialog({
       isOpen: true,
       title: `Khôi phục dữ liệu lỗi (${selectedUsernames.length} tài khoản)`,
-      message: 'Hệ thống sẽ thử chạy lại thuật toán bóc tách dữ liệu gốc. Nếu khôi phục thành công, tài khoản sẽ được mở khóa (AVAILABLE). Những tài khoản là bản ghi trùng lặp (rác thừa) sẽ bị gắn nhãn và chuyển vào BLACKLISTED. Bạn có chắc chắn muốn tiến hành?',
-      confirmText: 'Bắt Đầu Cứu Hộ',
+      message: 'Hệ thống sẽ thử chạy lại thuật toán bóc tách dữ liệu gốc. Nếu khôi phục thành công, tài khoản sẽ được mở khóa (AVAILABLE). Những tài khoản là bản ghi trùng lặp sẽ bị gắn nhãn và chuyển vào BLACKLISTED. Bạn có chắc chắn muốn tiến hành?',
+      confirmText: 'Bắt Đầu Khôi Phục',
       variant: 'warning',
       onConfirm: async () => {
         try {
           const res = await api.autoFixAccounts(selectedUsernames);
-          showToast(`Cứu hộ hoàn tất: Cứu sống ${res.fixed} nick, phát hiện ${res.failed_duplicate} nick rác trùng lặp!`, 'info');
+          showToast(`Khôi phục hoàn tất: Đã xử lý thành công ${res.fixed} tài khoản, phát hiện ${res.failed_duplicate} bản ghi trùng lặp!`, 'info');
           setSelectedUsernames([]);
           setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
           fetchAccounts(accountsPage);
           fetchDashboardStats();
         } catch (err: any) {
-          showToast(err.message || 'Lỗi trong quá trình cứu hộ', 'error');
+          showToast(err.message || 'Lỗi trong quá trình khôi phục dữ liệu', 'error');
         }
       },
     });
@@ -576,9 +585,10 @@ export default function App() {
     if (!importFile) return;
     setImportLoading(true);
     try {
-      const res = await api.uploadOffline(importFile, 'preview');
+      const res = await api.uploadOffline(importFile, 'preview', importPlatform);
       setImportPreviewData(res);
-      showToast(`Đã phân tích xong tệp tin: tìm thấy ${res.total_parsed} tài khoản`, 'info');
+      const totalParsed = res.summary?.total_parsed ?? res.total_parsed ?? 0;
+      showToast(`Đã phân tích xong tệp tin: tìm thấy ${totalParsed} dòng dữ liệu`, 'info');
     } catch (err: any) {
       showToast(err.message || 'Lỗi phân tích tệp tin', 'error');
     } finally {
@@ -589,17 +599,20 @@ export default function App() {
   const handleCommitImport = async () => {
     if (!importFile) return;
 
+    const totalParsed = importPreviewData?.summary?.total_parsed ?? importPreviewData?.total_parsed ?? 0;
     setConfirmDialog({
       isOpen: true,
       title: 'Xác nhận Nhập Kho Chính Thức',
-      message: `Hệ thống sẽ nạp toàn bộ ${importPreviewData?.total_parsed || 0} tài khoản vào kho tổng MongoDB, tự động chuẩn hóa và mã hóa AES-256.`,
+      message: `Hệ thống sẽ nạp toàn bộ ${totalParsed} tài khoản vào kho tổng MongoDB (${importPlatform}), tự động chuẩn hóa và mã hóa AES-256.`,
       confirmText: 'Nhập Kho Ngay',
       variant: 'success',
       onConfirm: async () => {
         setImportLoading(true);
         try {
-          const res = await api.uploadOffline(importFile, 'commit');
-          showToast(`Nhập kho thành công! Thêm mới: ${res.inserted || 0}, Cập nhật: ${res.updated || 0}`, 'success');
+          const res = await api.uploadOffline(importFile, 'commit', importPlatform);
+          const inserted = res.details?.inserted ?? res.inserted ?? 0;
+          const updated = res.details?.updated ?? res.updated ?? 0;
+          showToast(`Nhập kho thành công! Thêm mới: ${inserted}, Cập nhật: ${updated}`, 'success');
           setImportPreviewData(null);
           setImportFile(null);
           setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -715,16 +728,21 @@ export default function App() {
       title: 'Tạo Bản Sao Lưu Snapshot Mới',
       label: 'Ghi chú sao lưu (tùy chọn)',
       placeholder: 'VD: Snapshot trước khi nhập đợt 50k nick...',
+      description: 'Hệ thống sẽ nén toàn bộ tài khoản, đợt quét và nhật ký vào tệp .json.gz an toàn.',
+      confirmText: 'Bắt Đầu Tạo Snapshot',
       variant: 'purple',
       onSubmit: async (note) => {
         setBackupLoading(true);
+        setInputDialog((prev) => ({ ...prev, loading: true }));
+        showToast('Đang nén dữ liệu và tạo Snapshot MongoDB...', 'info');
         try {
           await api.createBackup(note);
           showToast('Đã tạo bản sao lưu snapshot thành công!', 'success');
-          setInputDialog((prev) => ({ ...prev, isOpen: false }));
+          setInputDialog((prev) => ({ ...prev, isOpen: false, loading: false }));
           fetchBackups();
         } catch (err: any) {
           showToast(err.message || 'Lỗi tạo sao lưu', 'error');
+          setInputDialog((prev) => ({ ...prev, loading: false }));
         } finally {
           setBackupLoading(false);
         }
@@ -999,15 +1017,15 @@ export default function App() {
       {/* Toast Notification */}
       {toastMessage && (
         <div
-          className={`fixed top-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2 animate-slideDown border ${
+          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2 animate-slideUp border ${
             toastType === 'success'
-              ? 'bg-emerald-950/90 text-emerald-300 border-emerald-500/40 shadow-emerald-950/40'
+              ? 'bg-emerald-950/95 text-emerald-300 border-emerald-500/40 shadow-emerald-950/40'
               : toastType === 'error'
-              ? 'bg-rose-950/90 text-rose-300 border-rose-500/40 shadow-rose-950/40'
-              : 'bg-purple-950/90 text-purple-300 border-purple-500/40 shadow-purple-950/40'
+              ? 'bg-rose-950/95 text-rose-300 border-rose-500/40 shadow-rose-950/40'
+              : 'bg-purple-950/95 text-purple-300 border-purple-500/40 shadow-purple-950/40'
           }`}
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -1036,6 +1054,9 @@ export default function App() {
         description={inputDialog.description}
         required={inputDialog.required}
         variant={inputDialog.variant}
+        confirmText={inputDialog.confirmText}
+        cancelText={inputDialog.cancelText}
+        loading={inputDialog.loading || backupLoading}
       />
 
       {/* Account Detail Modal */}
@@ -1055,6 +1076,30 @@ export default function App() {
           fetchAccounts(1);
           fetchDashboardStats();
         }}
+        showToast={showToast}
+      />
+
+      {/* Add Single Account Modal */}
+      <AddAccountModal
+        isOpen={isAddAccountOpen}
+        onClose={() => setIsAddAccountOpen(false)}
+        onSuccess={(newUsername) => {
+          fetchAccounts(1);
+          fetchDashboardStats();
+        }}
+        showToast={showToast}
+      />
+
+      {/* Shopee Live Streaming Checker Modal */}
+      <LiveCheckerModal
+        isOpen={isLiveCheckerOpen}
+        onClose={() => setIsLiveCheckerOpen(false)}
+        selectedUsernames={selectedUsernames}
+        onFinished={() => {
+          fetchAccounts(accountsPage);
+          fetchDashboardStats();
+        }}
+        showToast={showToast}
       />
 
       {/* Collapsible Sidebar */}
@@ -1091,7 +1136,7 @@ export default function App() {
         />
 
         {/* Content Container (Independent Smooth Scroll) */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6 min-w-0">
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <DashboardOverview
@@ -1107,7 +1152,7 @@ export default function App() {
               <AccountFilters
                 filters={accountFilters}
                 setFilters={setAccountFilters}
-                onApplyFilters={() => fetchAccounts(1)}
+                onApplyFilters={(customFilters) => fetchAccounts(1, customFilters || accountFilters)}
                 onResetFilters={() => {
                   const defaultFilters: AccountFiltersState = {
                     search: '',
@@ -1124,6 +1169,8 @@ export default function App() {
                   fetchAccounts(1, defaultFilters);
                 }}
                 onExportExcel={handleExportAccountsExcel}
+                onOpenAddAccount={() => setIsAddAccountOpen(true)}
+                onOpenChecker={() => setIsLiveCheckerOpen(true)}
                 isExporting={exportAccountsLoading}
                 isLoading={accountsLoading}
               />
@@ -1155,6 +1202,7 @@ export default function App() {
                 onAutoFix={handleBulkAutoFix}
                 onDeleteToTrash={handleBulkMoveToTrash}
                 onRestore={handleBulkRestore}
+                onCheckShopee={() => setIsLiveCheckerOpen(true)}
                 isTrashMode={accountFilters.status === 'TRASH'}
               />
             </div>
@@ -1173,50 +1221,60 @@ export default function App() {
 
           {/* TAB 3: OFFLINE IMPORT & DUPLICATE CLEANER */}
           {activeTab === 'import' && (
-            <div className="space-y-6">
-              {/* Duplicate Cleaner Banner */}
-              <div className="app-card rounded-2xl p-6 space-y-4 border border-[var(--border-subtle)]">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                  <div>
-                    <h3 className="font-bold text-sm text-title flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-purple-400" />
-                      <span>Công Cụ Quét Trùng Lặp & Làm Sạch Kho</span>
-                    </h3>
-                    <p className="text-xs text-desc mt-1">
-                      Tự động quét toàn bộ kho MongoDB để phát hiện nick trùng username_normalized và làm sạch an toàn.
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={handleScanDuplicates}
-                      disabled={dupScanLoading}
-                      className="px-4 py-2 rounded-xl text-xs font-bold bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition-all flex items-center gap-1.5"
-                    >
-                      {dupScanLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Search className="w-3.5 h-3.5" />}
-                      <span>Quét Trùng Lặp</span>
-                    </button>
-                    {dupScanResult?.duplicate_groups_count > 0 && (
+            <div className="space-y-4 animate-fadeIn pb-10">
+              {/* 🧭 Top Action Bar: Platform Selector & Duplicate Clean Actions */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide">
+                    Nền Tảng Đích:
+                  </span>
+                  <div className="flex gap-1.5 bg-slate-100 dark:bg-slate-800/80 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
+                    {([
+                      { value: 'SHOPEE', label: '🟠 Shopee' },
+                      { value: 'TIKTOK', label: '🎵 TikTok' },
+                      { value: 'FACEBOOK', label: '🔵 Facebook' },
+                    ] as const).map(({ value, label }) => (
                       <button
-                        onClick={handleCleanDuplicates}
-                        className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg transition-all flex items-center gap-1.5"
+                        key={value}
+                        type="button"
+                        onClick={() => { setImportPlatform(value); setImportPreviewData(null); }}
+                        className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${
+                          importPlatform === value
+                            ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm font-bold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        }`}
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
-                        <span>Làm Sạch {dupScanResult.duplicate_groups_count} Nhóm Trùng</span>
+                        {label}
                       </button>
-                    )}
+                    ))}
                   </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={handleScanDuplicates}
+                    disabled={dupScanLoading}
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center gap-1.5 shadow-sm"
+                  >
+                    {dupScanLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin text-purple-500" /> : <Search className="w-3.5 h-3.5" />}
+                    <span>Quét Trùng Lặp Kho</span>
+                  </button>
+                  {dupScanResult?.duplicate_groups_count > 0 && (
+                    <button
+                      onClick={handleCleanDuplicates}
+                      className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white shadow-sm transition-all flex items-center gap-1.5"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Làm Sạch {dupScanResult.duplicate_groups_count} Nhóm Trùng</span>
+                    </button>
+                  )}
                 </div>
               </div>
 
               {/* Upload Card */}
-              <div className="app-card rounded-2xl p-6 space-y-4 border border-[var(--border-subtle)]">
-                <h3 className="font-bold text-sm text-title flex items-center gap-2">
-                  <Upload className="w-4 h-4 text-indigo-400" />
-                  <span>Tải Lên Tệp Tin Tài Khoản (TXT / XLSX / CSV)</span>
-                </h3>
-
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-sm space-y-4">
                 <form onSubmit={handleUploadPreview} className="space-y-4">
-                  <div className="border-2 border-dashed border-[var(--border-subtle)] hover:border-purple-500/50 rounded-2xl p-8 text-center transition-all bg-[var(--bg-input)]">
+                  <div className="border border-dashed border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-6 text-center transition-all bg-slate-50/50 dark:bg-slate-950/40">
                     <input
                       type="file"
                       accept=".txt,.xlsx,.xls,.csv"
@@ -1225,25 +1283,34 @@ export default function App() {
                       id="offline-file-input"
                     />
                     <label htmlFor="offline-file-input" className="cursor-pointer space-y-2 block">
-                      <div className="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mx-auto">
-                        <UploadCloud className="w-6 h-6" />
+                      <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 mx-auto">
+                        <UploadCloud className="w-5 h-5" />
                       </div>
-                      <div className="text-xs font-bold text-title">
-                        {importFile ? importFile.name : 'Bấm để chọn tệp tin hoặc kéo thả vào đây'}
+                      <div className="text-xs font-bold text-slate-900 dark:text-slate-100">
+                        {importFile ? (
+                          <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                            ✓ {importFile.name} ({(importFile.size / 1024).toFixed(1)} KB)
+                          </span>
+                        ) : (
+                          'Bấm để chọn tệp tin hoặc kéo thả tệp vào đây'
+                        )}
                       </div>
-                      <div className="text-[11px] text-desc">
-                        Hỗ trợ định dạng TXT (User|Pass|Mail|Cookie), Excel (Shopee, TikTok, Boxphone)
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                        Định dạng hỗ trợ: TXT (User|Pass|Mail|Cookie...), Excel .xlsx (Shopee, TikTok, Boxphone)
                       </div>
                     </label>
                   </div>
 
-                  <div className="flex justify-end gap-3">
+                  <div className="flex justify-between items-center pt-1">
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                      Mục tiêu nạp: <strong className="text-slate-800 dark:text-slate-200">{importPlatform}</strong> · Chuẩn hóa tự động và mã hóa AES-256
+                    </span>
                     <button
                       type="submit"
                       disabled={!importFile || importLoading}
-                      className="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg transition-all flex items-center gap-2"
+                      className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 shadow-sm transition-all flex items-center gap-2 disabled:opacity-40"
                     >
-                      {importLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+                      {importLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Search className="w-3.5 h-3.5" />}
                       <span>Xem Trước Dữ Liệu (Preview)</span>
                     </button>
                   </div>
@@ -1251,24 +1318,59 @@ export default function App() {
               </div>
 
               {/* Preview Table & Commit */}
-              {importPreviewData && (
-                <div className="app-card rounded-2xl p-6 space-y-4 border border-[var(--border-subtle)] animate-fadeIn">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
+              {importPreviewData && (() => {
+                const s = importPreviewData.summary || {};
+                const totalParsed = s.total_parsed ?? importPreviewData.total_parsed ?? 0;
+                const newCount = s.new_count ?? 0;
+                const updateCount = s.update_available_count ?? 0;
+                const protectedCount = (s.alert_sold_count ?? 0) + (s.alert_used_count ?? 0) + (s.alert_blacklisted_count ?? 0);
+                const invalidCount = s.invalid_count ?? 0;
+                return (
+                <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 shadow-sm space-y-4 animate-fadeIn">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                     <div>
-                      <h3 className="font-bold text-sm text-title">Kết Quả Phân Tích: {importPreviewData.total_parsed} Tài Khoản</h3>
-                      <p className="text-xs text-desc">Kiểm tra thông tin trước khi nạp chính thức vào kho dữ liệu.</p>
+                      <h4 className="font-bold text-xs text-slate-900 dark:text-slate-100">
+                        Kết Quả Phân Tích: {totalParsed.toLocaleString()} Dòng Dữ Liệu
+                      </h4>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                        Kiểm tra phân loại và bảo vệ kho trước khi nạp chính thức vào MongoDB.
+                      </p>
                     </div>
                     <button
                       onClick={handleCommitImport}
                       disabled={importLoading}
-                      className="px-6 py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-950/40 transition-all flex items-center gap-2"
+                      className="px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition-all flex items-center gap-1.5"
                     >
-                      {importLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
+                      {importLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle className="w-3.5 h-3.5" />}
                       <span>Xác Nhận Nạp Kho Ngay</span>
                     </button>
                   </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                    <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Tổng Phân Tích</div>
+                      <div className="text-base font-bold font-mono text-slate-900 dark:text-slate-100 mt-0.5">{totalParsed.toLocaleString()}</div>
+                    </div>
+                    <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+                      <div className="text-[11px] text-emerald-700 dark:text-emerald-400 font-semibold">Thêm Mới (AVAILABLE)</div>
+                      <div className="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-0.5">+{newCount.toLocaleString()}</div>
+                    </div>
+                    <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800">
+                      <div className="text-[11px] text-blue-700 dark:text-blue-400 font-semibold">Cập Nhật Đồng Thuận</div>
+                      <div className="text-base font-bold font-mono text-blue-600 dark:text-blue-400 mt-0.5">{updateCount.toLocaleString()}</div>
+                    </div>
+                    <div className="p-3 rounded-lg bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
+                      <div className="text-[11px] text-purple-700 dark:text-purple-400 font-semibold">Bảo Vệ (Đã Bán/Dùng)</div>
+                      <div className="text-base font-bold font-mono text-purple-600 dark:text-purple-400 mt-0.5">{protectedCount.toLocaleString()}</div>
+                    </div>
+                    <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800">
+                      <div className="text-[11px] text-rose-700 dark:text-rose-400 font-semibold">Dòng Lỗi / Rác</div>
+                      <div className="text-base font-bold font-mono text-rose-600 dark:text-rose-400 mt-0.5">{invalidCount.toLocaleString()}</div>
+                    </div>
+                  </div>
                 </div>
-              )}
+                );
+              })()}
             </div>
           )}
 
@@ -1496,74 +1598,107 @@ export default function App() {
             />
           )}
 
+          {/* TAB: CRM & REVENUE DASHBOARD */}
+          {activeTab === 'crm' && (
+            <CrmDashboardView
+              onNavigateToAccounts={(soldTo) => {
+                const updatedFilters = { ...accountFilters, status: 'SOLD', search: soldTo };
+                setAccountFilters(updatedFilters);
+                fetchAccounts(1, updatedFilters);
+                handleTabChange('accounts');
+              }}
+              showToast={showToast}
+            />
+          )}
+
           {/* TAB 6: BACKUPS & DISASTER RECOVERY */}
           {activeTab === 'backups' && (
-            <div className="space-y-6">
-              <div className="app-card rounded-2xl p-6 space-y-4 border border-[var(--border-subtle)]">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <div>
-                    <h3 className="font-bold text-sm text-title flex items-center gap-2">
-                      <Archive className="w-4 h-4 text-teal-400" />
-                      <span>Sao Lưu & Bảo Hiểm Dữ Liệu MongoDB</span>
-                    </h3>
-                    <p className="text-xs text-desc mt-1">
-                      Tạo các bản Snapshot độc lập để bảo đảm an toàn 100% cho kho dữ liệu trước các đợt thao tác lớn.
-                    </p>
-                  </div>
+            <div className="space-y-4 animate-fadeIn pb-10">
+              {/* 🧭 Top Action Bar: Clean, sleek, no duplicate header */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+                  <span className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide">
+                    Bảo Vệ Dữ Liệu & Snapshot Tự Động (Disaster Recovery)
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    ({backupsList.length} bản lưu)
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={fetchBackups}
+                    className="p-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-all text-xs"
+                    title="Làm mới danh sách"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                  </button>
                   <button
                     onClick={handleCreateBackup}
                     disabled={backupLoading}
-                    className="px-4 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-lg transition-all flex items-center gap-1.5"
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-teal-600 hover:bg-teal-500 text-white shadow-sm transition-all flex items-center gap-1.5 disabled:opacity-50"
                   >
-                    <Archive className="w-3.5 h-3.5" />
-                    <span>Tạo Bản Snapshot Ngay</span>
+                    <Archive className={`w-3.5 h-3.5 ${backupLoading ? 'animate-spin' : ''}`} />
+                    <span>{backupLoading ? 'Đang Tạo Snapshot...' : 'Tạo Bản Snapshot Mới'}</span>
                   </button>
                 </div>
               </div>
 
               {/* Backups List */}
-              <div className="app-card rounded-2xl p-6 space-y-4 border border-[var(--border-subtle)]">
-                <h3 className="font-bold text-sm text-title">Danh Sách Bản Sao Lưu ({backupsList.length})</h3>
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 overflow-hidden shadow-sm">
+                <div className="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-900 dark:text-slate-100">
+                    Kho Lưu Trữ Snapshot Gzip (.json.gz)
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono">
+                    Nén toàn bộ Accounts, Batches, Audit Logs
+                  </span>
+                </div>
+
                 {backupsList.length === 0 ? (
-                  <div className="p-8 text-center text-desc text-xs">Chưa có bản sao lưu nào.</div>
+                  <div className="p-12 text-center text-slate-400 text-xs">
+                    Chưa có bản sao lưu nào. Bấm nút phía trên để tạo bản Snapshot an toàn đầu tiên!
+                  </div>
                 ) : (
-                  <div className="divide-y divide-[var(--border-subtle)]">
+                  <div className="divide-y divide-slate-100 dark:divide-slate-800">
                     {backupsList.map((b: any, idx: number) => (
-                      <div key={idx} className="py-4 flex flex-wrap items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center text-teal-400">
-                            <Archive className="w-5 h-5" />
+                      <div key={idx} className="p-3.5 flex flex-wrap items-center justify-between gap-3 hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 flex items-center justify-center text-teal-600 dark:text-teal-400 shrink-0">
+                            <Archive className="w-4 h-4" />
                           </div>
-                          <div>
-                            <div className="font-bold text-title text-xs font-mono">{b.fileName}</div>
-                            <div className="text-[11px] text-desc mt-0.5">
-                              Dung lượng: <strong className="text-teal-400">{b.size_mb} MB</strong> · Ngày tạo:{' '}
-                              {new Date(b.createdAt).toLocaleString('vi-VN')}
+                          <div className="min-w-0">
+                            <div className="font-bold text-slate-900 dark:text-slate-100 text-xs font-mono truncate">
+                              {b.fileName}
+                            </div>
+                            <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                              Dung lượng: <strong className="text-teal-600 dark:text-teal-400">{b.size_mb} MB</strong> · Thời gian: {new Date(b.createdAt).toLocaleString('vi-VN')}
                             </div>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 shrink-0">
                           <a
                             href={api.getBackupDownloadUrl(b.fileName)}
                             target="_blank"
                             rel="noreferrer"
-                            className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-title border border-[var(--border-subtle)] flex items-center gap-1"
+                            className="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 text-xs font-semibold border border-slate-300 dark:border-slate-700 flex items-center gap-1 transition-all"
                           >
-                            <Download className="w-3.5 h-3.5 text-teal-400" />
+                            <Download className="w-3 h-3 text-teal-600 dark:text-teal-400" />
                             <span>Tải về</span>
                           </a>
                           <button
                             onClick={() => handleRestoreBackup(b.fileName)}
                             disabled={backupLoading}
-                            className="px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-xs font-bold text-amber-400 border border-amber-500/30 flex items-center gap-1"
+                            className="px-2.5 py-1 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:hover:bg-amber-900/60 dark:text-amber-300 text-xs font-semibold border border-amber-200 dark:border-amber-800 flex items-center gap-1 transition-all disabled:opacity-40"
                           >
-                            <RefreshCw className="w-3.5 h-3.5" />
+                            <RefreshCw className="w-3 h-3" />
                             <span>Phục hồi</span>
                           </button>
                           <button
                             onClick={() => handleDeleteBackup(b.fileName)}
-                            className="p-2 text-desc hover:text-rose-400 transition-all"
+                            className="p-1 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition-all"
                             title="Xóa bản sao lưu"
                           >
                             <Trash2 className="w-3.5 h-3.5" />

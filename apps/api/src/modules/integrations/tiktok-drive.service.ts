@@ -51,6 +51,13 @@ export class TikTokDriveService {
     logs: []
   };
 
+  private pushLog(msg: string) {
+    if (this.progress.logs.length >= 300) {
+      this.progress.logs.splice(0, this.progress.logs.length - 299);
+    }
+    this.progress.logs.push(msg);
+  }
+
   constructor(
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,
     private readonly cryptoService: CryptoService,
@@ -139,7 +146,7 @@ export class TikTokDriveService {
       this.progress.is_running = false;
       this.progress.stage = 'ERROR';
       this.progress.error_message = err.message;
-      this.progress.logs.push(`[${new Date().toLocaleTimeString()}] ❌ LỖI: ${err.message}`);
+      this.pushLog(`[${new Date().toLocaleTimeString()}] ❌ LỖI: ${err.message}`);
     });
 
     return {
@@ -155,7 +162,7 @@ export class TikTokDriveService {
 
     const drive = google.drive({ version: 'v3', auth: this.oauth2Client });
 
-    this.progress.logs.push(`[${new Date().toLocaleTimeString()}] 🔍 Đang quét toàn bộ Google Drive & Shared Drives để tìm file TikTok...`);
+    this.pushLog(`[${new Date().toLocaleTimeString()}] 🔍 Đang quét toàn bộ Google Drive & Shared Drives để tìm file TikTok...`);
 
     let allFiles: any[] = [];
     let pageToken: string | undefined = undefined;
@@ -187,17 +194,29 @@ export class TikTokDriveService {
 
     this.progress.files_total = targetFiles.length;
     this.progress.stage = 'PARSING_TIKTOK_DATA';
-    this.progress.logs.push(`[${new Date().toLocaleTimeString()}] 📂 Tìm thấy ${targetFiles.length} file tài nguyên TikTok hợp lệ trên Drive.`);
+    this.pushLog(`[${new Date().toLocaleTimeString()}] 📂 Tìm thấy ${targetFiles.length} file tài nguyên TikTok hợp lệ trên Drive.`);
+
+    await this.auditService.record({
+      action: 'TIKTOK_INGRESS_STARTED',
+      actor_id: actor,
+      actor_username: actor,
+      target_type: 'TIKTOK_DRIVE',
+      platform: 'TIKTOK',
+      details: {
+        total_files_to_scan: targetFiles.length,
+        started_at: new Date()
+      }
+    });
 
     for (let fIdx = 0; fIdx < targetFiles.length; fIdx++) {
       const file = targetFiles[fIdx];
       this.progress.current_file = file.name || 'Untitled';
-      this.progress.logs.push(`[${new Date().toLocaleTimeString()}] [${fIdx + 1}/${targetFiles.length}] Bóc tách file TikTok: "${file.name}"...`);
+      this.pushLog(`[${new Date().toLocaleTimeString()}] [${fIdx + 1}/${targetFiles.length}] Bóc tách file TikTok: "${file.name}"...`);
 
       try {
         await this.processTikTokFile(drive, file);
       } catch (fileErr: any) {
-        this.progress.logs.push(`[${new Date().toLocaleTimeString()}] ⚠️ Bỏ qua file "${file.name}" do lỗi: ${fileErr.message}`);
+        this.pushLog(`[${new Date().toLocaleTimeString()}] ⚠️ Bỏ qua file "${file.name}" do lỗi: ${fileErr.message}`);
       }
 
       this.progress.files_processed++;
@@ -208,7 +227,7 @@ export class TikTokDriveService {
     this.progress.is_running = false;
     this.progress.stage = 'COMPLETED';
     this.progress.completed_at = new Date();
-    this.progress.logs.push(
+    this.pushLog(
       `[${new Date().toLocaleTimeString()}] 🎉 HOÀN TẤT ĐỒNG BỘ KHO TIKTOK! Đã bóc tách: ${this.progress.accounts_found} nick (+${this.progress.accounts_inserted} mới, +${this.progress.accounts_updated} cập nhật). Cookie: ${this.progress.accounts_with_cookie}, Mail: ${this.progress.accounts_with_email}, Dàn máy: ${Object.keys(this.progress.machines_detected).length} máy.`
     );
 
@@ -272,10 +291,11 @@ export class TikTokDriveService {
           rowArray.push(val !== undefined && val !== null ? String(val).trim() : '');
         });
 
-        // Parse specifically as TikTok
+        // Parse specifically as TikTok — truyền default_platform bắt buộc
         const parsed = AccountParser.parseRow(rowArray, rIdx, {
           source_file: file.name,
-          source_tab: tabName
+          source_tab: tabName,
+          default_platform: 'TIKTOK'
         });
 
         if (!parsed.is_valid || !parsed.username) return;
@@ -301,16 +321,16 @@ export class TikTokDriveService {
           platform: 'TIKTOK', // Đảm bảo luôn gán chuẩn TIKTOK
           'metadata.source_file': file.name,
           'metadata.source_sheet': tabName,
+          'metadata.source_url': file.webViewLink || (file.id ? `https://docs.google.com/spreadsheets/d/${file.id}/edit` : undefined),
           'metadata.last_scan_at': new Date(),
-          quality: {
-            has_cookie: !!parsed.cookie,
-            has_token: !!(parsed.token || parsed.session_token),
-            has_email: !!parsed.email,
-            parse_errors: []
-          },
-          tags: ['tiktok', 'drive_ingress', tabName.toLowerCase()],
+          'quality.parse_errors': [],
           updatedAt: new Date()
         };
+
+        // Consensus Merge: chỉ bật true khi dòng mới có dữ liệu, không ghi đè false lên cờ true đã có
+        if (parsed.cookie) setFields['quality.has_cookie'] = true;
+        if (parsed.token || parsed.session_token) setFields['quality.has_token'] = true;
+        if (parsed.email) setFields['quality.has_email'] = true;
 
         if (password_enc) setFields.password_enc = password_enc;
         if (cookie_enc) setFields.cookie_enc = cookie_enc;
@@ -320,6 +340,7 @@ export class TikTokDriveService {
         if (parsed.phone) setFields.phone = parsed.phone;
         if (parsed.custom_metadata?.coins) setFields.coins = parsed.custom_metadata.coins;
         if (parsed.email) setFields.email = parsed.email;
+        if (email_password_enc) setFields.email_password_enc = email_password_enc;
         if (parsed.custom_metadata) setFields.custom_metadata = parsed.custom_metadata;
         setFields.raw = {
           row_number: rIdx + 1,
@@ -336,6 +357,9 @@ export class TikTokDriveService {
             },
             update: {
               $set: setFields,
+              $addToSet: {
+                tags: { $each: ['tiktok', 'drive_ingress', tabName.toLowerCase()] }
+              },
               $setOnInsert: {
                 status: 'AVAILABLE',
                 createdAt: new Date(),
@@ -356,7 +380,7 @@ export class TikTokDriveService {
           const res = await this.accountModel.bulkWrite(bulkOps, { ordered: false });
           this.progress.accounts_inserted += res.upsertedCount || 0;
           this.progress.accounts_updated += res.modifiedCount || 0;
-          this.progress.logs.push(
+          this.pushLog(
             `[${new Date().toLocaleTimeString()}]   ↳ Tab "${tabName}": +${res.upsertedCount || 0} mới, +${res.modifiedCount || 0} cập nhật cookie/data.`
           );
         } catch (bulkErr: any) {
@@ -364,7 +388,7 @@ export class TikTokDriveService {
           const modified = bulkErr.result?.nModified || bulkErr.result?.modifiedCount || 0;
           this.progress.accounts_inserted += inserted;
           this.progress.accounts_updated += modified;
-          this.progress.logs.push(
+          this.pushLog(
             `[${new Date().toLocaleTimeString()}]   ⚠️ Tab "${tabName}": +${inserted} mới, +${modified} cập nhật, ${bulkErr.writeErrors?.length || 1} dòng lỗi format.`
           );
         }

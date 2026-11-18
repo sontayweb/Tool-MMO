@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IUser } from '@arms/shared';
+import { AuditService } from '../audit/audit.service.js';
 
 export interface UserPayload {
   username: string;
@@ -25,10 +26,11 @@ export class AuthService {
 
   constructor(
     private readonly jwtService: JwtService,
-    @InjectModel('User') private readonly userModel: Model<IUser>
+    @InjectModel('User') private readonly userModel: Model<IUser>,
+    private readonly auditService: AuditService
   ) {}
 
-  async login(username: string, pass: string) {
+  async login(username: string, pass: string, ipAddress?: string) {
     const cleanUser = username.toLowerCase().trim();
 
     // 1. Check dynamic DB user first
@@ -61,6 +63,19 @@ export class AuthService {
       team: finalTeam,
       display_name: finalDisplayName 
     };
+
+    // Ghi vết kiểm toán đăng nhập
+    await this.auditService.record({
+      action: 'AUTH_LOGIN',
+      actor_id: cleanUser,
+      actor_username: cleanUser,
+      ip_address: ipAddress || '127.0.0.1',
+      details: {
+        role: finalRole,
+        team: finalTeam,
+        display_name: finalDisplayName
+      }
+    });
     
     return {
       access_token: await this.jwtService.signAsync(payload),

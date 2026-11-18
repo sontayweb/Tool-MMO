@@ -7,10 +7,14 @@ import { IScanBatch, IAccount, AccountParser, UsernameNormalizer, CryptoService 
 import * as fs from 'fs';
 import * as path from 'path';
 import * as ExcelJS from 'exceljs';
+import { AuditService } from '../audit/audit.service.js';
 
 export interface IOfflineProcessResult {
   mode: 'preview' | 'commit';
   file_name: string;
+  total_parsed?: number;
+  inserted?: number;
+  updated?: number;
   summary: {
     total_parsed: number;
     new_count: number;
@@ -43,7 +47,8 @@ export class ScanService {
     @InjectModel('ScanBatch') private readonly batchModel: Model<IScanBatch>,
     @InjectModel('Account') private readonly accountModel: Model<IAccount>,
     @InjectQueue('scan-queue') private readonly scanQueue: Queue,
-    private readonly cryptoService: CryptoService
+    private readonly cryptoService: CryptoService,
+    private readonly auditService: AuditService
   ) {}
 
   async createBatch(
@@ -109,57 +114,70 @@ export class ScanService {
     filePath: string,
     originalName: string,
     managedBy: string,
-    mode: 'preview' | 'commit' = 'preview'
+    mode: 'preview' | 'commit' = 'preview',
+    platform = 'SHOPEE'
   ): Promise<IOfflineProcessResult> {
     if (!fs.existsSync(filePath)) {
       throw new BadRequestException(`Không tìm thấy file tải lên tại: ${filePath}`);
     }
 
+    const targetPlatform = (platform || 'SHOPEE').toUpperCase();
     const ext = path.extname(originalName).toLowerCase();
     const parsedLines: any[] = [];
 
     if (ext === '.txt' || ext === '.csv' || ext === '.tsv') {
       const content = fs.readFileSync(filePath, 'utf8');
-      const lines = AccountParser.parseText(content);
-      lines.forEach(l => parsedLines.push(l));
+      const lines = AccountParser.parseText(content, { source_file: originalName, source_tab: 'Offline Import', default_platform: targetPlatform });
+      lines.forEach(l => parsedLines.push({ ...l, source_sheet: 'Offline Import' }));
     } else if (ext === '.xlsx' || ext === '.xls') {
       const workbook = new ExcelJS.Workbook();
       await workbook.xlsx.readFile(filePath);
-      const worksheet = workbook.worksheets[0];
-      if (worksheet) {
+      for (const worksheet of workbook.worksheets) {
+        const sheetName = worksheet.name || 'Offline Import';
         worksheet.eachRow((row, rowNumber) => {
+          const rowArray: string[] = [];
+          row.eachCell({ includeEmpty: true }, (c) => {
+            let val: any = c.value;
+            if (val && typeof val === 'object') {
+              val = val.text || val.result || JSON.stringify(val);
+            }
+            rowArray.push(val !== undefined && val !== null ? String(val).trim() : '');
+          });
+
           if (rowNumber === 1 && worksheet.rowCount > 1) {
-            // Check if first row is header
-            const firstCell = String(row.getCell(1).value || '').toLowerCase();
-            if (firstCell.includes('user') || firstCell.includes('tài khoản') || firstCell.includes('tk')) {
+            const joinedHeader = rowArray.join(' ').toLowerCase();
+            if (joinedHeader.includes('user') || joinedHeader.includes('tài khoản') || joinedHeader.includes('pass') || rowArray[0]?.toUpperCase() === 'STT') {
               return; // skip header
             }
           }
-          const rowVals = Array.isArray(row.values) 
-            ? row.values.slice(1).map(v => (v !== null && v !== undefined ? String(v) : ''))
-            : [];
-          if (rowVals.length > 0 && rowVals.some(v => v.trim().length > 0)) {
-            const rawLine = rowVals.join('|');
-            parsedLines.push(AccountParser.parseLine(rawLine, rowNumber));
+
+          if (rowArray.length > 0 && rowArray.some(v => v.length > 0)) {
+            const parsed = AccountParser.parseRow(rowArray, rowNumber, {
+              source_file: originalName,
+              source_tab: sheetName,
+              default_platform: targetPlatform
+            });
+            parsedLines.push({ ...parsed, source_sheet: sheetName, row_values: rowArray });
           }
         });
       }
     } else {
       // Fallback text parser
       const content = fs.readFileSync(filePath, 'utf8');
-      const lines = AccountParser.parseText(content);
-      lines.forEach(l => parsedLines.push(l));
+      const lines = AccountParser.parseText(content, { source_file: originalName, source_tab: 'Offline Import', default_platform: targetPlatform });
+      lines.forEach(l => parsedLines.push({ ...l, source_sheet: 'Offline Import' }));
     }
 
     if (parsedLines.length === 0) {
       throw new BadRequestException('File không chứa dữ liệu tài khoản hợp lệ.');
     }
 
-    // Lookup all valid normalized usernames in MongoDB
+    // Lookup all valid normalized usernames in MongoDB scoped by platform
     const validLines = parsedLines.filter(l => l.is_valid && l.username_normalized);
     const validUsernames = validLines.map(l => l.username_normalized);
 
     const existingAccounts = await this.accountModel.find({
+      platform: targetPlatform,
       username_normalized: { $in: validUsernames }
     }).exec();
 
@@ -188,23 +206,35 @@ export class ScanService {
       if (!existing) {
         newAccounts.push({
           line_number: item.line_number,
+          raw: item.raw,
+          row_values: item.row_values,
+          source_sheet: item.source_sheet || 'Offline Import',
+          platform: targetPlatform,
           username: item.username,
           username_normalized: item.username_normalized,
           has_password: !!item.password,
           has_cookie: !!item.cookie,
           has_email: !!item.email,
-          has_token: !!item.token,
+          has_token: !!(item.token || item.session_token),
           phone: item.phone,
           email: item.email,
           password: item.password,
           cookie: item.cookie,
           token: item.token,
+          session_token: item.session_token,
+          machine_id: item.machine_id,
+          coins: item.custom_metadata?.coins,
+          custom_metadata: item.custom_metadata,
           email_password: item.email_password,
           status: 'AVAILABLE'
         });
       } else {
         const detail = {
           line_number: item.line_number,
+          raw: item.raw,
+          row_values: item.row_values,
+          source_sheet: item.source_sheet || 'Offline Import',
+          platform: targetPlatform,
           username: existing.username,
           username_normalized: existing.username_normalized,
           current_status: existing.status,
@@ -217,12 +247,16 @@ export class ScanService {
             has_email: !!item.email,
             has_password: !!item.password
           },
+          phone: item.phone,
           password: item.password,
           cookie: item.cookie,
           token: item.token,
+          session_token: item.session_token,
+          machine_id: item.machine_id,
+          coins: item.custom_metadata?.coins,
+          custom_metadata: item.custom_metadata,
           email: item.email,
-          email_password: item.email_password,
-          phone: item.phone
+          email_password: item.email_password
         };
 
         if (existing.status === 'AVAILABLE') {
@@ -254,6 +288,7 @@ export class ScanService {
       return {
         mode: 'preview',
         file_name: originalName,
+        total_parsed: summary.total_parsed,
         summary,
         preview: {
           new_accounts: newAccounts.slice(0, 30).map(a => ({ ...a, password: a.password ? '******' : '', cookie: a.cookie ? a.cookie.substring(0, 25) + '...' : '' })),
@@ -286,43 +321,57 @@ export class ScanService {
     // 1. Insert NEW accounts
     for (const item of newAccounts) {
       const setFields: any = {
+        platform: targetPlatform,
         'metadata.source_file': originalName,
-        'metadata.source_sheet': 'Offline Import',
+        'metadata.source_sheet': item.source_sheet || 'Offline Import',
         'metadata.managed_by': managedBy,
         'metadata.batch_id': batch._id,
         'metadata.last_scan_at': timestamp,
         'metadata.first_scan_at': timestamp,
-        status: 'AVAILABLE',
-        tags: item.phone ? [`phone:${item.phone}`] : [],
+        raw: {
+          row_number: item.line_number,
+          values: item.row_values,
+          raw_text: item.raw || ''
+        },
         quality: {
           has_cookie: !!item.cookie,
-          has_token: !!item.token,
+          has_token: !!(item.token || item.session_token),
           has_email: !!item.email,
           parse_errors: []
         }
       };
 
+      if (item.phone) setFields.phone = item.phone;
       if (item.password) setFields.password_enc = this.cryptoService.encrypt(item.password);
       if (item.cookie) setFields.cookie_enc = this.cryptoService.encrypt(item.cookie);
       if (item.token) setFields.token_enc = this.cryptoService.encrypt(item.token);
+      if (item.session_token) setFields.session_token = this.cryptoService.encrypt(item.session_token);
+      if (item.machine_id) setFields.machine_id = item.machine_id;
+      if (item.coins !== undefined) setFields.coins = item.coins;
+      if (item.custom_metadata) setFields.custom_metadata = item.custom_metadata;
       if (item.email) setFields.email = item.email;
       if (item.email_password) setFields.email_password_enc = this.cryptoService.encrypt(item.email_password);
 
       bulkOps.push({
         updateOne: {
-          filter: { username_normalized: item.username_normalized },
+          filter: { platform: targetPlatform, username_normalized: item.username_normalized },
           update: {
             $setOnInsert: {
               username: item.username,
-              username_normalized: item.username_normalized
+              username_normalized: item.username_normalized,
+              platform: targetPlatform,
+              status: 'AVAILABLE'
             },
             $set: setFields,
+            $addToSet: {
+              tags: { $each: item.phone ? [targetPlatform.toLowerCase(), 'offline_import', `phone:${item.phone}`] : [targetPlatform.toLowerCase(), 'offline_import'] }
+            },
             $push: {
               history: {
                 action: 'CREATED_FROM_OFFLINE_FILE',
                 actor_id: managedBy,
                 timestamp: timestamp,
-                note: `Nhập mới từ file: ${originalName}`
+                note: `Nhập mới từ file: ${originalName} (${item.source_sheet || 'Offline Import'})`
               }
             }
           },
@@ -331,12 +380,16 @@ export class ScanService {
       });
     }
 
-    // 2. Update AVAILABLE accounts (refresh cookie/pass)
+    // 2. Update AVAILABLE accounts (Consensus Merge: preserve existing rich fields, only overwrite when incoming has data)
     for (const item of updateAvailable) {
       const setFields: any = {
         'metadata.last_scan_at': timestamp,
-        'metadata.batch_id': batch._id
+        'metadata.batch_id': batch._id,
+        'raw.row_number': item.line_number,
+        'raw.raw_text': item.raw || ''
       };
+      if (item.row_values) setFields['raw.values'] = item.row_values;
+      if (item.phone) setFields.phone = item.phone;
       if (item.password) setFields.password_enc = this.cryptoService.encrypt(item.password);
       if (item.cookie) {
         setFields.cookie_enc = this.cryptoService.encrypt(item.cookie);
@@ -346,6 +399,12 @@ export class ScanService {
         setFields.token_enc = this.cryptoService.encrypt(item.token);
         setFields['quality.has_token'] = true;
       }
+      if (item.session_token) {
+        setFields.session_token = this.cryptoService.encrypt(item.session_token);
+        setFields['quality.has_token'] = true;
+      }
+      if (item.machine_id) setFields.machine_id = item.machine_id;
+      if (item.coins !== undefined) setFields.coins = item.coins;
       if (item.email) {
         setFields.email = item.email;
         setFields['quality.has_email'] = true;
@@ -354,7 +413,7 @@ export class ScanService {
 
       bulkOps.push({
         updateOne: {
-          filter: { username_normalized: item.username_normalized },
+          filter: { platform: targetPlatform, username_normalized: item.username_normalized },
           update: {
             $set: setFields,
             $push: {
@@ -362,7 +421,7 @@ export class ScanService {
                 action: 'UPDATED_FROM_OFFLINE_FILE',
                 actor_id: managedBy,
                 timestamp: timestamp,
-                note: `Cập nhật thông tin từ file: ${originalName}`
+                note: `Cập nhật đồng thuận từ file: ${originalName}`
               }
             }
           }
@@ -375,7 +434,7 @@ export class ScanService {
     for (const item of protectedAccounts) {
       bulkOps.push({
         updateOne: {
-          filter: { username_normalized: item.username_normalized },
+          filter: { platform: targetPlatform, username_normalized: item.username_normalized },
           update: {
             $set: { 'metadata.last_scan_at': timestamp },
             $push: {
@@ -401,6 +460,24 @@ export class ScanService {
     batch.completed_at = new Date();
     await batch.save();
 
+    await this.auditService.record({
+      action: 'IMPORT_FILE_COMMIT',
+      actor_id: managedBy || 'ADMIN',
+      actor_username: managedBy || 'ADMIN',
+      platform: platform || 'SHOPEE',
+      target_type: 'OFFLINE_FILE',
+      details: {
+        file_name: originalName,
+        platform: platform || 'SHOPEE',
+        batch_id: batch._id.toString(),
+        total_parsed: summary.total_parsed,
+        inserted: newAccounts.length,
+        updated: updateAvailable.length,
+        protected: protectedAccounts.length,
+        invalid: invalidAccounts.length
+      }
+    });
+
     // Clean up file
     try {
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
@@ -410,6 +487,9 @@ export class ScanService {
       mode: 'commit',
       file_name: originalName,
       batch_id: batch._id.toString(),
+      total_parsed: summary.total_parsed,
+      inserted: newAccounts.length,
+      updated: updateAvailable.length,
       summary,
       details: {
         inserted: newAccounts.length,

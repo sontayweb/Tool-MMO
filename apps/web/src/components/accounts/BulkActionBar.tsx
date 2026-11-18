@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Copy, CheckSquare, ShoppingCart, CheckCircle, Ban, X, LifeBuoy, RotateCcw, Trash2 } from 'lucide-react';
+import { Copy, CheckSquare, ShoppingCart, CheckCircle, Ban, X, LifeBuoy, RotateCcw, Trash2, Zap } from 'lucide-react';
 
 interface BulkActionBarProps {
   selectedCount: number;
@@ -14,6 +14,7 @@ interface BulkActionBarProps {
   onAutoFix?: () => void;
   onRestore?: () => void;
   onDeleteToTrash?: () => void;
+  onCheckShopee?: () => void;
   isTrashMode?: boolean;
   loading?: boolean;
 }
@@ -29,6 +30,7 @@ export const BulkActionBar: React.FC<BulkActionBarProps> = ({
   onAutoFix,
   onRestore,
   onDeleteToTrash,
+  onCheckShopee,
   isTrashMode = false,
   loading = false,
 }) => {
@@ -104,6 +106,19 @@ export const BulkActionBar: React.FC<BulkActionBarProps> = ({
               >
                 <LifeBuoy className="w-3.5 h-3.5" />
                 <span>Cứu Hộ</span>
+              </button>
+            )}
+
+            {/* Check Shopee Live */}
+            {onCheckShopee && (
+              <button
+                onClick={onCheckShopee}
+                disabled={loading}
+                className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold shadow-lg shadow-orange-950/40 transition-all flex items-center gap-1.5"
+                title="Kiểm tra trạng thái đăng nhập Shopee thực tế"
+              >
+                <Zap className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+                <span>Kiểm Tra Shopee</span>
               </button>
             )}
 

@@ -1,4 +1,4 @@
-import { Injectable, Logger, BadRequestException } from '@nestjs/common';
+import { Injectable, Logger, BadRequestException, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as fs from 'fs';
@@ -25,12 +25,27 @@ export interface SyncProgress {
 }
 
 @Injectable()
-export class ShopeeDriveService {
+export class ShopeeDriveService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(ShopeeDriveService.name);
   private oauth2Client: any = null;
   private autoSyncInterval: NodeJS.Timeout | null = null;
   private autoSyncEnabled = false;
   private syncIntervalMinutes = 60;
+
+  private pushLog(msg: string) {
+    if (this.progress.logs.length >= 300) {
+      this.progress.logs.splice(0, this.progress.logs.length - 299);
+    }
+    this.progress.logs.push(msg);
+  }
+
+  onModuleDestroy() {
+    if (this.autoSyncInterval) {
+      clearInterval(this.autoSyncInterval);
+      this.autoSyncInterval = null;
+      this.logger.log('Shopee Drive Auto-Sync Cron timer cleared on module destroy.');
+    }
+  }
 
   private progress: SyncProgress = {
     is_running: false,
@@ -50,6 +65,34 @@ export class ShopeeDriveService {
     private readonly auditService: AuditService
   ) {
     this.initOAuthClient();
+  }
+
+  async onModuleInit() {
+    try {
+      const settingsCol = this.accountModel.db.collection('system_settings');
+      const saved = await settingsCol.findOne({ key: 'drive_auto_sync' });
+      if (saved) {
+        this.syncIntervalMinutes = saved.sync_interval_minutes || 60;
+        this.autoSyncEnabled = !!saved.auto_sync_enabled;
+        if (this.autoSyncEnabled) {
+          this.startAutoSyncTimer(this.syncIntervalMinutes);
+          this.logger.log(`Khôi phục Auto Sync Cron từ MongoDB: mỗi ${this.syncIntervalMinutes} phút.`);
+        }
+      }
+    } catch (err: any) {
+      this.logger.warn(`Không thể đọc cấu hình drive_auto_sync từ MongoDB: ${err.message}`);
+    }
+  }
+
+  private startAutoSyncTimer(minutes: number) {
+    if (this.autoSyncInterval) {
+      clearInterval(this.autoSyncInterval);
+      this.autoSyncInterval = null;
+    }
+    const intervalMs = Math.max(1, minutes) * 60 * 1000;
+    this.autoSyncInterval = setInterval(() => {
+      this.triggerSync({ actor: 'SYSTEM_CRON' }).catch(e => this.logger.error(e));
+    }, intervalMs);
   }
 
   private initOAuthClient() {
@@ -115,7 +158,10 @@ export class ShopeeDriveService {
     });
   }
 
-  updateSettings(settings: { auto_sync_enabled?: boolean; sync_interval_minutes?: number }) {
+  async updateSettings(settings: { auto_sync_enabled?: boolean; sync_interval_minutes?: number }) {
+    if (settings.sync_interval_minutes) {
+      this.syncIntervalMinutes = settings.sync_interval_minutes;
+    }
     if (settings.auto_sync_enabled !== undefined) {
       this.autoSyncEnabled = settings.auto_sync_enabled;
       if (this.autoSyncInterval) {
@@ -123,16 +169,31 @@ export class ShopeeDriveService {
         this.autoSyncInterval = null;
       }
       if (this.autoSyncEnabled) {
-        const intervalMs = (settings.sync_interval_minutes || this.syncIntervalMinutes) * 60 * 1000;
-        this.autoSyncInterval = setInterval(() => {
-          this.triggerSync({ actor: 'SYSTEM_CRON' }).catch(e => this.logger.error(e));
-        }, intervalMs);
-        this.logger.log(`Auto Sync Cron activated: every ${settings.sync_interval_minutes || this.syncIntervalMinutes} minutes.`);
+        this.startAutoSyncTimer(this.syncIntervalMinutes);
+        this.logger.log(`Auto Sync Cron activated: every ${this.syncIntervalMinutes} minutes.`);
       }
+    } else if (this.autoSyncEnabled && settings.sync_interval_minutes) {
+      this.startAutoSyncTimer(this.syncIntervalMinutes);
     }
-    if (settings.sync_interval_minutes) {
-      this.syncIntervalMinutes = settings.sync_interval_minutes;
+
+    try {
+      const settingsCol = this.accountModel.db.collection('system_settings');
+      await settingsCol.updateOne(
+        { key: 'drive_auto_sync' },
+        {
+          $set: {
+            key: 'drive_auto_sync',
+            auto_sync_enabled: this.autoSyncEnabled,
+            sync_interval_minutes: this.syncIntervalMinutes,
+            updated_at: new Date()
+          }
+        },
+        { upsert: true }
+      );
+    } catch (err: any) {
+      this.logger.warn(`Không thể lưu cấu hình drive_auto_sync vào MongoDB: ${err.message}`);
     }
+
     return { success: true, auto_sync_enabled: this.autoSyncEnabled, sync_interval_minutes: this.syncIntervalMinutes };
   }
 
@@ -161,7 +222,7 @@ export class ShopeeDriveService {
       this.progress.is_running = false;
       this.progress.stage = 'ERROR';
       this.progress.error_message = err.message;
-      this.progress.logs.push(`[${new Date().toLocaleTimeString()}] ❌ LỖI: ${err.message}`);
+      this.pushLog(`[${new Date().toLocaleTimeString()}] ❌ LỖI: ${err.message}`);
     });
 
     return { message: 'Đã kích hoạt tiến trình đồng bộ Shopee Drive thành công!', started_at: this.progress.started_at };
@@ -175,7 +236,7 @@ export class ShopeeDriveService {
     const drive = google.drive({ version: 'v3', auth: this.oauth2Client });
 
     // Step 1: Scan all Google Drive & Shared Drives with full pagination
-    this.progress.logs.push(`[${new Date().toLocaleTimeString()}] 🔍 Đang quét toàn bộ Google Drive & Shared Drives...`);
+    this.pushLog(`[${new Date().toLocaleTimeString()}] 🔍 Đang quét toàn bộ Google Drive & Shared Drives...`);
     let allFiles: any[] = [];
     let pageToken: string | undefined = undefined;
 
@@ -206,7 +267,7 @@ export class ShopeeDriveService {
 
     this.progress.files_total = validFiles.length;
     this.progress.stage = 'PROCESSING_FILES';
-    this.progress.logs.push(`[${new Date().toLocaleTimeString()}] 📂 Tìm thấy ${validFiles.length} file tài nguyên Shopee hợp lệ trên Google Drive.`);
+    this.pushLog(`[${new Date().toLocaleTimeString()}] 📂 Tìm thấy ${validFiles.length} file tài nguyên Shopee hợp lệ trên Google Drive.`);
 
     // Ghi nhận Audit Log bắt đầu
     await this.auditService.record({
@@ -236,7 +297,7 @@ export class ShopeeDriveService {
       const file = validFiles[fIdx];
       this.progress.current_file = file.name || 'Untitled';
       const logLine = `[${new Date().toLocaleTimeString()}] [${fIdx + 1}/${validFiles.length}] Đang xử lý file Shopee: "${file.name}"...`;
-      this.progress.logs.push(logLine);
+      this.pushLog(logLine);
       appendDiskLog(logLine);
 
       const beforeInserted = this.progress.accounts_inserted;
@@ -267,7 +328,7 @@ export class ShopeeDriveService {
         });
       } catch (fileErr: any) {
         const errLine = `[${new Date().toLocaleTimeString()}] ⚠️ Bỏ qua file "${file.name}" do lỗi: ${fileErr.message}`;
-        this.progress.logs.push(errLine);
+        this.pushLog(errLine);
         appendDiskLog(`❌ ${errLine}`);
 
         // Ghi AuditLog lỗi cho file
@@ -296,7 +357,7 @@ export class ShopeeDriveService {
     this.progress.is_running = false;
     this.progress.stage = 'COMPLETED';
     this.progress.completed_at = new Date();
-    this.progress.logs.push(
+    this.pushLog(
       `[${new Date().toLocaleTimeString()}] 🎉 HOÀN THÀNH ĐỒNG BỘ SHOPEE! Tổng cộng: ${this.progress.accounts_total_found} phát hiện (+${this.progress.accounts_inserted} mới, +${this.progress.accounts_updated} cập nhật).`
     );
 
@@ -328,7 +389,7 @@ export class ShopeeDriveService {
         const sheetTitles = (ssMeta.data.sheets || []).map((s: any) => s.properties.title);
         if (sheetTitles.length === 0) return [];
 
-        const safeRanges = sheetTitles.map((t: string) => `'${t.replace(/'/g, "''")}'!A1:Z3000`);
+        const safeRanges = sheetTitles.map((t: string) => `'${t.replace(/'/g, "''")}'!A1:Z50000`);
         const batchData = await sheetsApi.spreadsheets.values.batchGet({
           spreadsheetId: file.id,
           ranges: safeRanges
@@ -412,7 +473,8 @@ export class ShopeeDriveService {
 
         const parsed = AccountParser.parseRow(rowArray, rIdx, {
           source_file: file.name,
-          source_tab: tabName
+          source_tab: tabName,
+          default_platform: 'SHOPEE'
         });
 
         if (!parsed.is_valid || !parsed.username) {
@@ -428,7 +490,7 @@ export class ShopeeDriveService {
         const session_token_enc = parsed.session_token ? this.cryptoService.encrypt(parsed.session_token) : undefined;
         const email_password_enc = parsed.email_password ? this.cryptoService.encrypt(parsed.email_password) : undefined;
 
-        const targetPlatform = parsed.platform || 'SHOPEE';
+        const targetPlatform = (parsed.platform && parsed.platform !== 'OTHER' && parsed.platform !== 'MAIL') ? parsed.platform : 'SHOPEE';
 
         const setFields: any = {
           username: parsed.username,
@@ -436,16 +498,16 @@ export class ShopeeDriveService {
           platform: targetPlatform,
           'metadata.source_file': file.name,
           'metadata.source_sheet': tabName,
+          'metadata.source_url': file.webViewLink || (file.id ? `https://docs.google.com/spreadsheets/d/${file.id}/edit` : undefined),
           'metadata.last_scan_at': new Date(),
-          quality: {
-            has_cookie: !!parsed.cookie,
-            has_token: !!(parsed.token || parsed.session_token),
-            has_email: !!parsed.email,
-            parse_errors: []
-          },
-          tags: [targetPlatform.toLowerCase(), 'drive_ingress', tabName.toLowerCase()],
+          'quality.parse_errors': [],
           updatedAt: new Date()
         };
+
+        // Consensus Merge: chỉ bật true khi dòng mới có dữ liệu
+        if (parsed.cookie) setFields['quality.has_cookie'] = true;
+        if (parsed.token || parsed.session_token) setFields['quality.has_token'] = true;
+        if (parsed.email) setFields['quality.has_email'] = true;
 
         if (password_enc) setFields.password_enc = password_enc;
         if (cookie_enc) setFields.cookie_enc = cookie_enc;
@@ -471,6 +533,9 @@ export class ShopeeDriveService {
             },
             update: {
               $set: setFields,
+              $addToSet: {
+                tags: { $each: [targetPlatform.toLowerCase(), 'drive_ingress', tabName.toLowerCase()] }
+              },
               $setOnInsert: {
                 status: 'AVAILABLE',
                 createdAt: new Date(),
@@ -491,7 +556,7 @@ export class ShopeeDriveService {
           const res = await this.accountModel.bulkWrite(bulkOps, { ordered: false });
           this.progress.accounts_inserted += res.upsertedCount || 0;
           this.progress.accounts_updated += res.modifiedCount || 0;
-          this.progress.logs.push(
+          this.pushLog(
             `[${new Date().toLocaleTimeString()}]   ↳ Tab "${tabName}": +${res.upsertedCount || 0} mới, +${res.modifiedCount || 0} cập nhật cookie/data.`
           );
         } catch (bulkErr: any) {
@@ -501,7 +566,7 @@ export class ShopeeDriveService {
           this.progress.accounts_inserted += inserted;
           this.progress.accounts_updated += modified;
           this.progress.accounts_errors += (bulkErr.writeErrors?.length || 1);
-          this.progress.logs.push(
+          this.pushLog(
             `[${new Date().toLocaleTimeString()}]   ⚠️ Tab "${tabName}": +${inserted} mới, +${modified} cập nhật, ${bulkErr.writeErrors?.length || 1} dòng lỗi format.`
           );
         }

@@ -19,7 +19,7 @@ export class ScanProcessor extends WorkerHost {
     super();
     // Connect to Redis for caching
     try {
-      this.redisClient = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
+      this.redisClient = new Redis(process.env.REDIS_URL || 'redis://localhost:6380');
     } catch (err) {
       console.warn('Redis connection failed in worker. Proceeding without Redis set cache:', err);
     }
@@ -48,10 +48,14 @@ export class ScanProcessor extends WorkerHost {
     }
 
     try {
-      // 1. Preload existing username set from Mongo
+      // 1. Preload existing platform:username set from Mongo
       const existingUsernames = new Set<string>();
-      const dbUsernames = await this.accountModel.find().distinct('username_normalized').exec();
-      dbUsernames.forEach((u: string) => existingUsernames.add(u));
+      const dbAccounts = await this.accountModel.find({}, { platform: 1, username_normalized: 1 }).lean().exec();
+      dbAccounts.forEach((a: any) => {
+        if (a.username_normalized) {
+          existingUsernames.add(`${a.platform || 'SHOPEE'}:${a.username_normalized}`);
+        }
+      });
 
       // 2. Open workbook using ExcelJS
       const workbook = new ExcelJS.Workbook();
@@ -151,9 +155,11 @@ export class ScanProcessor extends WorkerHost {
           });
 
           // Sử dụng Universal AccountParser nhận diện thông minh
+          // Truyền platform từ batch metadata để tránh parser tự đoán sai
           const parsed = AccountParser.parseRow(rowArray, r, {
             source_file: batch.file_name,
-            source_tab: sheetName
+            source_tab: sheetName,
+            default_platform: (batch as any).platform || 'SHOPEE'
           });
 
           // Lấy dòng gốc từ Google Sheets
@@ -186,6 +192,8 @@ export class ScanProcessor extends WorkerHost {
           }
 
           const usernameNorm = parsed.username_normalized;
+          username = parsed.username;
+          const targetPlatform = (parsed.platform && parsed.platform !== 'OTHER') ? parsed.platform : ((batch as any).platform || 'SHOPEE');
           if (!parsed.is_valid) {
             sheetError++;
             totalError++;
@@ -215,37 +223,50 @@ export class ScanProcessor extends WorkerHost {
           const session_token_enc = parsed.session_token ? this.cryptoService.encrypt(parsed.session_token) : undefined;
 
           const setFields: any = {
-            platform: parsed.platform || 'SHOPEE',
+            platform: targetPlatform,
             'metadata.last_scan_at': new Date(),
             'metadata.source_sheet': sheetName,
             'metadata.source_file': batch.file_name,
-            'metadata.batch_id': batch._id
+            'metadata.batch_id': batch._id,
+            'quality.parse_errors': [],
+            raw: {
+              row_number: r,
+              values: rowArray,
+              raw_text: rowArray.filter((c: any) => c !== undefined && c !== null && String(c).trim() !== '').join(' | ')
+            }
           };
           if (password_enc) setFields.password_enc = password_enc;
-          if (cookie_enc) setFields.cookie_enc = cookie_enc;
-          if (token_enc) setFields.token_enc = token_enc;
-          if (session_token_enc) setFields.session_token = session_token_enc;
+          if (cookie_enc) {
+            setFields.cookie_enc = cookie_enc;
+            setFields['quality.has_cookie'] = true;
+          }
+          if (token_enc) {
+            setFields.token_enc = token_enc;
+            setFields['quality.has_token'] = true;
+          }
+          if (session_token_enc) {
+            setFields.session_token = session_token_enc;
+            setFields['quality.has_token'] = true;
+          }
           if (parsed.machine_id) setFields.machine_id = parsed.machine_id;
-          if (parsed.email) setFields.email = parsed.email;
+          if (parsed.phone) setFields.phone = parsed.phone;
+          if (parsed.custom_metadata?.coins) setFields.coins = parsed.custom_metadata.coins;
+          if (parsed.email) {
+            setFields.email = parsed.email;
+            setFields['quality.has_email'] = true;
+          }
           if (email_password_enc) setFields.email_password_enc = email_password_enc;
           if (parsed.custom_metadata) setFields.custom_metadata = parsed.custom_metadata;
 
-          // Quality indicators
-          setFields.quality = {
-            has_cookie: !!parsed.cookie,
-            has_token: !!(parsed.token || parsed.session_token),
-            has_email: !!parsed.email,
-            parse_errors: []
-          };
-
-          const isDuplicate = existingUsernames.has(usernameNorm);
+          const compositeKey = `${targetPlatform}:${usernameNorm}`;
+          const isDuplicate = existingUsernames.has(compositeKey);
 
           if (isDuplicate) {
             sheetDuplicate++;
             totalDuplicate++;
             bulkOps.push({
               updateOne: {
-                filter: { username_normalized: usernameNorm },
+                filter: { platform: targetPlatform, username_normalized: usernameNorm },
                 update: {
                   $set: setFields,
                   $push: {
@@ -268,20 +289,21 @@ export class ScanProcessor extends WorkerHost {
           } else {
             sheetNew++;
             totalNew++;
-            existingUsernames.add(usernameNorm);
+            existingUsernames.add(compositeKey);
             
             // Add to Redis (fire & forget)
             if (this.redisClient) {
-              this.redisClient.sadd('arms:account:usernames:v1', usernameNorm).catch(() => {});
+              this.redisClient.sadd('arms:account:usernames:v1', compositeKey).catch(() => {});
             }
 
             bulkOps.push({
               updateOne: {
-                filter: { username_normalized: usernameNorm },
+                filter: { platform: targetPlatform, username_normalized: usernameNorm },
                 update: {
                   $setOnInsert: {
                     username: username,
                     username_normalized: usernameNorm,
+                    platform: targetPlatform,
                     status: 'AVAILABLE',
                     'metadata.first_scan_at': new Date(),
                     tags: []

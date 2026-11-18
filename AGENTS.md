@@ -20,3 +20,14 @@
 11. **KIỂM CHỨNG TOÀN DIỆN TRƯỚC KHI BÀN GIAO (END-TO-END VERIFICATION)**:
    - Trước khi báo cáo hoàn thành, phải đối soát toàn bộ chuỗi: Giao diện (FE) ➔ API Endpoint ➔ Xử lý Logic Backend ➔ Truy vấn MongoDB ➔ File Xuất / Tải về thực tế.
    - Kiểm tra kỹ các module CommonJS / ESM để tránh lỗi crash runtime.
+12. **XỬ LÝ LỆCH CỘT STT & CHỐNG TRÙNG LẶP KHO HÀNG (INGRESS RESILIENCE & SMART DEDUPLICATION)**:
+   - Parser bắt buộc phải nhận diện linh hoạt cột STT (`^\d+$`) ở vị trí đầu tiên của bảng tính Shopee/TikTok để bóc tách đúng Username ở Cột 1 và Password ở Cột 2.
+   - Khi chạy Cứu Hộ / Auto-Fix, nếu Username đã tồn tại trong kho `AVAILABLE` (Duplicate an toàn từ nhiều nguồn nạp), BẮT BUỘC phải đổi Username bản ghi phụ thành `dup_<username>_<id4>` và gắn tag `fix_failed_duplicate`, tuyệt đối không để nguyên số STT rác (`56`, `60`...) làm sai lệch bộ đếm Domain Rules.
+   - Các dòng rác Excel kéo dài thừa đuôi (`114`, `115`, `#VALUE!`, `-`) phải được gắn nhãn `unfixable_excel_empty_row` và cô lập triệt để.
+13. **QUY TẮC VÀNG NHẬN DIỆN NỀN TẢNG (PLATFORM DETECTION GOLDEN RULE)**:
+   - THỨ TỰ ƯU TIÊN BẤT BIẾN (từ cao xuống thấp): `default_platform` từ Nguồn Nạp → Cookie Độc Quyền → Tên File/Sheet → Fallback `'SHOPEE'`.
+   - `default_platform` từ Nguồn Nạp là **TỐI THƯỢNG**: Một khi ShopeeDriveService đã truyền `default_platform: 'SHOPEE'`, KHÔNG CÓ bất kỳ điều kiện nào được lật lại quyết định đó.
+   - CẤM dùng các dấu hiệu dùng chung để suy luận platform: Domain mail `@smvmail.com`, `@fviainboxes.com` (dùng cho cả Shopee lẫn TikTok), Token thiết bị Boxphone `M.C...` (không phải dấu hiệu riêng nền tảng nào).
+   - Chỉ Cookie MÃ HÓA ĐỘC QUYỀN mới được dùng để nhận diện: Shopee (`SPC_F=`, `.shopee.vn`), TikTok (`ttwid=`, `odin_tt=`), Facebook (`c_user=` kết hợp `xs=`).
+   - `PLATFORM_FALLBACK_DEFAULT = 'SHOPEE'` (hằng số trong `domain-rules.ts`): Toàn bộ service phải import hằng số này, CẤM hardcode string `'TIKTOK'` làm giá trị fallback.
+   - Auto-Fix khi tái xử lý raw data PHẢI kế thừa `platform` từ bản ghi DB gốc làm `default_platform`, không để parser tự đoán lại từ đầu.

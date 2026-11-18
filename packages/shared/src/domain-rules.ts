@@ -3,6 +3,17 @@
  * Centralized specifications for validation, data integrity, and junk detection.
  */
 
+/**
+ * Nền tảng mặc định khi không thể xác định chắc chắn.
+ * Hệ thống MMO chủ yếu quản lý Shopee nên mặc định là SHOPEE.
+ * TẤT CẢ service đều phải dùng hằng số này thay cho hardcode string.
+ */
+export const PLATFORM_FALLBACK_DEFAULT = 'SHOPEE' as const;
+
+/** Danh sách các nền tảng được hỗ trợ (Single source of truth) */
+export const SUPPORTED_PLATFORMS = ['SHOPEE', 'TIKTOK', 'FACEBOOK', 'MAIL', 'OTHER'] as const;
+export type SupportedPlatform = typeof SUPPORTED_PLATFORMS[number];
+
 export interface IFieldValidationResult {
   isValid: boolean;
   reason?: string;
@@ -89,6 +100,13 @@ export const MailRules = {
 
 export class PlatformRules {
   /**
+   * Universal email validator
+   */
+  static isValidEmail(email: string): boolean {
+    return MailRules.isValidEmail(email);
+  }
+
+  /**
    * Universal username validator based on platform specification
    */
   static isValidUsername(platform: string | undefined, username: string): boolean {
@@ -101,6 +119,9 @@ export class PlatformRules {
 
     // Reject pure row numbers / STT numbers
     if (/^\d{1,4}$/.test(clean)) return false;
+
+    // Reject Boxphone session tokens mistakenly parsed as username (Rule 10)
+    if (/^m\.c/i.test(clean)) return false;
 
     // Reject URLs and full cookies mistakenly pasted into username
     if (clean.includes('spc_f=') || clean.includes('http://') || clean.includes('https://') || clean.includes('ttwid=')) {
@@ -116,7 +137,7 @@ export class PlatformRules {
       case 'FACEBOOK':
         return FacebookRules.isValidUsername(clean);
       case 'MAIL':
-        return MailRules.isValidEmail(clean);
+        return MailRules.isValidEmail(clean) || (/^[a-zA-Z0-9._\-]{3,35}$/.test(clean) && !/^\d+$/.test(clean));
       default:
         // General fallback
         return /^[a-zA-Z0-9._\-@+]{3,35}$/.test(clean) && !/^\d+$/.test(clean);
@@ -138,7 +159,7 @@ export class PlatformRules {
   /**
    * Generates a comprehensive MongoDB query filter to find ALL corrupted / invalid accounts across ALL fields
    */
-  static getCorruptedMongoFilter(platform?: string): Record<string, any> {
+  static getCorruptedMongoFilter(platform?: string, includeInactive = false): Record<string, any> {
     const upperPlatform = (platform && platform !== 'ALL') ? platform.toUpperCase() : null;
 
     let validUsernamePattern = '^[a-zA-Z0-9._\\-@+]{3,35}$';
@@ -147,10 +168,26 @@ export class PlatformRules {
     else if (upperPlatform === 'FACEBOOK') validUsernamePattern = '^[a-zA-Z0-9.]{5,50}$|^\\d{10,20}$';
 
     const conditions: any[] = [
-      // 1. Vi phạm quy luật USERNAME (Token Boxphone M.C..., STT số, độ dài > 35, ký tự lạ *, !, hoặc rỗng)
-      { username: { $not: { $regex: validUsernamePattern } } },
+      // 1. Vi phạm quy luật USERNAME (Token Boxphone M.C..., STT số, độ dài > 35 đối với Shopee/TikTok/FB, ký tự lạ *, !, hoặc rỗng)
+      {
+        $and: [
+          { platform: { $ne: 'MAIL' } },
+          { username: { $not: { $regex: validUsernamePattern } } }
+        ]
+      },
+      {
+        $and: [
+          { platform: 'MAIL' },
+          { username: { $not: { $regex: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$|^[a-zA-Z0-9._\\-]{3,60}$' } } }
+        ]
+      },
       { username: { $regex: '^\\s*[0-9]{1,4}\\s*$' } },
-      { username: { $regex: '.{36,}' } },
+      {
+        $and: [
+          { platform: { $ne: 'MAIL' } },
+          { username: { $regex: '.{36,}' } }
+        ]
+      },
       { username: { $in: [null, ''] } },
 
       // 2. Vi phạm quy luật EMAIL (Có email nhưng không đúng chuẩn RFC email)
@@ -159,38 +196,37 @@ export class PlatformRules {
           { email: { $nin: [null, ''] } },
           { email: { $not: { $regex: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$' } } }
         ]
-      },
-
-      // 3. Vi phạm DỮ LIỆU CỐT LÕI (Trắng hoàn toàn cả Mật Khẩu LẪN Cookie)
-      {
-        $and: [
-          { $or: [{ cookie_enc: null }, { cookie_enc: '' }] },
-          { $or: [{ password_enc: null }, { password_enc: '' }] }
-        ]
       }
     ];
 
-    const filter: Record<string, any> = { $or: conditions };
-    if (upperPlatform) {
-      filter.platform = upperPlatform;
+    const andConditions: any[] = [{ $or: conditions }];
+    if (!includeInactive) {
+      andConditions.push({ status: { $nin: ['BLACKLISTED', 'TRASH'] } });
     }
-    return filter;
+    if (upperPlatform) {
+      andConditions.push({ platform: upperPlatform });
+    }
+
+    return { $and: andConditions };
   }
 
   /**
-   * Generates a MongoDB query filter for accounts missing both password and cookie
+   * Generates a MongoDB query filter for accounts missing both password and cookie (and token)
    */
-  static getMissingCoreMongoFilter(platform?: string): Record<string, any> {
-    const filter: Record<string, any> = {
-      $and: [
-        { $or: [{ cookie_enc: null }, { cookie_enc: '' }] },
-        { $or: [{ password_enc: null }, { password_enc: '' }] }
-      ]
-    };
-    if (platform && platform !== 'ALL') {
-      filter.platform = platform.toUpperCase();
+  static getMissingCoreMongoFilter(platform?: string, includeInactive = false): Record<string, any> {
+    const andConditions: any[] = [
+      { $or: [{ cookie_enc: null }, { cookie_enc: '' }, { cookie_enc: { $exists: false } }] },
+      { $or: [{ password_enc: null }, { password_enc: '' }, { password_enc: { $exists: false } }] },
+      { $or: [{ token_enc: null }, { token_enc: '' }, { token_enc: { $exists: false } }] },
+      { $or: [{ session_token: null }, { session_token: '' }, { session_token: { $exists: false } }] }
+    ];
+    if (!includeInactive) {
+      andConditions.push({ status: { $nin: ['BLACKLISTED', 'TRASH'] } });
     }
-    return filter;
+    if (platform && platform !== 'ALL') {
+      andConditions.push({ platform: platform.toUpperCase() });
+    }
+    return { $and: andConditions };
   }
 
   /**
@@ -199,7 +235,10 @@ export class PlatformRules {
   static getFullInfoMongoFilter(platform?: string): Record<string, any> {
     const filter: Record<string, any> = {
       password_enc: { $nin: [null, ''] },
-      'quality.has_cookie': true
+      $or: [
+        { 'quality.has_cookie': true },
+        { cookie_enc: { $nin: [null, ''] } }
+      ]
     };
     if (platform && platform !== 'ALL') {
       filter.platform = platform.toUpperCase();

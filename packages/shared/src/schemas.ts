@@ -169,8 +169,22 @@ export const AccountSchema = new Schema<IAccount>(
 AccountSchema.index({ platform: 1, username_normalized: 1 }, { unique: true });
 AccountSchema.index({ status: 1, "metadata.last_scan_at": -1 });
 AccountSchema.index({ "metadata.source_sheet": 1, status: 1 });
+AccountSchema.index({ "metadata.source_file": 1, status: 1 });
 AccountSchema.index({ "metadata.batch_id": 1 });
 AccountSchema.index({ email: 1 }, { sparse: true });
+AccountSchema.index({ username: 1 });
+AccountSchema.index(
+  {
+    username: "text",
+    email: "text",
+    "metadata.source_file": "text",
+    "metadata.source_sheet": "text"
+  },
+  {
+    name: "account_text_search_idx",
+    weights: { username: 10, email: 5, "metadata.source_file": 3, "metadata.source_sheet": 1 }
+  }
+);
 
 
 // ScanBatch Types & Schema
